@@ -25,4 +25,10 @@ class UsersController extends Controller
 		$this->show('default/connexion');
 	}
 	
+
+	public function mySpace() 
+	{ 
+		$this->show('users/user_myspace');
+
+	}
 }
