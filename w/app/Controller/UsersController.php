@@ -28,10 +28,11 @@ class UsersController extends Controller
 
 	public function mySpace() 
 	{ 
-		if(empty($_SESSION)) { 
-			$this->show('w_errors/403');
-		} else { 
+		// En attendant qu'une connexion soit possible, pour pouvoir travailler dessus
+		//if(empty($_SESSION)) { 
+		//	$this->show('w_errors/403');
+		//} else { 
 			$this->show('users/user_myspace');
-		}
+		//}
 	}
 }
