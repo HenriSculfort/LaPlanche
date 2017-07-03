@@ -76,15 +76,19 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <?= $this->section('header_content') ?>
                 </div>
+
                 <!-- Connexion -->
                 <div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
+
+                            <div id="errorsAjaxConnexion" style="color:red"></div>
+
                             <h3>Connectez-vous !</h3><br>
                             <form method="post">
                                 <input type="text" name="emailConnexion" placeholder="Email">
                                 <input type="password" name="passwordConnexion" placeholder="Mot de passe">
-                                <input type="submit" name="login" class="login loginmodal-submit" value="Connexion">
+                                <input type="submit" id="connexion" name="login" class="login loginmodal-submit" value="Connexion">
                             </form>
                             <div class="login-help">
                                 <a href="<?= $this->url('users_add') ?>" data-toggle="modal" data-target="#inscription">Inscription</a><a href="#">Mot de passe oublié ?</a>
@@ -96,12 +100,15 @@
                 <div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
+
+                            <div id="errorsAjaxInscription" style="color:red"></div>
+
                             <h3>Inscrivez-vous !</h3><br>
                             <form method="post">
                                 <input type="text" name="emailInscription" placeholder="Email">
                                 <input type="password" name="passwordInscription" placeholder="Mot de passe">
                                 <input type="password" name="ControlPasswordInscription" placeholder="Répéter votre mot de passe">
-                                <input type="submit" name="login" class="login loginmodal-submit" value="Connexion">
+                                <input type="submit" id="inscription" name="login" class="login loginmodal-submit" value="Inscription">
                             </form>
                         </div>
                     </div>
@@ -115,9 +122,7 @@
 <!-- Main Content -->
 <div class="container">
     <div class="row">
-
         <?= $this->section('main_content') ?>
-
     </div>
 </div>
 
@@ -139,42 +144,91 @@
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
                     </li>
                     <li>
-                        <li>
-                            <a href="<?= $this->url('users_login') ?>">Connexion</a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->url('contact') ?>">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
-                </div>
+                        <a href="<?= $this->url('users_login') ?>">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="<?= $this->url('contact') ?>">Contact</a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
             </div>
         </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="<?= $this->assetUrl('js/jqBootstrapValidation.js') ?>"></script>
-    <script src="<?= $this->assetUrl('js/contact_me.js') ?>"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
-
-    <!-- JS pour slider Bootstrap -->
-    <script src="<?= $this->assetUrl('js/bootstrap-slider.js') ?>"></script>
-    <!-- Theme JavaScript personnalisé -->
-    <script src="<?= $this->assetUrl('js/script.js') ?>"></script>
-
-    <div >
-        <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
-            <i class="fa fa-arrow-up"></i>
-        </button>
     </div>
+</footer>
+
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="<?= $this->assetUrl('js/jqBootstrapValidation.js') ?>"></script>
+<script src="<?= $this->assetUrl('js/contact_me.js') ?>"></script>
+
+<!-- Theme JavaScript -->
+<script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
+
+<!-- JS pour slider Bootstrap -->
+<script src="<?= $this->assetUrl('js/bootstrap-slider.js') ?>"></script>
+<!-- Theme JavaScript personnalisé -->
+<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+
+<script>
+
+     // control connexion
+     $(document).ready(function(){
+
+        $('#connexion').on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: '<?=$this->url('users_login');?>',
+                type: 'post',
+                dataType: 'json',
+                data: $('form').serialize(),
+                success: function(retourJson){
+                    if(retourJson.result == true){
+                        $('#errorsAjaxConnexion').text(''); 
+                    }
+                    else if(retourJson.result == false){
+                        $('#errorsAjaxConnexion').html(retourJson.errors);
+                    }
+                }   
+            });
+        });
+    });
+
+    // control inscription
+    $(document).ready(function(){
+
+        $('#inscription').on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: '<?=$this->url('users_add');?>',
+                type: 'post',
+                dataType: 'json',
+                data: $('form').serialize(),
+                success: function(retourJson){
+                    if(retourJson.result == true){
+                        $('#errorsAjaxInscription').text(''); 
+                    }
+                    else if(retourJson.result == false){
+                        $('#errorsAjaxInscription').html(retourJson.errors);
+                    }
+                }   
+            });
+        });
+    });
+
+    <?= $this->section('script') ?>
+
+</script>
+
+<div >
+    <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+</div>
 </body>
 
 

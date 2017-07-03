@@ -3,6 +3,8 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \W\Model\UsersModel;
+use \W\Security\AuthentificationModel;
 
 class UsersController extends Controller
 {
@@ -30,14 +32,25 @@ class UsersController extends Controller
 			}
 			if(count($errors) === 0){
 
-				$this->show('users/inscription');
+				// Insertion des données
+
+				$json = [
+				'result' => true,
+				];
 			}
+			else {
+				$json = [
+				'result' => false,
+				'errors' => implode('<br>', $errors),
+				];
+			}
+			$this->showJson($json);
 		}
 	}
 
+
 	public function login()
 	{
-
 		$post = [];
 		$errors = [];
 
@@ -50,28 +63,34 @@ class UsersController extends Controller
 
 			if($id_user > 0){ 
 				$usersModel = new UsersModel();
-
-
 				$me = $usersModel->find($id_user); 
-
-
-
 				$authModel->logUserIn($me); 
+
+				$json = [
+				'result' => true,
+				];
 
 				if(!empty($authModel->getLoggedUser())){
 					$this->flash('Vous êtes desormais connecté', 'success');
 					$this->redirectToRoute('accueil');
 				}
 			}
-
 			else {
-				$this->flash('Le couple identifiant / mot de passe est invalide', 'danger');
+				$json = [
+				'result' => false,
+				'errors' => 'Le couple identifiant / mot de passe est invalide',
+				];
 			}
-
-		}
-
-		$this->show('users/login');
+			$this->showJson($json);
+		}	
 	}
+
+
+
+
+
+
+
 
 	public function logout()
 	{
