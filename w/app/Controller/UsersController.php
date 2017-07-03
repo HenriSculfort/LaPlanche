@@ -28,7 +28,10 @@ class UsersController extends Controller
 
 	public function mySpace() 
 	{ 
-		$this->show('users/user_myspace');
-
+		if(empty($_SESSION)) { 
+			$this->show('w_errors/403');
+		} else { 
+			$this->show('users/user_myspace');
+		}
 	}
 }
