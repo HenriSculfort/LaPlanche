@@ -14,9 +14,13 @@
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
 
+    <!-- Slider Bootstrap modif via plugin -->
+    <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-slider.css') ?>">
+
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/clean-blog.min.css') ?>">
 
+    
     <!-- Styles CSS personnalisés -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
@@ -161,6 +165,8 @@
     <!-- Theme JavaScript -->
     <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
 
+    <!-- JS pour slider Bootstrap -->
+    <script src="<?= $this->assetUrl('js/bootstrap-slider.js') ?>"></script>
     <!-- Theme JavaScript personnalisé -->
     <script src="<?= $this->assetUrl('js/script.js') ?>"></script>
 

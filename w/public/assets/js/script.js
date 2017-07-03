@@ -17,3 +17,12 @@ function goToTop() {
 	document.body.scrollTop = 0; // Compatible Chrome, Safari et Opéra 
 	document.documentElement.scrollTop = 0; // Pour IE et
 }
+
+
+// ******************** SLIDER DE DISTANCE MOTEUR RECHERCHE *************/
+
+$('#distance').slider ({ 
+	formatter: function(km) { 
+		return 'Distance : ' + km + 'km';
+	}
+});
