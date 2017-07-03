@@ -30,7 +30,8 @@
         "ircmaxell/random-lib": "^1.2",
         "ircmaxell/password-compat": "^1.0",
         "league/url": "^3.3",
-        "phpmailer/phpmailer": "^5.2"
+        "phpmailer/phpmailer": "^5.2",
+        "respect/validation": "^1.1"
     },
     "autoload": {
         "psr-4": {
