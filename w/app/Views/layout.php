@@ -17,7 +17,7 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/clean-blog.min.css') ?>">
 
-     <!-- Styles CSS personnalisés -->
+    <!-- Styles CSS personnalisés -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
     <!-- Custom Fonts -->
@@ -63,7 +63,25 @@
     </nav>
 
     <!-- Header content -->
+    <header class="intro-header">
     <?= $this->section('header_content') ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>La Planche</h1>
+                        <p>Trouvez des gens avec qui jouer près de chez vous...</p>
+                        <hr class="small">
+                        <div class="search">
+                            <input class="searchWhere" type="text" name="where" placeholder="&#9906;">
+                            <button type="button" class="btn btn-warning btn-lg">Rechercher</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
 
     <!-- Main Content -->
     <div class="container">
