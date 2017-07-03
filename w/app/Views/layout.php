@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<?= $this->assetUrl('css/clean-blog.min.css') ?>">
 
     <!-- Custom Fonts -->
-    <link href="vendor/fortawesome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -69,14 +69,14 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url(<?= $this->assetUrl('img/home-bg.jpg') ?>)">
+    <header class="intro-header" style="background-image: url(<?= $this->assetUrl('img/sport-ground.jpg') ?>)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
                         <h1>La Planche</h1>
                         <hr class="small">
-                        <span class="subheading">Un projet de batard !! </span>
+                        <?= $this->section('searchIndex_content') ?>
                     </div>
                 </div>
             </div>

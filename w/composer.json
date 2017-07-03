@@ -31,7 +31,6 @@
         "ircmaxell/password-compat": "^1.0",
         "league/url": "^3.3",
         "phpmailer/phpmailer": "^5.2",
-        "FortAwesome/Font-Awesome": "*"
     },
     "autoload": {
         "psr-4": {
