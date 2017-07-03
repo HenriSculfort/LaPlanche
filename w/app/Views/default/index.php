@@ -1,16 +1,31 @@
 <?=$this->layout('layout', ['title' => 'Accueil']); ?>
 
+<?php $this->start('header_content') ?>
 
-<?php $this->start('searchIndex_content') ?>
+ <style> 
+.intro-header
+  { 
+  	background-image: url(<?= $this->assetUrl('img/sport-ground.jpg')?>) 
+  }  
+ </style>
 
-<input type="text" name="whereSearch">
-<button type="button" class="btn btn-warning" placeholder="<i class='fa fa-search' aria-hidden='true'></i>">Rechercher</button>
+ <div class="site-heading">
+                        <h1>La Planche</h1>
+                        <p>Trouvez des gens avec qui jouer près de chez vous...</p>
+                        <hr class="small">
+                        <div class="search">
+                            <input class="searchWhere" type="text" name="where" placeholder="Où souhaitez-vous jouer...?">
+                            <button type="button" class="btn btn-warning btn-lg">Rechercher</button>
+                        </div>
+                    </div>
+  
+   
+<?php $this->stop('header_content') ?>
 
 
-<?php $this->stop('searchIndex_content') ?>
+
+<?php $this->start('main_content') ?>
+
+<?php $this->stop('main_content') ?>
 
 
-
-<?php $this->start('footer_content') ?>
-
-<?php $this->stop('footer_content') ?>

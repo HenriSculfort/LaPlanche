@@ -1,11 +1,20 @@
 <?=$this->layout('layout', ['title' => 'Contact']); ?>
 
+<?php $this->start('header_content');?>
+    <div class="site-heading">
+        <div class="site-heading">
+            <h1>Contact</h1>
+            <p>Vous souhaitez nous contacter ? Remplissez le formulaire ci-dessous !</p>
+        </div>
+
+<?php $this->stop('header_content');?>
+
 <?=$this->start('main_content');?>
 
 <!-- Main Content -->
 
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-    <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
+    
     <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
     <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
     <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->

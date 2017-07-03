@@ -31,7 +31,8 @@
         "ircmaxell/password-compat": "^1.0",
         "league/url": "^3.3",
         "phpmailer/phpmailer": "^5.2",
-        "respect/validation": "^1.1"
+        "respect/validation": "^1.1",
+        "seiyria/bootstrap-slider" : "*"
 
     },
     "autoload": {
