@@ -123,10 +123,12 @@ button {
 
 /******************************* PAGE TERRAIN *********************************/
 
-#distanceSlider .slider-selection {
+#distance .slider-selection {
     background: #6c6262;
 }
-
+#searchBtn { 
+    margin-left: 10px;
+}
 
 /******************************* LOGIN MODAL *********************************/
 

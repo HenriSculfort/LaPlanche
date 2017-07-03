@@ -14,11 +14,13 @@
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
 
+    <!-- Slider Bootstrap modif via plugin -->
+    <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-slider.css') ?>">
+
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/clean-blog.min.css') ?>">
 
-    <!-- Slider Bootstrap modif via plugin -->
-    <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap-slider.css') ?>">
+    
     <!-- Styles CSS personnalisés -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
