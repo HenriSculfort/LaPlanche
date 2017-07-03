@@ -4,17 +4,6 @@
 <?php $this->start('main_content') ?>
 
 
-	<?php 
-		if(!empty($formErrors)){
-			echo '<p style="color:red">'.implode('<br>', $formErrors);
-		}
-
-		if($formValid == true){
-			echo '<p style="color:green">Vous êtes désormais inscrit</p>';
-		}
-
-	?>
-
 	<form method="post">
 		<label for="firstname">Votre prénom</label>
 		<input type="text" id="firstname" name="firstname">

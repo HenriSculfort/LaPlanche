@@ -32,7 +32,7 @@ class UsersController extends Controller
 			}
 			if(count($errors) === 0){
 
-				// Insertion des données
+				// insertion données
 
 				$json = [
 				'result' => true,
@@ -46,6 +46,7 @@ class UsersController extends Controller
 			}
 			$this->showJson($json);
 		}
+		$this->show('users/add');
 	}
 
 
@@ -62,34 +63,31 @@ class UsersController extends Controller
 			$id_user = $authModel->isValidLoginInfo($post['emailConnexion'], $post['passwordConnexion']);
 
 			if($id_user > 0){ 
-				$usersModel = new UsersModel();
-				$me = $usersModel->find($id_user); 
-				$authModel->logUserIn($me); 
 
 				$json = [
 				'result' => true,
 				];
 
+				$usersModel = new UsersModel();
+				$me = $usersModel->find($id_user); 
+				$authModel->logUserIn($me); 
+
 				if(!empty($authModel->getLoggedUser())){
+
 					$this->flash('Vous êtes desormais connecté', 'success');
 					$this->redirectToRoute('accueil');
 				}
 			}
 			else {
+				$errors[] = 'Le couple identifiant / mot de passe est invalide';
 				$json = [
 				'result' => false,
-				'errors' => 'Le couple identifiant / mot de passe est invalide',
+				'errors' => implode('<br>', $errors),
 				];
 			}
 			$this->showJson($json);
 		}	
 	}
-
-
-
-
-
-
 
 
 	public function logout()

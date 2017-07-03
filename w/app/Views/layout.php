@@ -176,7 +176,7 @@
 
 <script>
 
-     // control connexion
+     // Ajax connexion
      $(document).ready(function(){
 
         $('#connexion').on('click', function(e){
@@ -198,7 +198,7 @@
         });
     });
 
-    // control inscription
+    // Ajax inscription
     $(document).ready(function(){
 
         $('#inscription').on('click', function(e){
@@ -209,7 +209,7 @@
                 dataType: 'json',
                 data: $('form').serialize(),
                 success: function(retourJson){
-                    if(retourJson.result == true){
+                    if(retourJson.result == true){ 
                         $('#errorsAjaxInscription').text(''); 
                     }
                     else if(retourJson.result == false){
