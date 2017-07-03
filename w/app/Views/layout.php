@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body id='pageTop'>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -130,6 +130,12 @@
         <!-- Theme JavaScript -->
         <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
 
+        <div id='btn-pageTop'>
+            <a class="page-scroll" href="#pageTop">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div>
     </body>
+
 
     </html>
