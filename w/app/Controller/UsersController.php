@@ -11,18 +11,18 @@ class UsersController extends Controller
 	 * Page d'accueil par défaut
 	 */
 	public function add(){
-		$this->show('default/connexion');
+		$this->show('users/connexion');
 	}
 
 
 	public function login()
 	{
-		$this->show('default/connexion');
+		$this->show('users/connexion');
 	}
 
 	public function logout()
 	{
-		$this->show('default/connexion');
+		$this->show('users/connexion');
 	}
 	
 
