@@ -130,6 +130,9 @@
         <!-- Theme JavaScript -->
         <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
 
+        <!-- Theme JavaScript personnalisé -->
+        <script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+
         <div id='btn-pageTop'>
             <a class="page-scroll" href="#pageTop">
                 <i class="fa fa-arrow-up"></i>
