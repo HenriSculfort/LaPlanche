@@ -3,7 +3,7 @@
 namespace Model;
 
 
-class TokensModel extends \W\Model\UsersModel
+class TokensModel extends \W\Model\Model
 {
 	
 }

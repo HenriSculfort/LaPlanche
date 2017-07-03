@@ -8,7 +8,7 @@ $this->start('main_content'); ?>
 	<div id="message" style="color:green"></div>
 </article>
 
-<form>
+<form method="post">
 	<label>Entrez votre email</label>
 	<input type="text" name="email">
 	<button type="submit">Envoyer</button>
@@ -16,15 +16,13 @@ $this->start('main_content'); ?>
 
 	<?= $this->stop('main_content'); ?>
 
-	<?= $this->start('footer'); ?>
+	<?= $this->start('script'); ?>
 	
 <script>
 
-	$(document).ready(function(){
+$(document).ready(function(){
 
-			
-
-			$('button[type="submit"]').on('click', function(e){
+	$('button[type="submit"]').on('click', function(e){
 
 		// Empeche l'action par défaut, dans notre cas la soumission du formulaire
 
@@ -32,7 +30,7 @@ $this->start('main_content'); ?>
 
 		$.ajax({
 
-			url: '<?= $this->url('users_tokensAjax')?>', 
+			url: '<?= $this->url('users_tokensAjax');?>', 
 			type: 'post',
 			data: $('form').serialize(),	
 			dataType: 'json',
@@ -53,4 +51,4 @@ $this->start('main_content'); ?>
 	});
 });
 </script>
-<?= $this->stop('footer'); ?>
+<?= $this->stop('script'); ?>

@@ -220,10 +220,10 @@
         });
     });
 
-    <?= $this->section('script') ?>
+    
 
 </script>
-
+<?= $this->section('script') ?>
 <div >
     <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
         <i class="fa fa-arrow-up"></i>
