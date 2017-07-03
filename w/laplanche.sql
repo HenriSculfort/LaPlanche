@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 03 Juillet 2017 à 09:12
+-- Généré le :  Lun 03 Juillet 2017 à 16:00
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.1.1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `laplanche_bdd`
+-- Base de données :  `laplanche`
 --
 
 -- --------------------------------------------------------
@@ -101,7 +101,7 @@ CREATE TABLE `users` (
   `lastname` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
   `adress` varchar(250) NOT NULL,
-  `cp` int(11) NOT NULL,
+  `postal_code` int(11) NOT NULL,
   `city` varchar(250) NOT NULL,
   `phone` int(11) NOT NULL,
   `password` varchar(250) NOT NULL

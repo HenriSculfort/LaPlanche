@@ -3,6 +3,8 @@
 $w_routes = array(
 	['GET|POST', '/', 'Default#listWhereCourts', 'accueil'],
 	['GET|POST', '/terrains/', 'Terrains#listAllCourts', 'terrains'],
+	['GET|POST', '/terrains/search/', 'Terrains#searchCourts', 'search_terrains'],
+
 	['GET|POST', '/contact/', 'Contact#sendForm', 'contact'],
 
 	['GET|POST', '/users/add', 'Users#add', 'users_add'],
