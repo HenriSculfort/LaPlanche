@@ -88,7 +88,7 @@
                             <form method="post">
                                 <input type="text" name="emailConnexion" placeholder="Email">
                                 <input type="password" name="passwordConnexion" placeholder="Mot de passe">
-                                <input type="submit" id="connexion" name="login" class="login loginmodal-submit" value="Connexion">
+                                <input type="submit" id="connexion_popup" name="login" class="login loginmodal-submit" value="Connexion">
                             </form>
                             <div class="login-help">
                                 <a href="<?= $this->url('users_add') ?>" data-toggle="modal" data-target="#inscription">Inscription</a><a href="#">Mot de passe oublié ?</a>
@@ -108,7 +108,7 @@
                                 <input type="text" name="emailInscription" placeholder="Email">
                                 <input type="password" name="passwordInscription" placeholder="Mot de passe">
                                 <input type="password" name="ControlPasswordInscription" placeholder="Répéter votre mot de passe">
-                                <input type="submit" id="inscription" name="login" class="login loginmodal-submit" value="Inscription">
+                                <input type="submit" id="inscription_popup" name="login" class="login loginmodal-submit" value="Inscription">
                             </form>
                         </div>
                     </div>
@@ -176,10 +176,10 @@
 
 <script>
 
-     // control connexion
+     // Ajax connexion
      $(document).ready(function(){
 
-        $('#connexion').on('click', function(e){
+        $('#connexion_popup').on('click', function(e){
             e.preventDefault();
             $.ajax({
                 url: '<?=$this->url('users_login');?>',
@@ -198,10 +198,10 @@
         });
     });
 
-    // control inscription
+    // Ajax inscription
     $(document).ready(function(){
 
-        $('#inscription').on('click', function(e){
+        $('#inscription_popup').on('click', function(e){
             e.preventDefault();
             $.ajax({
                 url: '<?=$this->url('users_add');?>',
@@ -209,8 +209,9 @@
                 dataType: 'json',
                 data: $('form').serialize(),
                 success: function(retourJson){
-                    if(retourJson.result == true){
+                    if(retourJson.result == true){ 
                         $('#errorsAjaxInscription').text(''); 
+                        window.location.href("<?=$this->url('users_insert');?>");
                     }
                     else if(retourJson.result == false){
                         $('#errorsAjaxInscription').html(retourJson.errors);
