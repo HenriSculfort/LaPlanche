@@ -133,10 +133,10 @@
         <!-- Theme JavaScript personnalisé -->
         <script src="<?= $this->assetUrl('js/script.js') ?>"></script>
 
-        <div id='btn-pageTop'>
-            <a class="page-scroll" href="#pageTop">
+        <div >
+            <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
                 <i class="fa fa-arrow-up"></i>
-            </a>
+            </button>
         </div>
     </body>
 

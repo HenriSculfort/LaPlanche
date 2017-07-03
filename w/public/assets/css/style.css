@@ -68,20 +68,22 @@ h3 {
 
 /**************************** BOUTON RETOUR TOP *****************************/
 
-#btn-pageTop{
-    background: rgba(0,0,0,0.5);
+#btnPageTop{
+    display: none;
     position: fixed;
     bottom: 2em;
     right: 2em;
+	z-index: 99;
+	cursor :pointer;
     border-radius: 1em;
-   
+ 
 }
 
-#btn-pageTop:hover{
+#btnPageTop:hover{
     background: #ea931e;
 }
 
-#btn-pageTop a {
+#btnPageTop a {
     padding: 1.2em;
 }
 
