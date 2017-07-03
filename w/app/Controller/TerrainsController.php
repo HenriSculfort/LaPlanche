@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use Model\CourtsModel;
 use Respect\Validation\Validator as v;
 
 class TerrainsController extends Controller
@@ -13,7 +14,9 @@ class TerrainsController extends Controller
 	 */
 	public function listAllCourts()
 	{
-		$this->show('default/terrains');
+		$model = new CourtsModel();
+		$findAll = $model->findAll();
+		$this->show('default/terrains', $findAll);
 	}
 
 
@@ -27,6 +30,7 @@ class TerrainsController extends Controller
 		// Si le formulaire est envoyé
 		if(!empty($_GET)) {
 
+			// On vérifie que le lieu a bien été renseigné. 
 			if(!v::notEmpty()->length(2, null)->validate($get['searchWhere'])) {
 				$errors[] = 'Le lieu ou le département doit être renseigné';
 			} else {
@@ -34,18 +38,22 @@ class TerrainsController extends Controller
 				$data['postal_code'] = $get['searchWhere'];
 			}
 
-			$date = $get['year'] . '-' . $get['month'] . '-' . $get['day'];
-			if(!v::alpha()->date('Y-m-d')->validate($date)) { 
-				$errors[] = 'Le format de la date est incorrect';
-			} else { 
-				$data['date'] = $date;
+			// Si la date est renseignée 
+			if(!empty($get['year']) && !empty($get['month']) && !empty($get['day'])) { 
+				$date = $get['year'] . '-' . $get['month'] . '-' . $get['day'];
+				if(!v::alpha()->date('Y-m-d')->validate($date)) { 
+					$errors[] = 'Le format de la date est incorrect';
+				} else { 
+					$data['date'] = $date;
+				}
 			}
 
 			if(count($errors)== 0) {
 				$Model = new Model();
 				$search = $Model->search($data);
 				if($search) {
-										
+
+					$this->show('default/terrains');
 				}
 
 			} 
