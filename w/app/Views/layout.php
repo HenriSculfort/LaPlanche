@@ -53,7 +53,7 @@
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
                     </li>
                     <li>
-                        <a href=""<?= $this->url('users_connexion') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                        <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('contact') ?>">Contact</a>
@@ -77,13 +77,13 @@
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
                             <h3>Connectez-vous !</h3><br>
-                            <form>
-                                <input type="text" name="user" placeholder="Email">
-                                <input type="password" name="password" placeholder="Mot de passe">
+                            <form method="post">
+                                <input type="text" name="emailConnexion" placeholder="Email">
+                                <input type="password" name="passwordConnexion" placeholder="Mot de passe">
                                 <input type="submit" name="login" class="login loginmodal-submit" value="Connexion">
                             </form>
                             <div class="login-help">
-                                <a href=""<?= $this->url('users_connexion') ?>"" data-toggle="modal" data-target="#inscription">Inscription</a><a href="#">Mot de passe oublié ?</a>
+                                <a href="<?= $this->url('users_add') ?>" data-toggle="modal" data-target="#inscription">Inscription</a><a href="#">Mot de passe oublié ?</a>
                             </div>
                         </div>
                     </div>
@@ -93,9 +93,10 @@
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
                             <h3>Inscrivez-vous !</h3><br>
-                            <form>
-                                <input type="text" name="user" placeholder="Email">
-                                <input type="password" name="password" placeholder="Mot de passe">
+                            <form method="post">
+                                <input type="text" name="emailInscription" placeholder="Email">
+                                <input type="password" name="passwordInscription" placeholder="Mot de passe">
+                                <input type="password" name="ControlPasswordInscription" placeholder="Répéter votre mot de passe">
                                 <input type="submit" name="login" class="login loginmodal-submit" value="Connexion">
                             </form>
                         </div>
@@ -135,7 +136,7 @@
                     </li>
                     <li>
                         <li>
-                            <a href="<?= $this->url('users_connexion') ?>">Connexion</a>
+                            <a href="<?= $this->url('users_login') ?>">Connexion</a>
                         </li>
                         <li>
                             <a href="<?= $this->url('contact') ?>">Contact</a>
