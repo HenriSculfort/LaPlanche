@@ -1,17 +1,10 @@
 <?php $this->layout('layout', ['title' => 'Mon Espace']) ?>
 
 <?php $this->start('header_content');?>
-<header class="intro-header" style="background-image: url(<?= $this->assetUrl('img/sport-ground.jpg') ?>)">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div class="site-heading">
-					<h1>Espace Utilisateur</h1>
-				</div>
-			</div>
-		</div>
+	<div class="site-heading">
+		<h1>Espace Utilisateur</h1>
 	</div>
-</header>
+
 <?php $this->stop('header_content');?>
 
 
