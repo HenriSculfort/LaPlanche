@@ -17,17 +17,12 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/clean-blog.min.css') ?>">
 
+     <!-- Styles CSS personnalisés -->
+    <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+
     <!-- Custom Fonts -->
     <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
 </head>
 
@@ -67,29 +62,14 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url(<?= $this->assetUrl('img/sport-ground.jpg') ?>)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>La Planche</h1>
-                        <hr class="small">
-                        <?= $this->section('searchIndex_content') ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- Header content -->
+    <?= $this->section('header_content') ?>
 
     <!-- Main Content -->
     <div class="container">
         <div class="row">
 
-
             <?= $this->section('main_content') ?>
-
 
         </div>
     </div>
@@ -100,9 +80,23 @@
     <footer>
         <div class="container">
             <div class="row">
-
-                <?= $this->section('footer') ?>
-
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="<?= $this->url('accueil') ?>">Accueil</a>
+                        </li>
+                        <li>
+                            <a href="<?= $this->url('terrains') ?>">Terrains</a>
+                        </li>
+                        <li>
+                            <a href="<?= $this->url('connexion') ?>">Connexion</a>
+                        </li>
+                        <li>
+                            <a href="<?= $this->url('contact') ?>">Contact</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
+                </div>
             </div>
         </div>
     </footer>

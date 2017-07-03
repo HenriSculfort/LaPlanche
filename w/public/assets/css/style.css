@@ -1,26 +1,93 @@
-html, body {
-	font-family: Consolas, monaco, monospace;
-	background-color: #272822;
-	color: #F8F8F2;
+/********************************* STYLES GLOBAUX *******************************/
+
+html {
+    font-size: 62.5%;
+    line-height: 1.5;
 }
 
-.container {
-	margin: 50px;
+body {
+    font-size: 1.6em;
+    color: #a49e9e;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 a {
-	text-decoration: none;
-	color: #A6E22E;
+    text-decoration: none;
+    color: #000;
 }
 
+*,
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+a {
+    font-family: 'Lato', sans-serif;
+    color: #000;
+}
+
+text-area,
+input {
+    min-width: 100%;
+}
+
+
+/********************** STYLES DE POLICE ET TAILLES DE TEXTE *******************/
+
 a:hover {
-	color: #F92672;
+    color: #2677f9;
+    text-decoration: none;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 3rem;
+    color: #252e2d;
 }
 
 h1 {
-	color: #F92672;
+    color: #ea931e;
 }
 
 h2 {
-	color: #66D9EF;
+    color: #000;
+}
+
+h3 {
+    text-align: center;
+    color: #ea931e;
+}
+
+#bs-example-navbar-collapse-1 ul li a {
+    padding: 20px 10px;
+    font-size: 1.5rem;
+}
+
+
+/******************************* PAGE ACCUEIL *********************************/
+
+.searchWhere {
+    margin: 0 10px 0 0;
+    font-size: 3rem;
+    color: #000;
+    border: none;
+    min-width: 50%;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-weight: bold;
+    text-transform: uppercase;
 }
