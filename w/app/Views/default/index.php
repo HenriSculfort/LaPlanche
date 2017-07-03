@@ -8,6 +8,16 @@
   	background-image: url(<?= $this->assetUrl('img/sport-ground.jpg')?>) 
   }  
  </style>
+
+ <div class="site-heading">
+                        <h1>La Planche</h1>
+                        <p>Trouvez des gens avec qui jouer près de chez vous...</p>
+                        <hr class="small">
+                        <div class="search">
+                            <input class="searchWhere" type="text" name="where" placeholder="&#9906;">
+                            <button type="button" class="btn btn-warning btn-lg">Rechercher</button>
+                        </div>
+                    </div>
   
    
 <?php $this->stop('header_content') ?>
