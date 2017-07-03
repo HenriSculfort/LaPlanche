@@ -1,6 +1,8 @@
 <?php
 	
 	$w_routes = array(
-		['GET', '/', 'Default#home', 'default_home'],
-		['GET|POST', '/accueil/', 'Default#accueil', 'accueil'],
+		['GET|POST', '/', 'Default#listWhereCourts', 'accueil'],
+		['GET|POST', '/terrains/', 'Terrains#listAllCourts', 'terrains'],
+		['GET|POST', '/contact/', 'Contact#sendForm', 'contact'],
+		['GET|POST', '/connexion/', 'Users#login', 'connexion'],
 	);
