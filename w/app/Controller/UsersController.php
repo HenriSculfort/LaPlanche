@@ -32,8 +32,6 @@ class UsersController extends Controller
 			}
 			if(count($errors) === 0){
 
-				// insertion données
-
 				$json = [
 				'result' => true,
 				];
@@ -46,8 +44,13 @@ class UsersController extends Controller
 			}
 			$this->showJson($json);
 		}
-		$this->show('users/add');
 	}
+
+	public function insert()
+	{
+	$this->show('users/insert');
+	}
+
 
 
 	public function login()
