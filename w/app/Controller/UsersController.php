@@ -146,25 +146,21 @@ class UsersController extends Controller
 
 			if($id_user > 0){ 
 
-				$json = [
-				'result' => true,
-				];
-
 				$usersModel = new UsersModel();
 				$me = $usersModel->find($id_user); 
 				$authModel->logUserIn($me); 
 
 				if(!empty($authModel->getLoggedUser())){
-
-					$this->flash('Vous êtes desormais connecté', 'success');
-					$this->redirectToRoute('accueil');
+					$json = [
+					'result' => true,
+					];
+					$this->flash('Vous êtes connecté', 'success');
 				}
 			}
 			else {
-				$errors[] = 'Le couple identifiant / mot de passe est invalide';
 				$json = [
 				'result' => false,
-				'errors' => implode('<br>', $errors),
+				'errors' => 'Le couple identifiant / mot de passe est invalide',
 				];
 			}
 			$this->showJson($json);
@@ -174,7 +170,14 @@ class UsersController extends Controller
 
 	public function logout()
 	{
-		$this->show('logout');
+		$authModel = new AuthentificationModel();
+		$authModel->logUserOut();
+
+		if(empty($authModel->getLoggedUser())){
+			// Si l'utilisateur est "vide", on a donc bien vider la session, il est donc déconnecté
+			$this->flash('Vous êtes déconnecté', 'success');
+			$this->redirectToRoute('accueil');
+		}
 	}
 
 

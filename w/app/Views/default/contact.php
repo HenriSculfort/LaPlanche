@@ -1,11 +1,10 @@
 <?=$this->layout('layout', ['title' => 'Contact']); ?>
 
 <?php $this->start('header_content');?>
-    <div class="site-heading">
-        <div class="site-heading">
-            <h1>Contact</h1>
-            <p>Vous souhaitez nous contacter ? Remplissez le formulaire ci-dessous !</p>
-        </div>
+<div class="site-heading">
+    <h1>Contact</h1>
+    <p>Vous souhaitez nous contacter ? Remplissez le formulaire ci-dessous !</p>
+</div>
 
 <?php $this->stop('header_content');?>
 

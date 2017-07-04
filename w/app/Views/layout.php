@@ -53,12 +53,18 @@
                     <li>
                         <a href="<?= $this->url('courts') ?>">Terrains</a>
                     </li>
-                    <li>
-                        <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
-                    </li>
-                    <li>
-                        <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
-                    </li>
+                    <?php if(!empty($w_user)): ?>
+                        <li>
+                            <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                        </li>
+                        <li>
+                            <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                        </li>
+                    <?php endif; ?>
                     <li>
                         <a href="<?= $this->url('contact') ?>">Contact</a>
                     </li>
@@ -70,62 +76,72 @@
     </nav>
 
     <!-- Header content -->
-    <header class="intro-header">
+    <header class="intro-header">     
         <div class="container">
             <div class="row">
+                <!-- Affichage des message flash de connexion et deconnexion -->
+                <?php if(!empty($w_flash_message->message)): ?>
+                    <div class="text-center col-lg-2 col-lg-offset-5 alert alert-<?=$w_flash_message->level;?>">
+                        <?=$w_flash_message->message;?>
+                    </div>
+                <?php endif; ?>
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <?= $this->section('header_content') ?>
                 </div>
-
                 <!-- Connexion -->
                 <div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
                             <h3>Connectez-vous !</h3><br>
-                          <div id="errorsAjaxConnexion"></div>
-                          <form method="post">
-                            <input type="text" name="emailConnexion" placeholder="Email">
-                            <input type="password" name="passwordConnexion" placeholder="Mot de passe">
-                            <input type="submit" id="connexion_popup" name="login" class="login loginmodal-submit" value="Connexion">
-                        </form>
-                        <div class="login-help">
-                            <a href="<?= $this->url('users_add') ?>">Inscription</a><a href="#">Mot de passe oublié ?</a>
+                            <div id="errorsAjaxConnexion"></div>
+                            <form method="post">
+                                <input type="text" name="emailConnexion" placeholder="Email">
+                                <input type="password" name="passwordConnexion" placeholder="Mot de passe">
+                                <input type="submit" id="connexion_popup" name="login" class="login loginmodal-submit" value="Connexion">
+                            </form>
+                            <div class="login-help">
+                                <a href="<?= $this->url('users_add') ?>">Inscription</a><a href="#">Mot de passe oublié ?</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</header>
+        </div>       
+    </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <?= $this->section('main_content') ?>
-    </div>
-</div>
-
-<hr>
-
-<!-- Footer -->
-<footer>
+    <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    <li>
+            <?= $this->section('main_content') ?>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                     <li>
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('courts') ?>">Terrains</a>
                     </li>
-                    <li>
-                        <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
-                    </li>
-                    <li>
-                        <a href="<?= $this->url('users_login') ?>">Connexion</a>
-                    </li>
+                    <?php if(!empty($w_user)): ?>
+                        <li>
+                            <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                        </li>
+                        <li>
+                            <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                        </li>
+                    <?php endif; ?>
                     <li>
                         <a href="<?= $this->url('contact') ?>">Contact</a>
                     </li>
@@ -168,7 +184,8 @@
                 data: $('form').serialize(),
                 success: function(retourJson){
                     if(retourJson.result == true){
-                        $('#errorsAjaxConnexion').text(''); 
+                        $('#connexion').modal('hide');
+                        location.reload();   
                     }
                     else if(retourJson.result == false){
                         $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
