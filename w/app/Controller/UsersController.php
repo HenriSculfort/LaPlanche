@@ -19,15 +19,35 @@ class UsersController extends Controller
 		if(!empty($_POST)){
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
-			if(!filter_var($post['emailInscription'], FILTER_VALIDATE_EMAIL)) {
+			if(empty($post['firstname'])){
+				$errors[] = 'Veuillez renseigner votre prénom';
+			}
+
+			if(empty($post['lastname'])){
+				$errors[] = 'Veuillez renseigner votre nom';
+			}
+
+			if(empty($post['adress'])){
+				$errors[] = 'Veuillez renseigner votre adresse';
+			}
+
+			if(empty($post['cp'])){
+				$errors[] = 'Veuillez renseigner votre code postal';
+			}
+
+			if(empty($post['ville'])){
+				$errors[] = 'Veuillez renseigner votre ville';
+			}
+
+			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
 				$errors[] = 'Votre adresse email est invalide';
 			}
 			
-			if(strlen($post['passwordInscription']) < 8){
+			if(strlen($post['password']) < 8){
 				$errors[] = 'Votre mot de passe doit comporter au moins 8 caractères';
 			}
 
-			if(($post['passwordInscription']) != ($post['ControlPasswordInscription'])){
+			if(($post['password']) != ($post['checkPassword'])){
 				$errors[] = 'Vos mot de passe ne sont pas identiques';
 			}
 			if(count($errors) === 0){
@@ -43,16 +63,9 @@ class UsersController extends Controller
 				];
 			}
 			$this->showJson($json);
-
 		}
 		$this->show('users/add');
 	}
-
-	public function insert()
-	{
-	
-	}
-
 
 
 	public function login()

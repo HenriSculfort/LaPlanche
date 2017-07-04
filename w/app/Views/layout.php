@@ -179,32 +179,6 @@
         });
     });
 
-    /* Ajax inscription
-    $(document).ready(function(){
-
-        $('#inscription_popup').on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                url: '<?=$this->url('users_add');?>',
-                type: 'post',
-                dataType: 'json',
-                data: $('form').serialize(),
-                success: function(retourJson){
-                    if(retourJson.result == true){ 
-                        $('#errorsAjaxInscription').text(''); 
-                        window.location.href("<?=$this->url('users_add');?>");
-                    }
-                    else if(retourJson.result == false){
-                        $('#errorsAjaxInscription').html(retourJson.errors);
-                    }
-                }   
-            });
-        });
-    });*/
-
-    
-    
-
 </script>
 <?= $this->section('script') ?>
 <div >
