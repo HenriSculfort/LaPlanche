@@ -2,25 +2,23 @@
 
 $this->start('main_content'); ?>
 
-
 <article>
 	<div id="errors" style="color:red"></div>
 	<div id="message" style="color:green"></div>
 </article>
 
-<<<<<<< HEAD
-<form method="post">
-=======
-<form method="get">
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
-	<label>Entrez votre email</label>
-	<input type="text" name="email">
-	<button type="submit">Envoyer</button>
+<form method="POST">
+	<label>Choisissez un nouveau mot de passe : </label>
+	<input type="text" name="mdp">
+	<label>Répétez le mot de passe choisi : </label>
+	<input type="text" name="mdp2">
+	<input type="hidden" name="id" value="<?php if(isset($_GET['user_id'])){ echo $_GET['user_id'];}?>">
+	<button type="submit">Réinitialiser</button>
 </form>
 
-	<?= $this->stop('main_content'); ?>
+<?=$this->stop('main_content'); ?>
 
-	<?= $this->start('script'); ?>
+<?= $this->start('script'); ?>
 	
 <script>
 
@@ -34,24 +32,15 @@ $(document).ready(function(){
 
 		$.ajax({
 
-			url: '<?= $this->url('users_tokensAjax');?>', 
-<<<<<<< HEAD
+			url: '<?= $this->url('users_changePasswordAjax');?>', 
 			type: 'post',
-=======
-			type: 'get',
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
 			data: $('form').serialize(),	
 			dataType: 'json',
-
 			success: function(resPHP){
 
 				if(resPHP.result == true) {
 					
-<<<<<<< HEAD
-					$('#message').val('Un email vous a été envoyé');
-=======
-					$('#message').html('Un email vous a été envoyé');
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+					$('#message').html(resPHP.message);
 					//renvoie dans la div 'message' la valeur contenu dans .val; ici renvoie une valeur vide
 					$('#errors').html('');//on vide les messages d'erreures
 				}

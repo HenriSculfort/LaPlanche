@@ -42,7 +42,15 @@
 			</select>
 
 			<label for='has_match'> Match </label>
+<<<<<<< HEAD
 			<input type='checkbox' name='has_match'>
+=======
+			<select name='has_match'>
+				<option value='both' selected>Indifférent</option>
+				<option value='has_match'>Avec Match</option>
+				<option value='has_no_match'>Sans Match</option>
+			</select>
+>>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
 
 			<label for='distanceSlider'> Distance </label>
 			<input id="distance" data-slider-id='distanceSlider' type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="50"/>
@@ -56,6 +64,7 @@
 <!-- LISTE DES TERRAINS OU RETOUR DE RECHERCHE -->
 
 <?php 
+<<<<<<< HEAD
 var_dump($searchResults);
 
 // Si une recherche a été effectuée 
@@ -106,12 +115,117 @@ if(isset($findAll)) {
 
 
 
+=======
+
+// S'il y a des erreurs il me les affiche 
+if (isset($showErrors) && !empty($showErrors)) { ?>
+	<div class='alert alert-danger'><?= $showErrors;?></div><?php
+}
+// Si une recherche a été effectuée 
+elseif(isset($searchResults) && $searchResults == true) {
+
+	if(isset($getGames)) { 
+
+		foreach($getGames as $court) {?>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-md-2'>
+					<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+				</div>
+				<div class='col-md-10'>
+					<h4><?= $court['name'];?></h4>
+					<p><?= $court['description'];?></p>
+				</div>
+			</div>
+			<div class='row'>
+				<a href=''>Plus d'informations et liste des matchs</a>
+			</div>
+		</div>	
+		<?php }	
+	// S'il y a une date mais pas de match 
+	} elseif(isset($getNoGames)) { 
+
+		foreach($getNoGames as $court) {?>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-md-2'>
+					<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+				</div>
+				<div class='col-md-10'>
+					<h4><?= $court['name'];?></h4>
+					<p><?= $court['description'];?></p>
+				</div>
+			</div>
+			<div class='row'>
+				<a href=''>Plus d'informations et liste des matchs</a>
+			</div>
+		</div>	
+		<?php }	
+		// S'il n'y a pas de match ni de date
+		} else { 
+			foreach($search as $court) {?>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-2'>
+						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+					</div>
+					<div class='col-md-10'>
+						<h4><?= $court['name'];?></h4>
+						<p><?= $court['description'];?></p>
+					</div>
+				</div>
+				<div class='row'>
+					<a href=''>Plus d'informations et liste des matchs</a>
+				</div>
+			</div>	
+			<?php }	
+		}
+	
+
+// S'il n'y a pas de résultats, ça renvoie le message d'erreur ci-dessous
+
+} elseif(isset($searchResults) && $searchResults == false) { ?>
+	<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas via votre espace personnel ! </div> <?php
+}
+
+
+// S'il n'y a pas eu de recherche effectuée, on affiche la liste.
+else { 
+	if(isset($findAll)) { 
+		foreach($findAll as $court) {?>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-md-2'>
+					<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+				</div>
+				<div class='col-md-10'>
+					<h4><?= $court['name'];?></h4>
+					<p><?= $court['description'];?></p>
+				</div>
+			</div>
+			<div class='row'>
+				<a href=''>Plus d'informations et liste des matchs</a>
+			</div>
+		</div>	
+		<?php } // Fin foreach	
+} // Fin isset findAll
+
+>>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
 } // Fin du else pas de recherche 
 ?>
 
 <?=$this->stop('main_content');?>
 
 
+<<<<<<< HEAD
+=======
+<!-- AJAX D'AFFICHAGE DE LA RECHERCHE -->
+<?= $this->start('script') ?>
+
+
+<?= $this->stop('script') ?>
+
+>>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
 
 
 
