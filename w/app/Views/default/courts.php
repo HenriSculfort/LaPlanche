@@ -12,7 +12,7 @@
 
 
 <!-- FORMULAIRE DE RECHERCHE -->
-<form action="<?= $this->url('search_terrains')?>">
+<form action="<?= $this->url('search_courts')?>">
 	<div class='container'>
 		<div class='row'>
 			<label for='searchWhere'>Lieu *</label>
@@ -69,13 +69,10 @@ if(isset($findAll)) {
 			</div>
 		</div>
 		<div class='row'>
-			<a href='#'>Plus d'informations et liste des matchs</a>
+			<a href=''>Plus d'informations et liste des matchs</a>
 		</div>
 	</div>	
-
-
-
-	<?php }
+	<?php }	
 }
 
 ?>
