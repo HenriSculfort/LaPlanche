@@ -2,21 +2,23 @@
 
 $this->start('main_content'); ?>
 
-
 <article>
 	<div id="errors" style="color:red"></div>
 	<div id="message" style="color:green"></div>
 </article>
 
-<form method="get">
-	<label>Entrez votre email</label>
-	<input type="text" name="email">
-	<button type="submit">Envoyer</button>
+<form method="POST">
+	<label>Choisissez un nouveau mot de passe : </label>
+	<input type="text" name="mdp">
+	<label>Répétez le mot de passe choisi : </label>
+	<input type="text" name="mdp2">
+	<input type="hidden" name="id" value="<?php if(isset($_GET['user_id'])){ echo $_GET['user_id'];}?>">
+	<button type="submit">Réinitialiser</button>
 </form>
 
-	<?= $this->stop('main_content'); ?>
+<?=$this->stop('main_content'); ?>
 
-	<?= $this->start('script'); ?>
+<?= $this->start('script'); ?>
 	
 <script>
 
@@ -30,8 +32,8 @@ $(document).ready(function(){
 
 		$.ajax({
 
-			url: '<?= $this->url('users_tokensAjax');?>', 
-			type: 'get',
+			url: '<?= $this->url('users_changePasswordAjax');?>', 
+			type: 'post',
 			data: $('form').serialize(),	
 			dataType: 'json',
 
@@ -39,7 +41,7 @@ $(document).ready(function(){
 
 				if(resPHP.result == true) {
 					
-					$('#message').val('Un email vous a été envoyé');
+					$('#message').val('Votre mot de passe a été réinitialisé');
 					//renvoie dans la div 'message' la valeur contenu dans .val; ici renvoie une valeur vide
 					$('#errors').html('');//on vide les messages d'erreures
 				}

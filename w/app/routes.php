@@ -17,5 +17,8 @@ $w_routes = array(
 	['GET|POST', '/forgotten/', 'Tokens#formTokens', 'users_tokensForm'],
 	['GET|POST', '/forgotten/Ajax', 'Tokens#creatTokens', 'users_tokensAjax'],
 
-	['GET|POST', '/myspace/', 'Users#mySpace', 'users_myspace']
+	['GET|POST', '/myspace/', 'Users#mySpace', 'users_myspace'],
+
+	['GET|POST', '/changePassword/', 'resetPass#changePass', 'users_changePassword'],
+	['GET|POST', '/changePassword/Ajax', 'resetPass#resetPass', 'users_changePasswordAjax'],
 	);

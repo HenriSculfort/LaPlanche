@@ -10,31 +10,31 @@ class TokensController extends \W\Controller\Controller
 {
 	public function creatTokens()
 	{
-		$post = [];
+		$get = [];
 		$errors =[];
 		$json = [];
 		//inclusion des dépendances avec composer
 		
-		if(!empty($_POST)){
+		if(!empty($_GET)){
 
-			foreach($_POST as $key => $value){
-				$post[$key] = trim(strip_tags($value));
+			foreach($_GET as $key => $value){
+				$get[$key] = trim(strip_tags($value));
 			}
 
 		//le formulaire a été posté, l'email n'est pas vide et au bon format
-			if(!v::notEmpty()->email()->validate($post['email'])){
+			if(!v::notEmpty()->email()->validate($get['email'])){
 				$errors[] = 'L\'adresse email est invalide';
 			}
 			if(count($errors) === 0){
 			//On verifie que l'email est dans la base de donnée
 				$usersModel = new UsersModel();
-				$emailInBdd = $usersModel->emailExists($post['email']);
+				$emailInBdd = $usersModel->emailExists($get['email']);
 
 
 				//si le mail existe dans la base, on envoye un mail pour changer le mot de passe.
 				if($emailInBdd == true){
 
-					$user = $usersModel->getUserByUsernameOrEmail($post['email']); // Recherche un utilisateur par email ou username
+					$user = $usersModel->getUserByUsernameOrEmail($get['email']); // Recherche un utilisateur par email ou username
 
 
 					// On sauvegarde le token
@@ -61,10 +61,10 @@ class TokensController extends \W\Controller\Controller
 						$mail->Port = 465;
 						$mail->SetFrom('laplanche@wf3.fr', 'La Planche Team');
 						//mail et nom du destinataire
-						$mail->addAddress($post['email'], $user['username']);
+						$mail->addAddress($get['email'], $user['username']);
 						$mail->isHTML(true);
 						$mail->Subject = 'La Planche mot de passe oublié';
-						$mail->Body = '<p>Ce message vous est envoyé suite à une demande de récupération de mot de passe de connexion à La Planche.</p><br><strong>Cliquez sur le lien pour changer votre mot de passe: <a href="http://localhost/LaPlanche/w/app/Controller/TokensController.php?user_id=' . $user['id'] . '&token=' . $token . '">Modifier le mot de passe</a></strong><br><p>A bientôt sur La Planche</p><br><p>Cordialement,</p><p>L\'équipe La Planche Bordeaux</p>';
+						$mail->Body = '<p>Ce message vous est envoyé suite à une demande de récupération de mot de passe de connexion à La Planche.</p><br><strong>Cliquez sur le lien pour changer votre mot de passe: <a href="http://localhost/LaPlanche/w/public/changePassword/?user_id=' . $user['id'] . '&token=' . $token . '">Modifier le mot de passe</a></strong><br><p>A bientôt sur La Planche</p><br><p>Cordialement,</p><p>L\'équipe La Planche Bordeaux</p>';
 
 						//Si l'email est envoyé, renvoye vrai à l'Ajax pour afficher un message de réussite
 						if($mail->Send() == true){
