@@ -57,7 +57,7 @@
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
                     </li>
                     <li>
-                        <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                        <a href="<?= $this->url('users_login') ?>" data-toggle="modal" data-target="#connexion">Connexion</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('contact') ?>">Contact</a>
@@ -116,8 +116,7 @@
 
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
 <!-- Main Content -->
 <div class="container">
@@ -220,10 +219,11 @@
         });
     });
 
-    <?= $this->section('script') ?>
 
 </script>
 
+ <?= $this->section('script') ?>
+ 
 <div >
     <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
         <i class="fa fa-arrow-up"></i>

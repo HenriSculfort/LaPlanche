@@ -81,7 +81,7 @@
 		<button type='submit' class='btn btn-primary'>Envoyer les modifications</button>
 	</div>
 
-
+<div id='resultAjax'></div>
 
 </form>
 <hr>
@@ -94,7 +94,7 @@
 	<!-- Colonne du formulaire -->
 	<div class='col-md-8'>
 
-		<form method='POST' class='container-fluid' enctype="multipart/form-data" action='#'>
+		<form method='post' class='container-fluid' enctype="multipart/form-data" action='#'>
 
 			<div class='row form-group'>
 				<div class='col-md-4'>
@@ -120,9 +120,10 @@
 				</div>
 				<div class='col-md-8'>
 					<select name='level'>
+						<option value='' selected >Choisissez l'état</option>
 						<option value='very_bad'>Très mauvais état !</option>
 						<option value='bad'>Mauvais état </option>
-						<option value='medium' selected>Etat moyen, acceptable </option>
+						<option value='medium' >Etat moyen, acceptable </option>
 						<option value='good'>Bon état </option>
 						<option value='very_good'>Très bon état !</option>
 					</select>
@@ -143,7 +144,7 @@
 					<label for='postal_code'>Code Postal</label>
 				</div>
 				<div class='col-md-8'>
-					<input type='text' name='postal_code' placeholder="CP" ">
+					<input type='text' name='postal_code' placeholder="CP">
 				</div>
 			</div>
 
@@ -193,7 +194,7 @@
 			</div>
 
 			<br>
-			<button type='submit' class='btn btn-primary'>Suggérer le terrain</button>
+			<button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
 
 		</form>
 	</div> <!-- Fin du div de colonne formulaire -->
@@ -210,7 +211,44 @@
 			</div>
 		</div>
 	</div>
-	
+</div>
 	<?php $this->stop('main_content') ?>
+
+	<?php $this->start('script') ?>
+
+<script>
+	
+ $('#addCourts').on('click', function(e){
+	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
+     
+	e.preventDefault(); 
+
+	
+	$.ajax({
+		url: '<?=$this->url('add_courts');?>', 
+		type: 'post',
+		data: {
+			id: $(this).data('id'),
+		},		
+		dataType: 'json', // Les données de retour seront envoyées en JSON
+		success: function(retourJson){
+            if(retourJson.result == true){ 
+                        $('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+            }
+            else{
+            	$('#resultAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+            }
+			
+		},
+
+	});
+});
+</script>
+
+
+
+	<?php $this->stop('script') ?>
+
+
 
 
