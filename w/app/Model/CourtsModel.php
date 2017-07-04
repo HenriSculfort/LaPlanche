@@ -19,5 +19,18 @@ class CourtsModel extends \W\Model\Model
         }
 	}
 
+	public function leftJoinCourtsGames ($date) {
+		// Le mot clé 'AS" permet de renommer (temporairement) la table. Pour accéder aux colonnes, il faudra donc utiliser l'alias et non le nom de la table. 
+		$sql = 'SELECT * FROM ' .$this->table. ' AS c LEFT JOIN games AS g ON g.court_location = c.id WHERE g.court_location IS NULL AND date = '. $date .'';
+		
+        $select = $this->dbh->prepare($sql);
+
+
+       if($select->execute()){
+            return $select->fetchAll(); // Retournera un tableau avec les données correspondantes trouvées
+        }
+
+	}
+
 	
 }
