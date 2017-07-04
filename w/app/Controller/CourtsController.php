@@ -10,7 +10,8 @@ class CourtsController extends Controller
 {
 
 	/**
-	 * Page d'accueil par défaut
+	 * Page d'accueil par défaut, listant tous les terrains
+	 * @return array findAll avec liste des terrains
 	 */
 	public function listAllCourts()
 	{
@@ -19,6 +20,13 @@ class CourtsController extends Controller
 		$this->show('default/courts', ['findAll' => $findAll]);
 	}
 
+
+
+	/**
+	* Moteur de recherche des terrains
+	* @return 
+	*
+	*/
 
 	public function searchCourts() {
 
@@ -48,12 +56,12 @@ class CourtsController extends Controller
 				}
 			}
 
+			// S'il n'y a pas d'erreur 
 			if(count($errors)== 0) {
-				$Model = new Model();
-				$search = $Model->search($data);
+				$model = new CourtsModel();
+				$search = $model->search($data);
 				if($search) {
-
-					$this->show('default/courts');
+					$this->show('default/courts', ['searchResults' => $search]);
 				}
 
 			} 

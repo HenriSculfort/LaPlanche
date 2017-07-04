@@ -56,12 +56,21 @@
 <!-- LISTE DES TERRAINS OU RETOUR DE RECHERCHE -->
 
 <?php 
-if(isset($findAll)) { 
-	foreach($findAll as $court) {?>
+var_dump($searchResults);
+
+// Si une recherche a été effectuée 
+if(isset($searchResults)) {
+	// S'il n'y a pas de résultats, ça renvoie le message d'erreur ci-dessous
+	if(empty($searchResults)) { ?>
+	<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas via votre espace personnel ! 
+	</div> <?php
+} // Sinon, on affiche les résultats en foreach
+else {
+	foreach($searchResults as $court) {?>
 	<div class='container'>
 		<div class='row'>
 			<div class='col-md-2'>
-					<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>
+				<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>
 			</div>
 			<div class='col-md-10'>
 				<h4><?= $court['name'];?></h4>
@@ -74,7 +83,30 @@ if(isset($findAll)) {
 	</div>	
 	<?php }	
 }
+} else { // S'il n'y a pas eu de recherche effectuée, on affiche la liste.
 
+if(isset($findAll)) { 
+	foreach($findAll as $court) {?>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-2'>
+				<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>
+			</div>
+			<div class='col-md-10'>
+				<h4><?= $court['name'];?></h4>
+				<p><?= $court['description'];?></p>
+			</div>
+		</div>
+		<div class='row'>
+			<a href=''>Plus d'informations et liste des matchs</a>
+		</div>
+	</div>	
+	<?php } // Fin foreach	
+} // Fin isset findAll
+
+
+
+} // Fin du else pas de recherche 
 ?>
 
 <?=$this->stop('main_content');?>
