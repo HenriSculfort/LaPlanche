@@ -172,7 +172,6 @@
                     }
                     else if(retourJson.result == false){
                         $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
-                        $('#errorsAjaxConnexion').html('<div class="alert alert-success">'+retourJson.errors+'</div>');
                     }
                 }   
             });

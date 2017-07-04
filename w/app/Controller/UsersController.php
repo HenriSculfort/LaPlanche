@@ -8,43 +8,45 @@ use \W\Security\AuthentificationModel;
 
 class UsersController extends Controller
 {
+	public function add(){
+		$this->show('users/add');
+	}
 
-	public function add()
+	public function insert()
 	{
 
 		$post = [];
 		$errors = [];
-		$formValid = false;
 
 		if(!empty($_POST)){
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
 			if(empty($post['firstname'])){
-				$errors[] = 'Veuillez renseigner votre prénom';
+				$errors['firstname'] = 'Veuillez renseigner votre prénom';
 			}
 
 			if(empty($post['lastname'])){
-				$errors[] = 'Veuillez renseigner votre nom';
+				$errors['lastname'] = 'Veuillez renseigner votre nom';
 			}
 
-			if(empty($post['adress'])){
-				$errors[] = 'Veuillez renseigner votre adresse';
+			if(empty($post['address'])){
+				$errors['address'] = 'Veuillez renseigner votre adresse';
 			}
 
 			if(empty($post['cp'])){
-				$errors[] = 'Veuillez renseigner votre code postal';
+				$errors['cp'] = 'Veuillez renseigner votre code postal';
 			}
 
 			if(empty($post['ville'])){
-				$errors[] = 'Veuillez renseigner votre ville';
+				$errors['city'] = 'Veuillez renseigner votre ville';
 			}
 
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
-				$errors[] = 'Votre adresse email est invalide';
+				$errors['email'] = 'Votre adresse email est invalide';
 			}
 			
 			if(strlen($post['password']) < 8){
-				$errors[] = 'Votre mot de passe doit comporter au moins 8 caractères';
+				$errors['password'] = 'Votre mot de passe doit comporter au moins 8 caractères';
 			}
 
 			if(($post['password']) != ($post['checkPassword'])){
@@ -57,14 +59,17 @@ class UsersController extends Controller
 				];
 			}
 			else {
+				$recapErrors =[
+					'firstname' => $errors['firstname'],
+				];
+
 				$json = [
 				'result' => false,
-				'errors' => implode('<br>', $errors),
+				'errors' => $recapErrors,
 				];
 			}
 			$this->showJson($json);
 		}
-		$this->show('users/add');
 	}
 
 

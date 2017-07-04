@@ -5,7 +5,8 @@
 
 <div class='container'>
 	<div class='row'>
-		<form class="form-horizontal" role="form" method="">
+		<form class="form-horizontal" role="form" method="post">
+		<div id="successInsciption"></div>
 			<div class='row'>
 				<div class="col-lg-6">
 					<!--<form class="form-horizontal" role="form">-->
@@ -13,6 +14,7 @@
 						<label for="firstname" class="col-sm-3 control-label">Prénom</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="firstname" id="firstname">
+							<div id="errors-firstname"></div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -40,6 +42,12 @@
 						</div>
 					</div>
 					<div class="form-group" >
+						<label for="email" class="col-sm-3 control-label">Email</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" name="email" id="email">
+						</div>
+					</div>
+					<div class="form-group" >
 						<label for="phone" class="col-sm-3 control-label">Téléphone</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="phone" id="phone">
@@ -62,12 +70,6 @@
 						</div>
 					</div>
 					<div class="form-group" >
-						<label for="address" class="col-sm-3 control-label">Adresse</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" name="address" id="address">
-						</div>
-					</div>
-					<div class="form-group" >
 						<label for="password" class="col-sm-3 control-label">Mot de passe</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="password" id="password">
@@ -81,7 +83,7 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" id="inscription" class="btn btn-default col-sm-1 col-md-offset-5 control-label">S'inscrire</button>
+			<button type="submit" id="inscription" class="btn btn-primary col-sm-1 col-md-offset-5 control-label">S'inscrire</button>
 		</form>
 	</div>
 </div>
@@ -92,27 +94,28 @@
 
 <script>
 // Ajax inscription
-    $(document).ready(function(){
+$(document).ready(function(){
 
-        $('#inscription').on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                url: '<?=$this->url('users_add');?>',
-                type: 'post',
-                dataType: 'json',
-                data: $('form').serialize(),
-                success: function(retourJson){
-                    if(retourJson.result == true){ 
-                        $('#errorsAjaxInscription').text(''); 
-                        window.location.href("<?=$this->url('users_add');?>");
-                    }
-                    else if(retourJson.result == false){
-                        $('#errorsAjaxInscription').html(retourJson.errors);
-                    }
-                }   
-            });
-        });
-    });
+	$('#inscription').on('click', function(e){
+		e.preventDefault();
+		$.ajax({
+			url: '<?=$this->url('users_insert');?>',
+			type: 'post',
+			dataType: 'json',
+			data: $('form').serialize(),
+			success: function(retourJson){
+				if(retourJson.result == true){ 
+					$('#successInsciption').html('Vous êtes inscrit !');
+				}
+				else if(retourJson.result == false){
+					$( "body" ).each(function( key, value ){
+						$('#errors-'+value).html(retourJson.recapErrors);
+					});
+				}
+			}  
+		});
+	});
+});
 </script>
 
 <?php $this->stop('script') ?>
