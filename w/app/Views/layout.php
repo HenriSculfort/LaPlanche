@@ -171,11 +171,8 @@
                         $('#errorsAjaxConnexion').text(''); 
                     }
                     else if(retourJson.result == false){
-<<<<<<< HEAD
                         $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
-=======
                         $('#errorsAjaxConnexion').html('<div class="alert alert-success">'+retourJson.errors+'</div>');
->>>>>>> 53dc3d453b2fa023919ffe3d96a38098db65c8bd
                     }
                 }   
             });
