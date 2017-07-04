@@ -41,7 +41,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">La Planche</a>
+                <a class='navbar-brand' href='<?= $this->url('accueil')?>'>La Planche</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,7 +51,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                        <a href="<?= $this->url('terrains') ?>">Terrains</a>
+                        <a href="<?= $this->url('courts') ?>">Terrains</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
@@ -81,42 +81,22 @@
                 <div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
-
-                            <div id="errorsAjaxConnexion" style="color:red"></div>
-
                             <h3>Connectez-vous !</h3><br>
-                            <form method="post">
-                                <input type="text" name="emailConnexion" placeholder="Email">
-                                <input type="password" name="passwordConnexion" placeholder="Mot de passe">
-                                <input type="submit" id="connexion_popup" name="login" class="login loginmodal-submit" value="Connexion">
-                            </form>
-                            <div class="login-help">
-                                <a href="<?= $this->url('users_add') ?>" data-toggle="modal" data-target="#inscription">Inscription</a><a href="#">Mot de passe oublié ?</a>
-                            </div>
+                          <div id="errorsAjaxConnexion"></div>
+                          <form method="post">
+                            <input type="text" name="emailConnexion" placeholder="Email">
+                            <input type="password" name="passwordConnexion" placeholder="Mot de passe">
+                            <input type="submit" id="connexion_popup" name="login" class="login loginmodal-submit" value="Connexion">
+                        </form>
+                        <div class="login-help">
+                            <a href="<?= $this->url('users_add') ?>">Inscription</a><a href="#">Mot de passe oublié ?</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="loginmodal-container">
-
-                            <div id="errorsAjaxInscription" style="color:red"></div>
-
-                            <h3>Inscrivez-vous !</h3><br>
-                            <form method="post">
-                                <input type="text" name="emailInscription" placeholder="Email">
-                                <input type="password" name="passwordInscription" placeholder="Mot de passe">
-                                <input type="password" name="ControlPasswordInscription" placeholder="Répéter votre mot de passe">
-                                <input type="submit" id="inscription_popup" name="login" class="login loginmodal-submit" value="Inscription">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
+</div>
 </header>
 
 <!-- Main Content -->
@@ -138,7 +118,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                        <a href="<?= $this->url('terrains') ?>">Terrains</a>
+                        <a href="<?= $this->url('courts') ?>">Terrains</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
@@ -191,37 +171,12 @@
                         $('#errorsAjaxConnexion').text(''); 
                     }
                     else if(retourJson.result == false){
-                        $('#errorsAjaxConnexion').html(retourJson.errors);
+                        $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
                     }
                 }   
             });
         });
     });
-
-    // Ajax inscription
-    $(document).ready(function(){
-
-        $('#inscription_popup').on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                url: '<?=$this->url('users_add');?>',
-                type: 'post',
-                dataType: 'json',
-                data: $('form').serialize(),
-                success: function(retourJson){
-                    if(retourJson.result == true){ 
-                        $('#errorsAjaxInscription').text(''); 
-                        window.location.href("<?=$this->url('users_insert');?>");
-                    }
-                    else if(retourJson.result == false){
-                        $('#errorsAjaxInscription').html(retourJson.errors);
-                    }
-                }   
-            });
-        });
-    });
-
-    
 
 </script>
 <?= $this->section('script') ?>
