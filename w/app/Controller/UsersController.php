@@ -17,50 +17,80 @@ class UsersController extends Controller
 
 		$post = [];
 		$errors = [];
+		$recapErrors = [];
 
 		if(!empty($_POST)){
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
-			if(empty($post['firstname'])){
-				$errors['firstname'] = 'Veuillez renseigner votre prénom';
+			if(isset($post['firstname']) && empty($post['firstname'])){
+				$errors['prenom'] = 'Veuillez renseigner votre prénom';
 			}
 
-			if(empty($post['lastname'])){
-				$errors['lastname'] = 'Veuillez renseigner votre nom';
+			if(isset($post['lastname']) && empty($post['lastname'])){
+				$errors['nom'] = 'Veuillez renseigner votre nom';
 			}
 
-			if(empty($post['address'])){
-				$errors['address'] = 'Veuillez renseigner votre adresse';
+			if(isset($post['address']) && empty($post['address'])){
+				$errors['adresse'] = 'Veuillez renseigner votre adresse';
 			}
 
-			if(empty($post['cp'])){
-				$errors['cp'] = 'Veuillez renseigner votre code postal';
+			if(isset($post['cp']) && (strlen($post['cp']) != 5) || !is_numeric($post['cp'])){
+				$errors['code_postal'] = 'Votre code postal doit être composé de 5 chiffres';
 			}
 
-			if(empty($post['ville'])){
-				$errors['city'] = 'Veuillez renseigner votre ville';
+			if(isset($post['city']) && empty($post['city'])){
+				$errors['ville'] = 'Veuillez renseigner votre ville';
 			}
 
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
-				$errors['email'] = 'Votre adresse email est invalide';
+				$errors['mail'] = 'Votre adresse email est invalide';
+			}
+
+			if(isset($post['username']) && empty($post['username']) || strlen($post['username']) < 3){
+				$errors['pseudo'] = 'Votre pseudo doit contenir au moins 3 caractères';
 			}
 			
 			if(strlen($post['password']) < 8){
-				$errors['password'] = 'Votre mot de passe doit comporter au moins 8 caractères';
+				$errors['mot_de_passe'] = 'Votre mot de passe doit comporter au moins 8 caractères';
 			}
 
-			if(($post['password']) != ($post['checkPassword'])){
-				$errors[] = 'Vos mot de passe ne sont pas identiques';
+			if($post['password'] != $post['checkPassword']){
+				$errors['verif_mot_de_passe'] = 'Vos mot de passe doivent être identiques';
 			}
 			if(count($errors) === 0){
+				$authModel = new AuthentificationModel();
+
+				$data = [
+				'firstname' => $post['firstname'],
+				'lastname' 	=> $post['lastname'],
+				'address' 	=> $post['address'],
+				'cp' 	=> $post['cp'],
+				'city' 	=> $post['city'],
+				'email' 	=> $post['email'],
+				'phone' 	=> $post['phone'],
+				'username' 	=> $post['username'],
+				'level' 	=> $post['level'],
+				'password' 	=> $authModel->hashPassword($post['password']),
+				];
+
+				$usersModel = new UsersModel();
+				$insert = $usersModel->insert($data);
 
 				$json = [
 				'result' => true,
 				];
 			}
 			else {
-				$recapErrors =[
-					'firstname' => $errors['firstname'],
+				$recapErrors = [
+				'prenom' => isset($errors['prenom']) ? $errors['prenom'] : '',
+				'nom' => isset($errors['nom']) ? $errors['nom'] : '',
+				'adresse' => isset($errors['adresse']) ? $errors['adresse'] : '',
+				'code_postal' => isset($errors['code_postal']) ? $errors['code_postal'] : '',
+				'ville' => isset($errors['ville']) ? $errors['ville'] : '',
+				'mail' => isset($errors['mail']) ? $errors['mail'] : '',
+				'pseudo' => isset($errors['pseudo']) ? $errors['pseudo'] : '',
+				'mot_de_passe' => isset($errors['mot_de_passe']) ? $errors['mot_de_passe'] : '',
+				'verif_mot_de_passe' => isset($errors['verif_mot_de_passe']) ? $errors['verif_mot_de_passe'] : '',
 				];
 
 				$json = [

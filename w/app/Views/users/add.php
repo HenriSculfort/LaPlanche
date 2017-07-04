@@ -3,7 +3,7 @@
 
 <?php $this->start('main_content') ?>
 
-<div class='container'>
+<div id="main" class='container'>
 	<div class='row'>
 		<form class="form-horizontal" role="form" method="post">
 		<div id="successInsciption"></div>
@@ -14,37 +14,42 @@
 						<label for="firstname" class="col-sm-3 control-label">Prénom</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="firstname" id="firstname">
-							<div id="errors-firstname"></div>
+							<div id="errors-prenom"></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="lastname" class="col-sm-3 control-label">Nom</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="lastname" id="lastname">
+							<div id="errors-nom"></div>
 						</div>
 					</div>
 					<div class="form-group" >
 						<label for="address" class="col-sm-3 control-label">Adresse</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="address" id="address">
+							<div id="errors-adresse"></div>
 						</div>
 					</div>
 					<div class="form-group" >
 						<label for="cp" class="col-sm-3 control-label">Code postal</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="cp" id="cp">
+							<div id="errors-code_postal"></div>
 						</div>
 					</div>
 					<div class="form-group" >
 						<label for="city" class="col-sm-3 control-label">Ville</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="city" id="city">
+							<div id="errors-ville"></div>
 						</div>
 					</div>
 					<div class="form-group" >
 						<label for="email" class="col-sm-3 control-label">Email</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="email" id="email">
+							<div id="errors-mail"></div>
 						</div>
 					</div>
 					<div class="form-group" >
@@ -61,6 +66,7 @@
 						<label for="username" class="col-sm-3 control-label">Pseudo</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="username" id="username">
+							<div id="errors-pseudo"></div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -73,12 +79,14 @@
 						<label for="password" class="col-sm-3 control-label">Mot de passe</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="password" id="password">
+							<div id="errors-mot_de_passe"></div>
 						</div>
 					</div>
 					<div class="form-group" >
 						<label for="checkPassword" class="col-sm-3 control-label">Répéter le mot de passe</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="checkPassword" id="checkPassword">
+							<div id="errors-verif_mot_de_passe"></div>
 						</div>
 					</div>
 				</div>
@@ -108,14 +116,16 @@ $(document).ready(function(){
 					$('#successInsciption').html('Vous êtes inscrit !');
 				}
 				else if(retourJson.result == false){
-					$( "body" ).each(function( key, value ){
-						$('#errors-'+value).html(retourJson.recapErrors);
+					$.each(retourJson.errors, function(key, value){
+						$('#errors-'+key).html(value);
 					});
+
 				}
 			}  
 		});
 	});
 });
+
 </script>
 
 <?php $this->stop('script') ?>
