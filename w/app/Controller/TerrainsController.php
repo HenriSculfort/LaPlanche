@@ -16,7 +16,7 @@ class TerrainsController extends Controller
 	{
 		$model = new CourtsModel();
 		$findAll = $model->findAll();
-		$this->show('default/terrains', $findAll);
+		$this->show('default/terrains', ['findAll' => $findAll]);
 	}
 
 
