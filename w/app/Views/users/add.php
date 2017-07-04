@@ -3,8 +3,7 @@
 
 <?php $this->start('main_content') ?>
 
-<div class='container'>
-	<div class='row'>
+
 		<div id="success"></div> <!-- Affiche le message de réussite d'inscription-->
 	</div>
 </div>
@@ -142,6 +141,7 @@ $(document).ready(function(){
 		});
 	});
 });
+
 
 </script>
 

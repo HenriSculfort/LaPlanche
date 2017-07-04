@@ -36,12 +36,11 @@ $(document).ready(function(){
 			type: 'post',
 			data: $('form').serialize(),	
 			dataType: 'json',
-
 			success: function(resPHP){
 
 				if(resPHP.result == true) {
 					
-					$('#message').val('Votre mot de passe a été réinitialisé');
+					$('#message').html(resPHP.message);
 					//renvoie dans la div 'message' la valeur contenu dans .val; ici renvoie une valeur vide
 					$('#errors').html('');//on vide les messages d'erreures
 				}

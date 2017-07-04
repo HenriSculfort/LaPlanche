@@ -8,7 +8,10 @@ use \W\Security\AuthentificationModel;
 
 class UsersController extends Controller
 {
+
+		
 	public function add()
+
 	{
 		// permet d'afficher le formulaire d'inscription
 		$this->show('users/add');
@@ -20,11 +23,46 @@ class UsersController extends Controller
 
 		$post = [];
 		$errors = [];
+
+
 		$recapErrors = [];
 		$usersModel = new UsersModel();
 
+
 		if(!empty($_POST)){
 			$post = array_map('trim', array_map('strip_tags', $_POST));
+
+
+			if(empty($post['firstname'])){
+				$errors['firstname'] = 'Veuillez renseigner votre prénom';
+			}
+
+			if(empty($post['lastname'])){
+				$errors['lastname'] = 'Veuillez renseigner votre nom';
+			}
+
+			if(empty($post['address'])){
+				$errors['address'] = 'Veuillez renseigner votre adresse';
+			}
+
+			if(empty($post['cp'])){
+				$errors['cp'] = 'Veuillez renseigner votre code postal';
+			}
+
+			if(empty($post['ville'])){
+				$errors['city'] = 'Veuillez renseigner votre ville';
+			}
+
+			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+				$errors['email'] = 'Votre adresse email est invalide';
+			}
+			
+			if(strlen($post['password']) < 8){
+				$errors['password'] = 'Votre mot de passe doit comporter au moins 8 caractères';
+			}
+
+			if(($post['password']) != ($post['checkPassword'])){
+				$errors[] = 'Vos mot de passe ne sont pas identiques';
 
 			// vérifie le prénom
 			if(isset($post['firstname']) && empty($post['firstname'])){
@@ -81,6 +119,7 @@ class UsersController extends Controller
 			// vérifie que les mots de passe soient identiques
 			if($post['password'] != $post['checkPassword']){
 				$errors['verif_mot_de_passe'] = 'Vos mot de passe doivent être identiques';
+
 			}
 			if(count($errors) === 0){
 				$authModel = new AuthentificationModel();
@@ -99,13 +138,20 @@ class UsersController extends Controller
 				'password' 	=> $authModel->hashPassword($post['password']),
 				];
 
+
+
 				$insert = $usersModel->insert($data);
+
 
 				$json = [
 				'result' => true,
 				];
 			}
 			else {
+
+				$recapErrors =[
+					'firstname' => $errors['firstname'],
+
 
 				// définie les erreurs du formulaire
 				$recapErrors = [
@@ -120,6 +166,7 @@ class UsersController extends Controller
 				'pseudo' => isset($errors['pseudo']) ? $errors['pseudo'] : '',
 				'mot_de_passe' => isset($errors['mot_de_passe']) ? $errors['mot_de_passe'] : '',
 				'verif_mot_de_passe' => isset($errors['verif_mot_de_passe']) ? $errors['verif_mot_de_passe'] : '',
+
 				];
 
 				$json = [

@@ -8,8 +8,9 @@
 
 <?php $this->stop('header_content');?>
 
-<?=$this->start('main_content');?>
 
+
+<?=$this->start('main_content');?>
 
 <!-- FORMULAIRE DE RECHERCHE -->
 <form action="<?= $this->url('search_courts')?>">
@@ -42,7 +43,15 @@
 			</select>
 
 			<label for='has_match'> Match </label>
+
 			<input type='checkbox' name='has_match'>
+
+			<select name='has_match'>
+				<option value='both' selected>Indifférent</option>
+				<option value='has_match'>Avec Match</option>
+				<option value='has_no_match'>Sans Match</option>
+			</select>
+
 
 			<label for='distanceSlider'> Distance </label>
 			<input id="distance" data-slider-id='distanceSlider' type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="50"/>
@@ -55,37 +64,135 @@
 
 <!-- LISTE DES TERRAINS OU RETOUR DE RECHERCHE -->
 
+<?php  if(isset($searchResults)) : // Recherche a été effectuée?>
+
+	<?php if(empty($searchResults)) { ?>
+	    <div class='alert alert-warning'>
+	        Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas via votre espace personnel ! 
+    </div> 
+<?php }  ?>
+
 <?php 
+    else {
+        foreach($searchResults as $court) {
+    ?>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-md-2'>
+                    <img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>
+                </div>
+                <div class='col-md-10'>
+                    <h4><?= $court['name'];?></h4>
+                    <p><?= $court['description'];?></p>
+                </div>
+            </div>
+            <div class='row'>
+                <a href=''>Plus d'informations et liste des matchs</a>
+            </div>
+        </div>	
+    <?php 
+        }	//enforeach
+    }
+?>
+<?php else: // S'il n'y a pas eu de recherche effectuée, on affiche la liste.?> 
 
-// Si une recherche a été effectuée 
-if(isset($searchResults) && $searchResults == true) {
+<?php
+    if(isset($findAll)) { 
+        foreach($findAll as $court) {?>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-md-2'>
+                    <img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>
+                </div>
+                <div class='col-md-10'>
+                    <h4><?= $court['name'];?></h4>
+                    <p><?= $court['description'];?></p>
+                </div>
+            </div>
+            <div class='row'>
+                <a href=''>Plus d'informations et liste des matchs</a>
+            </div>
+        </div>	
+    <?php 
+        } // Fin foreach	
+    } // Fin isset findAll
+	?>
 
-	foreach($search as $court) {?>
-	<div class='container'>
-		<div class='row'>
-			<div class='col-md-2'>
-				<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>
-			</div>
-			<div class='col-md-10'>
-				<h4><?= $court['name'];?></h4>
-				<p><?= $court['description'];?></p>
-			</div>
-		</div>
-		<div class='row'>
-			<a href=''>Plus d'informations et liste des matchs</a>
-		</div>
-	</div>	
-	<?php }	
 
+    // S'il y a des erreurs il me les affiche 
+    <?php if (isset($showErrors) && !empty($showErrors)): ?>
+        <div class='alert alert-danger'><?= $showErrors;?></div>
+   
+    <?php elseif(isset($searchResults) && $searchResults == true):     // Si une recherche a été effectuée ?>
+
+
+    	<?php 
+        	if(isset($getGames)) { 
+	            foreach($getGames as $court) {
+    	?>
+		            <div class='container'>
+		                <div class='row'>
+		                    <div class='col-md-2'>
+		                        <!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+		                    </div>
+		                    <div class='col-md-10'>
+		                        <h4><?= $court['name'];?></h4>
+		                        <p><?= $court['description'];?></p>
+		                    </div>
+		                </div>
+		                <div class='row'>
+		                    <a href=''>Plus d'informations et liste des matchs</a>
+		                </div>
+				    </div>	
+    	<?php
+			}	// endforeach() 
+		} elseif(isset($getNoGames)): // S'il y a une date mais pas de match 
+
+			foreach($getNoGames as $court) {?>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-2'>
+						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+					</div>
+					<div class='col-md-10'>
+						<h4><?= $court['name'];?></h4>
+						<p><?= $court['description'];?></p>
+					</div>
+				</div>
+				<div class='row'>
+					<a href=''>Plus d'informations et liste des matchs</a>
+				</div>
+			</div>	
+<?php 
+        } // endforeach	
+		
+    // S'il n'y a pas de match ni de date
+    } else { 
+		foreach($search as $court) {?>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-2'>
+						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+					</div>
+					<div class='col-md-10'>
+						<h4><?= $court['name'];?></h4>
+						<p><?= $court['description'];?></p>
+					</div>
+				</div>
+				<div class='row'>
+					<a href=''>Plus d'informations et liste des matchs</a>
+				</div>
+			</div>	
+<?php 
+       }	
+    }
+	
 // S'il n'y a pas de résultats, ça renvoie le message d'erreur ci-dessous
-}
-elseif(isset($searchResults) && $searchResults == false) { ?>
+
+} elseif(isset($searchResults) && $searchResults == false) { ?>
 	<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas via votre espace personnel ! </div> <?php
 }
-// S'il y a des erreurs il me les affiche 
-elseif (isset($showErrors) && !empty($showErrors)) { ?>
-	<div class='alert alert-danger'><?= $showErrors;?></div><?php
-}
+
 
 // S'il n'y a pas eu de recherche effectuée, on affiche la liste.
 else { 
@@ -107,13 +214,11 @@ else {
 		</div>	
 		<?php } // Fin foreach	
 } // Fin isset findAll
-
-
-
-} // Fin du else pas de recherche 
 ?>
 
 <?=$this->stop('main_content');?>
+
+
 
 
 <!-- AJAX D'AFFICHAGE DE LA RECHERCHE -->
@@ -121,6 +226,7 @@ else {
 
 
 <?= $this->stop('script') ?>
+
 
 
 
