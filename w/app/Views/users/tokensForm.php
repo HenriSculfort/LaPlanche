@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 				if(resPHP.result == true) {
 					
-					$('#message').val('');
+					$('#message').val('Un email vous a été envoyé');
 					//renvoie dans la div 'message' la valeur contenu dans .val; ici renvoie une valeur vide
 					$('#errors').html('');//on vide les messages d'erreures
 				}
