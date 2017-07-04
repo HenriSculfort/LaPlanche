@@ -41,7 +41,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="<?= $this->url('accueil') ?>">La Planche</a>
+              
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,7 +51,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                        <a href="<?= $this->url('courts') ?>">Terrains</a>
+                   
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
@@ -82,7 +82,7 @@
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
                             <h3>Connectez-vous !</h3><br>
-                          <div id="errorsAjaxConnexion" class="alert alert-danger" role="alert"></div>
+                          <div id="errorsAjaxConnexion"></div>
                           <form method="post">
                             <input type="text" name="emailConnexion" placeholder="Email">
                             <input type="password" name="passwordConnexion" placeholder="Mot de passe">
@@ -118,7 +118,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                        <a href="<?= $this->url('courts') ?>">Terrains</a>
+                     
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
@@ -171,7 +171,11 @@
                         $('#errorsAjaxConnexion').text(''); 
                     }
                     else if(retourJson.result == false){
+<<<<<<< HEAD
+                        $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
+=======
                         $('#errorsAjaxConnexion').html('<div class="alert alert-success">'+retourJson.errors+'</div>');
+>>>>>>> 53dc3d453b2fa023919ffe3d96a38098db65c8bd
                     }
                 }   
             });
