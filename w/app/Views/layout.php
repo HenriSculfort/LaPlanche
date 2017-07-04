@@ -51,7 +51,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                        <a href="<?= $this->url('courts') ?>">Mon espace</a>
+                        <a href="<?= $this->url('courts') ?>">Terrains</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
@@ -118,7 +118,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                        <a href="<?= $this->url('courts') ?>">Mon espace</a>
+                        <a href="<?= $this->url('courts') ?>">Terrains</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
