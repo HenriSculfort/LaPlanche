@@ -41,7 +41,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-              
+                <a class='navbar-brand' href='<?= $this->url('accueil')?>'>La Planche</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,7 +51,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                   
+                        <a href="<?= $this->url('courts') ?>">Mon espace</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
@@ -118,7 +118,7 @@
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
                     <li>
-                     
+                        <a href="<?= $this->url('courts') ?>">Mon espace</a>
                     </li>
                     <li>
                         <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
