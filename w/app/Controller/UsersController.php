@@ -8,10 +8,12 @@ use \W\Security\AuthentificationModel;
 
 class UsersController extends Controller
 {
-	public function add(){
+	public function add()
+	{
 		// permet d'afficher le formulaire d'inscription
 		$this->show('users/add');
 	}
+
 
 	public function insert()
 	{
