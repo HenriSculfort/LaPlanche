@@ -100,7 +100,7 @@
                                 <input type="submit" id="connexion_popup" name="login" class="login loginmodal-submit" value="Connexion">
                             </form>
                             <div class="login-help">
-                                <a href="<?= $this->url('users_add') ?>">Inscription</a><a href="#">Mot de passe oublié ?</a>
+                                <a href="<?= $this->url('users_add') ?>">Inscription</a><a href="<?= $this->url('users_tokensForm') ?>">Mot de passe oublié ?</a>
                             </div>
                         </div>
                     </div>
