@@ -43,12 +43,14 @@ class UsersController extends Controller
 				];
 			}
 			$this->showJson($json);
+
 		}
+		$this->show('users/add');
 	}
 
 	public function insert()
 	{
-	$this->show('users/insert');
+	
 	}
 
 

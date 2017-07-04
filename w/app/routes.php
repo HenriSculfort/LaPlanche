@@ -10,7 +10,6 @@ $w_routes = array(
 	['GET|POST', '/contact/', 'Contact#sendForm', 'contact'],
 
 	['GET|POST', '/users/add', 'Users#add', 'users_add'],
-	['GET|POST', '/users/insert', 'Users#insert', 'users_insert'],
 	['GET|POST', '/login', 'Users#login', 'users_login'],
 	['GET', '/logout', 'Users#logout', 'users_logout'],
 
