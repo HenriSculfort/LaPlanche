@@ -180,7 +180,7 @@
             });
         });
     });
-<<<<<<< HEAD
+
 
 
 
@@ -188,15 +188,7 @@
 
  <?= $this->section('script') ?>
  
-=======
-</script>
-<?= $this->section('script') ?>
 
-=======
-
-</script>
-<?= $this->section('script') ?>
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
 <div >
     <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
         <i class="fa fa-arrow-up"></i>

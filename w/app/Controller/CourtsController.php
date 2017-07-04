@@ -4,14 +4,12 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use Model\CourtsModel;
-<<<<<<< HEAD
 use Respect\Validation\Validator as v;
 use Intervention\Image\ImageManagerStatic as Image;
 
-=======
 use Model\GamesModel;
-use Respect\Validation\Validator as v;
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
+
 
 class CourtsController extends Controller
 {
@@ -24,14 +22,12 @@ class CourtsController extends Controller
 	{
 		$model = new CourtsModel();
 		$findAll = $model->findAll();
-<<<<<<< HEAD
+
 		$this->show('default/terrains', $findAll);
 	}
 
-
-=======
 		$this->show('default/courts', ['findAll' => $findAll]);
-	}
+}
 
 
 
@@ -41,18 +37,17 @@ class CourtsController extends Controller
 	*
 	*/
 
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
 	public function searchCourts() {
 
 		$data = [];
 		$errors = [];
-<<<<<<< HEAD
+
 		// Je me protège au niveau du POST
 		$get = array_map('trim', array_map('strip_tags', $_GET));
 		
 		// Si le formulaire est envoyé
 		if(!empty($_GET)) {
-=======
+
 		$search = [];
 
 		// Si le formulaire est envoyé
@@ -60,7 +55,7 @@ class CourtsController extends Controller
 			// Je me protège au niveau du POST
 			$get = array_map('trim', array_map('strip_tags', $_GET));
 
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 
 			// On vérifie que le lieu a bien été renseigné. 
 			if(!v::notEmpty()->length(2, null)->validate($get['searchWhere'])) {
@@ -73,7 +68,7 @@ class CourtsController extends Controller
 			// Si la date est renseignée 
 			if(!empty($get['year']) && !empty($get['month']) && !empty($get['day'])) { 
 				$date = $get['year'] . '-' . $get['month'] . '-' . $get['day'];
-<<<<<<< HEAD
+
 				if(!v::alpha()->date('Y-m-d')->validate($date)) { 
 					$errors[] = 'Le format de la date est incorrect';
 				} else { 
@@ -268,7 +263,7 @@ class CourtsController extends Controller
 
 }
     
-=======
+
 				if(!v::date('Y-m-d')->validate($date)) { 
 					$errors[] = 'Le format de la date est incorrect';
 				}
@@ -341,4 +336,4 @@ class CourtsController extends Controller
 
 
 }
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+

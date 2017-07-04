@@ -8,15 +8,10 @@ use \W\Security\AuthentificationModel;
 
 class UsersController extends Controller
 {
-<<<<<<< HEAD
-	public function add(){
-		$this->show('users/add');
-	}
 
-	public function insert()
-=======
+		
 	public function add()
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 	{
 		// permet d'afficher le formulaire d'inscription
 		$this->show('users/add');
@@ -28,16 +23,16 @@ class UsersController extends Controller
 
 		$post = [];
 		$errors = [];
-<<<<<<< HEAD
-=======
+
+
 		$recapErrors = [];
 		$usersModel = new UsersModel();
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 
 		if(!empty($_POST)){
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
-<<<<<<< HEAD
+
 			if(empty($post['firstname'])){
 				$errors['firstname'] = 'Veuillez renseigner votre prénom';
 			}
@@ -68,7 +63,7 @@ class UsersController extends Controller
 
 			if(($post['password']) != ($post['checkPassword'])){
 				$errors[] = 'Vos mot de passe ne sont pas identiques';
-=======
+
 			// vérifie le prénom
 			if(isset($post['firstname']) && empty($post['firstname'])){
 				$errors['prenom'] = 'Veuillez renseigner votre prénom';
@@ -124,7 +119,7 @@ class UsersController extends Controller
 			// vérifie que les mots de passe soient identiques
 			if($post['password'] != $post['checkPassword']){
 				$errors['verif_mot_de_passe'] = 'Vos mot de passe doivent être identiques';
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 			}
 			if(count($errors) === 0){
 				$authModel = new AuthentificationModel();
@@ -143,20 +138,20 @@ class UsersController extends Controller
 				'password' 	=> $authModel->hashPassword($post['password']),
 				];
 
-<<<<<<< HEAD
-=======
+
+
 				$insert = $usersModel->insert($data);
 
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 				$json = [
 				'result' => true,
 				];
 			}
 			else {
-<<<<<<< HEAD
+
 				$recapErrors =[
 					'firstname' => $errors['firstname'],
-=======
+
 
 				// définie les erreurs du formulaire
 				$recapErrors = [
@@ -171,7 +166,7 @@ class UsersController extends Controller
 				'pseudo' => isset($errors['pseudo']) ? $errors['pseudo'] : '',
 				'mot_de_passe' => isset($errors['mot_de_passe']) ? $errors['mot_de_passe'] : '',
 				'verif_mot_de_passe' => isset($errors['verif_mot_de_passe']) ? $errors['verif_mot_de_passe'] : '',
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 				];
 
 				$json = [

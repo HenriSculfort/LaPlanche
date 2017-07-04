@@ -42,15 +42,15 @@
 			</select>
 
 			<label for='has_match'> Match </label>
-<<<<<<< HEAD
+
 			<input type='checkbox' name='has_match'>
-=======
+
 			<select name='has_match'>
 				<option value='both' selected>Indifférent</option>
 				<option value='has_match'>Avec Match</option>
 				<option value='has_no_match'>Sans Match</option>
 			</select>
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 
 			<label for='distanceSlider'> Distance </label>
 			<input id="distance" data-slider-id='distanceSlider' type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="50"/>
@@ -64,7 +64,7 @@
 <!-- LISTE DES TERRAINS OU RETOUR DE RECHERCHE -->
 
 <?php 
-<<<<<<< HEAD
+
 var_dump($searchResults);
 
 // Si une recherche a été effectuée 
@@ -115,7 +115,7 @@ if(isset($findAll)) {
 
 
 
-=======
+
 
 // S'il y a des erreurs il me les affiche 
 if (isset($showErrors) && !empty($showErrors)) { ?>
@@ -210,22 +210,22 @@ else {
 		<?php } // Fin foreach	
 } // Fin isset findAll
 
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 } // Fin du else pas de recherche 
 ?>
 
 <?=$this->stop('main_content');?>
 
 
-<<<<<<< HEAD
-=======
+
+
 <!-- AJAX D'AFFICHAGE DE LA RECHERCHE -->
 <?= $this->start('script') ?>
 
 
 <?= $this->stop('script') ?>
 
->>>>>>> 6a129674620a59631a7a46d79e5ce2d14714e292
+
 
 
 
