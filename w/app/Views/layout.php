@@ -53,6 +53,7 @@
                     <li>
                         <a href="<?= $this->url('courts') ?>">Terrains</a>
                     </li>
+<<<<<<< HEAD
                     <?php if(!empty($w_user)): ?>
                         <li>
                             <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
@@ -65,6 +66,14 @@
                             <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                         </li>
                     <?php endif; ?>
+=======
+                    <li>
+                        <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                    </li>
+                    <li>
+                        <a href="<?= $this->url('users_login') ?>" data-toggle="modal" data-target="#connexion">Connexion</a>
+                    </li>
+>>>>>>> da54b230cb23c2523bef8f06240c43672b79228b
                     <li>
                         <a href="<?= $this->url('contact') ?>">Contact</a>
                     </li>
@@ -114,6 +123,9 @@
         <div class="row">
             <?= $this->section('main_content') ?>
         </div>
+
+    </header>
+
     </div>
 
     <hr>
@@ -195,8 +207,14 @@
         });
     });
 
+
+
+
 </script>
-<?= $this->section('script') ?>
+
+
+ 
+
 <div >
     <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
         <i class="fa fa-arrow-up"></i>
