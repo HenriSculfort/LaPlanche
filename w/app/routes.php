@@ -9,9 +9,11 @@ $w_routes = array(
 
 	['GET|POST', '/users/add', 'Users#add', 'users_add'],
 	['GET|POST', '/users/add', 'Users#insert', 'users_insert'],
+    
 	['GET|POST', '/login', 'Users#login', 'users_login'],
 	['GET', '/logout', 'Users#logout', 'users_logout'],
-	['GET|POST', '/forgotten', 'Tokens#formTokens', 'users_tokensForm'],
+	
+    ['GET|POST', '/forgotten', 'Tokens#formTokens', 'users_tokensForm'],
 	['GET|POST', '/forgotten/Ajax', 'Tokens#creatTokens', 'users_tokensAjax'],
 	['GET|POST', '/myspace', 'Users#mySpace', 'users_myspace'],
 	['GET|POST', '/myspace/Ajax', 'Courts#addCourts', 'add_courts'],

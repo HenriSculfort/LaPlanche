@@ -22,12 +22,8 @@ class CourtsController extends Controller
 	{
 		$model = new CourtsModel();
 		$findAll = $model->findAll();
-
-		$this->show('default/terrains', $findAll);
-	}
-
 		$this->show('default/courts', ['findAll' => $findAll]);
-}
+    }
 
 
 
@@ -36,28 +32,18 @@ class CourtsController extends Controller
 	* @return 
 	*
 	*/
-
 	public function searchCourts() {
 
 		$data = [];
 		$errors = [];
-
-		// Je me protège au niveau du POST
-		$get = array_map('trim', array_map('strip_tags', $_GET));
-		
-		// Si le formulaire est envoyé
-		if(!empty($_GET)) {
-
-		$search = [];
+        $search = [];
 
 		// Si le formulaire est envoyé
 		if(!empty($_GET)) {
 			// Je me protège au niveau du POST
 			$get = array_map('trim', array_map('strip_tags', $_GET));
 
-
-
-			// On vérifie que le lieu a bien été renseigné. 
+            // On vérifie que le lieu a bien été renseigné. 
 			if(!v::notEmpty()->length(2, null)->validate($get['searchWhere'])) {
 				$errors[] = 'Le lieu ou le département doit être renseigné';
 			} else {
@@ -69,29 +55,74 @@ class CourtsController extends Controller
 			if(!empty($get['year']) && !empty($get['month']) && !empty($get['day'])) { 
 				$date = $get['year'] . '-' . $get['month'] . '-' . $get['day'];
 
-				if(!v::alpha()->date('Y-m-d')->validate($date)) { 
+                if(!v::date('Y-m-d')->validate($date)) { 
 					$errors[] = 'Le format de la date est incorrect';
 				} else { 
 					$data['date'] = $date;
 				}
 			}
 
-			if(count($errors)== 0) {
-				$Model = new Model();
-				$search = $Model->search($data);
-				if($search) {
+			// S'IL N'Y A PAS D'ERREUR 
+			if(count($errors) === 0) {
 
-					$this->show('default/terrains');
-				}
+				// Si l'utilisateur ne veut pas de filtre match 
+				if($get['has_match'] == 'both') { 
+					$model = new CourtsModel();
+					$search = $model->search($data);
+					if(!empty($search)) {
+						$searchResult = true;
+					} else { 
+						$searchResult = false;
+					}
+				} // S'il veut des matchs 
+				elseif ($get['has_match'] == 'has_match') { 
 
-			} 
-			else { 
+					$gamesModel = new GamesModel;
+					$getGames = $gamesModel->jointureCourtsGames();
+					if(empty($getGames)) {
+						$searchResult = false;
+						$errors[] = 'Aucun match trouvé.';
+					} // Si il y a un résultat
+					else {
+						$searchResult = true;
+					}
+				// S'il ne veut pas de match 
+				} 
+                elseif ($get['has_match'] == 'has_no_match') {
+					$has_match = false;
+					$gamesModel = new CourtsModel;
+					$getNoGames = $gamesModel->leftJoinCourtsGames($date);
+					if(empty($getNoGames)) {
+						$searchResult = false;
+						$errors[] = 'Aucun match trouvé.';
+					} // Si il y a un résultat
+					else {
+						$searchResult = true;
+					}
+				} 
+            }// S'IL Y A DES ERREURS 
+            else { 
+				$showErrors = implode('<br>', $errors);
+			}	
 
-			}
+            $params = [ 
+                'searchResults' => isset($searchResult) ? $searchResult : null,
+                'showErrors' => isset($showErrors) ? $showErrors : null,
+                'search' => isset($search) ? $search : null,
+                'getGames' => isset($getGames) ? $getGames : null ,
+                'getNoGames' =>isset($getNoGames) ? $getNoGames : null ,
+            ];
 
+            echo '<pre>';
+            var_dump($params);
+            echo '</pre>',
 
-			
+            $this->show('default/courts', $params);
+
 		} // Fin du if !empty GET
+		else {
+			$this->showForbidden();			
+		}
 	} // Fin fonction searchCourts
 	
 	// *********************Supprimer un terrain***************//
@@ -99,13 +130,8 @@ class CourtsController extends Controller
 
 
 //************************Ajouter un terrain********************//
-    public function addCourts ()
+    public function addCourts()
     {
-
-     
-    	
-    	var_dump($_POST);
-    	var_dump($_FILES);
     	
         $post = [];
 		$errors = []; 
@@ -154,79 +180,74 @@ class CourtsController extends Controller
 				$errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
 			}
 			
-			   if(isset($_FILES['name'])){
+			 if(isset($_FILES['name'])){
 
-            $maxfilesize = 1048576; //1 Mo
-
-            if($_FILES['name']['size'] < $maxfilesize){
-                //pas d'erreur et le fichier n'est pas trop volumineux
-                //on teste l'extension
-                $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif');
-                $fileInfo = pathinfo($_FILES['name']['name']);
-                $extension = $fileInfo['extension'];
-                if(in_array($extension, $extensions_autorisees)){
+                $maxfilesize = 1048576; //1 Mo
+                
+                if($_FILES['name']['size'] < $maxfilesize){
+                    //pas d'erreur et le fichier n'est pas trop volumineux
+                    //on teste l'extension
+                    $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif');
+                    $fileInfo = pathinfo($_FILES['name']['name']);
+                    $extension = $fileInfo['extension'];
+                    
+                    if(in_array($extension, $extensions_autorisees)){
                     //extension valide
-              //      echo 'c\'est bon<br>';
                     //transférer définitivement le fichier sur le serveur
                     //on renomme le fichier
-                    if($extension == 'jpg' OR $extension == 'jpeg'){
-                        //jpeg ou pjg
-                        $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
-                    }
-                    elseif($extension == 'png'){
-                        //png
-                        $newImage = imagecreatefrompng($_FILES['name']['tmp_name']);
-                    }
-                    else{
-                        //fichier gif
-                        $newImage = imagecreatefromgif($_FILES['name']['tmp_name']);
-                    }
+                        switch($extension){
+                            case 'jpg':
+                            case 'jpeg':
+                                $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                            break;
+                                
+                            case 'png':
+                                $newImage = imagecreatefrompng($_FILES['name']['tmp_name']);
+                            break;
 
+                            case 'gif':
+                                $newImage = imagecreatefromgif($_FILES['name']['tmp_name']);
+                            break;
+                        }
+                    }
 
                     $image = Image::make($newImage)->resize(300, 200);
 
                    
                     $picture = md5(uniqid(rand(), true));
                    
-                    move_uploaded_file($_FILES['name']['tmp_name'], $this->assetUrl('img/uploads/'.$picture.'.'.$extension) );
-
+                    
+                    // $this->assetUrl : utilisable que dans les vues
+                    if(move_uploaded_file($_FILES['name']['tmp_name'], $this->assetUrl('img/uploads/'.$picture.'.'.$extension))){
+                       // Image bien uploadé
                     }
                     else{//problème:
-				
-					$errors[] = 'Une erreur de transfert est survenue !';
-						//erreur lors du transfert
-					
+                        $errors[] = 'Une erreur de transfert est survenue !';
 					}
-			
                 }
                 else{
-					$errors[] = 'Le fichier est trop gros !';
-					//fichier trop volumineux	
+					$errors[] = 'Le fichier est trop volumineux !';
 				}
 			}
-
 			else{
 				$errors[] = 'l\'image est absente';
 			}
 
-          
-            
 
             if(count($errors) === 0){
 				$data = [
 					
-					'name'	=> $post['name'],
-					'address'	=> $post['address'],
-					'postal_code'	=> $post['postal_code'],
-					'city'	=> $post['city'],
-					'picture'	=> $picture,
-					'description'	=> $post['description'],
-					'net'	=> $post['net'],
-					'court_state'	=> $post['level'],
-					'opening_hours'	=> $post['opening_hours'],
-					'admin_validation'	=> false,
-					'parking'	=> $post['parking'],
-	
+					'name'         => $post['name'],
+					'address'      => $post['address'],
+					'postal_code'  => $post['postal_code'],
+					'city'         => $post['city'],
+					'picture'      => $picture,
+					'description'  => $post['description'],
+					'net'          => $post['net'],
+					'court_state'  => $post['level'],
+					'opening_hours'    => $post['opening_hours'],
+					'admin_validation' => false,
+					'parking'          => $post['parking'],
 				];
 
 				$addCourts = new CourtsModel();
@@ -234,106 +255,21 @@ class CourtsController extends Controller
 				
 				if($insert){
 					$json =[
-					'result' =>true,
-					'message' =>'le terrain est soumis!',
+                        'result'    => true,
+                        'message'   => 'le terrain est soumis!',
 					];
-		
 				}
-			
-				
-					//extension non autorisée
-				}
-				else{
-					$json =[
-					'result' =>false,
-					'errors'=>implode('<br>',$errors),
-					];
+                
+            } // fin if(count($errors))
+            else{
+                $json =[
+                    'result'    => false,
+                    'errors'    => implode('<br>',$errors),
+                ];
 			}
 			
-				$this->showJson($json);
-			}
+            $this->showJson($json);
+        } // fin (!empty($_POST))
  
-		}
-
-		
-      
-	//}
-
-	
-
+    }
 }
-    
-
-				if(!v::date('Y-m-d')->validate($date)) { 
-					$errors[] = 'Le format de la date est incorrect';
-				}
-			}
-	
-			// S'IL N'Y A PAS D'ERREUR 
-			if(count($errors) === 0) {
-
-				// Si l'utilisateur ne veut pas de filtre match 
-				if($get['has_match'] == 'both') { 
-					$model = new CourtsModel();
-					$search = $model->search($data);
-					if(!empty($search)) {
-						$searchResult = true;
-					} else { 
-						$searchResult = false;
-					}
-				} // S'il veut des matchs 
-				elseif ($get['has_match'] == 'has_match') { 
-
-					$gamesModel = new GamesModel;
-					$getGames = $gamesModel->jointureCourtsGames();
-					if(empty($getGames)) {
-						$searchResult = false;
-						$errors[] = 'Aucun match trouvé.';
-					} // Si il y a un résultat
-					else {
-						$searchResult = true;
-					}
-				// S'il ne veut pas de match 
-				} elseif ($get['has_match'] == 'has_no_match') {
-					$has_match = false;
-					$gamesModel = new CourtsModel;
-					$getNoGames = $gamesModel->leftJoinCourtsGames($date);
-					if(empty($getNoGames)) {
-						$searchResult = false;
-						$errors[] = 'Aucun match trouvé.';
-					} // Si il y a un résultat
-					else {
-						$searchResult = true;
-					}
-				}
-
-			
-				} /// S'IL Y A DES ERREURS 
-				else { 
-					$showErrors = implode('<br>', $errors);
-				}	
-
-				$params = [ 
-				'searchResults' => isset($searchResult) ? $searchResult : null,
-				'showErrors' => isset($showErrors) ? $showErrors : null,
-				'search' => isset($search) ? $search : null,
-				'getGames' => isset($getGames) ? $getGames : null ,
-				'getNoGames' =>isset($getNoGames) ? $getNoGames : null ,
-				];
-				echo '<pre>';
-				var_dump($params);
-				echo '</pre>',
-				$this->show('default/courts', $params);
-
-		} // Fin du if !empty GET
-		else {
-			$this->show('w_errors/403');			
-		}
-	} // Fin fonction searchCourts
-
-
-
-
-
-}
-
