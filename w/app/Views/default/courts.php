@@ -56,17 +56,11 @@
 <!-- LISTE DES TERRAINS OU RETOUR DE RECHERCHE -->
 
 <?php 
-var_dump($searchResults);
 
 // Si une recherche a été effectuée 
-if(isset($searchResults)) {
-	// S'il n'y a pas de résultats, ça renvoie le message d'erreur ci-dessous
-	if(empty($searchResults)) { ?>
-	<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas via votre espace personnel ! 
-	</div> <?php
-} // Sinon, on affiche les résultats en foreach
-else {
-	foreach($searchResults as $court) {?>
+if(isset($searchResults) && $searchResults == true) {
+
+	foreach($search as $court) {?>
 	<div class='container'>
 		<div class='row'>
 			<div class='col-md-2'>
@@ -82,26 +76,36 @@ else {
 		</div>
 	</div>	
 	<?php }	
-}
-} else { // S'il n'y a pas eu de recherche effectuée, on affiche la liste.
 
-if(isset($findAll)) { 
-	foreach($findAll as $court) {?>
-	<div class='container'>
-		<div class='row'>
-			<div class='col-md-2'>
-				<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>
+// S'il n'y a pas de résultats, ça renvoie le message d'erreur ci-dessous
+}
+elseif(isset($searchResults) && $searchResults == false) { ?>
+	<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas via votre espace personnel ! </div> <?php
+}
+// S'il y a des erreurs il me les affiche 
+elseif (isset($showErrors) && !empty($showErrors)) { ?>
+	<div class='alert alert-danger'><?= $showErrors;?></div><?php
+}
+
+// S'il n'y a pas eu de recherche effectuée, on affiche la liste.
+else { 
+	if(isset($findAll)) { 
+		foreach($findAll as $court) {?>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-md-2'>
+					<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+				</div>
+				<div class='col-md-10'>
+					<h4><?= $court['name'];?></h4>
+					<p><?= $court['description'];?></p>
+				</div>
 			</div>
-			<div class='col-md-10'>
-				<h4><?= $court['name'];?></h4>
-				<p><?= $court['description'];?></p>
+			<div class='row'>
+				<a href=''>Plus d'informations et liste des matchs</a>
 			</div>
-		</div>
-		<div class='row'>
-			<a href=''>Plus d'informations et liste des matchs</a>
-		</div>
-	</div>	
-	<?php } // Fin foreach	
+		</div>	
+		<?php } // Fin foreach	
 } // Fin isset findAll
 
 
@@ -111,6 +115,12 @@ if(isset($findAll)) {
 
 <?=$this->stop('main_content');?>
 
+
+<!-- AJAX D'AFFICHAGE DE LA RECHERCHE -->
+<?= $this->start('script') ?>
+
+
+<?= $this->stop('script') ?>
 
 
 
