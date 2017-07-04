@@ -82,7 +82,7 @@
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
                             <h3>Connectez-vous !</h3><br>
-                          <div id="errorsAjaxConnexion" class="alert alert-danger" role="alert"></div>
+                          <div id="errorsAjaxConnexion"></div>
                           <form method="post">
                             <input type="text" name="emailConnexion" placeholder="Email">
                             <input type="password" name="passwordConnexion" placeholder="Mot de passe">
@@ -171,7 +171,7 @@
                         $('#errorsAjaxConnexion').text(''); 
                     }
                     else if(retourJson.result == false){
-                        $('#errorsAjaxConnexion').html(html('<div class="alert alert-success">'+retourJson.errors+'</div>');
+                        $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
                     }
                 }   
             });
