@@ -12,7 +12,8 @@ class CourtsController extends Controller
 {
 
 	/**
-	 * Page d'accueil par défaut
+	 * Page d'accueil par défaut, listant tous les terrains
+	 * @return array findAll avec liste des terrains
 	 */
 	public function listAllCourts()
 	{
@@ -69,34 +70,18 @@ class CourtsController extends Controller
 	} // Fin fonction searchCourts
 	
 	// *********************Supprimer un terrain***************//
-	public function deleteCourts
-
-        if(isset($_GET['id'])){
-            $reponse = $bdd->prepare('SELECT * FROM pictures WHERE id = :id');
-            $reponse -> bindValue(':id',htmlspecialchars($_GET['id']), PDO::PARAM_INT);
-            $reponse -> execute();
-            $nom=$reponse->fetch();
-            $reponse -> closeCursor(); 
-
-
-            $reponse = $bdd->prepare('DELETE FROM pictures WHERE id = :id');
-            $reponse -> bindValue(':id',htmlspecialchars($_GET['id']), PDO::PARAM_INT);
-            $reponse -> execute();
-
-
-            if($reponse -> execute()){
-                unlink($this->assetUrl().$nom['name']);
-                unlink('../docs/tuto/img/uploads/'.$nom['name']);
-
-            }
-        }
+	
 
 
 //************************Ajouter un terrain********************//
-    public function addCourts
+    public function addCourts ()
+    {
 
-        if(isset($_FILES['name'])){
-
+     
+    	
+    	var_dump($_POST);
+    	var_dump($_FILES);
+    	
         $post = [];
 		$errors = []; 
 		if(!empty($_POST)){
@@ -114,7 +99,7 @@ class CourtsController extends Controller
 				$errors[] = 'Le description doit comporter au moins 10 caractères';
 			}
 
-			if(!empty($post['level']))
+			if(empty($post['level']))
 			{
 				$errors[] = 'L\'état du terrain doit être choisi';
 			}
@@ -134,7 +119,7 @@ class CourtsController extends Controller
 				$errors[] = 'Le nom de la ville doit comporter au moins 2 caractères';
 			}
 
-			if(!empty($post['net']))
+			if(empty($post['net']))
 			{
 				$errors[] = 'Le filet doit être défini';
 			}
@@ -144,6 +129,7 @@ class CourtsController extends Controller
 				$errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
 			}
 			
+			   if(isset($_FILES['name'])){
 
             $maxfilesize = 1048576; //1 Mo
 
@@ -155,7 +141,7 @@ class CourtsController extends Controller
                 $extension = $fileInfo['extension'];
                 if(in_array($extension, $extensions_autorisees)){
                     //extension valide
-                    echo 'c\'est bon<br>';
+              //      echo 'c\'est bon<br>';
                     //transférer définitivement le fichier sur le serveur
                     //on renomme le fichier
                     if($extension == 'jpg' OR $extension == 'jpeg'){
@@ -172,15 +158,34 @@ class CourtsController extends Controller
                     }
 
 
-                    $image = Image::make('$newImage')->resize(300, 200);
+                    $image = Image::make($newImage)->resize(300, 200);
 
                    
                     $picture = md5(uniqid(rand(), true));
                    
-                    move_uploaded_file($_FILES['name']['tmp_name'], 'uploads/'.$picture.'.'.$extension);
+                    move_uploaded_file($_FILES['name']['tmp_name'], $this->assetUrl('img/uploads/'.$picture.'.'.$extension) );
 
+                    }
+                    else{//problème:
+				
+					$errors[] = 'Une erreur de transfert est survenue !';
+						//erreur lors du transfert
+					
+					}
+			
                 }
-            }
+                else{
+					$errors[] = 'Le fichier est trop gros !';
+					//fichier trop volumineux	
+				}
+			}
+
+			else{
+				$errors[] = 'l\'image est absente';
+			}
+
+          
+            
 
             if(count($errors) === 0){
 				$data = [
@@ -189,7 +194,7 @@ class CourtsController extends Controller
 					'address'	=> $post['address'],
 					'postal_code'	=> $post['postal_code'],
 					'city'	=> $post['city'],
-					'picture'	=> $post['picture'],
+					'picture'	=> $picture,
 					'description'	=> $post['description'],
 					'net'	=> $post['net'],
 					'court_state'	=> $post['level'],
@@ -209,42 +214,27 @@ class CourtsController extends Controller
 					];
 		
 				}
+			
 				
-
-				else{
-					$json =[
-					'result' =>false,
-					'errors'=>'Ce n\'est pas une bonne extension !',
-					];
 					//extension non autorisée
 				}
-			}
-			else{//problème:
-				if($_FILES['name']['error'] > 0){
-					$json =[
-					'result' =>false,
-					'errors'=>'Une erreur de transfert est survenue !',
-					];
-				//erreur lors du transfert
-					
-				}
 				else{
 					$json =[
 					'result' =>false,
-					'errors'=>'Le fichier est trop gros !',
+					'errors'=>implode('<br>',$errors),
 					];
-					//fichier trop volumineux	
-				}
-				
 			}
-
+			
+				$this->showJson($json);
+			}
+ 
 		}
 
-		$this->showJson($json); 
+		
       
-	}
+	//}
 
-
+	
 
 }
     

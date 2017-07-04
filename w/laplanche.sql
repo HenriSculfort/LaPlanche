@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Client :  127.0.0.1
--- Généré le :  Lun 03 Juillet 2017 à 16:00
--- Version du serveur :  10.1.21-MariaDB
--- Version de PHP :  7.1.1
+-- Hôte : 127.0.0.1
+-- Généré le :  lun. 03 juil. 2017 à 23:36
+-- Version du serveur :  10.1.24-MariaDB
+-- Version de PHP :  7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -33,10 +35,10 @@ CREATE TABLE `courts` (
   `postal_code` int(11) NOT NULL,
   `city` varchar(250) NOT NULL,
   `picture` varchar(250) NOT NULL,
-  `description` varchar(250) NOT NULL,
-  `net` tinyint(1) NOT NULL,
+  `description` text NOT NULL,
+  `net` varchar(250) NOT NULL,
   `court-state` varchar(250) NOT NULL,
-  `opening_hours` time NOT NULL,
+  `opening_hours` varchar(250) NOT NULL,
   `admin_validation` tinyint(1) NOT NULL,
   `parking` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -51,12 +53,12 @@ CREATE TABLE `games` (
   `id` int(11) NOT NULL,
   `court_location` varchar(250) NOT NULL,
   `date` date NOT NULL,
-  `starting_time` time NOT NULL,
-  `finishing_time` time NOT NULL,
+  `starting_time` varchar(250) NOT NULL,
+  `finishing_time` varchar(250) NOT NULL,
   `number_players` int(11) NOT NULL,
   `team_name` varchar(250) NOT NULL,
   `team_level` varchar(250) NOT NULL,
-  `message` varchar(250) NOT NULL,
+  `message` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `accepted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -72,7 +74,7 @@ CREATE TABLE `messages` (
   `sending_user_id` int(11) NOT NULL,
   `receiving_user_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
-  `message` varchar(250) NOT NULL
+  `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -108,7 +110,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Index pour les tables exportées
+-- Index pour les tables déchargées
 --
 
 --
@@ -142,7 +144,7 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
@@ -169,7 +171,8 @@ ALTER TABLE `tokens`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -8,40 +8,64 @@ use \W\Security\AuthentificationModel;
 
 class UsersController extends Controller
 {
+	public function add(){
+		$this->show('users/add');
+	}
 
-	public function add()
+	public function insert()
 	{
 
 		$post = [];
 		$errors = [];
-		$formValid = false;
 
 		if(!empty($_POST)){
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
-			if(!filter_var($post['emailInscription'], FILTER_VALIDATE_EMAIL)) {
-				$errors[] = 'Votre adresse email est invalide';
-			}
-			
-			if(strlen($post['passwordInscription']) < 8){
-				$errors[] = 'Votre mot de passe doit comporter au moins 8 caractères';
+			if(empty($post['firstname'])){
+				$errors['firstname'] = 'Veuillez renseigner votre prénom';
 			}
 
-			if(($post['passwordInscription']) != ($post['ControlPasswordInscription'])){
+			if(empty($post['lastname'])){
+				$errors['lastname'] = 'Veuillez renseigner votre nom';
+			}
+
+			if(empty($post['address'])){
+				$errors['address'] = 'Veuillez renseigner votre adresse';
+			}
+
+			if(empty($post['cp'])){
+				$errors['cp'] = 'Veuillez renseigner votre code postal';
+			}
+
+			if(empty($post['ville'])){
+				$errors['city'] = 'Veuillez renseigner votre ville';
+			}
+
+			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+				$errors['email'] = 'Votre adresse email est invalide';
+			}
+			
+			if(strlen($post['password']) < 8){
+				$errors['password'] = 'Votre mot de passe doit comporter au moins 8 caractères';
+			}
+
+			if(($post['password']) != ($post['checkPassword'])){
 				$errors[] = 'Vos mot de passe ne sont pas identiques';
 			}
 			if(count($errors) === 0){
-
-				// Insertion des données
 
 				$json = [
 				'result' => true,
 				];
 			}
 			else {
+				$recapErrors =[
+					'firstname' => $errors['firstname'],
+				];
+
 				$json = [
 				'result' => false,
-				'errors' => implode('<br>', $errors),
+				'errors' => $recapErrors,
 				];
 			}
 			$this->showJson($json);
@@ -62,34 +86,31 @@ class UsersController extends Controller
 			$id_user = $authModel->isValidLoginInfo($post['emailConnexion'], $post['passwordConnexion']);
 
 			if($id_user > 0){ 
-				$usersModel = new UsersModel();
-				$me = $usersModel->find($id_user); 
-				$authModel->logUserIn($me); 
 
 				$json = [
 				'result' => true,
 				];
 
+				$usersModel = new UsersModel();
+				$me = $usersModel->find($id_user); 
+				$authModel->logUserIn($me); 
+
 				if(!empty($authModel->getLoggedUser())){
+
 					$this->flash('Vous êtes desormais connecté', 'success');
 					$this->redirectToRoute('accueil');
 				}
 			}
 			else {
+				$errors[] = 'Le couple identifiant / mot de passe est invalide';
 				$json = [
 				'result' => false,
-				'errors' => 'Le couple identifiant / mot de passe est invalide',
+				'errors' => implode('<br>', $errors),
 				];
 			}
 			$this->showJson($json);
 		}	
 	}
-
-
-
-
-
-
 
 
 	public function logout()

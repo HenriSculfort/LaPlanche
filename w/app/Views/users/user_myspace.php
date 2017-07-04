@@ -1,10 +1,10 @@
 <?php $this->layout('layout', ['title' => 'Mon Espace']) ?>
 
 <?php $this->start('header_content');?>
-	<div class="site-heading">
-		<h1>Espace Utilisateur</h1>
-		<p>Cet espace vous permet de modifier vos données personnelles et de suggérer un nouveau terrain</p>
-	</div>
+<div class="site-heading">
+	<h1>Espace Utilisateur</h1>
+	<p>Cet espace vous permet de modifier vos données personnelles et de suggérer un nouveau terrain</p>
+</div>
 
 <?php $this->stop('header_content');?>
 
@@ -22,9 +22,9 @@
 			<div class='col-md-3'>
 				<label for='email'>Email</label>
 			</div>
-			<div class='col-md-9'>
+	<!--		<div class='col-md-9'>
 				<input type='email' name='email' value="<?= $_SESSION['email']?>">
-			</div>
+			</div> -->
 		</div>
 
 		<div class='row form-group'>
@@ -37,8 +37,8 @@
 					<option value='1' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 1){ echo 'selected'; }?>>Débutant, spécialiste du air ball</option>
 					<option value='2' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 2){ echo 'selected'; }?>>Novice, je débute mais j'arrive à toucher le panier </option>
 					<option value='3' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 3){ echo 'selected'; }?>>Intermédiaire, je me débrouille</option>
-					<option value='4'<?php if(isset($_SESSION['level']) && $_SESSION['level'] == 4){ echo 'selected'; }?>>Avancé, ça fait des années que je joue</option>
-					<option value='5'<?php if(isset($_SESSION['level']) && $_SESSION['level'] == 5){ echo 'selected'; }?>>Expert, j'ai raté une carrière à la NBA</option>
+					<option value='4' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 4){ echo 'selected'; }?>>Avancé, ça fait des années que je joue</option>
+					<option value='5' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 5){ echo 'selected'; }?> >Expert, j'ai raté une carrière à la NBA </option>
 				</select>
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 				<label for='cp'>Code Postal</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='text' name='cp' value="<?= $_SESSION['cp']?>">
+				<input type='text' name='postal_code' value="<?= $_SESSION['cp']?>">
 			</div>
 		</div>
 
@@ -81,13 +81,12 @@
 		<button type='submit' class='btn btn-primary'>Envoyer les modifications</button>
 	</div>
 
-<div id='resultAjax'></div>
-
 </form>
 <hr>
 <!-- Ajout de terrain -->
 <h3>Ajouter un terrain</h3>
 <br>
+<div id='resultAjax'></div>
 <!-- Row pour prendre en compte la colonne d'affichage de la map à droite-->
 <div class='row'>
 
@@ -157,9 +156,9 @@
 				</div>
 			</div>
 
-			<div class='row form-group'>
+			<div class='row form-group'  >
 				<div class='col-md-4'>
-					<label for='city'>Photo</label>
+					<label for='picture'>Photo</label>
 				</div>
 				<input type='file' name='picture' class='col-md-8'>
 			</div>
@@ -212,42 +211,43 @@
 		</div>
 	</div>
 </div>
-	<?php $this->stop('main_content') ?>
+<?php $this->stop('main_content') ?>
 
-	<?php $this->start('script') ?>
+<?php $this->start('script') ?>
 
 <script>
-	
- $('#addCourts').on('click', function(e){
+
+	$(document).ready(function(){
+
+		$('#addCourts').on('click', function(e){
 	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
-     
-	e.preventDefault(); 
+
+			e.preventDefault(); 
 
 	
-	$.ajax({
-		url: '<?=$this->url('add_courts');?>', 
-		type: 'post',
-		data: {
-			id: $(this).data('id'),
-		},		
-		dataType: 'json', // Les données de retour seront envoyées en JSON
-		success: function(retourJson){
-            if(retourJson.result == true){ 
-                        $('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
-            }
-            else{
-            	$('#resultAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
-            }
-			
-		},
+			$.ajax({
+				url: '<?=$this->url('add_courts');?>', 
+				type: 'post',
+				data: $('form').serialize(),		
+				dataType: 'json', // Les données de retour seront envoyées en JSON
+				success: function(retourJson){
+				if(retourJson.result == true){ 
+					$('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+				}
+				else if(retourJson.result == false){
+					$('#resultAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+				}
+				
+				},
 
+			});
+		});
 	});
-});
 </script>
 
 
 
-	<?php $this->stop('script') ?>
+<?php $this->stop('script') ?>
 
 
 

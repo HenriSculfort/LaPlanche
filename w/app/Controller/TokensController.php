@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \Model\TokensModel;
+use \Model\UsersModel;
 use Respect\Validation\Validator as v;
 
 class TokensController extends \W\Controller\Controller
@@ -26,30 +27,33 @@ class TokensController extends \W\Controller\Controller
 			}
 			if(count($errors) === 0){
 			//On verifie que l'email est dans la base de donnée
-				$TokensModel = new TokensModel();
-				$emailInBdd = $TokensModel -> emailExists($post['email']);
+				$usersModel = new UsersModel();
+				$emailInBdd = $usersModel->emailExists($post['email']);
 
 
 				//si le mail existe dans la base, on envoye un mail pour changer le mot de passe.
-				if($emailInBdd = true){
+				if($emailInBdd == true){
+
+					$user = $usersModel->getUserByUsernameOrEmail($post['email']); // Recherche un utilisateur par email ou username
+
 
 					// On sauvegarde le token
 					$token = md5(uniqid(rand(), true));
 					// on enregistre l'id de l'utilisateur et le token généré dans la bdd
 					$data=[
-						'user_id' => $user[0]['id'],
+						'user_id' => $user['id'],
 						'token' => $token
 					];
-					
-					$insertToken = $insertModel->insert($data);
+					$TokensModel = new TokensModel();
+					$insertToken = $TokensModel->insert($data);
 
 
 					if(!empty($insertToken)) {
 						// On envoi le mail
-						$mail = new PHPMailer();
+						$mail = new \PHPMailer();
 						$mail->CharSet = 'UTF-8';
 						$mail->isSMTP();
-						$mail->Host = ('smtp.gmail.com');
+						$mail->Host = 'smtp.gmail.com';
 						$mail->SMTPAuth = true;
 						$mail->Username = 'testwf3mc@gmail.com';
 						$mail->Password = 'ttttttttt';
@@ -57,10 +61,10 @@ class TokensController extends \W\Controller\Controller
 						$mail->Port = 465;
 						$mail->SetFrom('laplanche@wf3.fr', 'La Planche Team');
 						//mail et nom du destinataire
-						$mail->addAddress($post['email'], $users[0]['username']);
+						$mail->addAddress($post['email'], $user['username']);
 						$mail->isHTML(true);
 						$mail->Subject = 'La Planche mot de passe oublié';
-						$mail->Body = '<p>Ce message vous est envoyé suite à une demande de récupération de mot de passe de connexion à La Planche.</p><br><strong>Cliquez sur le lien pour changer votre mot de passe: <a href="http://localhost/LaPlanche/w/app/Controller/TokensController.php?user_id=' . $users[0]['id'] . '&token=' . $token . '">Modifier le mot de passe</a></strong><br><p>A bientôt sur La Planche</p><br><p>Cordialement,</p><p>L\'équipe La Planche Bordeaux</p>';
+						$mail->Body = '<p>Ce message vous est envoyé suite à une demande de récupération de mot de passe de connexion à La Planche.</p><br><strong>Cliquez sur le lien pour changer votre mot de passe: <a href="http://localhost/LaPlanche/w/app/Controller/TokensController.php?user_id=' . $user['id'] . '&token=' . $token . '">Modifier le mot de passe</a></strong><br><p>A bientôt sur La Planche</p><br><p>Cordialement,</p><p>L\'équipe La Planche Bordeaux</p>';
 
 						//Si l'email est envoyé, renvoye vrai à l'Ajax pour afficher un message de réussite
 						if($mail->Send() == true){
