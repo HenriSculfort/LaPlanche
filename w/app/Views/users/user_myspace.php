@@ -143,7 +143,7 @@
 					<label for='postal_code'>Code Postal</label>
 				</div>
 				<div class='col-md-8'>
-					<input type='text' name='postal_code' placeholder="CP" ">
+					<input type='text' name='postal_code' placeholder="CP">
 				</div>
 			</div>
 

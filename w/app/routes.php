@@ -19,7 +19,7 @@ $w_routes = array(
 
 
 	['GET|POST', '/changePassword/', 'resetPass#changePass', 'users_changePassword'],
-	['GET|POST', '/changePassword/Ajax', 'resetPass#resetPass', 'users_changePasswordAjax'],
+	['GET|POST', '/changePassword/Ajax', 'ResetPass#resetPass', 'users_changePasswordAjax'],
 
 	['GET|POST', '/myspace', 'Users#mySpace', 'users_myspace']
 
