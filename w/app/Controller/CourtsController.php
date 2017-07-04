@@ -6,7 +6,7 @@ use \W\Controller\Controller;
 use Model\CourtsModel;
 use Respect\Validation\Validator as v;
 
-class TerrainsController extends Controller
+class CourtsController extends Controller
 {
 
 	/**
@@ -16,7 +16,7 @@ class TerrainsController extends Controller
 	{
 		$model = new CourtsModel();
 		$findAll = $model->findAll();
-		$this->show('default/terrains', ['findAll' => $findAll]);
+		$this->show('default/courts', ['findAll' => $findAll]);
 	}
 
 
@@ -53,7 +53,7 @@ class TerrainsController extends Controller
 				$search = $Model->search($data);
 				if($search) {
 
-					$this->show('default/terrains');
+					$this->show('default/courts');
 				}
 
 			} 
