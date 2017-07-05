@@ -4,12 +4,10 @@ namespace Controller;
 
 use \W\Controller\Controller;
 
+
 class ContactController extends Controller
 {
 
-	/**
-	 * Page d'accueil par défaut
-	 */
 	public function showForm()
 	{
 		$this->show('default/contact');
@@ -23,22 +21,18 @@ class ContactController extends Controller
 		
 		if(!empty($_POST)){
 
-			foreach($_POST as $key => $value){
-				$post[$key] = trim(strip_tags($value));
-			}
-
+			$post = array_map('trim', array_map('strip_tags', $_POST));
 			// vérifie le prénom
 			if(isset($post['name']) && empty($post['name'])){
 				$errors['nom'] = 'Veuillez renseigner votre nom';
 			}
-			//l'email n'est pas vide et au bon format
-			if(!v::notEmpty()->email()->validate($post['email'])){
-				$errors['mail'] = 'L\'adresse email est invalide';
+			// vérifie le format d'email
+			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
+				$errors['mail'] = 'Votre adresse email est invalide';
 			}
-
 			// vérifie le message
 			if(isset($post['message']) && empty($post['message'])){
-				$errors['message'] = 'Veuillez renseigner votre nom';
+				$errors['message'] = 'Veuillez ajouter votre message';
 			}
 
 			if(count($errors) === 0){
@@ -57,7 +51,7 @@ class ContactController extends Controller
 				//mail et nom du destinataire
 				$mail->addAddress('laplanche.bordeaux@gmail.com');
 				$mail->isHTML(true);
-				$mail->Subject = 'La Planche mot de passe oublié';
+				$mail->Subject = 'Message de : '.$post['message'];
 				$mail->Body = '';
 
 				//Si l'email est envoyé, renvoye vrai à l'Ajax pour afficher un message de réussite
