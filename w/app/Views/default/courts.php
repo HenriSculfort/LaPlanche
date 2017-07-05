@@ -3,7 +3,7 @@
 <?php $this->start('header_content');?>
 <div class="standard-header">
 	<h1>Les terrains</h1>
-	<p>Vous cherchez un terrain en particulier ou toute la liste ? C'est ici ! </p>
+	<p class="legend-header">Vous cherchez un terrain en particulier ou toute la liste ? C'est ici ! </p>
 </div>
 
 <?php $this->stop('header_content');?>
@@ -79,10 +79,8 @@ elseif(isset($searchResults) && $searchResults == true) {
 					<div class='col-md-10'>
 						<h4><?= $court['name'];?></h4>
 						<p><?= $court['description'];?></p>
+						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
-				</div>
-				<div class='row'>
-					<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 				</div>
 			</div>	
 		<?php }	
@@ -98,10 +96,8 @@ elseif(isset($searchResults) && $searchResults == true) {
 					<div class='col-md-10'>
 						<h4><?= $court['name'];?></h4>
 						<p><?= $court['description'];?></p>
+						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
-				</div>
-				<div class='row'>
-					<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 				</div>
 			</div>	
 		<?php }	
@@ -116,10 +112,8 @@ elseif(isset($searchResults) && $searchResults == true) {
 						<div class='col-md-10'>
 							<h4><?= $court['name'];?></h4>
 							<p><?= $court['description'];?></p>
+							<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 						</div>
-					</div>
-					<div class='row'>
-						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>	
 			<?php }	
@@ -143,10 +137,8 @@ else {
 					<div class='col-md-10'>
 						<h4><?= $court['name'];?></h4>
 						<p><?= $court['description'];?></p>
+						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
-				</div>
-				<div class='row'>
-					<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 				</div>
 			</div>	
 		<?php } // Fin foreach	

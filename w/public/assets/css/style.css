@@ -43,7 +43,7 @@ a:hover {
 
 p {
     margin: 10px 0;
-    font-size: 3rem;
+    font-size: 1.5rem;
     color: #252e2d;
 }
 
@@ -99,13 +99,22 @@ header.intro-header {
     margin-bottom: 0;
 }
 
+.legend-header{
+    font-size: 2.3rem;
+    padding-top: 20px;
+}
 /************************************* NAVBAR *****************************/
 
 .navbar-default {
-    background: rgba(0, 0, 0, 0.2);
     border-color: transparent;
 }
 
+@media only screen and (min-width:768px) {
+    .navbar-default {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: transparent;
+    }
+}
 
 /******************************* PAGE ACCUEIL *********************************/
 
