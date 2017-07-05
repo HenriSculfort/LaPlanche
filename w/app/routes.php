@@ -5,7 +5,7 @@ $w_routes = array(
 	['GET|POST', '/courts', 'Courts#listAllCourts', 'courts'],
 	['GET|POST', '/courts/search', 'Courts#searchCourts', 'search_courts'],
 
-	['GET|POST', '/contact/', 'Contact#showForm', 'contact_show'],
+	['GET|POST', '/contact/', 'Contact#showForm', 'contact'],
 	['GET|POST', '/contact/send', 'Contact#sendForm', 'contact_send'],
 
 	['GET|POST', '/users/add', 'Users#add', 'users_add'],
@@ -29,5 +29,7 @@ $w_routes = array(
 
 	['GET|POST', '/changePassword/', 'resetPass#changePass', 'users_changePassword'],
 	['GET|POST', '/changePassword/Ajax', 'ResetPass#resetPass', 'users_changePasswordAjax'],
+
+	['GET|POST', '/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
 
 	);

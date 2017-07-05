@@ -61,7 +61,7 @@ $(document).ready(function(){
     $('#sendForm').on('click', function(e){
         e.preventDefault();
         $.ajax({
-            url: '<?=$this->url('contact');?>',
+            url: '<?=$this->url('contact_send');?>',
             type: 'post',
             dataType: 'json',
             data: $('form').serialize(),
