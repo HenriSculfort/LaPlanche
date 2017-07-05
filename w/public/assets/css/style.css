@@ -87,13 +87,17 @@ h3 {
     padding: 1.2em;
 }
 
+
 /************************************* HEADER *****************************/
 
-.standard-header{
+.standard-header {
     text-align: center;
-    padding: 50px 0;
+    padding: 80px 0 40px 0;
 }
 
+header.intro-header {
+    margin-bottom: 0;
+}
 
 /************************************* NAVBAR *****************************/
 
@@ -132,9 +136,11 @@ button {
 #distance .slider-selection {
     background: #6c6262;
 }
-#searchBtn { 
+
+#searchBtn {
     margin-left: 10px;
 }
+
 
 /******************************* LOGIN MODAL *********************************/
 
