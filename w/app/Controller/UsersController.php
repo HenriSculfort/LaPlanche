@@ -90,7 +90,7 @@ class UsersController extends Controller
 				'firstname' => ucfirst($post['firstname']),
 				'lastname' 	=> ucfirst($post['lastname']),
 				'address' 	=> ucwords($post['address']),
-				'cp' 	=> $post['cp'],
+				'postal_code' 	=> $post['cp'],
 				'city' 	=> ucfirst($post['city']),
 				'email' 	=> $post['email'],
 				'phone' 	=> $post['phone'],
