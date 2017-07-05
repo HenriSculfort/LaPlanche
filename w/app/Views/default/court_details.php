@@ -9,7 +9,7 @@
 		<img src="<?=$this->assetUrl('img/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
 	</div>
 	
-	
+
 	<!--********************** SOMMAIRE ************************-->
 	<div class='row' >
 		<div class='col-sm-12'>
@@ -113,7 +113,7 @@
 						<label for='message'>Message</label>
 					</div>
 					<div class='col-sm-10'>
-						<textarea  rows="8" name='message' placeholder="nom de l'équipe (facultatif)"></textarea>
+						<textarea  rows="8" name='message' placeholder="Ecrivez votre message ici (et restez courtois :D )"></textarea>
 					</div>
 				</div>
 			</div>
@@ -124,7 +124,7 @@
 			</div>
 		</div>
 	</form>
-</div>
+</div> <!-- Fermeture du div class container global -->
 
 
 <!--************************* DETAILS TERRAIN ************************-->
@@ -240,9 +240,23 @@
 						</div>
 					</div>
 					<div class='row'>
-						<?php if($game['accepted'] != 1) : 
-							// Si la game n'est pas acceptée (complète), le bouton contacter l'équipe apparaît.?>				
-							<button type='submit' href='' class='btn btn-primary'>Contacter l'équipe</button> 
+						<button type='submit' href='' class='btn btn-primary'>Afficher le chat</button> 
+						<?php // Si la game n'est pas acceptée (complète), l'input pour écrire un nouveau message apparaît.
+						if($game['accepted'] != 1) : ?>		
+							<p><div id=resultAjax></div>
+								<h5>Messages</h5>
+
+									<div id="errors" style="color:red; background: lightpink; border-radius: 5px;text-align: center"></div>
+									<div id='showMessages'></div>
+								<!-- Formulaire d'envoi -->
+								<form method='POST'>
+									<br>
+									<h5>Nouveau message</h5>
+									<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
+									<br>
+									<button type='submit' id='addMessage'>Envoyer</button>
+								</form>
+								</p>		
 						<?php endif;?>
 					</div>
 					<hr>
@@ -255,3 +269,60 @@
 
 
 <?=$this->stop('main_content');?>
+
+<?=$this->start('script');?>
+
+<script>
+
+// On sort cette fonction pour la préparer sans l'appeler, elle servira à récupérer les données
+function getMessages()
+{
+
+	$.getJSON('<?=$this->url('chat_load');?>', function(htmlMessages) { 
+		$('#showMessages').html(htmlMessages);
+	});
+}
+
+// On lance le jQuery
+$(document).ready(function() { 
+
+	// On appelle la fonction d'affichage
+	getMessages();
+
+	// On surveille le clic d'envoi de nouveau message
+	$('#addMessage').on('click', function(e){ 
+		e.preventDefault();
+
+		var $message = $('textarea#message').val(); // Val récupère la valeur du champ. Si j'écris qqc entre les parenthèses ça m'écrira le truc dans la balise. 
+
+		$.ajax({ 
+			url:'<?= $this->url('chat_add');?>',
+			type: 'POST',
+			data : {
+				message : $message,
+			},
+			dataType : 'json',
+			success : function(retourJson) { 
+				
+				if(retourJson.result == true){
+					getMessages();
+					// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
+					$('textarea#message').val(''); 
+					// Pour réinitialiser les erreurs si jamais on envoie un message correct 
+					$('#errors').text('');
+				}
+				else if(retourJson.result == false){
+					$('#errors').html(retourJson.errors);
+				}
+			} // Fermeture du success
+
+		}); // Fermeture du AJAX
+	
+	}); // Fermeture de l'event
+
+
+}); // Fermeture jquery
+</script>
+
+<?=$this->stop('script');?>
+
