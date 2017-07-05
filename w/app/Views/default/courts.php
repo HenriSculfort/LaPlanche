@@ -82,7 +82,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 					</div>
 				</div>
 				<div class='row'>
-					<a href='<?= $court['id']?>'>Plus d'informations et liste des matchs</a>
+					<a href='<?=$this->url('court_details').$court['id']?>'>Plus d'informations et liste des matchs</a>
 				</div>
 			</div>	
 		<?php }	
@@ -101,7 +101,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 					</div>
 				</div>
 				<div class='row'>
-					<a href=''>Plus d'informations et liste des matchs</a>
+					<a href='<?=$this->url('court_details').$court['id']?>'>Plus d'informations et liste des matchs</a>
 				</div>
 			</div>	
 		<?php }	
@@ -119,7 +119,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 						</div>
 					</div>
 					<div class='row'>
-						<a href=''>Plus d'informations et liste des matchs</a>
+						<a href='<?=$this->url('court_details').$court['id']?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>	
 			<?php }	
@@ -146,7 +146,7 @@ else {
 					</div>
 				</div>
 				<div class='row'>
-					<a href=''>Plus d'informations et liste des matchs</a>
+					<a href='<?=$this->url('court_details').$court['id']?>'>Plus d'informations et liste des matchs</a>
 				</div>
 			</div>	
 		<?php } // Fin foreach	
