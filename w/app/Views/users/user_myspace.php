@@ -18,11 +18,18 @@
 <br>
 <form method='POST' action='#'>
 	<div class='container-fluid'>
-		<div class='row form-group'>
+
+	<?php
+
+	print_r( $_SESSION);
+	?>
+
+
+		<!--<div class='row form-group'>
 			<div class='col-md-3'>
 				<label for='email'>Email</label>
 			</div>
-	<!--		<div class='col-md-9'>
+			<div class='col-md-9'>
 				<input type='email' name='email' value="<?= $_SESSION['email']?>">
 			</div> -->
 		</div>
@@ -47,7 +54,7 @@
 				<label for='address'>Adresse</label>
 			</div>
 			<div class='col-md-9'>
-				<textarea type='text' name='address' value="<?= $_SESSION['address']?>"></textarea>
+				<textarea type='text' name='address' value="<?= $_SESSION['address'];?>"></textarea>
 			</div>
 		</div>
 
@@ -56,7 +63,8 @@
 				<label for='postal_code'>Code Postal</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='text' name='postal_code' value="<?= $_SESSION['postal_code']?>">
+				<input type='text' name='postal_code' value="<?php if(isset($_SESSION['postal_code'])){ echo $_SESSION['postal_code']; }?>">
+				<?php if(isset($_SESSION['postal_code'])){ echo $_SESSION['postal_code']; }?>
 			</div>
 		</div>
 

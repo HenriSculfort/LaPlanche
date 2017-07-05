@@ -191,4 +191,14 @@ class UsersController extends Controller
 		$this->show('users/user_myspace');
 		//}
 	}
+
+
+	public function updateUser()
+	{
+		
+
+		
+	}
+
+
 }
