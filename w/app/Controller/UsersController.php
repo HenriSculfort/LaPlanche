@@ -14,10 +14,9 @@ class UsersController extends Controller
 		$this->show('users/add');
 	}
 
-
+	// insertion de l'utilisateur dans la base de données
 	public function insert()
 	{
-
 		$post = [];
 		$errors = [];
 		$recapErrors = [];
@@ -52,7 +51,7 @@ class UsersController extends Controller
 			}
 
 			// vérifie le format d'email
-			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
 				$errors['mail'] = 'Votre adresse email est invalide';
 			}
 
@@ -82,6 +81,7 @@ class UsersController extends Controller
 			if($post['password'] != $post['checkPassword']){
 				$errors['verif_mot_de_passe'] = 'Vos mot de passe doivent être identiques';
 			}
+
 			if(count($errors) === 0){
 				$authModel = new AuthentificationModel();
 
@@ -104,11 +104,9 @@ class UsersController extends Controller
 
 				$json = [
 				'result' => true,
-
 				];
 			}
-			else {
-
+			else{
 				// définie les erreurs du formulaire
 				$recapErrors = [
 				'prenom' => isset($errors['prenom']) ? $errors['prenom'] : '',
@@ -132,7 +130,6 @@ class UsersController extends Controller
 			$this->showJson($json);
 		}
 	}
-
 
 	public function login()
 	{
@@ -185,12 +182,12 @@ class UsersController extends Controller
 
 	public function mySpace() 
 	{ 
-		// En attendant qu'une connexion soit possible, pour pouvoir travailler dessus
-		//if(empty($_SESSION)) { 
-		//	$this->show('w_errors/403');
-		//} else { 
-		$this->show('users/user_myspace');
-		//}
+		// Si utilisateur non connecté, pas d'accès à la page mon espace
+		if(empty($_SESSION)) { 
+			$this->show('w_errors/403');
+		} else { 
+			$this->show('users/user_myspace');
+		}
 	}
 
 
@@ -204,7 +201,7 @@ class UsersController extends Controller
 
 		if(!empty($_POST)){
 
-		
+
 
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
@@ -247,19 +244,17 @@ class UsersController extends Controller
 			}
 			
 			$data = [
-				
-				'address' 	=> ucwords($post['address']),
-				'postal_code' 	=> $post['postal_code'],
-				'city' 	=> ucfirst($post['city']),
-				'email' 	=> $post['email'],
-				'phone' 	=> $post['phone'],
-				'username' 	=> $post['username'],
-				'level' 	=> $post['level'],
-				
-				];
+			'address' 	=> ucwords($post['address']),
+			'postal_code' 	=> $post['postal_code'],
+			'city' 	=> ucfirst($post['city']),
+			'email' 	=> $post['email'],
+			'phone' 	=> $post['phone'],
+			'username' 	=> $post['username'],
+			'level' 	=> $post['level'],
+			];
 
 			if(!empty($post['password'])){
-			// vérifie le mot de passe
+				// vérifie le mot de passe
 				if(strlen($post['password']) < 8){
 					$errors[] = 'Votre mot de passe doit comporter au moins 8 caractères';
 				}
@@ -270,7 +265,6 @@ class UsersController extends Controller
 				}
 
 				$data = [
-				
 				'address' 	=> ucwords($post['address']),
 				'postal_code' 	=> $post['postal_code'],
 				'city' 	=> ucfirst($post['city']),
@@ -279,17 +273,12 @@ class UsersController extends Controller
 				'username' 	=> $post['username'],
 				'level' 	=> $post['level'],
 				'password' 	=> $authModel->hashPassword($post['password']),
-				
 				];
-
 			}
-
 
 			if(count($errors) === 0){
 				
-
 				// insertion des données en base
-				
 				$update = $usersModel->update($data, $post['id']);
 
 				$json = [
@@ -301,7 +290,6 @@ class UsersController extends Controller
 
 				// définie les erreurs du formulaire
 				$recapErrors = [
-				
 				'adresse' => isset($errors['adress']) ? $errors['adress'] : '',
 				'code_postal' => isset($errors['postal_code']) ? $errors['postal_code'] : '',
 				'ville' => isset($errors['city']) ? $errors['city'] : '',
@@ -317,14 +305,12 @@ class UsersController extends Controller
 				'result' => false,
 				'errors' => implode('<br>',$errors),
 				];
-			
-				}
-
+			}
 			$this->showJson($json);
-					
 		}
-
-	}
-
-
+	}	
 }
+
+
+
+

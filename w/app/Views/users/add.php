@@ -105,18 +105,18 @@
 						<button type="submit" id="inscription" class="btn btn-primary control-label">S'inscrire</button>
 					</div>
 				</div>
-				<div class="text-center"><small>* : champs obligatoires</small><div>
-				</div>
-			</form>
-		</div>
+				<div class="text-center"><small>* : champs obligatoires</small></div>
+			</div>
+		</form>
 	</div>
+</div>
 
 
-	<?php $this->stop('main_content') ?>
+<?php $this->stop('main_content') ?>
 
-	<?php $this->start('script') ?>
+<?php $this->start('script') ?>
 
-	<script>
+<script>
 
 // Ajax formulaire d'inscription
 $(document).ready(function(){

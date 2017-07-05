@@ -5,7 +5,8 @@ $w_routes = array(
 	['GET|POST', '/courts', 'Courts#listAllCourts', 'courts'],
 	['GET|POST', '/courts/search', 'Courts#searchCourts', 'search_courts'],
 
-	['GET|POST', '/contact', 'Contact#sendForm', 'contact'],
+	['GET|POST', '/contact/', 'Contact#showForm', 'contact_show'],
+	['GET|POST', '/contact/send', 'Contact#sendForm', 'contact_send'],
 
 	['GET|POST', '/users/add', 'Users#add', 'users_add'],
 	['GET|POST', '/users/insert', 'Users#insert', 'users_insert'],
