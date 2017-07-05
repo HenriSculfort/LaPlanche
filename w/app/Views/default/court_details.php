@@ -11,9 +11,12 @@
 	
 	<!--********************** SOMMAIRE ************************-->
 	<div class='row' >
-		<a href='#newMatch' class='btn btn-primary'>Proposer un match</a>
-		<a href='#courtDetails' class='btn btn-primary'>Détails du terrain</a>
-		<a href='#gamesList' class='btn btn-primary'>Matchs Prévus</a>
+		<div class='col-sm-12'>
+			<a href='#newMatch' class='btn btn-primary'>Proposer un match</a>
+			<a href='#courtDetails' class='btn btn-primary'>Détails du terrain</a>
+			<a href='#gamesList' class='btn btn-primary'>Matchs Prévus</a>
+			<a href='javascript:history.back();' class='btn btn-primary'>Retour à la recherche</a>
+		</div>
 	</div>
 <?php $this->stop('header_content');?>
 
@@ -134,10 +137,46 @@
 			<p><?=nl2br($findCourt['description']);?></p>
 		</div>
 		<div class='col-md-6'>
-			<h5>Horaires</h5>
-			<p><?=nl2br($findCourt['opening_hours']);?></p>
+			<div class='row'>
+				<h5>Horaires</h5>
+				<p><?=nl2br($findCourt['opening_hours']);?></p>
+			</div>
+			<div class='row'>
+				<h5>Adresse</h5>
+				<p><?= $findCourt['address'];?><br><?= $findCourt['postal_code'];?> <?= $findCourt['city'];?></p>
+			</div>
+			<div class='row'>
+				<h5>Parking <i class="fa fa-car" aria-hidden="true"></i></h5>
+				<p><?php if($findCourt['parking'] == '1') { echo'Oui';  } else {  echo'Non';}?>
+			</div>
+			<div class='row'>
+				<h5>Etat du terrain</h5>
+				<p><?php switch($findCourt['court_state']) {
+					case 0:
+					echo 'Non renseigné';
+					break;
+					case 1:
+					echo 'Très mauvais état';
+					break;
+					case 2:
+					echo 'Mauvais état';
+					break;
+					case 3:
+					echo 'Etat Normal';
+					break;
+					case 4:
+					echo 'Bon état';
+					break;
+					case 5:
+					echo 'Très bon état';
+					break;
+					}?>
+				</p>
 
 
+
+				}
+			</div>
 		</div>
 	</div>
 </div>
