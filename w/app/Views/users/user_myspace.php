@@ -54,6 +54,7 @@
 			<div class='col-md-9'>
 				<select name='level'>
 					<!-- Le php sert à sélectionner le bon niveau pour l'utilisateur s'il l'a déjà renseigné -->
+					<option value="0" <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 0){ echo 'selected'; }?>>-- Sélectionnez votre niveau --</option>
 					<option value='1' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 1){ echo 'selected'; }?>>Débutant, spécialiste du air ball</option>
 					<option value='2' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 2){ echo 'selected'; }?>>Novice, je débute mais j'arrive à toucher le panier </option>
 					<option value='3' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 3){ echo 'selected'; }?>>Intermédiaire, je me débrouille</option>
