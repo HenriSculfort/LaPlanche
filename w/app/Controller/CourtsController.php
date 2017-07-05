@@ -84,6 +84,7 @@ class CourtsController extends Controller
 				} elseif ($get['has_match'] == 'has_no_match') {
 					$has_match = false;
 					$gamesModel = new CourtsModel;
+					var_dump($date);
 					$getNoGames = $gamesModel->leftJoinCourtsGames($date);
 					if(empty($getNoGames)) {
 						$searchResult = false;
@@ -107,9 +108,9 @@ class CourtsController extends Controller
 				'getGames' => isset($getGames) ? $getGames : null ,
 				'getNoGames' =>isset($getNoGames) ? $getNoGames : null ,
 				];
-				echo '<pre>';
-				var_dump($params);
-				echo '</pre>',
+				//echo '<pre>';
+				//var_dump($params);
+				//echo '</pre>',
 				$this->show('default/courts', $params);
 
 		} // Fin du if !empty GET

@@ -97,6 +97,7 @@ class UsersController extends Controller
 				'username' 	=> $post['username'],
 				'level' 	=> $post['level'],
 				'password' 	=> $authModel->hashPassword($post['password']),
+				'role' => 'user',
 				];
 
 				$insert = $usersModel->insert($data);
