@@ -53,10 +53,10 @@
 
 		<div class='row form-group'>
 			<div class='col-md-3'>
-				<label for='cp'>Code Postal</label>
+				<label for='postal_code'>Code Postal</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='text' name='postal_code' value="<?= $_SESSION['cp']?>">
+				<input type='text' name='postal_code' value="<?= $_SESSION['postal_code']?>">
 			</div>
 		</div>
 
