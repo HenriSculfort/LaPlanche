@@ -79,7 +79,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 					</div>
 					<div class='col-md-10'>
 						<h4><?= $court['name'];?></h4>
-						<p><?= $court['description'];?></p>
+						<p><?= nl2br($court['description']);?></p>
 						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>
@@ -96,7 +96,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 					</div>
 					<div class='col-md-10'>
 						<h4><?= $court['name'];?></h4>
-						<p><?= $court['description'];?></p>
+						<p><?= nl2br($court['description']);?></p>
 						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>
@@ -112,7 +112,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 						</div>
 						<div class='col-md-10'>
 							<h4><?= $court['name'];?></h4>
-							<p><?= $court['description'];?></p>
+							<p><?= nl2br($court['description']);?></p>
 							<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 						</div>
 					</div>
@@ -137,7 +137,7 @@ else {
 					</div>
 					<div class='col-md-10'>
 						<h4><?= $court['name'];?></h4>
-						<p><?= $court['description'];?></p>
+						<p><?= nl2br($court['description']);?></p>
 						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>
