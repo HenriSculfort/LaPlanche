@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 05 Juillet 2017 à 14:51
+-- Généré le :  Mer 05 Juillet 2017 à 15:04
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.1.1
 
@@ -31,7 +31,8 @@ CREATE TABLE `chat` (
   `user_id` int(11) NOT NULL,
   `username` varchar(250) NOT NULL,
   `message` text NOT NULL,
-  `date_publi` date NOT NULL
+  `date_publi` date NOT NULL,
+  `game_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -94,7 +95,7 @@ INSERT INTO `courts` (`id`, `name`, `address`, `postal_code`, `city`, `picture`,
 
 CREATE TABLE `games` (
   `id` int(11) NOT NULL,
-  `court_location` varchar(250) NOT NULL,
+  `court_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `starting_time` text NOT NULL,
   `finishing_time` text NOT NULL,
@@ -110,9 +111,9 @@ CREATE TABLE `games` (
 -- Contenu de la table `games`
 --
 
-INSERT INTO `games` (`id`, `court_location`, `date`, `starting_time`, `finishing_time`, `number_players`, `team_name`, `team_level`, `message`, `user_id`, `accepted`) VALUES
-(1, '1', '2017-07-20', '15h00', '16h00', 6, 'coucou hibou', '5', 'On est les meilleurs cherchez pas ! ', 2, 1),
-(2, '1', '2017-07-29', '18h00', '19h00', 4, 'Chatons sauvages', '1', 'On débute ayez pitié! ', 3, 0);
+INSERT INTO `games` (`id`, `court_id`, `date`, `starting_time`, `finishing_time`, `number_players`, `team_name`, `team_level`, `message`, `user_id`, `accepted`) VALUES
+(1, 1, '2017-07-20', '15h00', '16h00', 6, 'coucou hibou', '5', 'On est les meilleurs cherchez pas ! ', 2, 1),
+(2, 1, '2017-07-29', '18h00', '19h00', 4, 'Chatons sauvages', '1', 'On débute ayez pitié! ', 3, 0);
 
 -- --------------------------------------------------------
 
