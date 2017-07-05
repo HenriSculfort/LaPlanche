@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 04 Juillet 2017 à 19:05
+-- Généré le :  Mer 05 Juillet 2017 à 09:26
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.1.1
 
@@ -116,6 +116,13 @@ CREATE TABLE `tokens` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `tokens`
+--
+
+INSERT INTO `tokens` (`id`, `token`, `user_id`) VALUES
+(1, '79c4bb4a67c4c958b1f1ade5c764f6e3', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -133,8 +140,16 @@ CREATE TABLE `users` (
   `postal_code` int(11) NOT NULL,
   `city` varchar(250) NOT NULL,
   `phone` int(11) NOT NULL,
-  `password` varchar(250) NOT NULL
+  `password` varchar(250) NOT NULL,
+  `role` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `level`, `firstname`, `lastname`, `email`, `address`, `postal_code`, `city`, `phone`, `password`, `role`) VALUES
+(1, 'bob', '', '', '', 'anjevile@yandex.com', '', 0, '', 0, '$2y$10$kDRaUciyIi4csY25LNFlu.8d9WVDJnss7vdfhWXgHY6ZriNUB2gG2', '');
 
 --
 -- Index pour les tables exportées
@@ -193,12 +208,12 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT pour la table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
