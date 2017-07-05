@@ -74,7 +74,14 @@
 					<div class="form-group">
 						<label for="level" class="col-sm-4 control-label">Niveau</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="level" id="level">
+							<select class="form-control" name='level'>
+								<option value="0" selected>-- Sélectionnez votre niveau --</option>
+								<option value='1'>Débutant, spécialiste du air ball</option>
+								<option value='2'>Novice, je débute mais j'arrive à toucher le panier </option>
+								<option value='3'>Intermédiaire, je me débrouille</option>
+								<option value='4'>Avancé, ça fait des années que je joue</option>
+								<option value='5'>Expert, j'ai raté une carrière à la NBA </option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group" >
@@ -96,17 +103,17 @@
 					</div>
 				</div>
 				<div class="text-center"><small>* : champs obligatoires</small><div>
-			</div>
-		</form>
+				</div>
+			</form>
+		</div>
 	</div>
-</div>
 
 
-<?php $this->stop('main_content') ?>
+	<?php $this->stop('main_content') ?>
 
-<?php $this->start('script') ?>
+	<?php $this->start('script') ?>
 
-<script>
+	<script>
 
 // Ajax formulaire d'inscription
 $(document).ready(function(){
