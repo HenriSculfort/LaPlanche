@@ -138,6 +138,7 @@ else {
 					<div class='col-md-10'>
 						<h4><?= $court['name'];?></h4>
 						<p><?= nl2br($court['description']);?></p>
+						<!-- <p><?php if($court['parking'] == '1') { echo'<i class="fa fa-car" aria-hidden="true">';  }?></p>-->
 						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>

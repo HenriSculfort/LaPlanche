@@ -133,14 +133,17 @@
 	</div>
 	<div class='row'>
 		<div class='col-md-6'>
+			<div class='row'>
 			<h5>Les infrastructures</h5>
 			<p><?=nl2br($findCourt['description']);?></p>
-		</div>
-		<div class='col-md-6'>
+			</div>
 			<div class='row'>
 				<h5>Horaires</h5>
 				<p><?=nl2br($findCourt['opening_hours']);?></p>
 			</div>
+		</div>
+		<div class='col-md-6'>
+			
 			<div class='row'>
 				<h5>Adresse</h5>
 				<p><?= $findCourt['address'];?><br><?= $findCourt['postal_code'];?> <?= $findCourt['city'];?></p>
@@ -151,7 +154,7 @@
 			</div>
 			<div class='row'>
 				<h5>Etat du terrain</h5>
-				<p><?php switch($findCourt['court_state']) {
+				<p><?php switch($findCourt['court-state']) {
 					case 0:
 					echo 'Non renseigné';
 					break;
@@ -171,15 +174,17 @@
 					echo 'Très bon état';
 					break;
 					}?>
-				</p>
-
-
-
-				}
+				</p>	
+			</div>
+			<div class='row'>
+				<h5>Filet</h5>
+				<p><?php if($findCourt['net'] == '0') { echo 'Non'; } else { echo 'oui';  } ?></p>
 			</div>
 		</div>
 	</div>
 </div>
+
+<!--************************* MATCHS PREVUS ************************-->
 
 <div class='container'>
 
@@ -187,8 +192,20 @@
 		<h3 id='gamesList'>Matchs prévus</h3>
 	</div>
 	<div class='row'>
-		<div></div>
+		<div>
+			<?php foreach($findGamesOnCourt as $game) : ?>
+				<h5>Match Ref°<?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
+				<?php $game['date'] = new DateTime;?>
+				<p>Date : <?=$game['date']->format('d-m-Y');?></p>
+				<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
+
+
+
+			<?php endforeach; ?>
+
+		</div>
 	</div>
 </div>
+
 
 <?=$this->stop('main_content');?>

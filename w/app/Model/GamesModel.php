@@ -22,6 +22,21 @@ class GamesModel extends \W\Model\Model
        if($select->execute()){
             return $select->fetchAll(); // Retournera un tableau avec les données correspondantes trouvées
         }
-	}	
+	}
+
+	/**
+	* JOINTURE ENTRE LES TABLES COURTS & GAMES
+	* Pour retourner les games du terrain dont l'id est passé en paramètre
+	* @return array
+	*/ 
+
+	public function showGamesOnThisCourt($court_id) 	{ 
+
+		$sql = 'SELECT * FROM '. $this->table . ' WHERE court_location = '. $court_id;
+		$select = $this->dbh->prepare($sql);
+		if($select->execute()) { 
+			return $select->fetchAll();
+		}
+	}
 }
 
