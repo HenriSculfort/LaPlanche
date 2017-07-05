@@ -118,7 +118,161 @@ class CourtsController extends Controller
 		}
 	} // Fin fonction searchCourts
 
+	 public function addCourts ()
+    {
 
+     
+    	
+    	var_dump($_POST);
+    	var_dump($_FILES);
+    	
+        $post = [];
+		$errors = []; 
+		if(!empty($_POST)){
+
+			$post = array_map('trim', array_map('strip_tags', $_POST));
+
+
+			if(mb_strlen($post['name'])<2)
+			{
+				$errors[] = 'Le nom du terrain doit comporter au moins 2 caractères';
+			}
+
+			if(mb_strlen($post['description'])<10)
+			{
+				$errors[] = 'Le description doit comporter au moins 10 caractères';
+			}
+
+			if(empty($post['level']))
+			{
+				$errors[] = 'L\'état du terrain doit être choisi';
+			}
+
+			if(mb_strlen($post['address'])<2)
+			{
+				$errors[] = 'L\'adresse doit comporter au moins 2 caractères';
+			}
+			
+			if(is_int($post['postal_code']))
+			{
+				$errors[] = 'Le code postal doit comporter des chiffres';
+			}
+
+			if(mb_strlen($post['city'])<2)
+			{
+				$errors[] = 'Le nom de la ville doit comporter au moins 2 caractères';
+			}
+
+			if(empty($post['net']))
+			{
+				$errors[] = 'Le filet doit être défini';
+			}
+
+			if(mb_strlen($post['opening_hours'])<2)
+			{
+				$errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
+			}
+			
+			   if(isset($_FILES['name'])){
+
+            $maxfilesize = 1048576; //1 Mo
+
+            if($_FILES['name']['size'] < $maxfilesize){
+                //pas d'erreur et le fichier n'est pas trop volumineux
+                //on teste l'extension
+                $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif');
+                $fileInfo = pathinfo($_FILES['name']['name']);
+                $extension = $fileInfo['extension'];
+                if(in_array($extension, $extensions_autorisees)){
+                    //extension valide
+              //      echo 'c\'est bon<br>';
+                    //transférer définitivement le fichier sur le serveur
+                    //on renomme le fichier
+                    if($extension == 'jpg' OR $extension == 'jpeg'){
+                        //jpeg ou pjg
+                        $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                    }
+                    elseif($extension == 'png'){
+                        //png
+                        $newImage = imagecreatefrompng($_FILES['name']['tmp_name']);
+                    }
+                    else{
+                        //fichier gif
+                        $newImage = imagecreatefromgif($_FILES['name']['tmp_name']);
+                    }
+
+
+                    $image = Image::make($newImage)->resize(300, 200);
+
+                   
+                    $picture = md5(uniqid(rand(), true));
+                   
+                    move_uploaded_file($_FILES['name']['tmp_name'], $this->assetUrl('img/uploads/'.$picture.'.'.$extension) );
+
+                    }
+                    else{//problème:
+				
+					$errors[] = 'Une erreur de transfert est survenue !';
+						//erreur lors du transfert
+					
+					}
+			
+                }
+                else{
+					$errors[] = 'Le fichier est trop gros !';
+					//fichier trop volumineux	
+				}
+			}
+
+			else{
+				$errors[] = 'l\'image est absente';
+			}
+
+          
+            
+
+            if(count($errors) === 0){
+				$data = [
+					
+					'name'	=> $post['name'],
+					'address'	=> $post['address'],
+					'postal_code'	=> $post['postal_code'],
+					'city'	=> $post['city'],
+					'picture'	=> $picture,
+					'description'	=> $post['description'],
+					'net'	=> $post['net'],
+					'court_state'	=> $post['level'],
+					'opening_hours'	=> $post['opening_hours'],
+					'admin_validation'	=> false,
+					'parking'	=> $post['parking'],
+	
+				];
+
+				$addCourts = new CourtsModel();
+				$insert = $addCourts->insert($data);
+				
+				if($insert){
+					$json =[
+					'result' =>true,
+					'message' =>'le terrain est soumis!',
+					];
+		
+				}
+			
+				
+					//extension non autorisée
+				}
+				else{
+					$json =[
+					'result' =>false,
+					'errors'=>implode('<br>',$errors),
+					];
+			}
+			
+				$this->showJson($json);
+			}
+ 
+		}
 
 
 
