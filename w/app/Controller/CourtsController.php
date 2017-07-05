@@ -280,7 +280,7 @@ class CourtsController extends Controller
 			$model = new CourtsModel();
 			$findCourt = $model->find($id);
 	
-			$this->show('default/court_details');
+			$this->show('default/court_details', ['findCourt' => $findCourt]);
 
 		}
 

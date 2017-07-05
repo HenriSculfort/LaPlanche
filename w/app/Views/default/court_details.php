@@ -4,7 +4,8 @@
 <div class="standard-header">
     <h1>Détails du terrain</h1>
 </div>
-
+<?=
+$findCourt['description'];?>
 
 
 
