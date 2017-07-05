@@ -197,40 +197,20 @@
 	<div class='row'>
 		<div>
 			<?php foreach($findGamesOnCourt as $game) : 
-			// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
+				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
 			if(strtotime($now)> strtotime($game['date'])) {
 
 			}
-				// Si la date de la game est postérieure, on affiche.
+			// Si la date de la game est postérieure, on affiche.
 			else { ?>
 			<div class='row'>
 				<div class='col-md-6'>
-					<h5>Match Ref°<?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
+					<h5>Match Ref°<i class='game_id' value='<?=$game['id'];?>'></i><?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
 					<?php $frenchDate = new DateTime($game['date']);?>
 					<p>Date : <?=$frenchDate->format('d-m-Y');?></p>			
 					<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
 					<p>Nombre de joueurs : <?= $game['number_players'];?>.</p> 
-					<p>Niveau : <?php 
-						switch($game['team_level']) {
-							case 0:
-							echo 'Non renseigné';
-							break;
-							case 1:
-							echo 'Débutant';
-							break;
-							case 2:
-							echo 'Novice';
-							break;
-							case 3:
-							echo 'Intermédiare';
-							break;
-							case 4:
-							echo 'Avancé';
-							break;
-							case 5:
-							echo 'Expert';
-							break;
-						}?>
+					<p>Niveau : <?=\Tools\Utils::getTeamLevel($game['team_level'])?>
 					</p>
 				</div>
 				<div class='col-md-6'>
@@ -240,88 +220,61 @@
 				</div>
 			</div>
 			<div class='row'>
-				<button type='submit' href='' class='btn btn-primary'>Afficher le chat</button> 
-						<?php // Si la game n'est pas acceptée (complète), l'input pour écrire un nouveau message apparaît.
-						if($game['accepted'] != 1) : ?>		
-						<p><div id=resultAjax></div>
-							<h5>Messages</h5>
-
-							<div id="errors" style="color:red; background: lightpink; border-radius: 5px;text-align: center"></div>
-							<div id='showMessages'></div>
-							<!-- Formulaire d'envoi -->
-							<form method='POST'>
-								<br>
-								<h5>Nouveau message</h5>
-								<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
-								<br>
-								<button type='submit' id='addMessage'>Envoyer</button>
-							</form>
-						</p>		
-					<?php endif;?>
-				</div>
-				<hr>
-				<?php } ;
-				endforeach; ?>
-
+				<button type='button' data-id="<?=$game['id'];?>"  class='btn btn-primary btn-showChat'>Afficher le chat</button> 
 			</div>
+			<hr>
+			<?php } ;
+			endforeach; ?>
 		</div>
+	</div> <!-- Fin du div row des matchs -->
+	<div id='showMeChat'>	
+		<div id=resultAjax></div>
+		<h5>Messages</h5>
+		<div id='errors' class=''></div>
+		<div id='showMessages'></div>
+		<form method='POST'>
+			<br>
+			<div class='row'>
+				<div class='col-md-12'>
+					<h5>Nouveau message</h5>
+					<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
+					<input id='game_id' type='hidden' value='<?=$game['id'];?>'>
+					<br>
+					<button type='submit' id='addMessage' class='btn btn-primary'>Envoyer</button>
+				</div>
+			</div>
+		</form>					
+	</div> <!-- Fin de la div contenant le chat ajax -->
 </div> <!-- Fin du div container matchs prévus -->
 
 
-	<?=$this->stop('main_content');?>
+<?=$this->stop('main_content');?>
 
-	<?=$this->start('script');?>
+<?=$this->start('script');?>
 
-	<script>
+<script>
 
-// On sort cette fonction pour la préparer sans l'appeler, elle servira à récupérer les données
-function getMessages()
-{
+	$(function(){
 
-	$.getJSON('<?=$this->url('chat_load');?>', function(htmlMessages) { 
-		$('#showMessages').html(htmlMessages);
-	});
-}
+		$('.btn-showChat').on('click', function(e){
 
-// On lance le jQuery
-$(document).ready(function() { 
-
-	// On appelle la fonction d'affichage
-	getMessages();
-
-	// On surveille le clic d'envoi de nouveau message
-	$('#addMessage').on('click', function(e){ 
 		e.preventDefault();
 
-		var $message = $('textarea#message').val(); // Val récupère la valeur du champ. Si j'écris qqc entre les parenthèses ça m'écrira le truc dans la balise. 
+		var chatId = $(this).data('id'); // Récupere l'id de l'attribut data-id (correspond à l'id de la game)
 
-		$.ajax({ 
-			url:'<?= $this->url('chat_add');?>',
-			type: 'POST',
-			data : {
-				message : $message,
-			},
-			dataType : 'json',
-			success : function(retourJson) { 
-				
-				if(retourJson.result == true){
-					getMessages();
-					// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
-					$('textarea#message').val(''); 
-					// Pour réinitialiser les erreurs si jamais on envoie un message correct 
-					$('#errors').text('');
-				}
-				else if(retourJson.result == false){
-					$('#errors').html(retourJson.errors);
-				}
-			} // Fermeture du success
+		// $_GET['idChat']
 
-		}); // Fermeture du AJAX
-
-	}); // Fermeture de l'event
+		$.getJson(<?=$this->url('chat_load');?>, {idChat: chatId}, function(resultHtml){
 
 
-}); // Fermeture jquery
+
+
+			
+			$('div#showMeChat').html(resultHtml);
+		});
+
+	});
+	});
 </script>
 
 <?=$this->stop('script');?>

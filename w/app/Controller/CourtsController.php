@@ -5,6 +5,7 @@ namespace Controller;
 use \W\Controller\Controller;
 use Model\CourtsModel;
 use Model\GamesModel;
+use Model\ChatModel;
 use Respect\Validation\Validator as v;
 use Intervention\Image\ImageManagerStatic as Image;
 

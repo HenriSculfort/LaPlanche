@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use Model\ChatModel;
 
 class ChatController extends Controller
 {
@@ -36,8 +37,6 @@ class ChatController extends Controller
 				$errors[] = 'Attention à ton langage';
 			}
 
-			if()
-
 			if(strlen($post['message']) < 2) { 
 				$errors[] = 'Ton message doit faire au moins 2 caracteres mon lapin';
 			}
@@ -45,9 +44,11 @@ class ChatController extends Controller
 			if(count($errors) === 0) { 
 				
 				$data = [
-					'id_user' => $this->getUser()['id'], // $_SESSION['user']['id'] aurait également fonctionné.
+					'user_id' => $this->getUser()['id'], // $_SESSION['user']['id'] aurait également fonctionné.
 					'message' => $post['message'],
-					'date_publish' => date('c'), // Correspond à (Y-m-d H:i:s)
+					'username' => $this->getUser()['username'],
+					'date_publi' => date('c'), // Correspond à (Y-m-d H:i:s)
+					'game_id' => $post['game_id'],
 				];
 
 				$chatModel = new ChatModel();
@@ -77,19 +78,23 @@ class ChatController extends Controller
 	}
 
 
-	public function listMessagesAjax() { 
+	public function listMessagesAjax($idChat) { 
+
 
 		$findAllMessages = new ChatModel();
-		$allMessages = $findAllMessages->findJointure();
-	
+		$allMessages = $findAllMessages->jointureChatUsers($idChat);
+		
 		$html = '<ul>';
 		foreach($allMessages as $msg){
-			$html.='<li><strong>'.$msg['firstname'].'</strong> ('.$msg['date_publish'].') : '.$msg['message'].'</li>';
+			$html.='<li><strong>'.$msg['username'].'</strong> ('.$msg['date_publi'].') : '.$msg['message'].'</li>';
+			$game_id = $msg['game_id'];
 		}
-
 		$html.= '</ul>';
 
-		$this->showJson($html);
+		$data = ['html' => $html,
+			'game_id' => $game_id,
+		];
+		$this->showJson($data);
 	}
 
 }// Fin de la class
