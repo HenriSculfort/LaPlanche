@@ -187,18 +187,20 @@ class CourtsController extends Controller
                         //      echo 'c\'est bon<br>';
                         //transférer définitivement le fichier sur le serveur
                         //on renomme le fichier
-                        if($extension == 'jpg' OR $extension == 'jpeg'){
-                            //jpeg ou pjg
-                            $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
-                        }
-                        elseif($extension == 'png'){
-                            //png
-                            $newImage = imagecreatefrompng($_FILES['name']['tmp_name']);
-                        }
-                        else{
-                            //fichier gif
-                            $newImage = imagecreatefromgif($_FILES['name']['tmp_name']);
-                        }
+                        switch ($extension) {
+                           case 'jpg':
+                                $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                               break;
+                          case 'jpeg':
+                                $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                               break;
+                            case 'png':
+                                $newImage = imagecreatefrompng($_FILES['name']['tmp_name']);
+                                break;
+                            case 'gif':
+                                $newImage = imagecreatefromgif($_FILES['name']['tmp_name']);
+                                break;
+                       }
 
 
                         $image = Image::make($newImage)->resize(300, 200);
