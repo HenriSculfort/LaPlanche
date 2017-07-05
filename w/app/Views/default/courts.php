@@ -82,7 +82,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 					</div>
 				</div>
 				<div class='row'>
-					<a href=''>Plus d'informations et liste des matchs</a>
+					<a href='<?= $court['id']?>'>Plus d'informations et liste des matchs</a>
 				</div>
 			</div>	
 		<?php }	
