@@ -200,63 +200,75 @@ class UsersController extends Controller
 		$errors = [];
 		$recapErrors = [];
 		$usersModel = new UsersModel();
+		$authModel = new AuthentificationModel();
 
 		if(!empty($_POST)){
+
+		
 
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
 			
 			// vérifie l'adresse
 			if(isset($post['address']) && empty($post['address'])){
-				$errors['adress'] = 'Veuillez renseigner votre adresse';
+				$errors[] = 'Veuillez renseigner votre adresse';
 			}
 
 			// vérifie le code postal
 			if(isset($post['postal_code']) && (strlen($post['postal_code']) != 5) || !is_numeric($post['postal_code'])){
-				$errors['postal_code'] = 'Votre code postal doit être composé de 5 chiffres';
+				$errors[] = 'Votre code postal doit être composé de 5 chiffres';
 			}
 
 			// vérifie la ville
 			if(isset($post['city']) && empty($post['city'])){
-				$errors['city'] = 'Veuillez renseigner votre ville';
+				$errors[] = 'Veuillez renseigner votre ville';
 			}
 
 			// vérifie le format d'email
 			if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
-				$errors['mail'] = 'Votre adresse email est invalide';
+				$errors[] = 'Votre adresse email est invalide';
 			}
 
 			// vérifie si l'email existe en base
 			$emailExists = $usersModel->emailExists($post['email']);
-			if($emailExists == true   ){ // && id différent de $post['id']
-				$errors['mail_exist'] = 'Cette adresse email est déjà enregistrée';
+			if($emailExists == true &&  $post['email'] != $_SESSION['user']['email'] ){ 
+				$errors[] = 'Cette adresse email est déjà enregistrée';
 			}
 
 			// vérifie le pseudo
 			if(isset($post['username']) && empty($post['username']) || strlen($post['username']) < 3){  
-				$errors['pseudo'] = 'Votre pseudo doit contenir au moins 3 caractères';
+				$errors[] = 'Votre pseudo doit contenir au moins 3 caractères';
 			}
 
-			// vérifie si l'email existe en base
+			// vérifie si le pseudo existe en base
 			$usernameExists = $usersModel->usernameExists($post['username']);
-			if($usernameExists == true){ // && username existe avec id different de post id
-				$errors['username_exist'] = 'Ce pseudo existe déjà';
+			if($usernameExists == true && $post['username'] != $_SESSION['user']['username'] ){ // && username existe avec id different de post id
+				$errors[] = 'Ce pseudo existe déjà';
 			}
 			
+			$data = [
+				
+				'address' 	=> ucwords($post['address']),
+				'postal_code' 	=> $post['postal_code'],
+				'city' 	=> ucfirst($post['city']),
+				'email' 	=> $post['email'],
+				'phone' 	=> $post['phone'],
+				'username' 	=> $post['username'],
+				'level' 	=> $post['level'],
+				
+				];
+
+			if(!empty($post['password'])){
 			// vérifie le mot de passe
-			if(strlen($post['password']) < 8){
-				$errors['mot_de_passe'] = 'Votre mot de passe doit comporter au moins 8 caractères';
-			}
+				if(strlen($post['password']) < 8){
+					$errors[] = 'Votre mot de passe doit comporter au moins 8 caractères';
+				}
 
-			// vérifie que les mots de passe soient identiques
-			if($post['password'] != $post['checkPassword']){
-				$errors['verif_mot_de_passe'] = 'Vos mot de passe doivent être identiques';
-			}
+				// vérifie que les mots de passe soient identiques
+				if($post['password'] != $post['checkPassword']){
+					$errors[] = 'Vos mot de passe doivent être identiques';
+				}
 
-			if(count($errors) === 0){
-				$authModel = new AuthentificationModel();
-
-				// insertion des données en base
 				$data = [
 				
 				'address' 	=> ucwords($post['address']),
@@ -270,6 +282,14 @@ class UsersController extends Controller
 				
 				];
 
+			}
+
+
+			if(count($errors) === 0){
+				
+
+				// insertion des données en base
+				
 				$update = $usersModel->update($data, $post['id']);
 
 				$json = [
@@ -295,7 +315,7 @@ class UsersController extends Controller
 
 				$json = [
 				'result' => false,
-				'errors' => $recapErrors,
+				'errors' => implode('<br>',$errors),
 				];
 			
 				}

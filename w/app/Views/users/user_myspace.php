@@ -22,12 +22,6 @@
 <form method='POST' id='UserModif' action='#'>
 	<div class='container-fluid'>
 
-	<?php
-	echo '<pre>';
-	print_r( $_SESSION);
-	echo '</pre>';
-
-	?>
 		<div class='row form-group hidden'>
 			<div class='col-md-3'>
 				<label for='id'>id</label>
@@ -36,7 +30,14 @@
 				<input type='id' name='id' value="<?= $_SESSION['user']['id']?>">
 			</div> 
 		</div>
-
+		<div class="row form-group">
+			<label for="username" class="col-md-3 control-label">Pseudo *</label>
+			<div class="col-md-9">
+				<input type="text" name="username" id="username" value="<?= $_SESSION['user']['username']?>">
+				<div id="errors-pseudo" class="errorsForms"></div><!-- Affiche l'erreur du pseudo-->
+				<div id="errors-username_exist"></div><!-- Affiche l'erreur si le mail existe déjà en base-->
+			</div>
+		</div>
 		<div class='row form-group'>
 			<div class='col-md-3'>
 				<label for='email'>Email</label>
@@ -53,11 +54,11 @@
 			<div class='col-md-9'>
 				<select name='level'>
 					<!-- Le php sert à sélectionner le bon niveau pour l'utilisateur s'il l'a déjà renseigné -->
-					<option value='1' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 1){ echo 'selected'; }?>>Débutant, spécialiste du air ball</option>
-					<option value='2' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 2){ echo 'selected'; }?>>Novice, je débute mais j'arrive à toucher le panier </option>
-					<option value='3' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 3){ echo 'selected'; }?>>Intermédiaire, je me débrouille</option>
-					<option value='4' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 4){ echo 'selected'; }?>>Avancé, ça fait des années que je joue</option>
-					<option value='5' <?php if(isset($_SESSION['level']) && $_SESSION['level'] == 5){ echo 'selected'; }?> >Expert, j'ai raté une carrière à la NBA </option>
+					<option value='1' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 1){ echo 'selected'; }?>>Débutant, spécialiste du air ball</option>
+					<option value='2' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 2){ echo 'selected'; }?>>Novice, je débute mais j'arrive à toucher le panier </option>
+					<option value='3' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 3){ echo 'selected'; }?>>Intermédiaire, je me débrouille</option>
+					<option value='4' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 4){ echo 'selected'; }?>>Avancé, ça fait des années que je joue</option>
+					<option value='5' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 5){ echo 'selected'; }?> >Expert, j'ai raté une carrière à la NBA </option>
 				</select>
 			</div>
 		</div>
@@ -66,7 +67,7 @@
 				<label for='address'>Adresse</label>
 			</div>
 			<div class='col-md-9'>
-				<textarea type='text' name='address' placeholder="<?= $_SESSION['user']['address']?>"></textarea>
+				<textarea type='text' name='address'><?= $_SESSION['user']['address']?></textarea>
 			</div>
 		</div>
 
@@ -98,16 +99,16 @@
 			</div>
 		</div>
 		<div class="row form-group" >
-			<label for="password" class="col-md-3 control-label">Modifier votre mot de passe *</label>
+			<label for="password" class="col-md-3">Modifier votre mot de passe *</label>
 			<div class="col-md-9">
-				<input type="password" class="form-control" name="password" id="password">
+				<input type="password" name="password" id="password">
 				<div id="errors-mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur du mot de passe-->
 			</div>
 		</div>
 		<div class="row form-group" >
-			<label for="checkPassword" class="col-md-3 control-label">Répéter le mot de passe *</label>
+			<label for="checkPassword" class="col-md-3 ">Répéter le mot de passe *</label>
 			<div class="col-md-9">
-				<input type="password" class="form-control" name="checkPassword" id="checkPassword">
+				<input type="password" name="checkPassword" id="checkPassword">
 				<div id="errors-verif_mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur de verif du mot de passe-->
 			</div>
 		</div>
