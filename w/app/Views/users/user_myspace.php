@@ -16,7 +16,10 @@
 <!-- Données du profil utilisateur -->
 <h3>Mon profil</h3>
 <br>
-<form method='POST' action='#'>
+
+<div id='ModifUserAjax'></div>
+
+<form method='POST' id='UserModif' action='#'>
 	<div class='container-fluid'>
 
 	<?php
@@ -94,8 +97,22 @@
 				<input type='text' name='phone' value="<?php if(isset($_SESSION['user']['phone'])){ echo $_SESSION['user']['phone'];}?>">
 			</div>
 		</div>
+		<div class="row form-group" >
+			<label for="password" class="col-md-3 control-label">Modifier votre mot de passe *</label>
+			<div class="col-md-9">
+				<input type="password" class="form-control" name="password" id="password">
+				<div id="errors-mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur du mot de passe-->
+			</div>
+		</div>
+		<div class="row form-group" >
+			<label for="checkPassword" class="col-md-3 control-label">Répéter le mot de passe *</label>
+			<div class="col-md-9">
+				<input type="password" class="form-control" name="checkPassword" id="checkPassword">
+				<div id="errors-verif_mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur de verif du mot de passe-->
+			</div>
+		</div>
 		<br>
-		<button type='submit' class='btn btn-primary'>Envoyer les modifications</button>
+		<button type='submit' id='modifUser' class='btn btn-primary'>Envoyer les modifications</button>
 	</div>
 
 </form>
@@ -231,6 +248,36 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script') ?>
+
+<script>
+
+	$(document).ready(function(){
+
+		$('#modifUser').on('click', function(e){
+	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
+
+			e.preventDefault(); 
+
+	
+			$.ajax({
+				url: '<?=$this->url('modif_user');?>', 
+				type: 'post',
+				data: $('#UserModif').serialize(),		
+				dataType: 'json', // Les données de retour seront envoyées en JSON
+				success: function(retourJson){
+				if(retourJson.result == true){ 
+					$('#ModifUserAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+				}
+				else if(retourJson.result == false){
+					$('#ModifUserAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+				}
+				
+				},
+
+			});
+		});
+	});
+</script>
 
 <script>
 

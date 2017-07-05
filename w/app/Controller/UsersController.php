@@ -104,6 +104,7 @@ class UsersController extends Controller
 
 				$json = [
 				'result' => true,
+
 				];
 			}
 			else {
@@ -197,6 +198,8 @@ class UsersController extends Controller
 	{
 		$post = [];
 		$errors = [];
+		$recapErrors = [];
+		$usersModel = new UsersModel();
 
 		if(!empty($_POST)){
 
@@ -255,8 +258,7 @@ class UsersController extends Controller
 
 				// insertion des données en base
 				$data = [
-				'firstname' => ucfirst($post['firstname']),
-				'lastname' 	=> ucfirst($post['lastname']),
+				
 				'address' 	=> ucwords($post['address']),
 				'postal_code' 	=> $post['postal_code'],
 				'city' 	=> ucfirst($post['city']),
@@ -265,13 +267,14 @@ class UsersController extends Controller
 				'username' 	=> $post['username'],
 				'level' 	=> $post['level'],
 				'password' 	=> $authModel->hashPassword($post['password']),
-				'role' => 'user',
+				
 				];
 
 				$update = $usersModel->update($data, $post['id']);
 
 				$json = [
 				'result' => true,
+				'message'=>'Modifications effectuées',
 				];
 			}
 			else {
@@ -279,9 +282,9 @@ class UsersController extends Controller
 				// définie les erreurs du formulaire
 				$recapErrors = [
 				
-				'adresse' => isset($errors['adresse']) ? $errors['adresse'] : '',
+				'adresse' => isset($errors['adress']) ? $errors['adress'] : '',
 				'code_postal' => isset($errors['postal_code']) ? $errors['postal_code'] : '',
-				'ville' => isset($errors['ville']) ? $errors['ville'] : '',
+				'ville' => isset($errors['city']) ? $errors['city'] : '',
 				'mail' => isset($errors['mail']) ? $errors['mail'] : '',
 				'mail_exist' => isset($errors['mail_exist']) ? $errors['mail_exist'] : '',
 				'username_exist' => isset($errors['username_exist']) ? $errors['username_exist'] : '',
