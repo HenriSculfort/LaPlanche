@@ -1,7 +1,7 @@
 <?=$this->layout('layout', ['title' => 'Liste des terrains']); ?>
 
 <?php $this->start('header_content');?>
-<div class="site-heading">
+<div class="standard-header">
 	<h1>Les terrains</h1>
 	<p>Vous cherchez un terrain en particulier ou toute la liste ? C'est ici ! </p>
 </div>
