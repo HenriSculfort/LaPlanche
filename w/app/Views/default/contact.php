@@ -52,7 +52,7 @@
 </div>
 
 
-<hr>
+
 
 <?=$this->stop('main_content');?>
 

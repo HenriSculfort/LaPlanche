@@ -32,7 +32,8 @@
         "league/url": "^3.3",
         "phpmailer/phpmailer": "^5.2",
         "respect/validation": "^1.1",
-        "seiyria/bootstrap-slider" : "*"
+        "seiyria/bootstrap-slider" : "*",
+        "kamranahmedse/php-geocode": "^2.0"
 
     },
     "autoload": {

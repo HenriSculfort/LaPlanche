@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "803aeb53c0ec97fc38230bb1d439aeb0",
+    "content-hash": "9786e65944d0221bc5e0f078b7d7efa0",
     "packages": [
         {
             "name": "altorouter/altorouter",
@@ -203,6 +203,62 @@
             "description": "A Base Security Library",
             "homepage": "https://github.com/ircmaxell/SecurityLib",
             "time": "2015-03-20T14:31:23+00:00"
+        },
+        {
+            "name": "kamranahmedse/php-geocode",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kamranahmedse/php-geocode.git",
+                "reference": "3f4544756d819d7be288099b05b2a3abbc6696af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kamranahmedse/php-geocode/zipball/3f4544756d819d7be288099b05b2a3abbc6696af",
+                "reference": "3f4544756d819d7be288099b05b2a3abbc6696af",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.2.*",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KamranAhmed\\Geocode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kamran Ahmed",
+                    "homepage": "http://kamranahmed.info",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A wrapper around the Google Geocoding API to get different details such as latitude, longitude, country, city, district, postcode, town and street number regarding some specific address.",
+            "homepage": "https://github.com/kamranahmedse/php-geocode",
+            "keywords": [
+                "address",
+                "addresses",
+                "geocode",
+                "geocoder",
+                "geocoding",
+                "gmap",
+                "gmaps",
+                "google",
+                "location",
+                "map",
+                "maps"
+            ],
+            "time": "2016-01-22T19:59:55+00:00"
         },
         {
             "name": "league/plates",
