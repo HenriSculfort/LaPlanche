@@ -275,6 +275,10 @@ class CourtsController extends Controller
  
 		}
 
+		public function courtDetails($id) 
+		{ 	
+			$this->show('default/court_details');
 
+		}
 
 }
