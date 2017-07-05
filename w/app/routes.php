@@ -30,4 +30,6 @@ $w_routes = array(
 	['GET|POST', '/changePassword/', 'resetPass#changePass', 'users_changePassword'],
 	['GET|POST', '/changePassword/Ajax', 'ResetPass#resetPass', 'users_changePasswordAjax'],
 
+	['GET|POST', '/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
+
 	);

@@ -10,7 +10,7 @@
 <?=$this->start('main_content'); ?>
 
 <?php 
-if(isset($_GET['user_id']) && !empty($_GET['user_id'])){
+if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) && !empty($_GET['token'])){
 ?>
 
 	<article>
@@ -20,10 +20,10 @@ if(isset($_GET['user_id']) && !empty($_GET['user_id'])){
 
 	<form method="POST">
 		<label>Choisissez un nouveau mot de passe : </label>
-		<input type="text" name="mdp">
+		<input type="password" name="mdp" id="mdp">
 		<br>
 		<label>Répétez le mot de passe choisi : </label>
-		<input type="text" name="mdp2">
+		<input type="password" name="mdp2" id="mdp2">
 		<br>
 		<input type="hidden" name="user_id" value="<?php if(isset($_GET['user_id'])){ echo $_GET['user_id'];}?>">
 		<button type="submit">Réinitialiser</button>
@@ -58,10 +58,14 @@ if(isset($_GET['user_id']) && !empty($_GET['user_id'])){
 				success: function(resPHP){
 
 					if(resPHP.result == true) {
-					
+						//affiche le message de validation dans la div avec l'id message
 						$('#message').html(resPHP.message);
-						//renvoie dans la div 'message' la valeur contenu dans .val; ici renvoie une valeur vide
+						//vide les erreurs
 						$('#errors').html('');//on vide les messages d'erreures
+						//vide les champs du nouveau pass
+						$('#mdp').val('');
+						$('#mdp2').val('');
+
 					}
 					else if(resPHP.result == false) { 
 						$('#errors').html(resPHP.errors);
