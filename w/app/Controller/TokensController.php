@@ -55,11 +55,11 @@ class TokensController extends \W\Controller\Controller
 						$mail->isSMTP();
 						$mail->Host = 'smtp.gmail.com';
 						$mail->SMTPAuth = true;
-						$mail->Username = 'testwf3mc@gmail.com';
-						$mail->Password = 'ttttttttt';
+						$mail->Username = 'laplanche.bordeaux@gmail.com';
+						$mail->Password = 'lefhn33000';
 						$mail->SMTPSecure = 'ssl'; 
 						$mail->Port = 465;
-						$mail->SetFrom('laplanche@wf3.fr', 'La Planche Team');
+						$mail->SetFrom('laplanche.bordeaux@gmail.com', 'La Planche Team');
 						//mail et nom du destinataire
 						$mail->addAddress($get['email'], $user['username']);
 						$mail->isHTML(true);
@@ -72,43 +72,36 @@ class TokensController extends \W\Controller\Controller
 								'result' => true,
 								'message' => 'email envoyé'
 							];
-
 						}
 						else {
 							$json = [
 								'result' => false,
 								'errors' => 'Le mail n\'a pas été envoyé' //liste toutes les erreurs dans une chaîne string qui seront séparées par un <br>
 							];
-
 						}
 					}
 					else{ // Erreur de sauvegarde du token en BDD
-
 						$json = [
 							'result' => false,
 							'errors' => 'Une erreur est survenue lors de la sauvegarde en base de données'
 						];
 					}
-
 				}else{
-
 					$json = [
 						'result' => false,
 						'errors' => 'Cette email n\'existe pas'
 					];
-
 				}
 			}else{
-
 				$json = [
 				'result' => false,
 				'errors' => implode('<br>', $errors)
 				];
-
 			}
 		}
 		$this->showJson($json);
 	}
+
 
 	public function formTokens()
 	{

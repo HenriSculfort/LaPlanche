@@ -5,21 +5,12 @@ namespace Model;
 
 class TokensModel extends \W\Model\Model
 {
-	public function verifToken()
-	{
-		$verif = 'SELECT * FROM '.$this->table.' WHERE user_id = :id AND token = :token';
-		$tok = $this->dbh->prepare($verif);
-		$tok->bindValue(':id', $_GET['user_id'], PDO::PARAM_INT);
-		$tok->bindValue(':token', $_GET['token']);
-		return $tok->execute();
-	}
-    
-    public function deleteToken($token)
+    public function deleteToken($user_id)
 	{
 
-		$sql = 'DELETE FROM ' . $this->table . ' WHERE token = :token';
+		$sql = 'DELETE FROM ' . $this->table . ' WHERE user_id = :user_id';
 		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':token', $token);
+		$sth->bindValue(':user_id', $user_id);
 		return $sth->execute();
 	}
 }
