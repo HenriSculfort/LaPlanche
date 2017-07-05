@@ -275,9 +275,10 @@ class CourtsController extends Controller
         $model = new CourtsModel();
         $findCourt = $model->find($id);     
 
+        $now = date('c'); 
         $gamesModel = new GamesModel();
         $findGamesOnCourt = $gamesModel->showGamesOnThisCourt($id);
-        $this->show('default/court_details', ['findCourt' => $findCourt, 'findGamesOnCourt' => $findGamesOnCourt] );
+        $this->show('default/court_details', ['findCourt' => $findCourt, 'findGamesOnCourt' => $findGamesOnCourt, 'now' => $now] );
 
     }
 

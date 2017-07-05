@@ -9,6 +9,7 @@
 		<img src="<?=$this->assetUrl('img/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
 	</div>
 	
+	
 	<!--********************** SOMMAIRE ************************-->
 	<div class='row' >
 		<div class='col-sm-12'>
@@ -19,6 +20,8 @@
 		</div>
 	</div>
 <?php $this->stop('header_content');?>
+
+
 
 <?php $this->start('main_content');?>
 	<!--************************* PROPOSER MATCH ************************-->
@@ -193,15 +196,58 @@
 	</div>
 	<div class='row'>
 		<div>
-			<?php foreach($findGamesOnCourt as $game) : ?>
-				<h5>Match Ref°<?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
-				<?php $game['date'] = new DateTime;?>
-				<p>Date : <?=$game['date']->format('d-m-Y');?></p>
-				<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
+			<?php foreach($findGamesOnCourt as $game) : 
+			// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
+			if(strtotime($now)> strtotime($game['date'])) {
 
+				}
+				// Si la date de la game est postérieure, on affiche.
+				else { ?>
+					<div class='row'>
+						<div class='col-md-6'>
+							<h5>Match Ref°<?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
+							<?php $frenchDate = new DateTime($game['date']);?>
+							<p>Date : <?=$frenchDate->format('d-m-Y');?></p>			
+							<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
+							<p>Nombre de joueurs : <?= $game['number_players'];?>.</p> 
+							<p>Niveau : <?php 
+								switch($game['team_level']) {
+								case 0:
+								echo 'Non renseigné';
+								break;
+								case 1:
+								echo 'Débutant';
+								break;
+								case 2:
+								echo 'Novice';
+								break;
+								case 3:
+								echo 'Intermédiare';
+								break;
+								case 4:
+								echo 'Avancé';
+								break;
+								case 5:
+								echo 'Expert';
+								break;
+							}?>
+							</p>
+						</div>
+						<div class='col-md-6'>
+							<p>Nom de l'équipe : <?= $game['team_name'];?></p>
+							<p>Message : <?= $game['message'];?></p>
 
-
-			<?php endforeach; ?>
+						</div>
+					</div>
+					<div class='row'>
+						<?php if($game['accepted'] != 1) : 
+							// Si la game n'est pas acceptée (complète), le bouton contacter l'équipe apparaît.?>				
+							<button type='submit' href='' class='btn btn-primary'>Contacter l'équipe</button> 
+						<?php endif;?>
+					</div>
+					<hr>
+				<?php } ;
+			endforeach; ?>
 
 		</div>
 	</div>
