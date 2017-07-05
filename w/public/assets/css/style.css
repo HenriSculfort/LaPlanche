@@ -67,7 +67,7 @@ h3 {
 }
 
 
-/**************************** BOUTON RETOUR TOP *****************************/
+/****************************** BOUTON RETOUR TOP *******************************/
 
 #btnPageTop {
     display: none;
@@ -88,7 +88,32 @@ h3 {
 }
 
 
-/************************************* HEADER *****************************/
+/*********************************** HEADER INDEX *******************************/
+
+.index-header {
+    padding: 40px 0 100px 0;
+}
+
+.index-header h1 {
+    font-size: 5rem;
+    text-align: center;
+}
+
+@media only screen and (min-width:768px) {
+    .navbar-default {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: transparent;
+    }
+    .index-header {
+        padding: 50px 0 150px 0;
+    }
+    .index-header h1 {
+        font-size: 7rem;
+        text-align: center;
+    }
+}
+
+/************************************* HEADER GENERAL *****************************/
 
 .standard-header {
     text-align: center;
@@ -99,11 +124,26 @@ header.intro-header {
     margin-bottom: 0;
 }
 
-.legend-header{
-    font-size: 2.3rem;
+/************************************* HEADER COMMUN *****************************/
+
+.legend-header {
+    font-size: 2rem;
     padding-top: 20px;
+    text-align: center;
 }
+
+@media only screen and (min-width:768px) {
+    .legend-header {
+        font-size: 2.3rem;
+        padding-top: 20px;
+        text-align: center;
+    }
+}
+
 /************************************* NAVBAR *****************************/
+#bs-example-navbar-collapse-1 ul li a{
+    font-weight: 700;
+}
 
 .navbar-default {
     border-color: transparent;
@@ -115,6 +155,7 @@ header.intro-header {
         border-color: transparent;
     }
 }
+
 
 /******************************* PAGE ACCUEIL *********************************/
 
@@ -149,6 +190,9 @@ button {
 #searchBtn {
     margin-left: 10px;
 }
+
+
+/******************************* DETAIL TERRAIN *********************************/
 
 
 /******************************* LOGIN MODAL *********************************/
