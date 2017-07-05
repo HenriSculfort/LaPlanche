@@ -33,8 +33,10 @@ class ChatController extends Controller
 			}
 
 			if(preg_match('#connard|con|enculé|connasse|pute|pd|pédé|fdp|salope|trouduc#', $post['message'])) {
-				$errors[] = 'Attention à ton langage petit poulet';
+				$errors[] = 'Attention à ton langage';
 			}
+
+			if()
 
 			if(strlen($post['message']) < 2) { 
 				$errors[] = 'Ton message doit faire au moins 2 caracteres mon lapin';

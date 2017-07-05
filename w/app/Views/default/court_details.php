@@ -19,11 +19,11 @@
 			<a href='javascript:history.back();' class='btn btn-primary'>Retour à la recherche</a>
 		</div>
 	</div>
-<?php $this->stop('header_content');?>
+	<?php $this->stop('header_content');?>
 
 
 
-<?php $this->start('main_content');?>
+	<?php $this->start('main_content');?>
 	<!--************************* PROPOSER MATCH ************************-->
 	<div class='row'>
 		<h3 id='newMatch'>Proposer un match sur ce terrain</h3>
@@ -137,8 +137,8 @@
 	<div class='row'>
 		<div class='col-md-6'>
 			<div class='row'>
-			<h5>Les infrastructures</h5>
-			<p><?=nl2br($findCourt['description']);?></p>
+				<h5>Les infrastructures</h5>
+				<p><?=nl2br($findCourt['description']);?></p>
 			</div>
 			<div class='row'>
 				<h5>Horaires</h5>
@@ -154,28 +154,28 @@
 			<div class='row'>
 				<h5>Parking <i class="fa fa-car" aria-hidden="true"></i></h5>
 				<p><?php if($findCourt['parking'] == '1') { echo'Oui';  } else {  echo'Non';}?>
-			</div>
-			<div class='row'>
-				<h5>Etat du terrain</h5>
-				<p><?php switch($findCourt['court-state']) {
-					case 0:
-					echo 'Non renseigné';
-					break;
-					case 1:
-					echo 'Très mauvais état';
-					break;
-					case 2:
-					echo 'Mauvais état';
-					break;
-					case 3:
-					echo 'Etat Normal';
-					break;
-					case 4:
-					echo 'Bon état';
-					break;
-					case 5:
-					echo 'Très bon état';
-					break;
+				</div>
+				<div class='row'>
+					<h5>Etat du terrain</h5>
+					<p><?php switch($findCourt['court-state']) {
+						case 0:
+						echo 'Non renseigné';
+						break;
+						case 1:
+						echo 'Très mauvais état';
+						break;
+						case 2:
+						echo 'Mauvais état';
+						break;
+						case 3:
+						echo 'Etat Normal';
+						break;
+						case 4:
+						echo 'Bon état';
+						break;
+						case 5:
+						echo 'Très bon état';
+						break;
 					}?>
 				</p>	
 			</div>
@@ -200,79 +200,79 @@
 			// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
 			if(strtotime($now)> strtotime($game['date'])) {
 
-				}
+			}
 				// Si la date de la game est postérieure, on affiche.
-				else { ?>
-					<div class='row'>
-						<div class='col-md-6'>
-							<h5>Match Ref°<?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
-							<?php $frenchDate = new DateTime($game['date']);?>
-							<p>Date : <?=$frenchDate->format('d-m-Y');?></p>			
-							<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
-							<p>Nombre de joueurs : <?= $game['number_players'];?>.</p> 
-							<p>Niveau : <?php 
-								switch($game['team_level']) {
-								case 0:
-								echo 'Non renseigné';
-								break;
-								case 1:
-								echo 'Débutant';
-								break;
-								case 2:
-								echo 'Novice';
-								break;
-								case 3:
-								echo 'Intermédiare';
-								break;
-								case 4:
-								echo 'Avancé';
-								break;
-								case 5:
-								echo 'Expert';
-								break;
-							}?>
-							</p>
-						</div>
-						<div class='col-md-6'>
-							<p>Nom de l'équipe : <?= $game['team_name'];?></p>
-							<p>Message : <?= $game['message'];?></p>
+			else { ?>
+			<div class='row'>
+				<div class='col-md-6'>
+					<h5>Match Ref°<?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
+					<?php $frenchDate = new DateTime($game['date']);?>
+					<p>Date : <?=$frenchDate->format('d-m-Y');?></p>			
+					<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
+					<p>Nombre de joueurs : <?= $game['number_players'];?>.</p> 
+					<p>Niveau : <?php 
+						switch($game['team_level']) {
+							case 0:
+							echo 'Non renseigné';
+							break;
+							case 1:
+							echo 'Débutant';
+							break;
+							case 2:
+							echo 'Novice';
+							break;
+							case 3:
+							echo 'Intermédiare';
+							break;
+							case 4:
+							echo 'Avancé';
+							break;
+							case 5:
+							echo 'Expert';
+							break;
+						}?>
+					</p>
+				</div>
+				<div class='col-md-6'>
+					<p>Nom de l'équipe : <?= $game['team_name'];?></p>
+					<p>Message : <?= $game['message'];?></p>
 
-						</div>
-					</div>
-					<div class='row'>
-						<button type='submit' href='' class='btn btn-primary'>Afficher le chat</button> 
+				</div>
+			</div>
+			<div class='row'>
+				<button type='submit' href='' class='btn btn-primary'>Afficher le chat</button> 
 						<?php // Si la game n'est pas acceptée (complète), l'input pour écrire un nouveau message apparaît.
 						if($game['accepted'] != 1) : ?>		
-							<p><div id=resultAjax></div>
-								<h5>Messages</h5>
+						<p><div id=resultAjax></div>
+							<h5>Messages</h5>
 
-									<div id="errors" style="color:red; background: lightpink; border-radius: 5px;text-align: center"></div>
-									<div id='showMessages'></div>
-								<!-- Formulaire d'envoi -->
-								<form method='POST'>
-									<br>
-									<h5>Nouveau message</h5>
-									<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
-									<br>
-									<button type='submit' id='addMessage'>Envoyer</button>
-								</form>
-								</p>		
-						<?php endif;?>
-					</div>
-					<hr>
+							<div id="errors" style="color:red; background: lightpink; border-radius: 5px;text-align: center"></div>
+							<div id='showMessages'></div>
+							<!-- Formulaire d'envoi -->
+							<form method='POST'>
+								<br>
+								<h5>Nouveau message</h5>
+								<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
+								<br>
+								<button type='submit' id='addMessage'>Envoyer</button>
+							</form>
+						</p>		
+					<?php endif;?>
+				</div>
+				<hr>
 				<?php } ;
-			endforeach; ?>
+				endforeach; ?>
 
+			</div>
 		</div>
-	</div>
-</div>
+</div> <!-- Fin du div container matchs prévus -->
 
 
-<?=$this->stop('main_content');?>
+	<?=$this->stop('main_content');?>
 
-<?=$this->start('script');?>
+	<?=$this->start('script');?>
 
-<script>
+	<script>
 
 // On sort cette fonction pour la préparer sans l'appeler, elle servira à récupérer les données
 function getMessages()
@@ -317,7 +317,7 @@ $(document).ready(function() {
 			} // Fermeture du success
 
 		}); // Fermeture du AJAX
-	
+
 	}); // Fermeture de l'event
 
 
