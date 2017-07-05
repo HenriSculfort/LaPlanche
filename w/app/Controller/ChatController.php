@@ -55,6 +55,7 @@ class ChatController extends Controller
 				if($chatModel->insert($data)){
 					$json = [
 						'result' => true,
+						'idChat' => $post['game_id'],
 					];
 				}
 				else {
@@ -78,21 +79,21 @@ class ChatController extends Controller
 	}
 
 
-	public function listMessagesAjax($idChat) { 
+	public function listMessagesAjax() { 
 
-
+		$idChat = (int) $_GET['idChat'];
 		$findAllMessages = new ChatModel();
 		$allMessages = $findAllMessages->jointureChatUsers($idChat);
 		
 		$html = '<ul>';
 		foreach($allMessages as $msg){
 			$html.='<li><strong>'.$msg['username'].'</strong> ('.$msg['date_publi'].') : '.$msg['message'].'</li>';
-			$game_id = $msg['game_id'];
+			$gameId = $msg['game_id'];
 		}
 		$html.= '</ul>';
 
 		$data = ['html' => $html,
-			'game_id' => $game_id,
+			'gameId' => $gameId,
 		];
 		$this->showJson($data);
 	}

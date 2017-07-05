@@ -229,22 +229,23 @@
 	</div> <!-- Fin du div row des matchs -->
 	<div id='showMeChat'>	
 		<div id=resultAjax></div>
+		<div id='chatTitle'></div>
 		<h5>Messages</h5>
 		<div id='errors' class=''></div>
 		<div id='showMessages'></div>
+	</div> <!-- Fin de la div contenant les messages du chat ajax -->
 		<form method='POST'>
 			<br>
 			<div class='row'>
 				<div class='col-md-12'>
 					<h5>Nouveau message</h5>
 					<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
-					<input id='game_id' type='hidden' value='<?=$game['id'];?>'>
 					<br>
 					<button type='submit' id='addMessage' class='btn btn-primary'>Envoyer</button>
 				</div>
 			</div>
 		</form>					
-	</div> <!-- Fin de la div contenant le chat ajax -->
+	
 </div> <!-- Fin du div container matchs prévus -->
 
 
@@ -254,27 +255,77 @@
 
 <script>
 
-	$(function(){
-
-		$('.btn-showChat').on('click', function(e){
-
-		e.preventDefault();
-
+	function getMessages()
+	{
 		var chatId = $(this).data('id'); // Récupere l'id de l'attribut data-id (correspond à l'id de la game)
 
-		// $_GET['idChat']
 
-		$.getJson(<?=$this->url('chat_load');?>, {idChat: chatId}, function(resultHtml){
+				$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
+					$('div#showMeChat').addClass('inView');	
+					$('div#showMeChat').html(resultHtml.html);
+					$('div#chatTitle').html('Chat du match' + resultHtml.gameId);
 
 
+				
+				}); 
+	}
+
+	// On lance le jQuery
+	$(document).ready(function() { 
+		$(function(){
+
+			// Au clic du bouton d'affichage du chat
+			$('.btn-showChat').on('click', function(e){
+
+				e.preventDefault();
+
+				var chatId = $(this).data('id'); // Récupere l'id de l'attribut data-id (correspond à l'id de la game)
 
 
-			
-			$('div#showMeChat').html(resultHtml);
+				$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
+					$('div#showMeChat').addClass('inView');	
+					$('div#chatTitle').html('Chat du match' + resultHtml.gameId);
+					$('div#showMeChat').html(resultHtml.html);
+				
+				}); 
+			}); // Fin du clic sur le bouton d'affichage du chat
+
+			// On surveille le clic d'envoi de nouveau message
+			$('#addMessage').on('click', function(envoi){ 
+						envoi.preventDefault();
+
+						var $message = $('textarea#message').val(); // Val récupère la valeur du champ. Si j'écris qqc entre les parenthèses ça m'écrira le truc dans la balise. 
+						var $game_id = $('#game_id').val();
+
+						$.ajax({ 
+							url:'<?= $this->url('chat_add');?>',
+							type: 'POST',
+							data : {
+							message : $message,
+							game_id : $game_id,
+							},
+							dataType : 'json',
+							success : function(retourJson) { 
+								
+								if(retourJson.result == true){
+									getMessages();
+									// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
+									$('textarea#message').val(''); 
+									// Pour réinitialiser les erreurs si jamais on envoie un message correct 
+									$('#errors').addClass('alert alert-danger');
+									$('#errors').text('');
+
+								}
+								else if(retourJson.result == false){
+									$('#errors').html(retourJson.errors);
+								}
+							} // Fermeture du success
+						}); // Fermeture du AJAX
+
+					}); // Fermeture de l'event on clic envoi
+
 		});
-
-	});
-	});
+	}); // Fin de l'appel jQuery
 </script>
 
 <?=$this->stop('script');?>
