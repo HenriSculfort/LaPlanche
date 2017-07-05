@@ -1,9 +1,9 @@
 <?php $this->layout('layout', ['title' => 'Mon Espace']) ?>
 
 <?php $this->start('header_content');?>
-<div class="site-heading">
+<div class="standard-header">
 	<h1>Espace Utilisateur</h1>
-	<p>Cet espace vous permet de modifier vos données personnelles et de suggérer un nouveau terrain</p>
+	<p class="legend-header">Cet espace vous permet de modifier vos données personnelles et de suggérer un nouveau terrain</p>
 </div>
 
 <?php $this->stop('header_content');?>

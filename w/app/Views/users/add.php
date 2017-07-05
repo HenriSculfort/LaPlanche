@@ -3,12 +3,15 @@
 
 <?php $this->start('main_content') ?>
 
+<div class="standard-header">
+	<h1>Inscription</h1>
+	<p class="legend-header">Vous voulez jouer au ballon, inscrivez vous !</p>
+</div>
 <div class='container'>
 	<div class='row'>
 		<div id="success"></div> <!-- Affiche le message de réussite d'inscription-->
 	</div>
 </div>
-<h1 class="text-center">Inscription utilisateur</h1>
 <div class='container'>
 	<div class='row'>
 		<form class="form-horizontal" role="form" method="post">
