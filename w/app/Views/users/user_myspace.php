@@ -20,18 +20,27 @@
 	<div class='container-fluid'>
 
 	<?php
-
+	echo '<pre>';
 	print_r( $_SESSION);
+	echo '</pre>';
+
 	?>
+		<div class='row form-group hidden'>
+			<div class='col-md-3'>
+				<label for='id'>id</label>
+			</div>
+			<div class='col-md-9'>
+				<input type='id' name='id' value="<?= $_SESSION['user']['id']?>">
+			</div> 
+		</div>
 
-
-		<!--<div class='row form-group'>
+		<div class='row form-group'>
 			<div class='col-md-3'>
 				<label for='email'>Email</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='email' name='email' value="<?= $_SESSION['email']?>">
-			</div> -->
+				<input type='email' name='email' value="<?= $_SESSION['user']['email']?>">
+			</div> 
 		</div>
 
 		<div class='row form-group'>
@@ -54,7 +63,7 @@
 				<label for='address'>Adresse</label>
 			</div>
 			<div class='col-md-9'>
-				<textarea type='text' name='address' value="<?= $_SESSION['address'];?>"></textarea>
+				<textarea type='text' name='address' placeholder="<?= $_SESSION['user']['address']?>"></textarea>
 			</div>
 		</div>
 
@@ -63,8 +72,8 @@
 				<label for='postal_code'>Code Postal</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='text' name='postal_code' value="<?php if(isset($_SESSION['postal_code'])){ echo $_SESSION['postal_code']; }?>">
-				<?php if(isset($_SESSION['postal_code'])){ echo $_SESSION['postal_code']; }?>
+				<input type='text' name='postal_code' value="<?= $_SESSION['user']['postal_code'];?>">
+				
 			</div>
 		</div>
 
@@ -73,7 +82,7 @@
 				<label for='city'>Ville</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='text' name='city' value="<?= $_SESSION['city']?>">
+				<input type='text' name='city' value="<?= $_SESSION['user']['city']?>">
 			</div>
 		</div>
 
@@ -82,7 +91,7 @@
 				<label for='phone'>Téléphone (facultatif)</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='text' name='phone' value="<?php if(isset($_SESSION['phone'])){ echo $_SESSION['phone'];}?>">
+				<input type='text' name='phone' value="<?php if(isset($_SESSION['user']['phone'])){ echo $_SESSION['user']['phone'];}?>">
 			</div>
 		</div>
 		<br>
@@ -101,7 +110,7 @@
 	<!-- Colonne du formulaire -->
 	<div class='col-md-8'>
 
-		<form method='post' class='container-fluid' enctype="multipart/form-data" action='#'>
+		<form method='post' id="addTerrain" class='container-fluid' enctype="multipart/form-data" action='#'>
 
 			<div class='row form-group'>
 				<div class='col-md-4'>
@@ -236,7 +245,7 @@
 			$.ajax({
 				url: '<?=$this->url('add_courts');?>', 
 				type: 'post',
-				data: $('form').serialize(),		
+				data: $('#addTerrain').serialize(),		
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				success: function(retourJson){
 				if(retourJson.result == true){ 
