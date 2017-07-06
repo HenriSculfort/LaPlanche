@@ -32,10 +32,16 @@ class GamesController extends Controller
          	}
 
             //vérification de l'heure de début
-
+         	if(empty($post['starting_time']))
+            {
+                $errors[] = 'Le niveau de l\'équipe doit être choisi';
+            }
 
             //vérification de l'heure de fin
-
+            if(empty($post['level']))
+            {
+                $errors[] = 'Le niveau de l\'équipe doit être choisi';
+            }
 
             //vérification du niveau
              if(empty($post['level']))

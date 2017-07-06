@@ -272,8 +272,10 @@ class CourtsController extends Controller
                     'errors'=>implode('<br>',$errors),
                 ];
             }
+
+            $this->showJson($json);
         }
-        $this->showJson($json);
+        
     }
 
     public function courtDetails($id) 

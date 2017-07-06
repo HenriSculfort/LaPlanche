@@ -196,7 +196,7 @@
 				<div class='col-md-4'>
 					<label for='picture'>Photo</label>
 				</div>
-				<input type="file" name="picture" class="col-md-8">
+				<input type="file" name="picture" accept="image/*" class="col-md-8">
 			</div>
 
 			<div class='row form-group'>
@@ -290,12 +290,19 @@
 
 			e.preventDefault(); 
 
+			var $form = $(this);
+        	var formdata = (window.FormData) ? new FormData($form[0]) : null;
+       		 var data = (formdata !== null) ? formdata : $form.serialize();
+
+
 	
 			$.ajax({
 				url: '<?=$this->url('add_courts');?>', 
 				type: 'post',
-				data: $('#addTerrain').serialize(),		
+				contentType: false, // obligatoire pour de l'upload
+            	processData: false, // obligatoire pour de l'upload	
 				dataType: 'json', // Les données de retour seront envoyées en JSON
+				data: data,	
 				success: function(retourJson){
 				if(retourJson.result == true){ 
 					$('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
