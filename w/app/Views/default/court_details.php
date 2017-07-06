@@ -226,7 +226,7 @@
 				<div class='col-md-12'>
 					<h5>Nouveau message</h5>
 					<input type="hidden" id="idChatRoom" name="idChat" value="">
-					<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
+					<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
 					<br>
 					<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
 				</div>
@@ -244,7 +244,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$( function() {
-		$( "#datepicker" ).datepicker();
+		$( "#datepicker" ).datepicker({"dateFormat":"dd-mm-yy"});
 	} );
 </script>
 
