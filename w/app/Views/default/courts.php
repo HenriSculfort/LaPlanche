@@ -77,10 +77,10 @@ elseif(isset($searchResults) && $searchResults == true) {
 					<div class='col-md-2'>
 						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
 					</div>
-					<div class='col-md-10'>
+					<div class='col-md-10 well'>
 						<h4><?= $court['name'];?></h4>
-						<p><?= nl2br($court['description']);?></p>
-						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
+						<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
+						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>
 			</div>	
@@ -94,10 +94,10 @@ elseif(isset($searchResults) && $searchResults == true) {
 					<div class='col-md-2'>
 						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
 					</div>
-					<div class='col-md-10'>
+					<div class='col-md-10 well'>
 						<h4><?= $court['name'];?></h4>
-						<p><?= nl2br($court['description']);?></p>
-						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
+						<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
+						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>
 			</div>	
@@ -110,10 +110,10 @@ elseif(isset($searchResults) && $searchResults == true) {
 						<div class='col-md-2'>
 							<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
 						</div>
-						<div class='col-md-10'>
+						<div class='col-md-10 well'>
 							<h4><?= $court['name'];?></h4>
-							<p><?= nl2br($court['description']);?></p>
-							<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
+							<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
+							<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 						</div>
 					</div>
 				</div>	
@@ -135,11 +135,11 @@ else {
 					<div class='col-md-2'>
 						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
 					</div>
-					<div class='col-md-10'>
+					<div class='col-md-10 well'>
 						<h4><?= $court['name'];?></h4>
-						<p><?= nl2br($court['description']);?></p>
+						<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
 						<!-- <p><?php if($court['parking'] == '1') { echo'<i class="fa fa-car" aria-hidden="true">';  }?></p>-->
-						<a href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
+						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>
 			</div>	
