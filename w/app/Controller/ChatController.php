@@ -78,6 +78,7 @@ class ChatController extends Controller
 	}
 
 
+
 	public function listMessagesAjax() { 
 
 		$idChat = (int) $_GET['idChat'];

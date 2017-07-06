@@ -259,6 +259,8 @@
 
 <script>
 
+	// FONCTION POUR RELOAD LE CHAT UNE FOIS UN MESSAGE POSTE
+
 	function getMessages(chatId)
 	{
 
@@ -268,12 +270,13 @@
 		}); 
 	}
 
+
 	// On lance le jQuery
 	$(document).ready(function() { 
 		$(function(){
 
-			// AFFICHAGE 
 
+			// AFFICHAGE DU CHAT DE BASE AU CLIC DU BOUTON POUR AFFICHER LE CHAT DU MATCH
 
 			// Au clic du bouton d'affichage du chat
 			$('.btn-showChat').on('click', function(e){

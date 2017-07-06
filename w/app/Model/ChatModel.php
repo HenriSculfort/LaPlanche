@@ -5,6 +5,7 @@ namespace Model;
 
 class ChatModel extends \W\Model\Model
 {
+	
 	/**
 	* JOINTURE ENTRE LES TABLES CHAT & USERS
 	* Pour retourner les courts sur lesquels il y a une game
