@@ -126,9 +126,6 @@ class CourtsController extends Controller
 
         $post = [];
         $errors = []; 
-        print_r($_POST);
-        print_r($_FILES);
-      
 
         if(!empty($_POST)){
 
@@ -187,23 +184,21 @@ class CourtsController extends Controller
                     $extension = $fileInfo['extension'];
                     if(in_array($extension, $extensions_autorisees)){
                         //extension valide
-                        //      echo 'c\'est bon<br>';
-                        //transférer définitivement le fichier sur le serveur
                         //on renomme le fichier
                         switch ($extension) {
-                           case 'jpg':
+                            case 'jpg':
                                 $newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
-                               break;
-                          case 'jpeg':
+                                break;
+                            case 'jpeg':
                                 $newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
-                               break;
+                                break;
                             case 'png':
                                 $newImage = imagecreatefrompng($_FILES['picture']['tmp_name']);
                                 break;
                             case 'gif':
                                 $newImage = imagecreatefromgif($_FILES['picture']['tmp_name']);
                                 break;
-                       }
+                        };
 
 
                         $image = Image::make($newImage)->resize(300, 200);
@@ -233,28 +228,29 @@ class CourtsController extends Controller
                 $errors[] = 'l\'image est absente';
             }
 
-
-
-
             if(count($errors) === 0){
+                
+                
+                
                 $data = [
-
-                    'name'	=> $post['name'],
-                    'address'	=> $post['address'],
-                    'postal_code'	=> $post['postal_code'],
-                    'city'	=> $post['city'],
-                    'picture'	=> $picture,
+                    'name'          => $post['name'],
+                    'address'       => $post['address'],
+                    'postal_code'   => $post['postal_code'],
+                    'city'          => $post['city'],
+                    'picture'       => $picture,
                     'description'	=> $post['description'],
-                    'net'	=> $post['net'],
+                    'net'           => $post['net'],
                     'court_state'	=> $post['level'],
                     'opening_hours'	=> $post['opening_hours'],
                     'admin_validation'	=> false,
-                    'parking'	=> $post['parking'],
+                    'parking'       => $post['parking'],
+                    'latitude'      => 42.5,
+                    'longitude'     => 0.46
 
                 ];
 
-                $addCourts = new CourtsModel();
-                $insert = $addCourts->insert($data);
+                $addCourt = new CourtsModel();
+                $insert = $addCourt->insert($data);
 
                 if($insert){
                     $json =[
@@ -276,7 +272,7 @@ class CourtsController extends Controller
 
             $this->showJson($json);
         }
-        
+
     }
 
     public function courtDetails($id) 
