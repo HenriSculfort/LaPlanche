@@ -257,6 +257,28 @@ p.desciption-terrain {
 }
 
 /******************************* DETAIL TERRAIN *********************************/
+#chat { 
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    padding : 5px;
+    display: none;
+    z-index: 99; 
+    position:fixed;
+    right:0; 
+    bottom:0; 
+    height:50vh;
+    width:51vh;
+    overflow: auto;
+    background: rgba(245, 245, 245, 1);
+}
+
+.hidden { 
+    display: none;
+ }
+
+.show {
+    display: block;    
+}
 
 
 /****************************** BOUTON RETOUR TOP *******************************/

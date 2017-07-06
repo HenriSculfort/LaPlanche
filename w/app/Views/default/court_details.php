@@ -30,7 +30,7 @@
 	</div>
 	<form method='POST'>
 		<div class='row'>
-		<input type="hidden" name="id" value="<?=$court_id?>">
+			<input type="hidden" name="id" value="<?=$court_id?>">
 			<div class='col-sm-6'>
 				<div class='row'>
 					<div class='col-sm-4'>
@@ -231,14 +231,14 @@
 
 
 	<!-- ********************** CHAT ***********************-->
-
-	<div id='chatTitle'></div>
-	<div id='showMeChat'>	
-		<div id=resultAjax></div>
-		<h5>Messages</h5>
-		<div id='errors' class=''></div>
-		<div id='showMessages'></div>
-	</div> <!-- Fin de la div contenant les messages du chat ajax -->
+	<div id='chat'>
+		<div id='chatTitle'></div>
+		<div id='showMeChat'>	
+			<div id=resultAjax></div>
+			<h5>Messages</h5>
+			<div id='errors' class=''></div>
+			<div id='showMessages'></div>
+		</div> <!-- Fin de la div contenant les messages du chat ajax -->
 		<form method='POST'>
 			<br>
 			<div class='row'>
@@ -251,9 +251,9 @@
 				</div>
 			</div>
 		</form>					
-	
+	</div>
 </div> <!-- Fin du div container matchs prévus -->
-<?php var_dump($_GET);?>
+
 
 <?=$this->stop('main_content');?>
 
@@ -263,37 +263,62 @@
 
 	// FONCTION POUR RELOAD LE CHAT UNE FOIS UN MESSAGE POSTE
 
-	function getMessages(chatId)
-	{
+	function showChat() {
+		
+		if( ($('#chat').css('display')) == 'none') { 
+			$('#chat').removeClass('hidden').addClass('show');	}
+			else { 
+				$('#chat').addClass('hidden');
+			}
+		}
+	
+		function getMessages(chatId)
+		{
 
-		$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
-			$('#showMeChat').addClass('inView').html(resultHtml.html);		
-			$('#chatTitle').html('<strong>Chat du match </strong>'+ resultHtml.gameId);
-		}); 
-	}
+			$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
+				$('#showMeChat').addClass('inView').html(resultHtml.html);		
+				$('#chatTitle').html('<strong>Chat du match </strong>'+ resultHtml.gameId);
+			}); 
+		}
 
 
 	// On lance le jQuery
 	$(document).ready(function() { 
-		$(function(){
 
+		$(function(){
 
 			// AFFICHAGE DU CHAT DE BASE AU CLIC DU BOUTON POUR AFFICHER LE CHAT DU MATCH
 
 			// Au clic du bouton d'affichage du chat
 			$('.btn-showChat').on('click', function(e){
+				
+				$(document).mouseup(function(e) 
+				{
+				    var chat = $('#chat');
 
+				    // if the target of the click isn't the container nor a descendant of the container
+				    if (!chat.is(e.target) && chat.has(e.target).length === 0) 
+				    {
+				        chat.removeClass('show').addClass('hidden');   
+				    }
+				});
+
+				showChat();
+
+				// Pour cacher le chat lorsque l'on clique en dehors.
+				
 				e.preventDefault();
-
+				
 				var chatId = $(this).data('id'); // Récupere l'id de l'attribut data-id (correspond à l'id de la game)
 
 
 				$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
-					$('div#showMeChat').addClass('inView').html(resultHtml.html);
+					$('#chat').addClass('show');
+					$('div#showMeChat').html(resultHtml.html);
 					$('div#chatTitle').html('<h4>Chat du match' + resultHtml.gameId + '</h4>');
 					$('#idChatRoom').val(resultHtml.gameId);
 
-				
+
 				}); 
 			}); // Fin du clic sur le bouton d'affichage du chat
 
@@ -302,7 +327,7 @@
 
 			// On surveille le clic d'envoi de nouveau message
 			$('#addMessage').on('click', function(envoi){ 
-						envoi.preventDefault();
+				envoi.preventDefault();
 
 						var $message = $('textarea#message').val(); // Val récupère la valeur du champ. Si j'écris qqc entre les parenthèses ça m'écrira le truc dans la balise. 
 						var $game_id = $('#idChatRoom').val(); 
@@ -312,8 +337,8 @@
 							url:'<?= $this->url('chat_add');?>',
 							type: 'GET',
 							data : {
-                                message : $message,
-                                idChat : $game_id,
+								message : $message,
+								idChat : $game_id,
 							},
 							dataType : 'json',
 							success : function(retourJson) { 
