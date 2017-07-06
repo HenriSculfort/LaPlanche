@@ -33,6 +33,7 @@ a {
     color: #000;
 }
 
+
 /********************** STYLES DE POLICE ET TAILLES DE TEXTE *******************/
 
 a:hover {
@@ -65,65 +66,51 @@ h3 {
     font-weight: 400;
 }
 
-/****************************** BOUTON RETOUR TOP *******************************/
 
-#btnPageTop {
-    display: none;
-    position: fixed;
-    bottom: 2em;
-    right: 2em;
-    z-index: 99;
-    cursor: pointer;
-    border-radius: 1em;
+/************************************* NAVBAR *********************************/
+.navbar{
+    margin: 0;
 }
 
-#btnPageTop:hover {
-    background: #ea931e;
+.navbar-default {
+    border-color: transparent;
+    background: rgba(232, 167, 76, 0.87);
 }
 
-#btnPageTop a {
-    padding: 1.2em;
+.navbar-default .navbar-nav>li>a{
+    color: #262626;
+}
+.navbar-default .navbar-nav>li>a:hover{
+    color: #fff;
 }
 
-/*********************************** HEADER INDEX *******************************/
-
-.index-header {
-    padding: 40px 0 80px 0;
-}
-
-.index-header h1 {
-    font-size: 5rem;
-    text-align: center;
-}
-
-p.legend-header-index {
+.navbar-default .navbar-brand {
+    color: #262626;
+    font-weight: 700;
     font-size: 2rem;
-    text-align: center;
 }
 
-@media only screen and (min-width:768px) {
-    .navbar-default {
-        background: rgba(0, 0, 0, 0.2);
-        border-color: transparent;
-    }
-    .index-header {
-        padding: 100px 0 100px 0;
-    }
-    .index-header h1 {
-        font-size: 7rem;
-        text-align: center;
-    }
-    p.legend-header-index {
-        font-size: 3rem;
-        margin-bottom: 80px;
-    }
+.navbar-default .navbar-brand:hover {
+    color: #fff;
+}
+
+#bs-example-navbar-collapse-1 ul li a{
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 15px 10px;
+}
+
+.navbar-default .navbar-toggle,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background-color: #fff;
 }
 
 /************************************* HEADER GENERAL *****************************/
 
 .standard-header {
     text-align: center;
-    padding: 80px 0 40px 0;
+    padding: 40px 0 60px 0;
 }
 
 header.intro-header {
@@ -146,38 +133,48 @@ header.intro-header {
     }
 }
 
+/*********************************** HEADER INDEX *******************************/
 
-/************************************* NAVBAR *********************************/
-
-#bs-example-navbar-collapse-1 ul li a {
-    font-size: 1.3rem;
-    font-weight: 700;
+.index-header {
+    padding: 40px 0 80px 0;
 }
 
-.navbar-default .navbar-nav>li>a{
-    color: #fff;
+.index-header h1 {
+    font-size: 6rem;
+    text-align: center;
+    color: rgb(235, 128, 20);
 }
 
-.navbar-default .navbar-toggle,
-.navbar-default .navbar-toggle:focus,
-.navbar-default .navbar-toggle:hover{
-    background-color: #fff;
+p.legend-header-index {
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 7px;
+    color: #4a4a4a;
 }
 
-.navbar-default .navbar-brand{
-    color: #fff;
+.button-search-index {
+    background: #e8a74c;
+    border-color: #e8a74c;
 }
-
-.navbar-default {
-    border-color: transparent;
-    background: #eab76f;
-}
-
 
 @media only screen and (min-width:768px) {
     .navbar-default {
-        background: #eab76f;
         border-color: transparent;
+    }
+    .index-header {
+        margin: 50px 0 100px 0;
+        padding: 0;
+    }
+    .index-header h1 {
+        font-size: 9rem;
+        text-align: center;
+    }
+    p.legend-header-index {
+        font-size: 3rem;
+        margin: 20px 0;
+    }
+    div.search {
+        margin-top: 60px;
     }
 }
 
@@ -196,7 +193,7 @@ input.searchWhere {
 .search {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-flow: row wrap;
 }
 
@@ -208,14 +205,12 @@ button {
 @media only screen and (min-width:768px) {
     input.searchWhere {
         margin: 0 10px 0 0;
-        font-size: 2rem;
-        color: #000;
-        border: none;
         min-width: 50%;
         padding: 10px;
         border-radius: 5px;
     }
 }
+
 
 /******************************* PAGE TERRAIN *********************************/
 
@@ -240,7 +235,29 @@ p.desciption-terrain {
     margin-bottom: 20px;
 }
 
+
 /******************************* DETAIL TERRAIN *********************************/
+
+
+/****************************** BOUTON RETOUR TOP *******************************/
+
+#btnPageTop {
+    display: none;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 99;
+    cursor: pointer;
+    border-radius: 1em;
+}
+
+#btnPageTop:hover {
+    background: #ea931e;
+}
+
+#btnPageTop a {
+    padding: 1.2em;
+}
 
 
 /******************************* LOGIN MODAL *********************************/
@@ -252,7 +269,7 @@ p.desciption-terrain {
     background-color: #F7F7F7;
     margin: 0 auto;
     border-radius: 2px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
 

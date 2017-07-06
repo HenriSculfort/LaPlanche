@@ -42,7 +42,7 @@
         <div id="success"></div>
         <div class="row">
             <div class="form-group col-xs-12 text-center">
-                <button id="sendForm" type="button" class="btn btn-primary">Envoyer</button>
+                <button id="sendForm" type="button" class="btn btn-warning">Envoyer</button>
             </div>
         </div>
     </form>
