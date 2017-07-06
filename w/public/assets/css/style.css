@@ -33,6 +33,7 @@ a {
     color: #000;
 }
 
+
 /********************** STYLES DE POLICE ET TAILLES DE TEXTE *******************/
 
 a:hover {
@@ -66,9 +67,10 @@ h3 {
     font-weight: 400;
 }
 
+
 /************************************* NAVBAR *********************************/
 
-.navbar{
+.navbar {
     margin: 0;
 }
 
@@ -77,10 +79,11 @@ h3 {
     background: rgba(232, 167, 76, 0.87);
 }
 
-.navbar-default .navbar-nav>li>a{
+.navbar-default .navbar-nav>li>a {
     color: #262626;
 }
-.navbar-default .navbar-nav>li>a:hover{
+
+.navbar-default .navbar-nav>li>a:hover {
     color: #d9d9d9;
 }
 
@@ -94,7 +97,7 @@ h3 {
     color: #fff;
 }
 
-#bs-example-navbar-collapse-1 ul li a{
+#bs-example-navbar-collapse-1 ul li a {
     font-size: 1.5rem;
     font-weight: 700;
     padding: 15px 10px;
@@ -105,6 +108,7 @@ h3 {
 .navbar-default .navbar-toggle:hover {
     background-color: #fff;
 }
+
 
 /************************************* HEADER GENERAL *****************************/
 
@@ -131,16 +135,19 @@ header.intro-header {
     }
 }
 
+
 /************************************* FOOTER GENERAL *****************************/
 
-footer{
+footer {
     border-color: transparent;
     background: rgba(232, 167, 76, 0.87);
     padding: 20px;
     bottom: 0;
 }
 
+
 /******************************* PAGE ACCUEIL *********************************/
+
 
 /********** HEADER *************/
 
@@ -158,8 +165,8 @@ p.legend-header-index {
     font-size: 2rem;
     text-align: center;
     border-radius: 7px;
-    color:#fff;
-    background: rgba(0,0,0,0.2);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .button-search-index {
@@ -192,7 +199,6 @@ p.legend-header-index {
     }
 }
 
-=
 input.searchWhere {
     margin: 0px 10px 20px 0;
     font-size: 2rem;
@@ -224,27 +230,36 @@ button {
     }
 }
 
+
 /********** NOS SERVICES *************/
 
-h2.section-services{
-    font-size: 3.5rem;
+h2.section-services {
+    font-size: 2.2rem;
     color: rgba(232, 147, 27, 0.87);
     padding: 40px;
 }
 
-h4.service-heading{
+h4.service-heading {
     padding-top: 30px;
-    font-size: 2.3rem;
+    font-size: 1.8rem;
 }
 
-.detail-services{
+.detail-services {
     padding-bottom: 40px;
 }
 
-.rotate{
+.rotate {
     transform: rotate(90deg);
 }
 
+@media only screen and (min-width:768px) {
+    h2.section-services {
+        font-size: 3.5rem;
+    }
+    h4.service-heading {
+        font-size: 2.3rem;
+    }
+}
 
 /******************************* PAGE TERRAIN *********************************/
 
@@ -269,46 +284,56 @@ p.desciption-terrain {
     margin-bottom: 20px;
 }
 
-.moteur-recherche{
+.moteur-recherche {
     margin-bottom: 60px;
     padding: 30px 10px;
     border: 1px solid #c4b9b9;
-    border-radius:20px;
+    border-radius: 20px;
 }
 
+
 /******************************* PAGE DETAIL TERRAIN *********************************/
-#chat { 
+
+#chat {
     border: 1px solid darkgray;
     border-radius: 10px;
-    padding : 5px;
+    padding: 5px;
     display: none;
-    z-index: 99; 
-    position:fixed;
-    right:0; 
-    bottom:0; 
-    height:50vh;
-    width:51vh;
+    z-index: 99;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 50vh;
+    width: 51vh;
     overflow: auto;
     background: rgba(245, 245, 245, 1);
 }
 
-.hidden { 
+.hidden {
     display: none;
- }
+}
 
 .show {
-    display: block;    
+    display: block;
+}
+
+
+/******************************* PAGE MON ESPACE *********************************/
+
+#addCourts {
+    margin-bottom: 40px;
 }
 
 
 /******************************* PAGE CONTACT *********************************/
 
-.footer-contact{
+.footer-contact {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
 }
+
 
 /****************************** BOUTON RETOUR TOP *******************************/
 

@@ -9,6 +9,7 @@
   }  
 </style>
 
+
 <div class="index-header">
     <p class="legend-header-index">Cherche le city le plus proche de chez toi !</p>
     <div class="search">

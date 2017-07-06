@@ -116,7 +116,6 @@
             <?= $this->section('main_content') ?>
         </div>
     </div>
- 
 
     <!-- Footer -->
     <footer class="footer-contact">
@@ -152,6 +151,4 @@
         </div>
     </footer>
 </body>
-
-
 </html>
