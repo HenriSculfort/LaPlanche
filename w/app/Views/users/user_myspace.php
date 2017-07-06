@@ -114,7 +114,10 @@
 			</div>
 		</div>
 		<br>
-		<button type='submit' id='modifUser' class='btn btn-primary'>Envoyer les modifications</button>
+		<div class="col-md-12 text-center">
+			<button type='submit' id='modifUser' class='btn btn-primary'>Envoyer les modifications</button>
+		</div>
+		
 	</div>
 
 </form>
@@ -231,7 +234,9 @@
 			</div>
 
 			<br>
+			<div class="col-md-12 text-center">
 			<button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
+			</div>
 
 		</form>
 	</div> <!-- Fin du div de colonne formulaire -->
@@ -260,26 +265,26 @@
 		$('#modifUser').on('click', function(e){
 	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
 
-			e.preventDefault(); 
+	e.preventDefault(); 
 
 	
-			$.ajax({
-				url: '<?=$this->url('modif_user');?>', 
-				type: 'post',
-				data: $('#UserModif').serialize(),		
+	$.ajax({
+		url: '<?=$this->url('modif_user');?>', 
+		type: 'post',
+		data: $('#UserModif').serialize(),		
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				success: function(retourJson){
-				if(retourJson.result == true){ 
-					$('#ModifUserAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
-				}
-				else if(retourJson.result == false){
-					$('#ModifUserAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
-				}
-				
+					if(retourJson.result == true){ 
+						$('#ModifUserAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+					}
+					else if(retourJson.result == false){
+						$('#ModifUserAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+					}
+
 				},
 
 			});
-		});
+});
 	});
 </script>
 
@@ -290,33 +295,33 @@
 		$('#addCourts').on('click', function(e){
 	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
 
-			e.preventDefault(); 
+	e.preventDefault(); 
 
-			var $form = $('#addTerrain');
-        	var formdata = (window.FormData) ? new FormData($form[0]) : null;
-       		 var data = (formdata !== null) ? formdata : $form.serialize();
+	var $form = $('#addTerrain');
+	var formdata = (window.FormData) ? new FormData($form[0]) : null;
+	var data = (formdata !== null) ? formdata : $form.serialize();
 
 
 	
-			$.ajax({
-				url: '<?=$this->url('add_courts');?>', 
-				type: 'post',
+	$.ajax({
+		url: '<?=$this->url('add_courts');?>', 
+		type: 'post',
 				contentType: false, // obligatoire pour de l'upload
             	processData: false, // obligatoire pour de l'upload	
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				data: data,	
 				success: function(retourJson){
-				if(retourJson.result == true){ 
-					$('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
-				}
-				else if(retourJson.result == false){
-					$('#resultAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
-				}
-				
+					if(retourJson.result == true){ 
+						$('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+					}
+					else if(retourJson.result == false){
+						$('#resultAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+					}
+
 				},
 
 			});
-		});
+});
 	});
 </script>
 

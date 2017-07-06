@@ -1,4 +1,4 @@
-<?=$this->layout('layout', ['title' => 'Contact']); ?>
+<?=$this->layout('layout_contact', ['title' => 'Contact']); ?>
 
 <?php $this->start('header_content');?>
 <div class="standard-header">
