@@ -19,13 +19,15 @@ class GamesController extends Controller
 	{
 		$post = [];
         $errors = []; 
-      
+      print_r($_POST);
 
         if(!empty($_POST)){
 
             $post = array_map('trim', array_map('strip_tags', $_POST));
 
             //verification de la date
+
+
          	if(!checkdate($post['month'], $post['day'],$post['year'] ))
          	{
          		$errors[] = 'La date doit être au bon format';
@@ -70,7 +72,7 @@ class GamesController extends Controller
             if(count($errors) === 0){
 
             	$data=[
-            		'court_id' 		=> ,
+            		'court_id' 		=> $post['id'],
             		'date'			=> ,
             		'starting_time'	=> $post['starting_time'],
             		'finishing_time'=> $post['finishing_time'],

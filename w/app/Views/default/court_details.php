@@ -28,7 +28,7 @@
 	<div class='row'>
 		<h3 id='newMatch'>Proposer un match sur ce terrain</h3>
 	</div>
-	<form method='POST'>
+	<form method='POST' id='proposeMatch'>
 		<div class='row form-group'>
 			<input type="hidden" name="id" value="<?=$court_id?>">
 			<div class='col-sm-6'>
@@ -102,7 +102,7 @@
 		</div> <!-- Fin du row contenant tous les champs -->
 		<div class='row'>
 			<div class='col-sm-12'>
-				<button type='submit' class='btn btn-primary'>Proposer ce match</button>
+				<button type='submit' id='submitProposeMatch' class='btn btn-primary'>Proposer ce match</button>
 			</div>
 		</div>
 	</form>
@@ -350,6 +350,35 @@
 					}); // Fermeture de l'event on clic envoi
 		});
 	}); // Fin de l'appel jQuery
+</script>
+<script>
+	
+	$(document).ready(function(){
+
+		$('#submitProposeMatch').on('click', function(e){
+	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
+
+			e.preventDefault(); 
+
+	
+			$.ajax({
+				url: '<?=$this->url('propose_match');?>', 
+				type: 'post',
+				data: $('#proposeMatch').serialize(),		
+				dataType: 'json', // Les données de retour seront envoyées en JSON
+				success: function(retourJson){
+					if(retourJson.result == true){ 
+						$('#ModifUserAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+					}
+					else if(retourJson.result == false){
+						$('#ModifUserAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+					}
+
+				},
+
+			});
+		});
+	});
 </script>
 
 <?=$this->stop('script');?>

@@ -267,13 +267,13 @@
 		$('#modifUser').on('click', function(e){
 	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
 
-	e.preventDefault(); 
+			e.preventDefault(); 
 
 	
-	$.ajax({
-		url: '<?=$this->url('modif_user');?>', 
-		type: 'post',
-		data: $('#UserModif').serialize(),		
+			$.ajax({
+				url: '<?=$this->url('modif_user');?>', 
+				type: 'post',
+				data: $('#UserModif').serialize(),		
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				success: function(retourJson){
 					if(retourJson.result == true){ 
@@ -286,7 +286,7 @@
 				},
 
 			});
-});
+		});
 	});
 </script>
 

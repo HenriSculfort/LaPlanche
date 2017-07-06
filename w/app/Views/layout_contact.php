@@ -63,7 +63,7 @@
                         </li>
                     <?php else: ?>
                         <li>
-                            <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                            <a href="<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                         </li>
                     <?php endif; ?>
                     <li>
@@ -150,5 +150,51 @@
             </div>
         </div>
     </footer>
+
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="<?= $this->assetUrl('js/jqBootstrapValidation.js') ?>"></script>
+    <script src="<?= $this->assetUrl('js/contact_me.js') ?>"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
+
+    <!-- JS pour slider Bootstrap -->
+    <script src="<?= $this->assetUrl('js/bootstrap-slider.js') ?>"></script>
+    <!-- Theme JavaScript personnalisé -->
+    <script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+
+    <script>
+
+     // Ajax connexion
+     $(document).ready(function(){
+
+        $('#connexion_popup').on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: '<?=$this->url('users_login');?>',
+                type: 'post',
+                dataType: 'json',
+                data: $('form').serialize(),
+                success: function(retourJson){
+                    if(retourJson.result == true){
+                        $('#connexion').modal('hide');
+                        location.reload();   
+                    }
+                    else if(retourJson.result == false){
+                        $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
+                    }
+                }   
+            });
+        });
+    });
+
+</script>
+
 </body>
 </html>
