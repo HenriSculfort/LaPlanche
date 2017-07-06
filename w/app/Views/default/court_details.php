@@ -30,6 +30,7 @@
 	</div>
 	<form method='POST'>
 		<div class='row'>
+		<input type="hidden" name="id" value="<?=$court_id?>">
 			<div class='col-sm-6'>
 				<div class='row'>
 					<div class='col-sm-4'>
@@ -63,15 +64,15 @@
 						<label for='starting_time'>Heure de début</label>
 					</div>
 					<div class='col-sm-8'>
-						<input type='text' placeholder='HH:mm'>
+						<input type='text' name='starting_time' placeholder='HH:mm'>
 					</div>
 				</div>
 				<div class='row'>
 					<div class='col-sm-4'>
-						<label for='starting_time'>Heure de fin</label>
+						<label for='finishing_time'>Heure de fin</label>
 					</div>
 					<div class='col-sm-8'>
-						<input type='text' placeholder='HH:mm'>
+						<input type='text' name="finishing_time" placeholder='HH:mm'>
 					</div>
 				</div>
 				<div class='row'>

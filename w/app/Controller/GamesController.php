@@ -34,13 +34,13 @@ class GamesController extends Controller
             //vérification de l'heure de début
          	if(empty($post['starting_time']))
             {
-                $errors[] = 'Le niveau de l\'équipe doit être choisi';
+                $errors[] = 'L\'heure de départ doit être renseignée';
             }
 
             //vérification de l'heure de fin
-            if(empty($post['level']))
+            if(empty($post['finishing_time']))
             {
-                $errors[] = 'Le niveau de l\'équipe doit être choisi';
+                $errors[] = 'L\'heure de fin doit être renseignée';
             }
 
             //vérification du niveau
@@ -50,9 +50,9 @@ class GamesController extends Controller
             }
 
             //vérification du nombre de joueurs
-            if(is_int($post['number_players'])<2)
+            if(is_int($post['number_players']))
             {
-                $errors[] = 'Le nombre de joueurs doit comporter au moins 2 caractères';
+                $errors[] = 'Le nombre de joueurs doit être un chiffre';
             }
 
             //vérification du nom de l'équipe
@@ -68,6 +68,19 @@ class GamesController extends Controller
             }
 
             if(count($errors) === 0){
+
+            	$data=[
+            		'court_id' 		=> ,
+            		'date'			=> ,
+            		'starting_time'	=> $post['starting_time'],
+            		'finishing_time'=> $post['finishing_time'],
+            		'number_players'=> $post['number_players'],
+            		'team_name'		=> $post['team_name'],
+            		'team_level'	=> ,
+            		'message'		=> $post['message'],
+            		'accepted'		=> 0,
+
+            	];
 
 
 
