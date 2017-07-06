@@ -37,8 +37,7 @@
 			foreach ($listuser as $key => $value) { ?>
 			<tr>
 
-				<form type="GET">
-					<input type="hidden" name="id" value="<?= $value['id']; ?>">
+				<form type="GET" id="user-id-<?= $value['id']; ?>">
 					<td><?php echo $value['username'];?></td>
 					<td><?php echo $value['level'];?></td>
 					<td><?php echo $value['firstname'];?></td>
@@ -47,15 +46,17 @@
 					<td><?php echo $value['address'] . ' '. $value['postal_code'] . ' ' . $value['city'];?></td>
 					<td><?php echo $value['phone'];?></td>
 					<td>
-						<select name="role">
-							<option value="user" <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'user'){ echo 'selected'; }?>>User</option>
-							<option value='admin' <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){ echo 'selected'; }?>>Admin</option>
+						<select name="role" class="select-role" id="role-<?= $value['id']; ?>" >
+							<option value="user" <?php if(isset($value['role']) && $value['role'] == 'user'){ echo 'selected'; }?>>User</option>
+							<option value="admin" <?php if(isset($value['role']) && $value['role'] == 'admin'){ echo 'selected'; }?>>Admin</option>
 						</select>
-						<td> 
-							<input type="checkbox" name="suppr" id="suppr" value="<?= $value['id']; ?>">
-						</td> 
-						
-						<td><button type="submit">Appliquez</button></td>
+					</td>
+					<td>
+						<input type="checkbox" name="suppr" id="suppr-<?= $value['id']; ?>">
+					</td>
+					
+					<td>
+						<button type="submit" data-id="<?=$value['id'];?>">Appliquez</button>
 					</td>
 				</form>
 			</tr>
@@ -65,7 +66,13 @@
 
 </div>
 <?php
-//}
+/*}else{
+?>
+	<script>
+		window.location='<?=$this->url('accueil');?>';
+	</script>
+	<?php
+}*/
 ?>
 <?= $this->stop('main_content'); ?> 
 <?=$this->start('script'); ?>
@@ -76,19 +83,28 @@
 
 		$('button[type="submit"]').on('click', function(e){
 
-		// Empeche l'action par défaut, dans notre cas la soumission du formulaire
+			// Empeche l'action par défaut, dans notre cas la soumission du formulaire
+			e.preventDefault(); 
 
-		e.preventDefault(); 
+			id_user = $(this).data('id'); // Permet de récupérer la valeur de l'id en champ caché
+			currentForm = $('#user-id-'+id_user);
 
-		$.ajax({
+			role_user = $('#role-'+ id_user +' option:selected').val();
+			suppr_user = 'off'; // Valeur par défaut
 
-			url: '<?= $this->url('admin_compteAjax');?>', 
-			type: 'get',
-			data: $('form').serialize(),	
-			dataType: 'json',
-			success: function(resPHP){
+			if($('#suppr-'+ id_user).is(':checked')){ // si on coche la case
+				suppr_user = 'on';
+			}
 
-				if(resPHP.result == true) {
+			$.ajax({
+
+				url: '<?= $this->url('admin_compteAjax');?>', 
+				type: 'GET',
+				data: {id: id_user, role: role_user, suppr: suppr_user },	
+				dataType: 'json',
+				success: function(resPHP){
+
+					if(resPHP.result == true) {
 						//affiche le message de validation dans la div avec l'id message
 						$('#message').html(resPHP.message);
 						//vide les erreurs
@@ -100,7 +116,7 @@
 					}		
 				}
 			});
-	});
+		});
 	});
 </script>
 <?=$this->stop('script'); ?>

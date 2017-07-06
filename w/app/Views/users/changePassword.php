@@ -11,7 +11,7 @@
 
 <?php 
 if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) && !empty($_GET['token'])){
-?>
+	?>
 
 	<article>
 		<div id="errors" style="color:red"></div>
@@ -29,9 +29,13 @@ if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) 
 		<button type="submit">Réinitialiser</button>
 	</form>
 
-<?php 
+	<?php 
 }else{
-	echo 'user_id introuvable';
+	?>
+	<script>
+		window.location='<?=$this->url('accueil');?>';
+	</script>
+	<?php
 } 
 ?>
 
@@ -49,15 +53,15 @@ if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) 
 
 		e.preventDefault(); 
 
-			$.ajax({
+		$.ajax({
 
-				url: '<?= $this->url('users_changePasswordAjax');?>', 
-				type: 'post',
-				data: $('form').serialize(),	
-				dataType: 'json',
-				success: function(resPHP){
+			url: '<?= $this->url('users_changePasswordAjax');?>', 
+			type: 'post',
+			data: $('form').serialize(),	
+			dataType: 'json',
+			success: function(resPHP){
 
-					if(resPHP.result == true) {
+				if(resPHP.result == true) {
 						//affiche le message de validation dans la div avec l'id message
 						$('#message').html(resPHP.message);
 						//vide les erreurs
@@ -72,7 +76,7 @@ if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) 
 					}		
 				}
 			});
-		});
+	});
 	});
 </script>
 <?= $this->stop('script'); ?>

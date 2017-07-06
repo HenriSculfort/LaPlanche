@@ -20,31 +20,38 @@ class AdminGestionCompteController extends Controller
 		$this->show('admin/compte', $param);
 	}
 
+
 	public function gestionCompteAjax()
 	{
-		if(isset($_GET['suppr'])){
-			$UsersModel = new UsersModel();
-			$suppr = $UsersModel->delete($_GET['suppr']);
-
-			$json = [
-			'result' => true,
-			'message' => 'L\'utilisateur a été supprimer'
-			];
-
-		}else{
-
+		if(isset($_GET['suppr']) && $_GET['suppr'] == 'off'){
 			$roleModif = [
-			'role' => $_GET['role']
+				'role' => $_GET['role'],
 			];
 
 			$UsersModel = new UsersModel();
 			$update = $UsersModel->update($roleModif, $_GET['id']);
 
-			$json = [
-			'result' => true,
-			'message' => 'Le rôle de l\'utilisateur a été modifié'
-			];
+			if($update == true){
+
+				$json = [
+					'result' => true,
+					'message' => 'Le rôle de l\'utilisateur a été modifié'
+				];
+			}
+			
 		}
-		$this->showJson('admin/compte');
+		elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'on'){
+			$UsersModel = new UsersModel();
+			$suppr = $UsersModel->delete((int) $_GET['id']);
+
+			if($suppr == true){
+
+				$json = [
+					'result' => true,
+					'message' => 'L\'utilisateur a été supprimer'
+				];
+			}
+		}
+		$this->showJson($json);
 	}
 }
