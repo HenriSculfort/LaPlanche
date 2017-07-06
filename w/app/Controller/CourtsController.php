@@ -85,8 +85,7 @@ class CourtsController extends Controller
                     // S'il ne veut pas de match 
                 } elseif ($get['has_match'] == 'has_no_match') {
                     $has_match = false;
-                    $gamesModel = new CourtsModel;
-                    var_dump($date);
+                    $gamesModel = new CourtsModel;                   
                     $getNoGames = $gamesModel->leftJoinCourtsGames($date);
                     if(empty($getNoGames)) {
                         $searchResult = false;

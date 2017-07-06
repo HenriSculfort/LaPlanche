@@ -259,9 +259,8 @@
 
 <script>
 
-	function getMessages()
+	function getMessages(chatId)
 	{
-		var chatId = $(this).data('id'); // Récupere l'id de l'attribut data-id (correspond à l'id de la game)
 
 		$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
 			$('#showMeChat').addClass('inView').html(resultHtml.html);		
@@ -314,7 +313,7 @@
 							success : function(retourJson) { 
 								
 								if(retourJson.result == true){
-									getMessages();
+									getMessages(retourJson.idChat);
 									// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
 									$('textarea#message').val(''); 
 									// Pour réinitialiser les erreurs si jamais on envoie un message correct 
