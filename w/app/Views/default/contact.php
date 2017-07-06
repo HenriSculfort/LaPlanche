@@ -1,4 +1,4 @@
-<?=$this->layout('layout_contact', ['title' => 'Contact']); ?>
+<?=$this->layout('layout_contact', ['title' => 'Page contact']); ?>
 
 <?php $this->start('header_content');?>
 <div class="standard-header">
@@ -50,7 +50,7 @@
 
 <?=$this->stop('main_content');?>
 
-<?php $this->start('script') ?>
+<?php $this->start('script');?>
 
 <script>
 
@@ -83,5 +83,5 @@ $(document).ready(function(){
 
 </script>
 
-<?php $this->stop('script') ?>
+<?php $this->stop('script');?>
 
