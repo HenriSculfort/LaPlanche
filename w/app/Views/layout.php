@@ -63,7 +63,7 @@
                         </li>
                     <?php else: ?>
                         <li>
-                            <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                            <a href="<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                         </li>
                     <?php endif; ?>
                     <li>
