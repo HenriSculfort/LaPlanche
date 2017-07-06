@@ -23,36 +23,36 @@
 	<div class='container-fluid'>
 
 		<div class='row form-group hidden'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-2 col-md-4"'>
 				<label for='id'>id</label>
 			</div>
-			<div class='col-md-9'>
-				<input type='id' name='id' value="<?= $_SESSION['user']['id']?>">
+			<div class='col-md-4'>
+				<input type='id' class='form-control' name='id' value="<?= $_SESSION['user']['id']?>">
 			</div> 
 		</div>
 		<div class="row form-group">
-			<label for="username" class="col-md-3 control-label">Pseudo *</label>
-			<div class="col-md-9">
-				<input type="text" name="username" id="username" value="<?= $_SESSION['user']['username']?>">
+			<label for="username" class="col-md-offset-2 col-md-4" control-label">Pseudo *</label>
+			<div class="col-md-4">
+				<input type="text" class='form-control' name="username" id="username" value="<?= $_SESSION['user']['username']?>">
 				<div id="errors-pseudo" class="errorsForms"></div><!-- Affiche l'erreur du pseudo-->
 				<div id="errors-username_exist"></div><!-- Affiche l'erreur si le mail existe déjà en base-->
 			</div>
 		</div>
 		<div class='row form-group'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-2 col-md-4'>
 				<label for='email'>Email</label>
 			</div>
-			<div class='col-md-9'>
-				<input type='email' name='email' value="<?= $_SESSION['user']['email']?>">
+			<div class='col-md-4'>
+				<input type='email' class='form-control' name='email' value="<?= $_SESSION['user']['email']?>">
 			</div> 
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-2 col-md-4'>
 				<label for='level'>Niveau</label>
 			</div>
-			<div class='col-md-9'>
-				<select name='level'>
+			<div class='col-md-4'>
+				<select class='form-control' name='level'>
 					<!-- Le php sert à sélectionner le bon niveau pour l'utilisateur s'il l'a déjà renseigné -->
 					<option value="0" <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 0){ echo 'selected'; }?>>-- Sélectionnez votre niveau --</option>
 					<option value='1' <?php if(isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 1){ echo 'selected'; }?>>Débutant, spécialiste du air ball</option>
@@ -64,52 +64,52 @@
 			</div>
 		</div>
 		<div class='row form-group'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-2 col-md-4'>
 				<label for='address'>Adresse</label>
 			</div>
-			<div class='col-md-9'>
-				<textarea type='text' name='address'><?= $_SESSION['user']['address']?></textarea>
+			<div class='col-md-4'>
+				<textarea type='text' class='form-control' name='address'><?= $_SESSION['user']['address']?></textarea>
 			</div>
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-2 col-md-4'>
 				<label for='postal_code'>Code Postal</label>
 			</div>
-			<div class='col-md-9'>
-				<input type='text' name='postal_code' value="<?= $_SESSION['user']['postal_code'];?>">
+			<div class='col-md-4'>
+				<input type='text' class='form-control' name='postal_code' value="<?= $_SESSION['user']['postal_code'];?>">
 				
 			</div>
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-2 col-md-4'>
 				<label for='city'>Ville</label>
 			</div>
-			<div class='col-md-9'>
-				<input type='text' name='city' value="<?= $_SESSION['user']['city']?>">
+			<div class='col-md-4'>
+				<input type='text' class='form-control' name='city' value="<?= $_SESSION['user']['city']?>">
 			</div>
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-3'>
+			<div class='col-md-offset-2 col-md-4'>
 				<label for='phone'>Téléphone (facultatif)</label>
 			</div>
-			<div class='col-md-9'>
-				<input type='text' name='phone' value="<?php if(isset($_SESSION['user']['phone']) && $_SESSION['user']['phone'] != 0){ echo $_SESSION['user']['phone'];}?>">
+			<div class='col-md-4'>
+				<input type='text' class='form-control' name='phone' value="<?php if(isset($_SESSION['user']['phone']) && $_SESSION['user']['phone'] != 0){ echo $_SESSION['user']['phone'];}?>">
 			</div>
 		</div>
 		<div class="row form-group" >
-			<label for="password" class="col-md-3">Modifier votre mot de passe *</label>
-			<div class="col-md-9">
-				<input type="password" name="password" id="password">
+			<label for="password" class="col-md-offset-2 col-md-4">Modifier votre mot de passe *</label>
+			<div class="col-md-4">
+				<input type="password" class='form-control' name="password" id="password">
 				<div id="errors-mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur du mot de passe-->
 			</div>
 		</div>
 		<div class="row form-group" >
-			<label for="checkPassword" class="col-md-3 ">Répéter le mot de passe *</label>
-			<div class="col-md-9">
-				<input type="password" name="checkPassword" id="checkPassword">
+			<label for="checkPassword" class="col-md-offset-2 col-md-4" ">Répéter le mot de passe *</label>
+			<div class="col-md-4">
+				<input type="password" class='form-control' name="checkPassword" id="checkPassword">
 				<div id="errors-verif_mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur de verif du mot de passe-->
 			</div>
 		</div>
@@ -136,7 +136,7 @@
 					<label for='name'>Nom</label>
 				</div>
 				<div class='col-md-8'>
-					<input type='text' name='name' placeholder="Un nom pour ce terrain">
+					<input type='text' class='form-control' name='name' placeholder="Un nom pour ce terrain">
 				</div>
 			</div>
 
@@ -145,7 +145,7 @@
 					<label for='description'>Description</label>
 				</div>
 				<div class='col-md-8'>
-					<textarea type='text' name='description' placeholder='Une description du terrain et  des infrastructures disponibles' rows='10'></textarea>
+					<textarea type='text' class='form-control' name='description' placeholder='Une description du terrain et  des infrastructures disponibles' rows='10'></textarea>
 				</div>
 			</div>
 
@@ -154,7 +154,7 @@
 					<label for='court_state'>Etat du terrain</label>
 				</div>
 				<div class='col-md-8'>
-					<select name='level'>
+					<select class='form-control' name='level'>
 						<option value='' selected >Choisissez l'état</option>
 						<option value='very_bad'>Très mauvais état !</option>
 						<option value='bad'>Mauvais état </option>
@@ -170,7 +170,7 @@
 					<label for='address'>Adresse</label>
 				</div>
 				<div class='col-md-8'>
-					<textarea type='text' name='address' placeholder="Adresse du terrain"></textarea>
+					<textarea type='text' class='form-control' name='address' placeholder="Adresse du terrain"></textarea>
 				</div>
 			</div>
 
@@ -179,7 +179,7 @@
 					<label for='postal_code'>Code Postal</label>
 				</div>
 				<div class='col-md-8'>
-					<input type='text' name='postal_code' placeholder="CP">
+					<input type='text' class='form-control' name='postal_code' placeholder="CP">
 				</div>
 			</div>
 
@@ -188,7 +188,7 @@
 					<label for='city'>Ville</label>
 				</div>
 				<div class='col-md-8'>
-					<input type='text' name='city' placeholder="Ville">
+					<input type='text' class='form-control' name='city' placeholder="Ville">
 				</div>
 			</div>
 
@@ -196,7 +196,9 @@
 				<div class='col-md-4'>
 					<label for='picture'>Photo</label>
 				</div>
-				<input type="file" name="picture" accept="image/*" class="col-md-8">
+				<div class="col-md-8">
+					<input type="file" class='form-control' name="picture" accept="image/*">
+				</div>
 			</div>
 
 			<div class='row form-group'>
@@ -214,7 +216,7 @@
 					<label for='opening_hours'>Horaires d'ouverture (facultatif)</label>
 				</div>
 				<div class='col-md-8'>
-					<input type='text' name='opening_hours' placeholder="Horaires d'ouverture">
+					<input type='text' class='form-control' name='opening_hours' placeholder="Horaires d'ouverture">
 				</div>
 			</div>
 
@@ -223,7 +225,7 @@
 					<label for='parking'>Parking (facultatif)</label>
 				</div>
 				<div class='col-md-8'>
-					<input type='radio' name='parking' value='yes'> Oui -  
+					<input type='radio' name='parking' value='yes'> Oui   
 					<input type='radio' name='parking' value='no'> Non
 				</div>
 			</div>
