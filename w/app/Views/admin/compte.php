@@ -12,6 +12,11 @@
 <?php
 //if($_SESSION['role'] = 'admin'){
 ?>
+<article>
+	<div id="errors" style="color:red"></div>
+	<div id="message" style="color:green"></div>
+</article>
+
 <div>
 	<table class="table table-striped">
 		<thead>
@@ -24,6 +29,7 @@
 				<th>adresse</th>
 				<th>Téléphone</th>
 				<th>Statut</th>
+				<th>Supprimer</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,21 +37,70 @@
 			foreach ($listuser as $key => $value) { ?>
 			<tr>
 
-				<td><?php echo $value['username'];?></td>
-				<td><?php echo $value['level'];?></td>
-				<td><?php echo $value['firstname'];?></td>
-				<td><?php echo $value['lastname'];?></td>
-				<td><?php echo $value['email'];?></td>
-				<td><?php echo $value['address'] . ' '. $value['postal_code'] . ' ' . $value['city'];?></td>
-				<td><?php echo $value['phone'];?></td>
-				<td><?php echo $value['role'];?></td>
+				<form type="GET">
+					<input type="hidden" name="id" value="<?= $value['id']; ?>">
+					<td><?php echo $value['username'];?></td>
+					<td><?php echo $value['level'];?></td>
+					<td><?php echo $value['firstname'];?></td>
+					<td><?php echo $value['lastname'];?></td>
+					<td><?php echo $value['email'];?></td>
+					<td><?php echo $value['address'] . ' '. $value['postal_code'] . ' ' . $value['city'];?></td>
+					<td><?php echo $value['phone'];?></td>
+					<td>
+						<select name="role">
+							<option value="user" <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'user'){ echo 'selected'; }?>>User</option>
+							<option value='admin' <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){ echo 'selected'; }?>>Admin</option>
+						</select>
+						<td> 
+							<input type="checkbox" name="suppr" id="suppr" value="<?= $value['id']; ?>">
+						</td> 
+						
+						<td><button type="submit">Appliquez</button></td>
+					</td>
+				</form>
 			</tr>
 			<?php }	?>
 		</tbody>
 	</table>
+
 </div>
 <?php
 //}
 ?>
+<?= $this->stop('main_content'); ?> 
+<?=$this->start('script'); ?>
 
-<?= $this->stop('main_content'); ?>
+<script>
+
+	$(document).ready(function(){
+
+		$('button[type="submit"]').on('click', function(e){
+
+		// Empeche l'action par défaut, dans notre cas la soumission du formulaire
+
+		e.preventDefault(); 
+
+		$.ajax({
+
+			url: '<?= $this->url('admin_compteAjax');?>', 
+			type: 'get',
+			data: $('form').serialize(),	
+			dataType: 'json',
+			success: function(resPHP){
+
+				if(resPHP.result == true) {
+						//affiche le message de validation dans la div avec l'id message
+						$('#message').html(resPHP.message);
+						//vide les erreurs
+						$('#errors').html('');//on vide les messages d'erreures
+						//vide les champs du nouveau pass
+					}
+					else if(resPHP.result == false) { 
+						$('#errors').html(resPHP.errors);
+					}		
+				}
+			});
+	});
+	});
+</script>
+<?=$this->stop('script'); ?>
