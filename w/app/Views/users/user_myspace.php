@@ -32,7 +32,7 @@
 		</div>
 		<div class="row form-group">
 			<div class='col-md-offset-1 col-md-4 align-right'>
-				<label for="username" class="align-right" control-label">Pseudo *</label>
+				<label for="username" class="align-right control-label">Pseudo *</label>
 			</div>
 			<div class='col-md-4'>
 				<input type="text" class='form-control' name="username" id="username" value="<?= $_SESSION['user']['username']?>">
