@@ -29,58 +29,39 @@
 		<h3 id='newMatch'>Proposer un match sur ce terrain</h3>
 	</div>
 	<form method='POST'>
-		<div class='row'>
+		<div class='row form-group'>
 			<input type="hidden" name="id" value="<?=$court_id?>">
 			<div class='col-sm-6'>
-				<div class='row'>
-					<div class='col-sm-4'>
-						<label for='date'>Date</label>
+				<div class='row form-group'>
+					<div class='col-sm-6'>
+						<label for="datepicker"> Date </label>
 					</div>
-					<div class='col-sm-8'>
-						<select id="day" name="day">
-							<option value="" selected disabled>Jour</option>
-							<?php for($d=1;$d<=31;$d++):?>
-								<option value="<?=($d < 10) ? '0'.$d : $d;?>"><?=($d < 10) ? '0'.$d : $d;?></option>
-							<?php endfor; ?>
-						</select>
-
-						<select id="month" name="month">
-							<option value="" selected disabled>Mois</option>
-							<?php for($m=1;$m<=12;$m++):?>
-								<option value="<?=($m < 10) ? '0'.$m : $m;?>"><?=($m < 10) ? '0'.$m : $m;?></option>
-							<?php endfor; ?>
-						</select>
-
-						<select id="year" name="year">
-							<option value="" selected disabled>Année</option>
-							<?php for($y=date('Y'); $y <= 2100 ;$y++):?>
-								<option value="<?=$y;?>"><?=$y;?></option>
-							<?php endfor; ?>
-						</select>
+					<div class='col-sm-6'>
+						<input class="form-control" type="text" id="datepicker" name="date">
 					</div>
 				</div>
-				<div class='row'>
-					<div class='col-sm-4'>
-						<label for='starting_time'>Heure de début</label>
-					</div>
-					<div class='col-sm-8'>
-						<input type='text' name='starting_time' placeholder='HH:mm'>
-					</div>
+				<div class='row form-group'>
+						<div class='col-sm-6'>
+							<label for='starting_time'>Heure de début</label>
+						</div>
+						<div class='col-sm-6'>
+							<input type='text' class='form-control' name='starting_time' placeholder='HH:mm'>
+						</div>
 				</div>
-				<div class='row'>
-					<div class='col-sm-4'>
+				<div class='row form-group'>
+					<div class='col-sm-6'>
 						<label for='finishing_time'>Heure de fin</label>
 					</div>
-					<div class='col-sm-8'>
-						<input type='text' name="finishing_time" placeholder='HH:mm'>
+					<div class='col-sm-6'>
+						<input type='text' class='form-control' name="finishing_time" placeholder='HH:mm'>
 					</div>
 				</div>
-				<div class='row'>
-					<div class='col-sm-4'>
+				<div class='row form-group'>
+					<div class='col-sm-6'>
 						<label for='level'>Niveau</label>
 					</div>
-					<div class='col-sm-8'>
-						<select name='level'>
+					<div class='col-sm-6'>
+						<select name='level' class='form-control'>
 							<option value='1'>Débutant</option>
 							<option value='2'>Novice</option>
 							<option value='3'>Intermédiaire</option>
@@ -90,31 +71,31 @@
 					</div>
 				</div>
 
-				<div class='row'>
-					<div class='col-sm-4'>
+				<div class='row form-group'>
+					<div class='col-sm-6'>
 						<label for='number_players'>Nombre de joueurs</label>
 					</div>
-					<div class='col-sm-8'>
-						<input type='text' name='number_players' placeholder="ex: 3">
+					<div class='col-sm-6'>
+						<input type='text' class='form-control' name='number_players' placeholder="ex: 3">
 					</div>
 				</div>
-				<div class='row'>
-					<div class='col-sm-4'>
+				<div class='row form-group'>
+					<div class='col-sm-6'>
 						<label for='team_name'>Nom de votre équipe</label>
 					</div>
-					<div class='col-sm-8'>
-						<input type='text' name='team_name' placeholder="nom de l'équipe (facultatif)">
+					<div class='col-sm-6'>
+						<input type='text' class='form-control' name='team_name' placeholder="nom de l'équipe (facultatif)">
 					</div>
 				</div>
 			</div>
 			<!-- Colonne droite -->
 			<div class='col-sm-6'>
-				<div class='row'>
+				<div class='row form-group'>
 					<div class='col-sm-2'>
 						<label for='message'>Message</label>
 					</div>
 					<div class='col-sm-10'>
-						<textarea  rows="8" name='message' placeholder="Ecrivez votre message ici (et restez courtois :D )"></textarea>
+						<textarea  rows="9" class='form-control' name='message' placeholder="Ecrivez votre message ici (et restez courtois :D )"></textarea>
 					</div>
 				</div>
 			</div>
@@ -258,6 +239,14 @@
 <?=$this->stop('main_content');?>
 
 <?=$this->start('script');?>
+<!-- script du datepicker -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$( function() {
+		$( "#datepicker" ).datepicker();
+	} );
+</script>
 
 <script>
 
@@ -271,7 +260,7 @@
 				$('#chat').addClass('hidden');
 			}
 		}
-	
+
 		function getMessages(chatId)
 		{
 
@@ -294,12 +283,12 @@
 				
 				$(document).mouseup(function(e) 
 				{
-				    var chat = $('#chat');
+					var chat = $('#chat');
 
 				    // if the target of the click isn't the container nor a descendant of the container
 				    if (!chat.is(e.target) && chat.has(e.target).length === 0) 
 				    {
-				        chat.removeClass('show').addClass('hidden');   
+				    	chat.removeClass('show').addClass('hidden');   
 				    }
 				});
 
@@ -359,10 +348,34 @@
 						}); // Fermeture du AJAX
 
 					}); // Fermeture de l'event on clic envoi
-
 		});
 	}); // Fin de l'appel jQuery
 </script>
 
 <?=$this->stop('script');?>
 
+<!-- <div class='col-sm-4'>
+						<label for='date'>Date</label>
+					</div>
+					<div class='col-sm-8'>
+						<select id="day" name="day">
+							<option value="" selected disabled>Jour</option>
+							<?php for($d=1;$d<=31;$d++):?>
+								<option value="<?=($d < 10) ? '0'.$d : $d;?>"><?=($d < 10) ? '0'.$d : $d;?></option>
+							<?php endfor; ?>
+						</select>
+					
+						<select id="month" name="month">
+							<option value="" selected disabled>Mois</option>
+							<?php for($m=1;$m<=12;$m++):?>
+								<option value="<?=($m < 10) ? '0'.$m : $m;?>"><?=($m < 10) ? '0'.$m : $m;?></option>
+							<?php endfor; ?>
+						</select>
+					
+						<select id="year" name="year">
+							<option value="" selected disabled>Année</option>
+							<?php for($y=date('Y'); $y <= 2100 ;$y++):?>
+								<option value="<?=$y;?>"><?=$y;?></option>
+							<?php endfor; ?>
+						</select>
+					</div> -->
