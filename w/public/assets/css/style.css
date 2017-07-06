@@ -33,6 +33,7 @@ a {
     color: #000;
 }
 
+
 /********************** STYLES DE POLICE ET TAILLES DE TEXTE *******************/
 
 a:hover {
@@ -65,6 +66,7 @@ h3 {
     font-weight: 400;
 }
 
+
 /****************************** BOUTON RETOUR TOP *******************************/
 
 #btnPageTop {
@@ -84,6 +86,7 @@ h3 {
 #btnPageTop a {
     padding: 1.2em;
 }
+
 
 /*********************************** HEADER INDEX *******************************/
 
@@ -110,6 +113,7 @@ h3 {
     }
 }
 
+
 /************************************* HEADER GENERAL *****************************/
 
 .standard-header {
@@ -120,6 +124,7 @@ h3 {
 header.intro-header {
     margin-bottom: 0;
 }
+
 
 /************************************* HEADER COMMUN *****************************/
 
@@ -137,8 +142,10 @@ header.intro-header {
     }
 }
 
+
 /************************************* NAVBAR *********************************/
-#bs-example-navbar-collapse-1 ul li a{
+
+#bs-example-navbar-collapse-1 ul li a {
     font-weight: 700;
 }
 
@@ -148,7 +155,7 @@ header.intro-header {
 
 @media only screen and (min-width:768px) {
     .navbar-default {
-        background: rgba(0, 0, 0, 0.2);
+        background: #f0ad4e;
         border-color: transparent;
     }
 }
@@ -178,6 +185,7 @@ button {
     text-transform: uppercase;
 }
 
+
 /******************************* PAGE TERRAIN *********************************/
 
 #distance .slider-selection {
@@ -187,6 +195,22 @@ button {
 #searchBtn {
     margin-left: 10px;
 }
+
+a.lien-info-terrain {
+    font-size: 1.4rem;
+    color: #ea931e;
+}
+
+a.lien-info-terrain:hover {
+    color: #5a64db;
+}
+
+p.desciption-terrain{
+    margin-bottom: 20px;
+}
+
+
+
 
 /******************************* DETAIL TERRAIN *********************************/
 
