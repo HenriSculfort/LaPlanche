@@ -343,6 +343,12 @@ p.desciption-terrain {
     margin-top: 150px;
 }
 
+/******************************* PAGE MOT DE PASSE OUBLIE *********************************/
+
+.interrogation{
+    margin-top: 50px;
+}
+
 /****************************** BOUTON RETOUR TOP *******************************/
 
 #btnPageTop {
