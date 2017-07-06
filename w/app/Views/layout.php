@@ -20,7 +20,6 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/clean-blog.min.css') ?>">
 
-    
     <!-- Styles CSS personnalisés -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
@@ -28,6 +27,8 @@
     <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
 </head>
 
 <body id='pageTop'>
@@ -115,7 +116,6 @@
             <?= $this->section('main_content') ?>
         </div>
     </div>
-
     <hr>
 
     <!-- Footer -->
@@ -124,53 +124,53 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
-                     <li>
-                        <a href="<?= $this->url('accueil') ?>">Accueil</a>
-                    </li>
-                    <li>
-                        <a href="<?= $this->url('courts') ?>">Terrains</a>
-                    </li>
-                    <?php if(!empty($w_user)): ?>
                         <li>
-                            <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                            <a href="<?= $this->url('accueil') ?>">Accueil</a>
                         </li>
                         <li>
-                            <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
+                            <a href="<?= $this->url('courts') ?>">Terrains</a>
                         </li>
-                    <?php else: ?>
+                        <?php if(!empty($w_user)): ?>
+                            <li>
+                                <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                            </li>
+                            <li>
+                                <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
+                            </li>
+                        <?php else: ?>
+                            <li>
+                                <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                            </li>
+                        <?php endif; ?>
                         <li>
-                            <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                            <a href="<?= $this->url('contact') ?>">Contact</a>
                         </li>
-                    <?php endif; ?>
-                    <li>
-                        <a href="<?= $this->url('contact') ?>">Contact</a>
-                    </li>
-                </ul>
-                <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<!-- jQuery -->
-<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 
-<!-- Contact Form JavaScript -->
-<script src="<?= $this->assetUrl('js/jqBootstrapValidation.js') ?>"></script>
-<script src="<?= $this->assetUrl('js/contact_me.js') ?>"></script>
+    <!-- Contact Form JavaScript -->
+    <script src="<?= $this->assetUrl('js/jqBootstrapValidation.js') ?>"></script>
+    <script src="<?= $this->assetUrl('js/contact_me.js') ?>"></script>
 
-<!-- Theme JavaScript -->
-<script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
+    <!-- Theme JavaScript -->
+    <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
 
-<!-- JS pour slider Bootstrap -->
-<script src="<?= $this->assetUrl('js/bootstrap-slider.js') ?>"></script>
-<!-- Theme JavaScript personnalisé -->
-<script src="<?= $this->assetUrl('js/script.js') ?>"></script>
+    <!-- JS pour slider Bootstrap -->
+    <script src="<?= $this->assetUrl('js/bootstrap-slider.js') ?>"></script>
+    <!-- Theme JavaScript personnalisé -->
+    <script src="<?= $this->assetUrl('js/script.js') ?>"></script>
 
-<script>
+    <script>
 
      // Ajax connexion
      $(document).ready(function(){

@@ -33,7 +33,6 @@ a {
     color: #000;
 }
 
-
 /********************** STYLES DE POLICE ET TAILLES DE TEXTE *******************/
 
 a:hover {
@@ -66,8 +65,8 @@ h3 {
     font-weight: 400;
 }
 
-
 /************************************* NAVBAR *********************************/
+
 .navbar{
     margin: 0;
 }
@@ -110,14 +109,12 @@ h3 {
 
 .standard-header {
     text-align: center;
-    padding: 40px 0 60px 0;
+    padding: 40px 0 40px 0;
 }
 
 header.intro-header {
     margin-bottom: 0;
 }
-
-/************************************* HEADER COMMUN *****************************/
 
 .legend-header {
     font-size: 2rem;
@@ -133,10 +130,21 @@ header.intro-header {
     }
 }
 
-/*********************************** HEADER INDEX *******************************/
+/************************************* FOOTER GENERAL *****************************/
+
+footer{
+    border-color: transparent;
+    background: rgba(232, 167, 76, 0.87);
+    padding: 20px;
+}
+
+/******************************* PAGE ACCUEIL *********************************/
+
+/********** HEADER *************/
 
 .index-header {
     padding: 40px 0 80px 0;
+    height: 100vh;
 }
 
 .index-header h1 {
@@ -162,12 +170,14 @@ p.legend-header-index {
         border-color: transparent;
     }
     .index-header {
-        margin: 50px 0 100px 0;
+        
         padding: 0;
     }
     .index-header h1 {
         font-size: 9rem;
         text-align: center;
+        margin: 0;
+        padding-top: 130px;
     }
     p.legend-header-index {
         font-size: 3rem;
@@ -177,8 +187,7 @@ p.legend-header-index {
         margin-top: 60px;
     }
 }
-
-/******************************* PAGE ACCUEIL *********************************/
+ /******* FIN HEADER *********/
 
 input.searchWhere {
     margin: 0px 10px 20px 0;
@@ -235,6 +244,12 @@ p.desciption-terrain {
     margin-bottom: 20px;
 }
 
+.moteur-recherche{
+    margin-bottom: 60px;
+    padding: 30px 10px;
+    border: 1px solid #c4b9b9;
+    border-radius:20px;
+}
 
 /******************************* DETAIL TERRAIN *********************************/
 
