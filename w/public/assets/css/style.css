@@ -224,6 +224,24 @@ button {
 
 /********** NOS SERVICES *************/
 
+h2.section-services{
+    font-size: 3.5rem;
+    color: rgba(232, 147, 27, 0.87);
+    padding: 40px;
+}
+
+h4.service-heading{
+    padding-top: 30px;
+    font-size: 2.3rem;
+}
+
+.detail-services{
+    padding-bottom: 40px;
+}
+
+.rotate{
+    transform: rotate(90deg);
+}
 
 
 /******************************* PAGE TERRAIN *********************************/

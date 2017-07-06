@@ -26,33 +26,33 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">La planche vous permet de :</h2>
+                <h2 class="section-services">La planche vous permet de :</h2>
             </div>
         </div>
-        <div class="row text-center">
+        <div class="detail-services row text-center">
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
-                   
-                </span>
-                <h4 class="service-heading">Proposer un match</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    
-                </span>
-                <h4 class="service-heading">Participer à un match</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    
-                </span>
-                <h4 class="service-heading">Ajouter un terrain</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
+                 <img src="<?= $this->assetUrl('img/basketball.png')?>" alt="ballon de basket">
+             </span>
+             <h4 class="service-heading">Proposer un match</h4>
+             <p class="text-muted">En consultant le détail des terrains, il sera très simple pour vous de prévoir une rencontre. Il suffira de planifier la date à partir du terrain sélectionné.</p>
+         </div>
+         <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+                <img src="<?= $this->assetUrl('img/trophy.png')?>" alt="coupe">
+            </span>
+            <h4 class="service-heading">Participer à un match</h4>
+            <p class="text-muted"></p>
+        </div>
+        <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+            <img class="rotate" src="<?= $this->assetUrl('img/basketball-court.png')?>" alt="terrain de basket">
+            </span>
+            <h4 class="service-heading">Ajouter un terrain</h4>
+            <p class="text-muted">Nous </p>
         </div>
     </div>
+</div>
 </section>
 
 <?php $this->stop('main_content') ?>
