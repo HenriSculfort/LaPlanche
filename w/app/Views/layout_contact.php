@@ -116,7 +116,7 @@
             <?= $this->section('main_content') ?>
         </div>
     </div>
-    <hr>
+ 
 
     <!-- Footer -->
     <footer class="footer-contact">
