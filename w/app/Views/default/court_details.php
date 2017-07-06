@@ -6,7 +6,7 @@
 </div>
 <div class='container'>
 	<div class='row'>
-		<img src="<?=$this->assetUrl('img/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
+		<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
 	</div>
 	
 
