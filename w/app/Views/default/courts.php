@@ -70,84 +70,41 @@ if (isset($showErrors) && !empty($showErrors)) { ?>
 elseif(isset($searchResults) && $searchResults == true) {
 
 	if(isset($getGames)) { 
-
-		foreach($getGames as $court) {?>
-			<div class='container'>
-				<div class='row'>
-					<div class='col-md-2'>
-						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
-					</div>
-					<div class='col-md-10 well'>
-						<h4><?= $court['name'];?></h4>
-						<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
-						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
-					</div>
-				</div>
-			</div>	
-		<?php }	
-	// S'il y a une date mais pas de match 
-	} elseif(isset($getNoGames)) { 
-
-		foreach($getNoGames as $court) {?>
-			<div class='container'>
-				<div class='row'>
-					<div class='col-md-2'>
-						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
-					</div>
-					<div class='col-md-10 well'>
-						<h4><?= $court['name'];?></h4>
-						<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
-						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
-					</div>
-				</div>
-			</div>	
-		<?php }	
-		// S'il n'y a pas de match ni de date
-		} else { 
-			foreach($search as $court) {?>
-				<div class='container'>
-					<div class='row'>
-						<div class='col-md-2'>
-							<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
-						</div>
-						<div class='col-md-10 well'>
-							<h4><?= $court['name'];?></h4>
-							<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
-							<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
-						</div>
-					</div>
-				</div>	
-			<?php }	
-		}
-
-// S'il n'y a pas de résultats, ça renvoie le message d'erreur ci-dessous
-
-} elseif(isset($searchResults) && $searchResults == false) { ?>
-	<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas via votre espace personnel ! </div> <?php
+		$courtResult = $getGames;
+	} 
+	elseif (isset($getNoGames)) { 
+		$courtResult = $getNoGames;
+	}
+	elseif (isset($search)) { 
+		$courtResult = $search;
+	}
+}
+elseif (isset($searchResults) && $searchResults == false) { ?>
+	<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas à le faire via votre espace personnel ! </div> <?php
+}
+elseif (isset($findAll)) { 
+	$courtResult = $findAll;
 }
 
-// S'il n'y a pas eu de recherche effectuée, on affiche la liste.
-else { 
-	if(isset($findAll)) { 
-		foreach($findAll as $court) {?>
-			<div class='container'>
-				<div class='row'>
-					<div class='col-md-2'>
-						<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
-					</div>
-					<div class='col-md-10 well'>
-						<h4><?= $court['name'];?></h4>
-						<p class="desciption-terrain"><?= nl2br($court['description']);?></p>
-						<!-- <p><?php if($court['parking'] == '1') { echo'<i class="fa fa-car" aria-hidden="true">';  }?></p>-->
-						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => $court['id']])?>'>Plus d'informations et liste des matchs</a>
-					</div>
+// Le isset est nécessaire pour le cas où searchResults est false.
+if(isset($courtResult)) {
+	// Affichage des résultats (en cas de recherche)
+	foreach($courtResult as $court) {?>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-md-2'>
+					<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
 				</div>
-			</div>	
-		<?php } // Fin foreach	
-} // Fin isset findAll
-
-} // Fin du else pas de recherche 
-?>
+				<div class='col-md-10 well'>
+					<h4><?= $court['name'];?></h4>
+					<p class="description-terrain"><?= nl2br($court['description']);?></p>
+					<!-- <p><?php if($court['parking'] == '1') { echo'<i class="fa fa-car" aria-hidden="true">';  }?></p>-->
+					<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => isset($getGames) ? $court['court_id'] : $court['id']])?>'>Plus d'informations et liste des matchs</a>
+				</div>
+			</div>
+		</div>	
+	<?php } // Fin foreach	
+} // Fin du isset courtResult ?>
 
 <?=$this->stop('main_content');?>
 
