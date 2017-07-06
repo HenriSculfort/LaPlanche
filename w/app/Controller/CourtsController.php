@@ -127,6 +127,10 @@ class CourtsController extends Controller
 
         $post = [];
         $errors = []; 
+        print_r($_POST);
+        print_r($_FILES);
+      
+
         if(!empty($_POST)){
 
             $post = array_map('trim', array_map('strip_tags', $_POST));
@@ -208,7 +212,7 @@ class CourtsController extends Controller
 
                         $picture = md5(uniqid(rand(), true));
 
-                        move_uploaded_file($_FILES['name']['tmp_name'], $this->assetUrl('img/uploads/'.$picture.'.'.$extension) );
+                        move_uploaded_file($_FILES['name']['tmp_name'], '../public/assets/img/uploads/'.$picture.'.'.$extension);
 
                     }
                     else{//problème:

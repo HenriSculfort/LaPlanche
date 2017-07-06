@@ -129,7 +129,7 @@
 	<!-- Colonne du formulaire -->
 	<div class='col-md-8'>
 
-		<form method='post' id="addTerrain" class='container-fluid' enctype="multipart/form-data" action='#'>
+		<form method="post" id="addTerrain" class="container-fluid" enctype="multipart/form-data" action="#">
 
 			<div class='row form-group'>
 				<div class='col-md-4'>
@@ -196,7 +196,7 @@
 				<div class='col-md-4'>
 					<label for='picture'>Photo</label>
 				</div>
-				<input type='file' name='picture' class='col-md-8'>
+				<input type="file" name="picture" class="col-md-8">
 			</div>
 
 			<div class='row form-group'>
