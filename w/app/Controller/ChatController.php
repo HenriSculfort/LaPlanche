@@ -16,7 +16,7 @@ class ChatController extends Controller
 
 	public function addMessageAjax() { 
 
-		
+
 		$json = [];
 		$errors = [];
 		$current_user = $this->getUser();
@@ -88,12 +88,12 @@ class ChatController extends Controller
 		$html = '<ul>';
 		foreach($allMessages as $msg){
 			$html.='<li><strong>'.$msg['username'].'</strong> ('.$msg['date_publi'].') : '.$msg['message'].'</li>';
-			$gameId = $msg['game_id'];
 		}
 		$html.= '</ul>';
 
-		$data = ['html' => $html,
-			'gameId' => $gameId,
+		$data = [
+            'html' => $html,
+			'gameId' => (int) $idChat,
 		];
 		$this->showJson($data);
 	}

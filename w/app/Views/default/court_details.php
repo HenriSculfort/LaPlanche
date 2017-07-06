@@ -243,6 +243,7 @@
 			<div class='row'>
 				<div class='col-md-12'>
 					<h5>Nouveau message</h5>
+					<input type="hidden" id="idChatRoom" name="idChat" value="">
 					<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
 					<br>
 					<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
@@ -288,8 +289,8 @@
 
 				$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
 					$('div#showMeChat').addClass('inView').html(resultHtml.html);
-					$('div#chatTitle').html('Chat du match' + resultHtml.gameId);
-					$('#addMessage').attr('data-game-id', resultHtml.gameId);
+					$('div#chatTitle').html('<h4>Chat du match' + resultHtml.gameId + '</h4>');
+					$('#idChatRoom').val(resultHtml.gameId);
 
 				
 				}); 
@@ -303,14 +304,15 @@
 						envoi.preventDefault();
 
 						var $message = $('textarea#message').val(); // Val récupère la valeur du champ. Si j'écris qqc entre les parenthèses ça m'écrira le truc dans la balise. 
-						var $game_id = $(this).data('game-id');
+						var $game_id = $('#idChatRoom').val(); 
+						console.log($game_id);
 
 						$.ajax({ 
 							url:'<?= $this->url('chat_add');?>',
 							type: 'GET',
 							data : {
-							message : $message,
-							idChat : $game_id,
+                                message : $message,
+                                idChat : $game_id,
 							},
 							dataType : 'json',
 							success : function(retourJson) { 
