@@ -80,7 +80,7 @@ h3 {
     color: #262626;
 }
 .navbar-default .navbar-nav>li>a:hover{
-    color: #fff;
+    color: #d9d9d9;
 }
 
 .navbar-default .navbar-brand {
@@ -144,7 +144,6 @@ footer{
 
 .index-header {
     padding: 40px 0 80px 0;
-    height: 100vh;
 }
 
 .index-header h1 {
@@ -157,7 +156,8 @@ p.legend-header-index {
     font-size: 2rem;
     text-align: center;
     border-radius: 7px;
-    color: #4a4a4a;
+    color:#fff;
+    background: rgba(0,0,0,0.2);
 }
 
 .button-search-index {
@@ -170,25 +170,27 @@ p.legend-header-index {
         border-color: transparent;
     }
     .index-header {
-        
-        padding: 0;
+        padding: 0 0 250px 0;
     }
+    /*
     .index-header h1 {
         font-size: 9rem;
         text-align: center;
         margin: 0;
-        padding-top: 130px;
+        padding-top: 50px;
     }
+    */
     p.legend-header-index {
-        font-size: 3rem;
-        margin: 20px 0;
+        font-size: 3.5rem;
+        margin-top: 80px;
+        font-weight: 700;
     }
     div.search {
-        margin-top: 60px;
+        margin-top: 50px;
     }
 }
- /******* FIN HEADER *********/
 
+=
 input.searchWhere {
     margin: 0px 10px 20px 0;
     font-size: 2rem;
@@ -219,6 +221,9 @@ button {
         border-radius: 5px;
     }
 }
+
+/********** NOS SERVICES *************/
+
 
 
 /******************************* PAGE TERRAIN *********************************/

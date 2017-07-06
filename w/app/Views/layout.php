@@ -86,7 +86,7 @@
                         <?=$w_flash_message->message;?>
                     </div>
                 <?php endif; ?>
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-lg-offset-2">
                     <?= $this->section('header_content') ?>
                 </div>
                 <!-- Connexion -->
