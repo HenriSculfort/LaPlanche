@@ -292,7 +292,7 @@
 
 			e.preventDefault(); 
 
-			var $form = $(this);
+			var $form = $('#addTerrain');
         	var formdata = (window.FormData) ? new FormData($form[0]) : null;
        		 var data = (formdata !== null) ? formdata : $form.serialize();
 

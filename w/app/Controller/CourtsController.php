@@ -175,15 +175,15 @@ class CourtsController extends Controller
                 $errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
             }
 
-            if(isset($_FILES['name'])){
+            if(isset($_FILES['picture'])){
 
                 $maxfilesize = 1048576; //1 Mo
 
-                if($_FILES['name']['size'] < $maxfilesize){
+                if($_FILES['picture']['size'] < $maxfilesize){
                     //pas d'erreur et le fichier n'est pas trop volumineux
                     //on teste l'extension
                     $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif');
-                    $fileInfo = pathinfo($_FILES['name']['name']);
+                    $fileInfo = pathinfo($_FILES['picture']['name']);
                     $extension = $fileInfo['extension'];
                     if(in_array($extension, $extensions_autorisees)){
                         //extension valide
@@ -192,16 +192,16 @@ class CourtsController extends Controller
                         //on renomme le fichier
                         switch ($extension) {
                            case 'jpg':
-                                $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                                $newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
                                break;
                           case 'jpeg':
-                                $newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                                $newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
                                break;
                             case 'png':
-                                $newImage = imagecreatefrompng($_FILES['name']['tmp_name']);
+                                $newImage = imagecreatefrompng($_FILES['picture']['tmp_name']);
                                 break;
                             case 'gif':
-                                $newImage = imagecreatefromgif($_FILES['name']['tmp_name']);
+                                $newImage = imagecreatefromgif($_FILES['picture']['tmp_name']);
                                 break;
                        }
 
@@ -210,8 +210,9 @@ class CourtsController extends Controller
 
 
                         $picture = md5(uniqid(rand(), true));
+                        $picture .='.'.$extension;
 
-                        move_uploaded_file($_FILES['name']['tmp_name'], '../public/assets/img/uploads/'.$picture.'.'.$extension);
+                        move_uploaded_file($_FILES['picture']['tmp_name'], '../public/assets/img/uploads/'.$picture);
 
                     }
                     else{//problème:
