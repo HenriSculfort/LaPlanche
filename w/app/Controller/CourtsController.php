@@ -201,7 +201,7 @@ class CourtsController extends Controller
                         };
 
 
-                        $image = Image::make($newImage)->resize(300, 200);
+                        $image = Image::make($newImage)->resize(50, 50);
 
 
                         $picture = md5(uniqid(rand(), true));

@@ -103,7 +103,7 @@ if(isset($courtResult)) {
 	<div class='container'>
 		<div class='row'>
 			<div class='col-md-2'>
-				<!--<img src="<?=$this->assetUrl('img/basketball.png');?>" alt='Le terrain'>-->
+				<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/'.$court['picture']);?>" alt='Le terrain'>
 			</div>
 			<div class='col-md-10 well'>
 				<h4><?= $court['name'];?></h4>
