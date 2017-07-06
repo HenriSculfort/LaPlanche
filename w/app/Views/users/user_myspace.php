@@ -23,7 +23,7 @@
 	<div class='container-fluid'>
 
 		<div class='row form-group hidden'>
-			<div class='col-md-offset-2 col-md-4"'>
+			<div class='col-md-offset-2 col-md-4'>
 				<label for='id'>id</label>
 			</div>
 			<div class='col-md-4'>
@@ -31,15 +31,17 @@
 			</div> 
 		</div>
 		<div class="row form-group">
-			<label for="username" class="col-md-offset-2 col-md-4" control-label">Pseudo *</label>
-			<div class="col-md-4">
+			<div class='col-md-offset-1 col-md-4 align-right'>
+				<label for="username" class="align-right" control-label">Pseudo *</label>
+			</div>
+			<div class='col-md-4'>
 				<input type="text" class='form-control' name="username" id="username" value="<?= $_SESSION['user']['username']?>">
 				<div id="errors-pseudo" class="errorsForms"></div><!-- Affiche l'erreur du pseudo-->
 				<div id="errors-username_exist"></div><!-- Affiche l'erreur si le mail existe déjà en base-->
 			</div>
 		</div>
 		<div class='row form-group'>
-			<div class='col-md-offset-2 col-md-4'>
+			<div class='col-md-offset-1 col-md-4 align-right'>
 				<label for='email'>Email</label>
 			</div>
 			<div class='col-md-4'>
@@ -48,7 +50,7 @@
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-offset-2 col-md-4'>
+			<div class='col-md-offset-1 col-md-4 align-right'>
 				<label for='level'>Niveau</label>
 			</div>
 			<div class='col-md-4'>
@@ -64,7 +66,7 @@
 			</div>
 		</div>
 		<div class='row form-group'>
-			<div class='col-md-offset-2 col-md-4'>
+			<div class='col-md-offset-1 col-md-4 align-right'>
 				<label for='address'>Adresse</label>
 			</div>
 			<div class='col-md-4'>
@@ -73,17 +75,17 @@
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-offset-2 col-md-4'>
+		<div class='col-md-offset-1 col-md-4 align-right'>
 				<label for='postal_code'>Code Postal</label>
 			</div>
 			<div class='col-md-4'>
 				<input type='text' class='form-control' name='postal_code' value="<?= $_SESSION['user']['postal_code'];?>">
-				
+
 			</div>
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-offset-2 col-md-4'>
+			<div class='col-md-offset-1 col-md-4 align-right'>
 				<label for='city'>Ville</label>
 			</div>
 			<div class='col-md-4'>
@@ -92,7 +94,7 @@
 		</div>
 
 		<div class='row form-group'>
-			<div class='col-md-offset-2 col-md-4'>
+			<div class='col-md-offset-1 col-md-4 align-right'>
 				<label for='phone'>Téléphone (facultatif)</label>
 			</div>
 			<div class='col-md-4'>
@@ -100,14 +102,14 @@
 			</div>
 		</div>
 		<div class="row form-group" >
-			<label for="password" class="col-md-offset-2 col-md-4">Modifier votre mot de passe *</label>
+			<label for="password" class="col-md-offset-1 col-md-4 align-right">Modifier votre mot de passe *</label>
 			<div class="col-md-4">
 				<input type="password" class='form-control' name="password" id="password">
 				<div id="errors-mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur du mot de passe-->
 			</div>
 		</div>
 		<div class="row form-group" >
-			<label for="checkPassword" class="col-md-offset-2 col-md-4" ">Répéter le mot de passe *</label>
+			<label for="checkPassword" class="col-md-offset-1 col-md-4 align-right">Répéter le mot de passe *</label>
 			<div class="col-md-4">
 				<input type="password" class='form-control' name="checkPassword" id="checkPassword">
 				<div id="errors-verif_mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur de verif du mot de passe-->
@@ -117,7 +119,7 @@
 		<div class="col-md-12 text-center">
 			<button type='submit' id='modifUser' class='btn btn-primary'>Envoyer les modifications</button>
 		</div>
-		
+
 	</div>
 
 </form>
@@ -130,12 +132,12 @@
 <div class='row'>
 
 	<!-- Colonne du formulaire -->
-	<div class='col-md-8'>
+	<div class='col-md-6'>
 
 		<form method="post" id="addTerrain" class="container-fluid" enctype="multipart/form-data" action="#">
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='name'>Nom</label>
 				</div>
 				<div class='col-md-8'>
@@ -144,7 +146,7 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='description'>Description</label>
 				</div>
 				<div class='col-md-8'>
@@ -153,7 +155,7 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='court_state'>Etat du terrain</label>
 				</div>
 				<div class='col-md-8'>
@@ -169,7 +171,7 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='address'>Adresse</label>
 				</div>
 				<div class='col-md-8'>
@@ -178,7 +180,7 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='postal_code'>Code Postal</label>
 				</div>
 				<div class='col-md-8'>
@@ -187,7 +189,7 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='city'>Ville</label>
 				</div>
 				<div class='col-md-8'>
@@ -196,7 +198,7 @@
 			</div>
 
 			<div class='row form-group'  >
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='picture'>Photo</label>
 				</div>
 				<div class="col-md-8">
@@ -205,7 +207,7 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='net'>Filet sur le(s) panier(s) ?</label>
 				</div>
 				<div class='col-md-8'>
@@ -215,7 +217,7 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='opening_hours'>Horaires d'ouverture (facultatif)</label>
 				</div>
 				<div class='col-md-8'>
@@ -224,10 +226,10 @@
 			</div>
 
 			<div class='row form-group'>
-				<div class='col-md-4'>
+				<div class='col-md-4 align-right'>
 					<label for='parking'>Parking (facultatif)</label>
 				</div>
-				<div class='col-md-8'>
+				<div class='col-md-6'>
 					<input type='radio' name='parking' value='yes'> Oui   
 					<input type='radio' name='parking' value='no'> Non
 				</div>
@@ -235,14 +237,14 @@
 
 			<br>
 			<div class="col-md-12 text-center">
-			<button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
+				<button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
 			</div>
 
 		</form>
 	</div> <!-- Fin du div de colonne formulaire -->
 
 	<!-- Colonne dédiée à l'affichage de la carte quand l'utilisateur à validé -->
-	<div class='col-md-4'>
+	<div class='col-md-6'>
 		<div class='row'>
 			<div id='confirmCourtAddress'>
 				
