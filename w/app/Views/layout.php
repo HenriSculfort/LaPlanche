@@ -81,7 +81,7 @@
             <div class="row">
                 <!-- Affichage des message flash de connexion et deconnexion -->
                 <?php if(!empty($w_flash_message->message)): ?>
-                    <div class="text-center col-lg-2 col-lg-offset-5 alert alert-<?=$w_flash_message->level;?>">
+                    <div class="text-center col-lg-4 col-lg-offset-4 alert alert-<?=$w_flash_message->level;?>">
                         <?=$w_flash_message->message;?>
                     </div>
                 <?php endif; ?>

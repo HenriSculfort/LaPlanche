@@ -7,11 +7,7 @@
 	<h1>Inscription</h1>
 	<p class="legend-header">Vous voulez jouer au ballon, inscrivez vous !</p>
 </div>
-<div class='container'>
-	<div class='row'>
-		<div id="success"></div> <!-- Affiche le message de réussite d'inscription-->
-	</div>
-</div>
+
 <div class='container'>
 	<div class='row'>
 		<form class="form-horizontal" role="form" method="post">
@@ -139,9 +135,8 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: $('form').serialize(),
 			success: function(retourJson){
-				if(retourJson.result == true){ 
-					$('#success').html('<div class="alert alert-success text-center">Vous êtes inscrit !</div>');
-					$('input').val('');
+				if(retourJson.result == true){
+					window.location='<?=$this->url('accueil');?>';
 				}
 				else if(retourJson.result == false){
 					$.each(retourJson.errors, function(key, value){

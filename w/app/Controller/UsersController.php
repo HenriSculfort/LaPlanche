@@ -101,10 +101,13 @@ class UsersController extends Controller
 				];
 
 				$insert = $usersModel->insert($data);
+				if($insert){
+					$this->flash('Vous êtes inscrit, maintenant, connectez-vous !', 'success');
 
-				$json = [
-				'result' => true,
-				];
+					$json = [
+					'result' => true,
+					];
+				}
 			}
 			else{
 				// définie les erreurs du formulaire
