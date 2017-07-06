@@ -51,8 +51,10 @@ class ContactController extends Controller
 				//mail et nom du destinataire
 				$mail->addAddress('laplanche.bordeaux@gmail.com');
 				$mail->isHTML(true);
-				$mail->Subject = 'Message de : '.$post['message'];
-				$mail->Body = '';
+				$mail->Subject = 'Message de : '.$post['name'];
+				$mail->Body = 	'<p>Vous avez reçu un nouveau message de : '.ucfirst($post['name']).'.</p><br><br>
+								<p>Adresse email de l\'expéditeur : '.$post['email'].'.</p><br><br>
+								<p>Contenu du message : '.ucfirst($post['message']).'.</p><br>';
 
 				//Si l'email est envoyé, renvoye vrai à l'Ajax pour afficher un message de réussite
 				if($mail->Send()){

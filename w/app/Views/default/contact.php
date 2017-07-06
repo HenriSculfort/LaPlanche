@@ -41,7 +41,7 @@
         <br>
         <div id="success"></div>
         <div class="row">
-            <div class="form-group col-xs-12">
+            <div class="form-group col-xs-12 text-center">
                 <button id="sendForm" type="button" class="btn btn-primary">Envoyer</button>
             </div>
         </div>
@@ -69,6 +69,7 @@ $(document).ready(function(){
                 if(retourJson.result == true){ 
                     $('#success').html('<div class="alert alert-success text-center">Votre message a bien été envoyé !</div>');
                     $('input').val('');
+                    $('textarea').val('');
                 }
                 else if(retourJson.result == false){
                     $.each(retourJson.errors, function(key, value){
