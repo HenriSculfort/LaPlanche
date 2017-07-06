@@ -96,7 +96,7 @@
 				<label for='phone'>Téléphone (facultatif)</label>
 			</div>
 			<div class='col-md-9'>
-				<input type='text' name='phone' value="<?php if(isset($_SESSION['user']['phone'])){ echo $_SESSION['user']['phone'];}?>">
+				<input type='text' name='phone' value="<?php if(isset($_SESSION['user']['phone']) && $_SESSION['user']['phone'] != 0){ echo $_SESSION['user']['phone'];}?>">
 			</div>
 		</div>
 		<div class="row form-group" >
