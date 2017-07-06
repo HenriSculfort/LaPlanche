@@ -227,9 +227,13 @@
 			endforeach; ?>
 		</div>
 	</div> <!-- Fin du div row des matchs -->
+
+
+	<!-- ********************** CHAT ***********************-->
+
+	<div id='chatTitle'></div>
 	<div id='showMeChat'>	
 		<div id=resultAjax></div>
-		<div id='chatTitle'></div>
 		<h5>Messages</h5>
 		<div id='errors' class=''></div>
 		<div id='showMessages'></div>
@@ -241,13 +245,13 @@
 					<h5>Nouveau message</h5>
 					<textarea id='message' name='message' placeholder='Taper votre message ici'></textarea>
 					<br>
-					<button type='submit' id='addMessage' class='btn btn-primary'>Envoyer</button>
+					<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
 				</div>
 			</div>
 		</form>					
 	
 </div> <!-- Fin du div container matchs prévus -->
-
+<?php var_dump($_GET);?>
 
 <?=$this->stop('main_content');?>
 
@@ -259,20 +263,18 @@
 	{
 		var chatId = $(this).data('id'); // Récupere l'id de l'attribut data-id (correspond à l'id de la game)
 
-
-				$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
-					$('div#showMeChat').addClass('inView');	
-					$('div#showMeChat').html(resultHtml.html);
-					$('div#chatTitle').html('Chat du match' + resultHtml.gameId);
-
-
-				
-				}); 
+		$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
+			$('#showMeChat').addClass('inView').html(resultHtml.html);		
+			$('#chatTitle').html('<strong>Chat du match </strong>'+ resultHtml.gameId);
+		}); 
 	}
 
 	// On lance le jQuery
 	$(document).ready(function() { 
 		$(function(){
+
+			// AFFICHAGE 
+
 
 			// Au clic du bouton d'affichage du chat
 			$('.btn-showChat').on('click', function(e){
@@ -283,26 +285,30 @@
 
 
 				$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
-					$('div#showMeChat').addClass('inView');	
+					$('div#showMeChat').addClass('inView').html(resultHtml.html);
 					$('div#chatTitle').html('Chat du match' + resultHtml.gameId);
-					$('div#showMeChat').html(resultHtml.html);
+					$('#addMessage').attr('data-game-id', resultHtml.gameId);
+
 				
 				}); 
 			}); // Fin du clic sur le bouton d'affichage du chat
+
+
+			// ENVOI MESSAGE 
 
 			// On surveille le clic d'envoi de nouveau message
 			$('#addMessage').on('click', function(envoi){ 
 						envoi.preventDefault();
 
 						var $message = $('textarea#message').val(); // Val récupère la valeur du champ. Si j'écris qqc entre les parenthèses ça m'écrira le truc dans la balise. 
-						var $game_id = $('#game_id').val();
+						var $game_id = $(this).data('game-id');
 
 						$.ajax({ 
 							url:'<?= $this->url('chat_add');?>',
-							type: 'POST',
+							type: 'GET',
 							data : {
 							message : $message,
-							game_id : $game_id,
+							idChat : $game_id,
 							},
 							dataType : 'json',
 							success : function(retourJson) { 
