@@ -11,7 +11,7 @@
 
 <div class="index-header">
   <h1>La Planche</h1>
-  <p class="legend-header">Trouvez des gens avec qui jouer près de chez vous...</p>
+  <p class="legend-header-index">Trouvez des gens avec qui jouer près de chez vous...</p>
   <hr class="small">
   <div class="search">
     <input class="searchWhere" type="text" name="where" placeholder="Où souhaitez-vous jouer...?">
