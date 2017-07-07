@@ -9,12 +9,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class GamesController extends Controller
 {
-	public function courtSearchGames() {
-		
-
-
-	}
-
 	public function ProposeGame()
 	{
 		$post = [];
@@ -29,9 +23,9 @@ class GamesController extends Controller
 
 
          	//if(!validateDate($post['date'],'d-m-Y'))
-         //	{
-         //		$errors[] = 'La date doit être au bon format';
-         //	}
+             //	{
+             //		$errors[] = 'La date doit être au bon format';
+            //	}
             if(!empty($post['date'])) { 
                 if(!v::date('Y-m-d')->validate($post['date'])){ 
                     $errors[] = 'Le format de la date est incorrect';
@@ -39,8 +33,6 @@ class GamesController extends Controller
             }
 
             //vérification de l'heure de début
-
-            
 
          	if(empty($post['starting_time']) || (!preg_match('#^[0-2][0-9]:[0-5][0-9]$#', $post['starting_time'])))
             {
