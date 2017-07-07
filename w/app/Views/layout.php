@@ -2,7 +2,6 @@
 <html lang="fr">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +28,11 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->assetUrl('img/favicon/favicon-16x316.png')?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->assetUrl('img/favicon/favicon-32x32.png')?>">
+    <link rel="apple-touch-icon" sizes="57x57" href="<?= $this->assetUrl('img/favicon/apple-icon-57x57.png')?>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?= $this->assetUrl('img/favicon/apple-icon-60x60.png')?>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?= $this->assetUrl('img/favicon/apple-icon-72x72.png')?>">
 </head>
 
 <body id='pageTop'>

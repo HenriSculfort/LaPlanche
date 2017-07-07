@@ -1,4 +1,4 @@
-<?= $this->layout('layout_contact', ['title' => 'Mot de passe oublié']);?>
+<?= $this->layout('layout', ['title' => 'Mot de passe oublié']);?>
 <?=$this->start('header_content'); ?>
 
 <div class='standard-header'>

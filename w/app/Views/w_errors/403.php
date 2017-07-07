@@ -1,4 +1,4 @@
-<?php $this->layout('layout_contact', ['title' => 'Rien à voir ici']) ?>
+<?php $this->layout('layout', ['title' => 'Rien à voir ici']) ?>
 
 <?php $this->start('main_content'); ?>
 
