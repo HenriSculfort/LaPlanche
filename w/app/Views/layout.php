@@ -59,6 +59,9 @@
                             <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
                         </li>
                         <li>
+                            <a href="<?= $this->url('contact') ?>">Contact</a>
+                        </li>
+                        <li>
                             <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
                         </li>
                     <?php else: ?>
@@ -132,6 +135,9 @@
                         <?php if(!empty($w_user)): ?>
                             <li>
                                 <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                            </li>
+                            <li>
+                                <a href="<?= $this->url('contact') ?>">Contact</a>
                             </li>
                             <li>
                                 <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
