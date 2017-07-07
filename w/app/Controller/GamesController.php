@@ -28,24 +28,27 @@ class GamesController extends Controller
             //verification de la date
 
 
-        // 	if(!checkdate($post['month'], $post['day'],$post['year'] ))
-        // 	{
-        // 		$errors[] = 'La date doit être au bon format';
-        // 	}
+         	if(!validateDate($post['date'],'d-m-Y'))
+         	{
+         		$errors[] = 'La date doit être au bon format';
+         	}
 
 
 
 
             //vérification de l'heure de début
-         	if(empty($post['starting_time']) && $post['starting_time'] != date('H:i'))
+
+            
+
+         	if(empty($post['starting_time']) || (!preg_match('#^[0-2][0-9]:[0-5][0-9]$#', $post['starting_time'])))
             {
-                $errors[] = 'L\'heure de départ doit être renseignée';
+                $errors[] = 'L\'heure de départ doit être renseignée ou correcte';
             }
 
             //vérification de l'heure de fin
-            if(empty($post['finishing_time']))
+            if(empty($post['finishing_time']) || (!preg_match('#^[0-2][0-9]:[0-5][0-9]$#', $post['finishing_time'])) || $post['starting_time'] > $post['finishing_time'])
             {
-                $errors[] = 'L\'heure de fin doit être renseignée';
+                $errors[] = 'L\'heure de fin doit être renseignée ou correcte';
             }
 
             //vérification du niveau
@@ -55,7 +58,7 @@ class GamesController extends Controller
             }
 
             //vérification du nombre de joueurs
-            if(is_int($post['number_players']))
+            if(!is_int($post['number_players']))
             {
                 $errors[] = 'Le nombre de joueurs doit être un chiffre';
             }
@@ -70,7 +73,7 @@ class GamesController extends Controller
 
             	$data=[
             		'court_id' 		=> $post['id'],
-            		'date'			=> 'toto',
+            		'date'			=> $post['date'],
             		'starting_time'	=> $post['starting_time'],
             		'finishing_time'=> $post['finishing_time'],
             		'number_players'=> $post['number_players'],
