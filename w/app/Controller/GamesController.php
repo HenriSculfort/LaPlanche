@@ -13,7 +13,7 @@ class GamesController extends Controller
 	{
 		$post = [];
         $errors = []; 
-    //  print_r($_POST);
+
 
         if(!empty($_POST)){
 
@@ -21,11 +21,6 @@ class GamesController extends Controller
 
             //verification de la date
 
-
-         	//if(!validateDate($post['date'],'d-m-Y'))
-             //	{
-             //		$errors[] = 'La date doit être au bon format';
-            //	}
             if(!empty($post['date'])) { 
                 if(!v::date('Y-m-d')->validate($post['date'])){ 
                     $errors[] = 'Le format de la date est incorrect';
@@ -74,7 +69,7 @@ class GamesController extends Controller
             		'team_name'		=> $post['team_name'],
             		'team_level'	=> $post['level'],
             		'message'		=> $post['message'],
-                    'user_id'       => $_SESSION['id'],
+                    'user_id'       => $_SESSION['user']['id'],
             		'accepted'		=> 0,
 
             	];
