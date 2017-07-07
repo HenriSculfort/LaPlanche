@@ -207,9 +207,10 @@
 						<?php
 
 
-						if($game['user_id'] == ($w_user['id'])) :?>
-						<form method='POST'>
-							<button id='<?=$game['id'];?>' type='submit' class='btn btn-success'>Accepter la rencontre</button>
+						if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
+						<form method='POST' action='<?=$this->url('accept_game');?>'>
+							<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+							<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
 						</form>
 					<?php endif;?>					
 				</div>

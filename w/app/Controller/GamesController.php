@@ -108,9 +108,14 @@ class GamesController extends Controller
 
     public function acceptGame() { 
         
+        $game_id = (int) $_POST['game_id'];
+        $data = [
+            'accepted' => 1,
+        ];
+        $model = new GamesModel();
+        $gameAccepted = $model->update($data, $game_id);
 
-        $model = new Model();
-        $gameAccepted = $model->update();
+        $this->redirectToRoute('court_details');
     }
 
 
