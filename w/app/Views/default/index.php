@@ -9,12 +9,17 @@
     }  
 </style>
 
-
-<div class="index-header">
-    <p class="legend-header-index">Cherche le City Stade le plus proche de chez toi !</p>
-    <div class="search">
-        <input class="searchWhere" type="text" name="where" placeholder="Où souhaitez-vous jouer...?">
-        <button type="button" class="btn btn-warning btn-lg button-search-index">Rechercher</button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="index-header">
+                <p class="legend-header-index">Une partie de basket ? Cherche un City Stade !</p>
+                <div class="search">
+                    <input class="searchWhere" type="text" name="where" placeholder="Où souhaitez-vous jouer...?">
+                    <button type="button" class="btn btn-warning btn-lg button-search-index">Rechercher</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

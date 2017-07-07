@@ -19,15 +19,15 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/clean-blog.min.css') ?>">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Styles CSS personnalisés -->
     <link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
     <!-- Custom Fonts -->
     <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    
     <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->assetUrl('img/favicon/favicon-16x316.png')?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= $this->assetUrl('img/favicon/favicon-32x32.png')?>">
     <link rel="apple-touch-icon" sizes="57x57" href="<?= $this->assetUrl('img/favicon/apple-icon-57x57.png')?>">
@@ -98,7 +98,7 @@
                         <?=$w_flash_message->message;?>
                     </div>
                 <?php endif; ?>
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-12">
                     <?= $this->section('header_content') ?>
                 </div>
                 <!-- Connexion -->

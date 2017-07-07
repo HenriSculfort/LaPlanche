@@ -191,7 +191,8 @@ p.legend-header-index {
     text-align: center;
     border-radius: 7px;
     color: #fff;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+  font-family: 'Gloria Hallelujah', cursive;
 }
 
 .button-search-index {
@@ -232,23 +233,18 @@ button {
         border-color: transparent;
     }
     .index-header {
-        padding: 0 0 250px 0;
+        padding: 0 0 50px 0;
     }
-    /*
-    .index-header h1 {
-    font-size: 9rem;
-    text-align: center;
-    margin: 0;
-    padding-top: 50px;
-}
-    */
+
     p.legend-header-index {
-        font-size: 3.5rem;
-        margin-top: 80px;
+        font-size: 4.5rem;
+        margin-top: 120px;
         font-weight: 700;
+        padding: 20px 10px;
     }
     div.search {
-        margin-top: 50px;
+        margin-top: 120px;
+        margin-bottom: 50px;
     }
 }
 
@@ -406,6 +402,11 @@ body {
     margin-top: 50px;
 }
 
+/****************************** DATE PICKER *******************************/
+
+.ui-widget-header{
+    background:  rgba(232, 167, 76, 0.87);
+}
 
 /****************************** BOUTON RETOUR TOP *******************************/
 

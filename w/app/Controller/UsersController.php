@@ -149,14 +149,6 @@ class UsersController extends Controller
 
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
-			// vérifie le format d'email
-			if(!filter_var($post['emailConnexion'], FILTER_VALIDATE_EMAIL)){
-				$json = [
-				'result' => false,
-				'errors' => 'Le couple identifiant / mot de passe est invalide',
-				];
-			}
-
 			if(count($errors) === 0){
 
 				$authModel = new AuthentificationModel();
@@ -181,12 +173,12 @@ class UsersController extends Controller
 						];
 					}
 				}
-				else {
-					$json = [
-					'result' => false,
-					'errors' => 'Le couple identifiant / mot de passe est invalide',
-					];
-				}
+			}
+			else {
+				$json = [
+				'result' => false,
+				'errors' => 'Le couple identifiant / mot de passe est invalide',
+				];
 			}
 			$this->showJson($json);
 		}	
@@ -199,7 +191,7 @@ class UsersController extends Controller
 
 		if(empty($authModel->getLoggedUser())){
 			// Si l'utilisateur est "vide", on a donc bien vider la session, il est donc déconnecté
-			$this->flash('Vous êtes déconnecté', 'success');
+			$this->flash('Vous êtes déconnecté', 'warning');
 			$this->redirectToRoute('accueil');
 		}
 	}
