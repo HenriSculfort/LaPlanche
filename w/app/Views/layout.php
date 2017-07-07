@@ -194,9 +194,7 @@
         });
     </script>
 
-    <script>
         <?= $this->section('script');?>
-    </script>
     
     <div>
         <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
