@@ -277,7 +277,7 @@
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				success: function(retourJson){
 					if(retourJson.result == true){ 
-						$('#ModifUserAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+						$('#ModifUserAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');		
 					}
 					else if(retourJson.result == false){
 						$('#ModifUserAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
