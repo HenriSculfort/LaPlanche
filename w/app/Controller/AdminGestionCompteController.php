@@ -10,9 +10,9 @@ class AdminGestionCompteController extends Controller
 
 	public function gestionCompte()
 	{
+
 		
-		debug($_SESSION);die();
-		if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['role'] != 'admin'){
+		if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
 				$this->show('w_errors/403');
 		}
 		else {
