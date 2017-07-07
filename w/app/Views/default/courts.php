@@ -100,21 +100,23 @@ elseif (isset($findAll)) {
 // Le isset est nécessaire pour le cas où searchResults est false.
 if(isset($courtResult)) {
 	// Affichage des résultats (en cas de recherche)
-	foreach($courtResult as $court) {?>
-	<div class='container'>
-		<div class='row'>
-			<div class='col-md-2'>
-				<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/'.$court['picture']);?>" alt='Le terrain'>
-			</div>
-			<div class='col-md-10 well'>
-				<h4><?= $court['name'];?></h4>
-				<p class="description-terrain"><?= nl2br($court['description']);?></p>
-				<!-- <p><?php if($court['parking'] == '1') { echo'<i class="fa fa-car" aria-hidden="true">';  }?></p>-->
-				<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => isset($getGames) ? $court['court_id'] : $court['id']])?>'>Plus d'informations et liste des matchs</a>
-			</div>
-		</div>
-	</div>	
-	<?php } // Fin foreach	
+	foreach($courtResult as $court) {
+		if( $court['admin_validation'] == 1) { ?>
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-2'>
+						<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/'.$court['picture']);?>" alt='Le terrain'>
+					</div>
+					<div class='col-md-10 well'>
+						<h4><?= $court['name'];?></h4>
+						<p class="description-terrain"><?= nl2br($court['description']);?></p>
+						<!-- <p><?php if($court['parking'] == '1') { echo'<i class="fa fa-car" aria-hidden="true">';  }?></p>-->
+						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => isset($getGames) ? $court['court_id'] : $court['id']])?>'>Plus d'informations et liste des matchs</a>
+					</div>
+				</div>
+			</div>	
+			<?php } 
+	}// Fin foreach
 } // Fin du isset courtResult ?>
 
 <?=$this->stop('main_content');?>
