@@ -3,11 +3,16 @@
 html {
     font-size: 62.5%;
     line-height: 1.5;
+    height: 100%;
 }
 
 body {
     font-size: 1.6em;
     color: #a49e9e;
+    min-height: 100%;
+    margin: 0;
+    padding-bottom: 200px;;
+    position: relative;
 }
 
 ul {
@@ -19,6 +24,10 @@ ul {
 a {
     text-decoration: none;
     color: #000;
+}
+
+*{
+    box-sizing: border-box;
 }
 
 *,
@@ -127,6 +136,11 @@ header.intro-header {
     text-align: center;
 }
 
+.message-connexion {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
 @media only screen and (min-width:768px) {
     .legend-header {
         font-size: 2.3rem;
@@ -138,12 +152,22 @@ header.intro-header {
 
 /************************************* FOOTER GENERAL *****************************/
 
+.hr-footer{
+    margin-top: 200px;
+    color: #000;
+    margin-bottom: 0;
+}
+
+
 footer {
     border-color: transparent;
     background: rgba(232, 167, 76, 0.87);
     padding: 20px;
     margin-top: 40px;
+    position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0
 }
 
 
@@ -175,31 +199,6 @@ p.legend-header-index {
     border-color: #e8a74c;
 }
 
-@media only screen and (min-width:768px) {
-    .navbar-default {
-        border-color: transparent;
-    }
-    .index-header {
-        padding: 0 0 250px 0;
-    }
-    /*
-    .index-header h1 {
-        font-size: 9rem;
-        text-align: center;
-        margin: 0;
-        padding-top: 50px;
-    }
-    */
-    p.legend-header-index {
-        font-size: 3.5rem;
-        margin-top: 80px;
-        font-weight: 700;
-    }
-    div.search {
-        margin-top: 50px;
-    }
-}
-
 input.searchWhere {
     margin: 0px 10px 20px 0;
     font-size: 2rem;
@@ -228,6 +227,28 @@ button {
         min-width: 50%;
         padding: 10px;
         border-radius: 5px;
+    }
+    .navbar-default {
+        border-color: transparent;
+    }
+    .index-header {
+        padding: 0 0 250px 0;
+    }
+    /*
+    .index-header h1 {
+        font-size: 9rem;
+        text-align: center;
+        margin: 0;
+        padding-top: 50px;
+    }
+    */
+    p.legend-header-index {
+        font-size: 3.5rem;
+        margin-top: 80px;
+        font-weight: 700;
+    }
+    div.search {
+        margin-top: 50px;
     }
 }
 
@@ -297,6 +318,11 @@ p.desciption-terrain {
     border-radius: 20px;
 }
 
+.flex-description {
+    display: flex;
+    align-items: center;
+}
+
 
 /******************************* PAGE DETAIL TERRAIN *********************************/
 
@@ -336,12 +362,6 @@ p.desciption-terrain {
     }
 }
 
-#map {
-    overflow: visible;
-    height:50vh;
-    width:70vh;   
-}
-²
 /******************************* PAGE CONTACT *********************************/
 
 html {
