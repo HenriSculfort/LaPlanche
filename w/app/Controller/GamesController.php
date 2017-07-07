@@ -109,6 +109,12 @@ class GamesController extends Controller
 
 	}
 
+    public function acceptGame() { 
+        
+
+        $model = new Model();
+        $gameAccepted = $model->update()
+    }
 
 
 }
