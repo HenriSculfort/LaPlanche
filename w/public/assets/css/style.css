@@ -249,7 +249,7 @@ h4.service-heading {
     padding-bottom: 40px;
 }
 
-.detail-services{
+.detail-services {
     padding: 0 60px;
 }
 
@@ -330,10 +330,11 @@ p.desciption-terrain {
     margin-bottom: 40px;
 }
 
-.align-right {
-    text-align: right;
+@media only screen and (min-width:990px) {
+    .align-right {
+        text-align: right;
+    }
 }
-
 
 /******************************* PAGE CONTACT *********************************/
 
@@ -365,11 +366,13 @@ body {
     margin-top: 150px;
 }
 
+
 /******************************* PAGE MOT DE PASSE OUBLIE *********************************/
 
 .interrogation {
     margin-top: 50px;
 }
+
 
 /****************************** BOUTON RETOUR TOP *******************************/
 
