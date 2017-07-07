@@ -171,17 +171,17 @@ class UsersController extends Controller
 						'result' => false,
 						'errors' => 'Erreur de connexion',
 						];
-					}
-				}
-			}
-			else {
-				$json = [
-				'result' => false,
-				'errors' => 'Le couple identifiant / mot de passe est invalide',
-				];
+					}	
+				}	
+				else {
+					$json = [
+					'result' => false,
+					'errors' => 'Le couple identifiant / mot de passe est invalide',
+					];
+				}	
 			}
 			$this->showJson($json);
-		}	
+		}
 	}
 
 	public function logout()
