@@ -52,6 +52,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <?php if(!empty($w_user) && $w_user['role'] == 'admin'): ?>
+                        <li>
+                            <a href="<?= $this->url('admin_compte') ?>">Admin</a>
+                        </li>
+                    <?php endif; ?> 
                     <li>
                         <a href="<?= $this->url('accueil') ?>">Accueil</a>
                     </li>
@@ -130,6 +135,11 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
+                        <?php if(!empty($w_user) && $w_user['role'] == 'admin'): ?>
+                            <li>
+                                <a href="<?= $this->url('admin_compte') ?>">Admin</a>
+                            </li>
+                        <?php endif; ?>
                         <li>
                             <a href="<?= $this->url('accueil') ?>">Accueil</a>
                         </li>
@@ -204,7 +214,7 @@
     </script>
 
     <?= $this->section('script');?>
-    
+
     <div>
         <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
             <i class="fa fa-arrow-up"></i>
