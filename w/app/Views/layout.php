@@ -152,14 +152,13 @@
     </footer>
 
     <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 
     <!-- Contact Form JavaScript -->
     <script src="<?= $this->assetUrl('js/jqBootstrapValidation.js') ?>"></script>
-    <script src="<?= $this->assetUrl('js/contact_me.js') ?>"></script>
 
     <!-- Theme JavaScript -->
     <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
