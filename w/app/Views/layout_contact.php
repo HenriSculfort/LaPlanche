@@ -156,7 +156,6 @@
 
     <!-- Contact Form JavaScript -->
     <script src="<?= $this->assetUrl('js/jqBootstrapValidation.js') ?>"></script>
-    <script src="<?= $this->assetUrl('js/contact_me.js') ?>"></script>
 
     <!-- Theme JavaScript -->
     <script src="<?= $this->assetUrl('js/clean-blog.min.js') ?>"></script>
