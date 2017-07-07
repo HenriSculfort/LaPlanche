@@ -119,5 +119,28 @@ class GamesController extends Controller
         $this->redirectToRoute('court_details', ['id' =>$id]);
     }
 
+    public function cancelGame() { 
+        
+        $game_id = (int) $_POST['game_id'];
+        $id = (int) $_POST['court_id'];
+        $data = [
+            'accepted' => 0,
+        ];
+        $model = new GamesModel();
+        $gameAccepted = $model->update($data, $game_id);
+
+        $this->redirectToRoute('court_details', ['id' =>$id]);
+    }
+
+    public function deleteGame() { 
+            
+            $game_id = (int) $_POST['game_id'];
+            $id = (int) $_POST['court_id'];
+            
+            $model = new GamesModel();
+            $gameAccepted = $model->delete($game_id);
+
+            $this->redirectToRoute('court_details', ['id' =>$id]);
+        }
 
 }

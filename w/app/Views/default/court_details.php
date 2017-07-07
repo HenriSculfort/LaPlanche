@@ -203,75 +203,73 @@
 					<div class='col-md-6'>
 						<p>Nom de l'équipe : <?= $game['team_name'];?></p>
 						<p>Message : <?= $game['message'];?></p>
-						
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md-6'>
 						<!-- Bouton de suppression de la rencontre par l'utilisateur qui l'a créée !  -->
 						<?php
 						if($game['user_id'] == ($w_user['id'])) :?>
-							<form method='POST' action='<?=$this->url('delete_game');?>'>
-								<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
-								<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-								<button type='submit' class='btn btn-danger'>Supprimer la rencontre</button>
-							</form>
-						<?php endif;?>							
+						<form method='POST' action='<?=$this->url('delete_game');?>'>
+							<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+							<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+							<button type='submit' class='btn btn-danger'>Supprimer la rencontre</button>
+						</form>
+					<?php endif;?>							
 
-						<!-- Bouton d'acceptation de la rencontre par l'utilisateur qui l'a proposée ! -->
-						<?php
-						if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
-							<form method='POST' action='<?=$this->url('accept_game');?>'>
-								<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
-								<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-								<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
-							</form>
-						<?php endif;?>					
-					
-						<!-- Bouton d'annulation de la rencontre par l'utilisateur qui l'a acceptée ! (ATTENTION, ceci n'est pas une suppression) -->
-						<?php
-						if($game['user_id'] == ($w_user['id']) && $game['accepted'] == 1 ) :?>
-							<form method='POST' action='<?=$this->url('cancel_game');?>'>
-								<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
-								<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-								<button type='submit' class='btn btn-warning'>Annuler la rencontre</button>
-							</form>
-						<?php endif;?>	
-						
-
-
-					</div>
-			</div>
-			<div class='row'>
-				<div class='col-md-6'>
-					<button type='button' data-id="<?=$game['id'];?>"  class='btn btn-primary btn-showChat'>Afficher le chat</button> 
-				</div>
-			</div>
-			<hr>
-			<?php } ;
-			endforeach; ?>
+					<!-- Bouton d'acceptation de la rencontre par l'utilisateur qui l'a proposée ! -->
+					<?php
+					if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
+					<form method='POST' action='<?=$this->url('accept_game');?>'>
+						<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+						<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+						<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
+					</form>
+				<?php endif;?>					
+				
+				<!-- Bouton d'annulation de la rencontre par l'utilisateur qui l'a acceptée ! (ATTENTION, ceci n'est pas une suppression) -->
+				<?php
+				if($game['user_id'] == ($w_user['id']) && $game['accepted'] == 1 ) :?>
+				<form method='POST' action='<?=$this->url('cancel_game');?>'>
+					<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+					<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+					<button type='submit' class='btn btn-warning'>Annuler la rencontre</button>
+				</form>
+			<?php endif;?>	
+			
+			<!-- Bouton d'affichage du chat -->
+			<button type='button' data-id="<?=$game['id'];?>"  class='btn btn-primary btn-showChat'>Afficher le chat</button> 
 		</div>
-	</div> <!-- Fin du div row des matchs -->
-
-
-	<!-- ********************** CHAT ***********************-->
-	<div id='chat'>
-		<div id='chatTitle'></div>
-		<div id='showMeChat'>	
-			<div id=resultAjax></div>
-			<h5>Messages</h5>
-			<div id='showMessages'></div>
-			<div id='errors'></div>
-		</div> <!-- Fin de la div contenant les messages du chat ajax -->
-		<form method='POST'>
-			<br>
-			<div class='row'>
-				<div class='col-md-12'>
-					<h5>Nouveau message</h5>
-					<input type="hidden" id="idChatRoom" name="idChat" value="">
-					<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
-					<br>
-					<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
-				</div>
-			</div>
-		</form>					
 	</div>
+	<hr>
+	<?php } ;
+	endforeach; ?>
+</div>
+</div> <!-- Fin du div row des matchs -->
+
+
+<!-- ********************** CHAT ***********************-->
+<div id='chat'>
+	<div id='chatTitle'></div>
+	<div id='showMeChat'>	
+		<div id=resultAjax></div>
+		<h5>Messages</h5>
+		<div id='showMessages'></div>
+		<div id='errors'></div>
+	</div> <!-- Fin de la div contenant les messages du chat ajax -->
+	<form method='POST'>
+		<br>
+		<div class='row'>
+			<div class='col-md-12'>
+				<h5>Nouveau message</h5>
+				<input type="hidden" id="idChatRoom" name="idChat" value="">
+				<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
+				<br>
+				<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
+			</div>
+		</div>
+	</form>					
+</div>
 </div> <!-- Fin du div container matchs prévus -->
 
 
