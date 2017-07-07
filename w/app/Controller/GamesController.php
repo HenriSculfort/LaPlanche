@@ -60,7 +60,7 @@ class GamesController extends Controller
             }
 
             //vérification du nombre de joueurs
-            if(!is_int($post['number_players']))
+            if(!is_numeric($post['number_players']))
             {
                 $errors[] = 'Le nombre de joueurs doit être un chiffre';
             }
