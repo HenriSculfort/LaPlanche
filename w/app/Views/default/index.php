@@ -11,7 +11,7 @@
 
 
 <div class="index-header">
-    <p class="legend-header-index">Cherche le city le plus proche de chez toi !</p>
+    <p class="legend-header-index">Cherche le City Stade le plus proche de chez toi !</p>
     <div class="search">
         <input class="searchWhere" type="text" name="where" placeholder="Où souhaitez-vous jouer...?">
         <button type="button" class="btn btn-warning btn-lg button-search-index">Rechercher</button>

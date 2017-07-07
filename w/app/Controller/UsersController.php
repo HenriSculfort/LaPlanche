@@ -149,32 +149,48 @@ class UsersController extends Controller
 
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
-			$authModel = new AuthentificationModel();
-			$id_user = $authModel->isValidLoginInfo($post['emailConnexion'], $post['passwordConnexion']);
-
-			if($id_user > 0){ 
-
-				$usersModel = new UsersModel();
-				$me = $usersModel->find($id_user); 
-				$authModel->logUserIn($me); 
-
-				if(!empty($authModel->getLoggedUser())){
-					$json = [
-					'result' => true,
-					];
-					$this->flash('Vous êtes connecté', 'success');
-				}
-			}
-			else {
+			// vérifie le format d'email
+			if(!filter_var($post['emailConnexion'], FILTER_VALIDATE_EMAIL)){
 				$json = [
 				'result' => false,
 				'errors' => 'Le couple identifiant / mot de passe est invalide',
 				];
 			}
+
+			if(count($errors) === 0){
+
+				$authModel = new AuthentificationModel();
+				$id_user = $authModel->isValidLoginInfo($post['emailConnexion'], $post['passwordConnexion']);
+
+				if($id_user > 0){ 
+
+					$usersModel = new UsersModel();
+					$me = $usersModel->find($id_user); 
+					$authModel->logUserIn($me); 
+
+					if(!empty($authModel->getLoggedUser())){
+						$json = [
+						'result' => true,
+						];
+						$this->flash('Vous êtes connecté', 'success');
+					}
+					else {
+						$json = [
+						'result' => false,
+						'errors' => 'Erreur de connexion',
+						];
+					}
+				}
+				else {
+					$json = [
+					'result' => false,
+					'errors' => 'Le couple identifiant / mot de passe est invalide',
+					];
+				}
+			}
 			$this->showJson($json);
 		}	
 	}
-
 
 	public function logout()
 	{
@@ -207,7 +223,7 @@ class UsersController extends Controller
 		$recapErrors = [];
 		$usersModel = new UsersModel();
 		$authModel = new AuthentificationModel();
-	
+
 		if(!empty($_POST)){
 
 

@@ -29,16 +29,26 @@ class GamesController extends Controller
 
             //vérification de l'heure de début
 
-         	if(empty($post['starting_time']) || (!preg_match('#^[0-2][0-9]:[0-5][0-9]$#', $post['starting_time'])))
+         	if(empty($post['starting_time']) || (!preg_match('#^[0-2][0-9]:|h|H[0-5][0-9]$#', $post['starting_time'])))
             {
                 $errors[] = 'L\'heure de départ doit être renseignée ou correcte';
             }
 
             //vérification de l'heure de fin
-            if(empty($post['finishing_time']) || (!preg_match('#^[0-2][0-9]:[0-5][0-9]$#', $post['finishing_time'])) || $post['starting_time'] > $post['finishing_time'])
+            if(empty($post['finishing_time']) || (!preg_match('#^[0-2][0-9]:|h|H[0-5][0-9]$#', $post['finishing_time'])) || $post['starting_time'] > $post['finishing_time'])
             {
                 $errors[] = 'L\'heure de fin doit être renseignée ou correcte';
             }
+
+            // Gestion des cas où les horaires se chevauchent
+            $gamesModel = new GamesModel();
+            $courtIsFree = $gamesModel->showGamesOnThisCourt($post['id']);
+            foreach($courtIsFree as $game) {
+                if($post['date'] == $game['date'] && ( ($post['starting_time'] == $game['starting_time'] ) || ($post['finishing_time'] == $game['finishing_time'] ) || ($post['starting_time'] < $game['finishing_time'] && ($post['finishing_time'] > $game['starting_time']) ) ) )  {
+                    $errors[] = 'Un match a déjà été proposé à ces horaires, merci de consulter la liste ci-dessous.';
+                };
+            }
+
 
             //vérification du niveau
              if(empty($post['level']))
