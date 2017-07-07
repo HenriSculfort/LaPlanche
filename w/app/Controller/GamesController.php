@@ -9,7 +9,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class GamesController extends Controller
 {
-	public function ProposeGame()
+	public function proposeGame()
 	{
 		$post = [];
         $errors = []; 
@@ -141,6 +141,6 @@ class GamesController extends Controller
             $gameAccepted = $model->delete($game_id);
 
             $this->redirectToRoute('court_details', ['id' =>$id]);
-        }
+    }
 
 }

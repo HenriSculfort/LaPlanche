@@ -26,7 +26,7 @@ $w_routes = array(
     ['GET|POST', '/courts/details/chat/ajax/add', 'Chat#addMessageAjax', 'chat_add'],
     ['GET|POST', '/courts/details/chat/ajax/list', 'Chat#listMessagesAjax', 'chat_load'],
     ['GET|POST', '/courts/details/[i:id]', 'Courts#courtDetails', 'court_details'],
-    ['GET|POST', '/courts/details/match', 'Games#ProposeGame', 'propose_match'],
+    ['GET|POST', '/courts/details/match', 'Games#proposeGame', 'propose_match'],
     ['GET|POST', '/courts/details/acceptGame', 'Games#acceptGame', 'accept_game'],
     ['GET|POST', '/courts/details/cancelGame', 'Games#cancelGame', 'cancel_game'],
     ['GET|POST', '/courts/details/deleteGame', 'Games#deleteGame', 'delete_game'],
