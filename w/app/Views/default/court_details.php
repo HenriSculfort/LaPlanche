@@ -203,17 +203,18 @@
 					<div class='col-md-6'>
 						<p>Nom de l'équipe : <?= $game['team_name'];?></p>
 						<p>Message : <?= $game['message'];?></p>
+						
+
 						<!-- Bouton d'acceptation de la rencontre ! -->
 						<?php
-
-
 						if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
-						<form method='POST' action='<?=$this->url('accept_game');?>'>
-							<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
-							<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
-						</form>
-					<?php endif;?>					
-				</div>
+							<form method='POST' action='<?=$this->url('accept_game');?>'>
+								<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+								<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+								<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
+							</form>
+						<?php endif;?>					
+					</div>
 			</div>
 			<div class='row'>
 				<div class='col-md-6'>
@@ -282,14 +283,14 @@
 		}
 
 	// FONCTION POUR RELOAD LE CHAT UNE FOIS UN MESSAGE POSTE
-		function getMessages(chatId)
-		{
+	function getMessages(chatId)
+	{
 
-			$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
-				$('#showMeChat').addClass('inView').html(resultHtml.html);		
-				$('#chatTitle').html('<strong>Chat du match </strong>'+ resultHtml.gameId);
-			}); 
-		}
+		$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
+			$('#showMeChat').addClass('inView').html(resultHtml.html);		
+			$('#chatTitle').html('<strong>Chat du match </strong>'+ resultHtml.gameId);
+		}); 
+	}
 
 
 
@@ -339,20 +340,20 @@
 			$('#addMessage').on('click', function(envoi){ 
 				envoi.preventDefault();
 
-						var $message = $('textarea#message').val();  
-						var $game_id = $('#idChatRoom').val(); 
-						console.log($game_id);
+				var $message = $('textarea#message').val();  
+				var $game_id = $('#idChatRoom').val(); 
+				console.log($game_id);
 
-						$.ajax({ 
-							url:'<?= $this->url('chat_add');?>',
-							type: 'GET',
-							data : {
-								message : $message,
-								idChat : $game_id,
-							},
-							dataType : 'json',
-							success : function(retourJson) { 
-								
+				$.ajax({ 
+					url:'<?= $this->url('chat_add');?>',
+					type: 'GET',
+					data : {
+						message : $message,
+						idChat : $game_id,
+					},
+					dataType : 'json',
+					success : function(retourJson) { 
+
 								// Si le message a bien été posté 
 								if(retourJson.result == true){
 									getMessages(retourJson.idChat);
@@ -407,29 +408,3 @@
 </script>
 
 <?=$this->stop('script');?>
-
-<!-- <div class='col-sm-4'>
-						<label for='date'>Date</label>
-					</div>
-					<div class='col-sm-8'>
-						<select id="day" name="day">
-							<option value="" selected disabled>Jour</option>
-							<?php for($d=1;$d<=31;$d++):?>
-								<option value="<?=($d < 10) ? '0'.$d : $d;?>"><?=($d < 10) ? '0'.$d : $d;?></option>
-							<?php endfor; ?>
-						</select>
-					
-						<select id="month" name="month">
-							<option value="" selected disabled>Mois</option>
-							<?php for($m=1;$m<=12;$m++):?>
-								<option value="<?=($m < 10) ? '0'.$m : $m;?>"><?=($m < 10) ? '0'.$m : $m;?></option>
-							<?php endfor; ?>
-						</select>
-					
-						<select id="year" name="year">
-							<option value="" selected disabled>Année</option>
-							<?php for($y=date('Y'); $y <= 2100 ;$y++):?>
-								<option value="<?=$y;?>"><?=$y;?></option>
-							<?php endfor; ?>
-						</select>
-					</div> -->
