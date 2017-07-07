@@ -18,6 +18,7 @@
 	<div class="form-group">
 		<label for='searchWhere'>Lieu *</label>
 		<input class="form-control" type='text' name='searchWhere' placeholder="Ville / CP">
+		<input class='altField' type='hidden'>
 	</div>
 	
 	<!--<div class="form-group">

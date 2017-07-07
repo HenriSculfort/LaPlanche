@@ -178,11 +178,14 @@
 	</div>
 	<div class='row'>
 		<div>
-			<?php foreach($findGamesOnCourt as $game) : 
+			<?php 
+
+			var_dump($findGamesOnCourt);
+			foreach($findGamesOnCourt as $game) : 
 				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
 			if(strtotime($now)> strtotime($game['date'])) {
 
-			}
+			} 
 			// Si la date de la game est postérieure, on affiche.
 			else { ?>
 			<div class='row'>
@@ -198,7 +201,14 @@
 				<div class='col-md-6'>
 					<p>Nom de l'équipe : <?= $game['team_name'];?></p>
 					<p>Message : <?= $game['message'];?></p>
+					<!-- Bouton d'acceptation de la rencontre ! -->
+					<?php if($game['user_id'] == $this->getUser()) :?>
+						<button type='submit' data-id='<?=$game['id'];?>' class='btn btn-success'>Accepter la rencontre</button>
+					<?php endif;?>
 
+
+
+					?>
 				</div>
 			</div>
 			<div class='row'>
