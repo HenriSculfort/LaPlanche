@@ -38,7 +38,7 @@ class ChatController extends Controller
 			}
 
 			if(strlen($get['message']) < 2) { 
-				$errors[] = 'Ton message doit faire au moins 2 caracteres mon lapin';
+				$errors[] = 'Ton message doit faire au moins 2 caractères !';
 			}
 
 			if(count($errors) === 0) { 
@@ -61,7 +61,7 @@ class ChatController extends Controller
 				else {
 					$json = [
 						'result' => false,
-						'errors' => 'Une erreur est survenue lors de l\'envoi de votre message',
+						'errors' => 'Une erreur est survenue lors de l\'envoi du message',
 						'idChat' => $get['idChat'],
 					];
 				}

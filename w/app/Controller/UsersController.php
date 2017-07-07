@@ -102,11 +102,16 @@ class UsersController extends Controller
 
 				$insert = $usersModel->insert($data);
 				if($insert){
-					$this->flash('Vous êtes inscrit, maintenant, connectez-vous !', 'success');
 
-					$json = [
-					'result' => true,
-					];
+					$authModel = new AuthentificationModel();
+					$authModel->logUserIn($data);
+
+					if(!empty($authModel->getLoggedUser())){
+						$json = [
+						'result' => true,
+						];
+						$this->flash('Votre inscription a été prise en compte<br>Vous êtes connecté !', 'success');
+					}
 				}
 			}
 			else{
@@ -133,6 +138,7 @@ class UsersController extends Controller
 			$this->showJson($json);
 		}
 	}
+
 
 	public function login()
 	{
@@ -208,7 +214,7 @@ class UsersController extends Controller
 
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
-			
+
 			// vérifie l'adresse
 			if(isset($post['address']) && empty($post['address'])){
 				$errors[] = 'Veuillez renseigner votre adresse';
