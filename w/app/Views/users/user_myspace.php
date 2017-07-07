@@ -307,7 +307,8 @@
             center: {lat: 47.066322, lng: 2.761099}
         });
     }
-
+</script>
+<script>
     function initMap() 
     {
         var maPostion = {lat: <?php echo $lat; ?>, lng: <?php echo $lng; ?>};
