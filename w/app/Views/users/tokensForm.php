@@ -17,7 +17,6 @@
 
 <form method="GET" class="form-horizontal">
 	<div class="form-group">
-
 		<div class="col-sm-4 col-sm-offset-4">
 			<label control-label">Entrez votre email</label>
 			<input class="form-control" type="text" name="email">

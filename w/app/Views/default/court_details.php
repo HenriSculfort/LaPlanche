@@ -37,16 +37,17 @@
 						<label for="datepicker"> Date </label>
 					</div>
 					<div class='col-sm-6'>
-						<input class="form-control" type="text" id="datepicker" name="date">
+						<input class="form-control" type="text" id="datepicker" >
+						<input type="hidden" id="alternate" name="date">
 					</div>
 				</div>
 				<div class='row form-group'>
-						<div class='col-sm-6'>
-							<label for='starting_time'>Heure de début</label>
-						</div>
-						<div class='col-sm-6'>
-							<input type='text' class='form-control' name='starting_time' placeholder='HH:mm'>
-						</div>
+					<div class='col-sm-6'>
+						<label for='starting_time'>Heure de début</label>
+					</div>
+					<div class='col-sm-6'>
+						<input type='text' class='form-control' name='starting_time' placeholder='HH:mm'>
+					</div>
 				</div>
 				<div class='row form-group'>
 					<div class='col-sm-6'>
@@ -183,29 +184,29 @@
 			
 			foreach($findGamesOnCourt as $game) : 
 				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
-			if(strtotime($now)> strtotime($game['date'])) {
+				if(strtotime($now)> strtotime($game['date'])) {
 
-			} 
+				} 
 			// Si la date de la game est postérieure, on affiche.
-			else { ?>
-			<div class='row'>
-				<div class='col-md-6'>
-					<h5>Match Ref°<i class='game_id' value='<?=$game['id'];?>'></i><?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
-					<?php $frenchDate = new DateTime($game['date']);?>
-					<p>Date : <?=$frenchDate->format('d-m-Y');?></p>			
-					<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
-					<p>Nombre de joueurs : <?= $game['number_players'];?>.</p> 
-					<p>Niveau : <?=\Tools\Utils::getTeamLevel($game['team_level'])?>
-					</p>
-				</div>
-				<div class='col-md-6'>
-					<p>Nom de l'équipe : <?= $game['team_name'];?></p>
-					<p>Message : <?= $game['message'];?></p>
-					<!-- Bouton d'acceptation de la rencontre ! -->
-					<?php
+				else { ?>
+				<div class='row'>
+					<div class='col-md-6'>
+						<h5>Match Ref°<i class='game_id' value='<?=$game['id'];?>'></i><?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
+						<?php $frenchDate = new DateTime($game['date']);?>
+						<p>Date : <?=$frenchDate->format('d-m-Y');?></p>			
+						<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
+						<p>Nombre de joueurs : <?= $game['number_players'];?>.</p> 
+						<p>Niveau : <?=\Tools\Utils::getTeamLevel($game['team_level'])?>
+						</p>
+					</div>
+					<div class='col-md-6'>
+						<p>Nom de l'équipe : <?= $game['team_name'];?></p>
+						<p>Message : <?= $game['message'];?></p>
+						<!-- Bouton d'acceptation de la rencontre ! -->
+						<?php
 
 
-					 if($game['user_id'] == ($w_user['id'])) :?>
+						if($game['user_id'] == ($w_user['id'])) :?>
 						<form method='POST'>
 							<button id='<?=$game['id'];?>' type='submit' class='btn btn-success'>Accepter la rencontre</button>
 						</form>
@@ -256,9 +257,11 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-	$( function() {
-		$( "#datepicker" ).datepicker({"dateFormat":"dd-mm-yy"});
-	} );
+	$(function(){
+		$("#datepicker").datepicker({
+			altField: "#alternate",
+			altFormat: "yy-mm-dd"});
+	});
 </script>
 
 <script>
@@ -376,13 +379,13 @@
 		$('#submitProposeMatch').on('click', function(e){
 	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
 
-			e.preventDefault(); 
+	e.preventDefault(); 
 
 	
-			$.ajax({
-				url: '<?=$this->url('propose_match');?>', 
-				type: 'post',
-				data: $('#proposeMatch').serialize(),		
+	$.ajax({
+		url: '<?=$this->url('propose_match');?>', 
+		type: 'post',
+		data: $('#proposeMatch').serialize(),		
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				success: function(retourJson){
 					if(retourJson.result == true){ 
@@ -395,7 +398,7 @@
 				},
 
 			});
-		});
+});
 	});
 </script>
 
