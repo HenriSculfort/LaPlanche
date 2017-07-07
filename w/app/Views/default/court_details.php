@@ -28,6 +28,7 @@
 	<div class='row'>
 		<h3 id='newMatch'>Proposer un match sur ce terrain</h3>
 	</div>
+	<div id='proposedMatch'></div>
 	<form method='POST' id='proposeMatch'>
 		<div class='row form-group'>
 			<input type="hidden" name="id" value="<?=$court_id?>">
@@ -259,6 +260,7 @@
 <script>
 	$(function(){
 		$("#datepicker").datepicker({
+			dateFormat: 'dd-mm-yy',
 			altField: "#alternate",
 			altFormat: "yy-mm-dd"});
 	});
@@ -389,10 +391,10 @@
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				success: function(retourJson){
 					if(retourJson.result == true){ 
-						$('#ModifUserAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+						$('#proposedMatch').html('<div class="alert alert-success">' + retourJson.message + '</div>');
 					}
 					else if(retourJson.result == false){
-						$('#ModifUserAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+						$('#proposedMatch').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
 					}
 
 				},

@@ -128,6 +128,7 @@ if(isset($courtResult)) {
 <script>
 	$(function(){
 		$("#datepicker").datepicker({
+			dateFormat: 'dd-mm-yy',
 			altField: "#alternate",
 			altFormat: "yy-mm-dd"});
 	});

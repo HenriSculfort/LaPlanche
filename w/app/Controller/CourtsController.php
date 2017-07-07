@@ -50,10 +50,10 @@ class CourtsController extends Controller
                 $data['postal_code'] = $get['searchWhere'];
             }
 
+            // if(!empty($get['year']) && !empty($get['month']) && !empty($get['day'])) { 
             // Si la date est renseignée 
-            if(!empty($get['year']) && !empty($get['month']) && !empty($get['day'])) { 
-                $date = '' . $get['year'] . '-' . $get['month'] . '-' . $get['day'];
-                if(!v::date('Y-m-d')->validate($date)) { 
+            if(!empty($get['date'])) { 
+                if(!v::date('Y-m-d')->validate($get['date'])){ 
                     $errors[] = 'Le format de la date est incorrect';
                 }
             }
@@ -74,7 +74,7 @@ class CourtsController extends Controller
                 elseif ($get['has_match'] == 'has_match') { 
 
                     $gamesModel = new GamesModel;
-                    $getGames = $gamesModel->jointureCourtsGames($date);
+                    $getGames = $gamesModel->jointureCourtsGames($get['date']);
                     if(empty($getGames)) {
                         $searchResult = false;
                         $errors[] = 'Aucun match trouvé.';
@@ -86,7 +86,7 @@ class CourtsController extends Controller
                 } elseif ($get['has_match'] == 'has_no_match') {
                     $has_match = false;
                     $gamesModel = new CourtsModel;                   
-                    $getNoGames = $gamesModel->leftJoinCourtsGames($date);
+                    $getNoGames = $gamesModel->leftJoinCourtsGames($get['date']);
                     if(empty($getNoGames)) {
                         $searchResult = false;
                         $errors[] = 'Aucun match trouvé.';
