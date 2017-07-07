@@ -127,6 +127,11 @@ header.intro-header {
     text-align: center;
 }
 
+.message-connexion{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
 @media only screen and (min-width:768px) {
     .legend-header {
         font-size: 2.3rem;
@@ -175,31 +180,6 @@ p.legend-header-index {
     border-color: #e8a74c;
 }
 
-@media only screen and (min-width:768px) {
-    .navbar-default {
-        border-color: transparent;
-    }
-    .index-header {
-        padding: 0 0 250px 0;
-    }
-    /*
-    .index-header h1 {
-        font-size: 9rem;
-        text-align: center;
-        margin: 0;
-        padding-top: 50px;
-    }
-    */
-    p.legend-header-index {
-        font-size: 3.5rem;
-        margin-top: 80px;
-        font-weight: 700;
-    }
-    div.search {
-        margin-top: 50px;
-    }
-}
-
 input.searchWhere {
     margin: 0px 10px 20px 0;
     font-size: 2rem;
@@ -229,8 +209,29 @@ button {
         padding: 10px;
         border-radius: 5px;
     }
+    .navbar-default {
+        border-color: transparent;
+    }
+    .index-header {
+        padding: 0 0 250px 0;
+    }
+    /*
+    .index-header h1 {
+        font-size: 9rem;
+        text-align: center;
+        margin: 0;
+        padding-top: 50px;
+    }
+    */
+    p.legend-header-index {
+        font-size: 3.5rem;
+        margin-top: 80px;
+        font-weight: 700;
+    }
+    div.search {
+        margin-top: 50px;
+    }
 }
-
 
 /********** NOS SERVICES *************/
 
@@ -297,6 +298,10 @@ p.desciption-terrain {
     border-radius: 20px;
 }
 
+.flex-description{
+    display: flex;
+    align-items: center;
+}
 
 /******************************* PAGE DETAIL TERRAIN *********************************/
 
@@ -322,7 +327,6 @@ p.desciption-terrain {
 .show {
     display: block;
 }
-
 
 /******************************* PAGE MON ESPACE *********************************/
 

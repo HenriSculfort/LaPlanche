@@ -20,30 +20,6 @@
 		<input class="form-control" type='text' name='searchWhere' placeholder="Ville / CP">
 	</div>
 	
-	<!--<div class="form-group">
-		<label for='date'>Date </label>
-		<select id="day" class="form-control" name="day">
-			<option value="" selected disabled>Jour</option>
-			<?php for($d=1;$d<=31;$d++):?>
-				<option value="<?=($d < 10) ? '0'.$d : $d;?>"><?=($d < 10) ? '0'.$d : $d;?></option>
-			<?php endfor; ?>
-		</select>
-
-		<select id="month" class="form-control" name="month">
-			<option value="" selected disabled>Mois</option>
-			<?php for($m=1;$m<=12;$m++):?>
-				<option value="<?=($m < 10) ? '0'.$m : $m;?>"><?=($m < 10) ? '0'.$m : $m;?></option>
-			<?php endfor; ?>
-		</select>
-
-		<select id="year" class="form-control" name="year">
-			<option value="" selected disabled>Année</option>
-			<?php for($y=date('Y'); $y <= 2100 ;$y++):?>
-				<option value="<?=$y;?>"><?=$y;?></option>
-			<?php endfor; ?>
-		</select>
-	</div>-->
-	
 	<div class="form-group">
 		<label for="datepicker"> Date </label>
 		<input class="form-control" type="text" id="datepicker" >
@@ -102,20 +78,22 @@ if(isset($courtResult)) {
 	// Affichage des résultats (en cas de recherche)
 	foreach($courtResult as $court) {
 		if( $court['admin_validation'] == 1) { ?>
-			<div class='container'>
-				<div class='row'>
-					<div class='col-md-2'>
-						<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/'.$court['picture']);?>" alt='Le terrain'>
+		<div class='container'>
+			<div class='row'>
+				<div class='flex-description col-md-12 well'>
+					<div class='col-md-3'>
+						<img class="img-rounded img-responsive" src="<?=$this->assetUrl('img/uploads/'.$court['picture']);?>" alt='Le terrain'>
 					</div>
-					<div class='col-md-10 well'>
+					<div class='col-md-9'>
 						<h4><?= $court['name'];?></h4>
 						<p class="description-terrain"><?= nl2br($court['description']);?></p>
 						<!-- <p><?php if($court['parking'] == '1') { echo'<i class="fa fa-car" aria-hidden="true">';  }?></p>-->
 						<a class="lien-info-terrain" href='<?=$this->url('court_details', ['id' => isset($getGames) ? $court['court_id'] : $court['id']])?>'>Plus d'informations et liste des matchs</a>
 					</div>
 				</div>
-			</div>	
-			<?php } 
+			</div>
+		</div>
+		<?php } 
 	}// Fin foreach
 } // Fin du isset courtResult ?>
 
