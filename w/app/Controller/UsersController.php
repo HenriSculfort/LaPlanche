@@ -10,7 +10,6 @@ class UsersController extends Controller
 {
 	public function add()
 	{
-		debug($_SESSION);die();
 		// permet d'afficher le formulaire d'inscription
 		$this->show('users/add');
 	}
