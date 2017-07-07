@@ -207,7 +207,7 @@ class UsersController extends Controller
 		$recapErrors = [];
 		$usersModel = new UsersModel();
 		$authModel = new AuthentificationModel();
-
+	
 		if(!empty($_POST)){
 
 
@@ -290,25 +290,13 @@ class UsersController extends Controller
 				// insertion des données en base
 				$update = $usersModel->update($data, $post['id']);
 
+
 				$json = [
 				'result' => true,
 				'message'=>'Modifications effectuées',
 				];
 			}
 			else {
-
-				// définie les erreurs du formulaire
-				$recapErrors = [
-				'adresse' => isset($errors['adress']) ? $errors['adress'] : '',
-				'code_postal' => isset($errors['postal_code']) ? $errors['postal_code'] : '',
-				'ville' => isset($errors['city']) ? $errors['city'] : '',
-				'mail' => isset($errors['mail']) ? $errors['mail'] : '',
-				'mail_exist' => isset($errors['mail_exist']) ? $errors['mail_exist'] : '',
-				'username_exist' => isset($errors['username_exist']) ? $errors['username_exist'] : '',
-				'pseudo' => isset($errors['pseudo']) ? $errors['pseudo'] : '',
-				'mot_de_passe' => isset($errors['mot_de_passe']) ? $errors['mot_de_passe'] : '',
-				'verif_mot_de_passe' => isset($errors['verif_mot_de_passe']) ? $errors['verif_mot_de_passe'] : '',
-				];
 
 				$json = [
 				'result' => false,

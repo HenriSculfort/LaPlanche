@@ -180,7 +180,7 @@ class CourtsController extends Controller
                     //pas d'erreur et le fichier n'est pas trop volumineux
                     //on teste l'extension
 
-                    $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif');
+                    $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif', 'PNG');
                     $fileInfo = pathinfo($_FILES['picture']['name']);
 
                     $extension = $fileInfo['extension'];
@@ -246,10 +246,10 @@ class CourtsController extends Controller
                     'net'           => $post['net'],
                     'court_state'	=> $post['level'],
                     'opening_hours'	=> $post['opening_hours'],
-                    'admin_validation'	=> false,
+                    'admin_validation'	=> 0,
                     'parking'       => $post['parking'],
                     'latitude'      => 42.5,
-                    'longitude'     => 0.46
+                    'longitude'     => 0.46,
 
                 ];
 

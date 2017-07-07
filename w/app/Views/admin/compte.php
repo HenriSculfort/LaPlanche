@@ -105,6 +105,7 @@
 				success: function(resPHP){
 
 					if(resPHP.result == true) {
+						window.location='<?=$this->url('admin_compte');?>';
 						//affiche le message de validation dans la div avec l'id message
 						$('#message').html(resPHP.message);
 						//vide les erreurs
