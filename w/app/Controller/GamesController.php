@@ -9,12 +9,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class GamesController extends Controller
 {
-	public function courtSearchGames() {
-		
-
-
-	}
-
 	public function ProposeGame()
 	{
 		$post = [];
@@ -116,7 +110,7 @@ class GamesController extends Controller
         
 
         $model = new Model();
-        $gameAccepted = $model->update();
+        //$gameAccepted = $model->update();
     }
 
 
