@@ -163,7 +163,7 @@
             </div>
 
             <div class="col-md-12 text-center">
-                <button type='submit' class='btn btn-primary'>Verrifier l'emplacement du terrain</button>
+                <button type='submit' id='checkMap' class='btn btn-primary'>Verrifier l'emplacement du terrain</button>
                 <!--                <input type="button" value="Verrifier l'emplacement du terrain">-->
             </div>
 
@@ -297,8 +297,19 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script') ?>
+
+
 <script>
-    function initMap() {
+    function initMap() 
+    {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: {lat: 47.066322, lng: 2.761099}
+        });
+    }
+
+    function initMap() 
+    {
         var maPostion = {lat: <?php echo $lat; ?>, lng: <?php echo $lng; ?>};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 16,
@@ -310,6 +321,10 @@
         });
     }
 </script>
+
+
+
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0xJoi5c9MwYIYQlwIEfLqLh95hLtcaYA&callback=initMap"></script>
 
 
@@ -369,6 +384,7 @@
                 success: function(retourJson){
                     if(retourJson.result == true){ 
                         $('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+                        $('input').val('');
                     }
                     else if(retourJson.result == false){
                         $('#resultAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
