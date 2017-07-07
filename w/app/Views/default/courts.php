@@ -18,7 +18,6 @@
 	<div class="form-group">
 		<label for='searchWhere'>Lieu *</label>
 		<input class="form-control" type='text' name='searchWhere' placeholder="Ville / CP">
-		<input class='altField' type='hidden'>
 	</div>
 	
 	<!--<div class="form-group">
@@ -47,7 +46,8 @@
 	
 	<div class="form-group">
 		<label for="datepicker"> Date </label>
-		<input class="form-control" type="text" id="datepicker" name="date">
+		<input class="form-control" type="text" id="datepicker" >
+		<input type="hidden" id="alternate" name="date">
 	</div>
 
 	<div class="form-group">
@@ -126,9 +126,11 @@ if(isset($courtResult)) {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-	$( function() {
-		$( "#datepicker" ).datepicker({"dateFormat":"dd-mm-yy"});
-	} );
+	$(function(){
+		$("#datepicker").datepicker({
+			altField: "#alternate",
+			altFormat: "yy-mm-dd"});
+	});
 </script>
 
 <?= $this->stop('script') ?>
