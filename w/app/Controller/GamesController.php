@@ -116,7 +116,7 @@ class GamesController extends Controller
         
 
         $model = new Model();
-        $gameAccepted = $model->update()
+        $gameAccepted = $model->update();
     }
 
 
