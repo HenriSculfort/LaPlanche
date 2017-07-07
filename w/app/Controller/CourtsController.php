@@ -172,16 +172,20 @@ class CourtsController extends Controller
                 $errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
             }
 
-            if(isset($_FILES['picture'])){
+            if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
 
                 $maxfilesize = 1048576; //1 Mo
 
                 if($_FILES['picture']['size'] < $maxfilesize){
                     //pas d'erreur et le fichier n'est pas trop volumineux
                     //on teste l'extension
+
                     $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif');
                     $fileInfo = pathinfo($_FILES['picture']['name']);
+
                     $extension = $fileInfo['extension'];
+
+                   
                     if(in_array($extension, $extensions_autorisees)){
                         //extension valide
                         //on renomme le fichier
