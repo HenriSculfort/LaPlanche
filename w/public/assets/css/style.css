@@ -236,11 +236,11 @@ button {
     }
     /*
     .index-header h1 {
-        font-size: 9rem;
-        text-align: center;
-        margin: 0;
-        padding-top: 50px;
-    }
+    font-size: 9rem;
+    text-align: center;
+    margin: 0;
+    padding-top: 50px;
+}
     */
     p.legend-header-index {
         font-size: 3.5rem;
@@ -360,6 +360,13 @@ p.desciption-terrain {
     .align-right {
         text-align: right;
     }
+}
+
+
+#map {
+    overflow: visible;
+    height:50vh;
+    width:70vh;   
 }
 
 /******************************* PAGE CONTACT *********************************/
@@ -482,7 +489,7 @@ input[type=password]:hover {
     align-items: center;
     /* border-radius: 3px; */
     /* -webkit-user-select: none;
-  user-select: none; */
+    user-select: none; */
 }
 
 .loginmodal-submit {
