@@ -139,7 +139,7 @@
 				</div>
 				<div class='row'>
 					<h5>Etat du terrain</h5>
-					<p><?php switch($findCourt['court-state']) {
+					<p><?php switch($findCourt['court_state']) {
 						case 0:
 						echo 'Non renseigné';
 						break;

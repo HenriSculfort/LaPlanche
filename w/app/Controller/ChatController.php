@@ -62,6 +62,7 @@ class ChatController extends Controller
 					$json = [
 						'result' => false,
 						'errors' => 'Une erreur est survenue lors de l\'envoi de votre message',
+						'idChat' => $get['idChat'],
 					];
 				}
 			}
@@ -69,6 +70,7 @@ class ChatController extends Controller
 				$json = [
 						'result' => false,
 						'errors' => implode('<br>', $errors),
+						'idChat' => $get['idChat'],
 				];
 
 			}
