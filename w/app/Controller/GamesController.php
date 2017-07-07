@@ -74,6 +74,7 @@ class GamesController extends Controller
             		'team_name'		=> $post['team_name'],
             		'team_level'	=> $post['level'],
             		'message'		=> $post['message'],
+                    'user_id'       => $_SESSION['id'],
             		'accepted'		=> 0,
 
             	];
