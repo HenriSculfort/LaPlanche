@@ -9,6 +9,12 @@
 <?php $this->stop('header_content');?>
 
 <?=$this->start('main_content');?>
+
+<div class="container col-lg-4 col-lg-offset-4">
+    <div class='row'>
+        <div id="success"></div> <!-- Affiche le message d'envoi du formulaire'-->
+    </div>
+</div>
 <!-- Main Content -->
 <div class="container">
     <div class="row">

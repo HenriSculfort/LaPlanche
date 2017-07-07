@@ -193,5 +193,7 @@
 
 </script>
 
+ <?= $this->section('script');?>
+
 </body>
 </html>

@@ -8,11 +8,12 @@
 <?=$this->stop('header_content'); ?>
 <?=$this->start('main_content'); ?>
 
-
-<article>
-	<div id="errors" style="color:red"></div>
-	<div id="message" style="color:green"></div>
-</article>
+<div class="container col-lg-4 col-lg-offset-4">
+	<div class='row'>
+		<div id="danger"></div>
+		<div id="success"></div>
+	</div>
+</div>
 
 <form method="GET" class="form-horizontal">
 	<div class="form-group">
@@ -44,32 +45,27 @@
 	$(document).ready(function(){
 
 		$('button[type="submit"]').on('click', function(e){
+			e.preventDefault(); 
+			$.ajax({
 
-		// Empeche l'action par défaut, dans notre cas la soumission du formulaire
+				url: '<?= $this->url('users_tokensAjax');?>', 
+				type: 'get',
+				data: $('form').serialize(),	
+				dataType: 'json',
 
-		e.preventDefault(); 
-
-		$.ajax({
-
-			url: '<?= $this->url('users_tokensAjax');?>', 
-			type: 'get',
-			data: $('form').serialize(),	
-			dataType: 'json',
-
-			success: function(resPHP){
-
-				if(resPHP.result == true) {
-					
-					$('#message').html('Un email vous a été envoyé');
-							//renvoie dans la div 'message' la valeur contenu dans .val; ici renvoie une valeur vide
-						$('#errors').html('');//on vide les messages d'erreures
+				success: function(resPHP){
+					if(resPHP.result == true){
+						$('#success').html('Un email vous a été envoyé').addClass('alert alert-success');
+						$('#danger').removeClass('alert alert-danger');
+						$('#danger').html('');
 					}
-					else if(resPHP.result == false) { 
-						$('#errors').html(resPHP.errors);
+					else if(resPHP.result == false){ 
+						$('#danger').html(resPHP.errors).addClass('alert alert-danger');
 					}		
 				}
 			});
+		});
 	});
-	});
+	
 </script>
 <?= $this->stop('script'); ?>
