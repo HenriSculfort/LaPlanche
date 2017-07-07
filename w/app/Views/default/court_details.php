@@ -235,19 +235,17 @@
 	<!-- ********************** CHAT ***********************-->
 	<div id='chat'>
 		<div id='chatTitle'></div>
-		<div id='showMeChat'>
-			<div id=resultAjax></div>
 			<h5>Messages</h5>
-			<div id='showMessages'></div>
+			<div id='showMessages'></div> <!-- Fin de la div contenant les messages du chat ajax -->
 			<div id='errors'></div>
-		</div> <!-- Fin de la div contenant les messages du chat ajax -->
+		
 		<form method='POST' id='sendMessages'>
 			<br>
 			<div class='row'>
 				<div class='col-md-12'>
 					<h5>Nouveau message</h5>
 					<input type="hidden" id="idChatRoom" name="idChat" value="">
-					<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici' onKeyPress="if(event.keyCode == 13) { sendMessages();}"></textarea>
+					<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
 					<br>
 					<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
 				</div>
@@ -290,20 +288,14 @@ function showChat() {
 function getMessages(chatId) {
 
 	$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId},function(resultHtml) {
-			$('#showMeChat').addClass('inView').html(resultHtml.html);
+			$('#showMessages').html(resultHtml.html);
 			$('#chatTitle').html('<strong>Chat du match </strong>' + resultHtml.gameId);
-		});
+	});
 }
 
 
 // On lance le jQuery
 $(document).ready(function() {
-
-	//FONCTION POUR ENVOYER LES MESSAGES DU CHAT EN APPUYANT SUR ENTREE
-	function sendMessages() {
-		$('#sendMessages').submit();
-	}
-
 
 	$(function() {
 
@@ -332,7 +324,7 @@ $(document).ready(function() {
 			// Retour du JSON contenant les données du chat et affichage 
 			$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml) {
 				$('#chat').addClass('show');
-				$('div#showMeChat').html(resultHtml.html);
+				$('div#showMessages').html(resultHtml.html);
 				$('div#chatTitle').html('<h4>Chat du match' + resultHtml.gameId + '</h4>');
 				$('#idChatRoom').val(resultHtml.gameId);
 			});
@@ -371,7 +363,8 @@ $(document).ready(function() {
 					}
 					// En cas d'erreur 
 					else if (retourJson.result == false) {
-						$('#errors').html(retourJson.errors).addClass('alert alert-danger');
+						$('#errors').fadeIn().delay(1000).html(retourJson.errors).addClass('alert alert-danger').fadeOut().delay(3000);
+						$('textarea#message').val('');
 					}
 
 				} // Fermeture du success
