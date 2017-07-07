@@ -365,16 +365,16 @@
 	
 	$(document).ready(function(){
 
-		$('#modifUser').on('click', function(e){
+		$('#submitProposeMatch').on('click', function(e){
 	// Empeche l'action par défaut, dans notre cas la soumission du formulaire
 
 			e.preventDefault(); 
 
 	
 			$.ajax({
-				url: '<?=$this->url('modif_user');?>', 
+				url: '<?=$this->url('propose_match');?>', 
 				type: 'post',
-				data: $('#UserModif').serialize(),		
+				data: $('#proposeMatch').serialize(),		
 				dataType: 'json', // Les données de retour seront envoyées en JSON
 				success: function(retourJson){
 					if(retourJson.result == true){ 

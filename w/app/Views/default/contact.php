@@ -1,4 +1,4 @@
-<?=$this->layout('layout_contact', ['title' => 'Contact']); ?>
+<?=$this->layout('layout_contact', ['title' => 'Page contact']); ?>
 
 <?php $this->start('header_content');?>
 <div class="standard-header">
@@ -9,48 +9,46 @@
 <?php $this->stop('header_content');?>
 
 <?=$this->start('main_content');?>
-
-<div class="container col-lg-4 col-lg-offset-4">
-    <div class='row'>
-        <div id="success"></div> <!-- Affiche le message d'envoi du formulaire'-->
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <form method="post" name="sentMessage" id="contactForm" novalidate>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" placeholder="Nom" id="name" name="name">
+                        <div id="errors-nom" class="errorsForms"></div><!-- Affiche l'erreur du nom-->
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Adresse email</label>
+                        <input type="email" class="form-control" placeholder="Adresse email" id="email" name="email">
+                        <div id="errors-mail" class="errorsForms"></div><!-- Affiche l'erreur du mail-->
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Message</label>
+                        <textarea rows="7" class="form-control" placeholder="Message" id="message" name="message"></textarea>
+                        <div id="errors-message" class="errorsForms"></div><!-- Affiche l'erreur du message-->
+                    </div>
+                </div>
+                <br>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 text-center">
+                        <button id="sendForm" type="button" class="btn btn-warning">Envoyer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-    <form method="post" name="sentMessage" id="contactForm" novalidate>
-        <div class="row control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>Nom</label>
-                <input type="text" class="form-control" placeholder="Nom" id="name" name="name">
-                <div id="errors-nom" class="errorsForms"></div><!-- Affiche l'erreur du nom-->
-            </div>
-        </div>
-        <div class="row control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>Adresse email</label>
-                <input type="email" class="form-control" placeholder="Adresse email" id="email" name="email">
-                <div id="errors-mail" class="errorsForms"></div><!-- Affiche l'erreur du mail-->
-            </div>
-        </div>
-        <div class="row control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>Message</label>
-                <textarea rows="7" class="form-control" placeholder="Message" id="message" name="message"></textarea>
-                <div id="errors-message" class="errorsForms"></div><!-- Affiche l'erreur du message-->
-            </div>
-        </div>
-        <br>
-        <div id="success"></div>
-        <div class="row">
-            <div class="form-group col-xs-12 text-center">
-                <button id="sendForm" type="button" class="btn btn-warning">Envoyer</button>
-            </div>
-        </div>
-    </form>
 </div>
 
 <?=$this->stop('main_content');?>
 
-<?php $this->start('script') ?>
+<?php $this->start('script');?>
 
 <script>
 
@@ -83,5 +81,5 @@ $(document).ready(function(){
 
 </script>
 
-<?php $this->stop('script') ?>
+<?php $this->stop('script');?>
 

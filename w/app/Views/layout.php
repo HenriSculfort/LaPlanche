@@ -63,12 +63,12 @@
                         </li>
                     <?php else: ?>
                         <li>
+                            <a href="<?= $this->url('contact') ?>">Contact</a>
+                        </li>
+                        <li>
                             <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                         </li>
                     <?php endif; ?>
-                    <li>
-                        <a href="<?= $this->url('contact') ?>">Contact</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -138,12 +138,12 @@
                             </li>
                         <?php else: ?>
                             <li>
+                                <a href="<?= $this->url('contact') ?>">Contact</a>
+                            </li>
+                            <li>
                                 <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                             </li>
                         <?php endif; ?>
-                        <li>
-                            <a href="<?= $this->url('contact') ?>">Contact</a>
-                        </li>
                     </ul>
                     <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
                 </div>
@@ -169,38 +169,38 @@
     <!-- Theme JavaScript personnalisé -->
     <script src="<?= $this->assetUrl('js/script.js') ?>"></script>
 
+    <!-- Ajax connexion -->
     <script>
+        $(document).ready(function(){
 
-     // Ajax connexion
-     $(document).ready(function(){
-
-        $('#connexion_popup').on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                url: '<?=$this->url('users_login');?>',
-                type: 'post',
-                dataType: 'json',
-                data: $('form').serialize(),
-                success: function(retourJson){
-                    if(retourJson.result == true){
-                        $('#connexion').modal('hide');
-                        location.reload();   
-                    }
-                    else if(retourJson.result == false){
-                        $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
-                    }
-                }   
+            $('#connexion_popup').on('click', function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: '<?=$this->url('users_login');?>',
+                    type: 'post',
+                    dataType: 'json',
+                    data: $('form').serialize(),
+                    success: function(retourJson){
+                        if(retourJson.result == true){
+                            $('#connexion').modal('hide');
+                            location.reload();   
+                        }
+                        else if(retourJson.result == false){
+                            $('#errorsAjaxConnexion').html('<div class="alert alert-danger">'+retourJson.errors+'</div>');
+                        }
+                    }   
+                });
             });
         });
-    });
+    </script>
 
-</script>
-<?= $this->section('script') ?>
-<div >
-    <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
-        <i class="fa fa-arrow-up"></i>
-    </button>
-</div>
+    <?= $this->section('script');?>
+    
+    <div>
+        <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+    </div>
 </body>
 
 </html>
