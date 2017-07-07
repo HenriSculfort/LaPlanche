@@ -22,14 +22,14 @@
 	
 	<div class="form-group">
 		<label for="datepicker"> Date </label>
-		<input class="form-control" type="text" id="datepicker" >
+		<input class="form-control" type="text" id="datepicker" placeholder="Sélectionnez la date">
 		<input type="hidden" id="alternate" name="date">
 	</div>
 
 	<div class="form-group">
 		<label for='has_match'> Match </label>
 		<select name='has_match' class="form-control">
-			<option value='both' selected>Indifférent</option>
+			<option value='both' selected>-- Indifférent --</option>
 			<option value='has_match'>Avec Match</option>
 			<option value='has_no_match'>Sans Match</option>
 		</select>
@@ -82,7 +82,7 @@ if(isset($courtResult)) {
 			<div class='row'>
 				<div class='flex-description col-md-12 well'>
 					<div class='col-md-3'>
-						<img class="img-rounded img-responsive" src="<?=$this->assetUrl('img/uploads/'.$court['picture']);?>" alt='Le terrain'>
+						<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
 					</div>
 					<div class='col-md-9'>
 						<h4><?= $court['name'];?></h4>

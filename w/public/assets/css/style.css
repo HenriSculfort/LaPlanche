@@ -3,11 +3,16 @@
 html {
     font-size: 62.5%;
     line-height: 1.5;
+    height: 100%;
 }
 
 body {
     font-size: 1.6em;
     color: #a49e9e;
+    min-height: 100%;
+    margin: 0;
+    padding-bottom: 200px;;
+    position: relative;
 }
 
 ul {
@@ -19,6 +24,10 @@ ul {
 a {
     text-decoration: none;
     color: #000;
+}
+
+*{
+    box-sizing: border-box;
 }
 
 *,
@@ -127,7 +136,7 @@ header.intro-header {
     text-align: center;
 }
 
-.message-connexion{
+.message-connexion {
     margin-top: 20px;
     margin-bottom: 0px;
 }
@@ -143,12 +152,22 @@ header.intro-header {
 
 /************************************* FOOTER GENERAL *****************************/
 
+.hr-footer{
+    margin-top: 200px;
+    color: #000;
+    margin-bottom: 0;
+}
+
+
 footer {
     border-color: transparent;
     background: rgba(232, 167, 76, 0.87);
     padding: 20px;
     margin-top: 40px;
+    position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0
 }
 
 
@@ -233,6 +252,7 @@ button {
     }
 }
 
+
 /********** NOS SERVICES *************/
 
 h2.section-services {
@@ -298,10 +318,11 @@ p.desciption-terrain {
     border-radius: 20px;
 }
 
-.flex-description{
+.flex-description {
     display: flex;
     align-items: center;
 }
+
 
 /******************************* PAGE DETAIL TERRAIN *********************************/
 
@@ -328,6 +349,7 @@ p.desciption-terrain {
     display: block;
 }
 
+
 /******************************* PAGE MON ESPACE *********************************/
 
 #addCourts {
@@ -339,6 +361,7 @@ p.desciption-terrain {
         text-align: right;
     }
 }
+
 
 /******************************* PAGE CONTACT *********************************/
 
