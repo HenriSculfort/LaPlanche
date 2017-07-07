@@ -244,8 +244,12 @@ h4.service-heading {
     font-size: 1.8rem;
 }
 
-.detail-services {
+.services {
     padding-bottom: 40px;
+}
+
+.detail-services{
+    padding: 0 60px;
 }
 
 .rotate {
