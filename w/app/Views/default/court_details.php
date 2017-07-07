@@ -393,6 +393,7 @@
 				success: function(retourJson){
 					if(retourJson.result == true){ 
 						$('#proposedMatch').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+						location.reload();
 					}
 					else if(retourJson.result == false){
 						$('#proposedMatch').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
