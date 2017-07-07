@@ -230,8 +230,8 @@
 		<div id='showMeChat'>	
 			<div id=resultAjax></div>
 			<h5>Messages</h5>
-			<div id='errors' class=''></div>
 			<div id='showMessages'></div>
+			<div id='errors'></div>
 		</div> <!-- Fin de la div contenant les messages du chat ajax -->
 		<form method='POST'>
 			<br>
@@ -263,7 +263,8 @@
 
 <script>
 
-	// FONCTION POUR RELOAD LE CHAT UNE FOIS UN MESSAGE POSTE
+
+	// FONCTION POUR AJOUTER OU SUPPRIMER LA CLASSE GERANT L'AFFICHAGE DU CHAT OU NON
 
 	function showChat() {
 		
@@ -274,6 +275,7 @@
 			}
 		}
 
+	// FONCTION POUR RELOAD LE CHAT UNE FOIS UN MESSAGE POSTE
 		function getMessages(chatId)
 		{
 
@@ -282,6 +284,7 @@
 				$('#chatTitle').html('<strong>Chat du match </strong>'+ resultHtml.gameId);
 			}); 
 		}
+
 
 
 	// On lance le jQuery
@@ -294,6 +297,7 @@
 			// Au clic du bouton d'affichage du chat
 			$('.btn-showChat').on('click', function(e){
 				
+				// Pour cacher le chat lorsque l'on clique en dehors.
 				$(document).mouseup(function(e) 
 				{
 					var chat = $('#chat');
@@ -305,23 +309,21 @@
 				    }
 				});
 
+				// Pour que l'affichage fonctionne toujours une fois que l'on a cliqué en dehors.
 				showChat();
-
-				// Pour cacher le chat lorsque l'on clique en dehors.
 				
 				e.preventDefault();
 				
 				var chatId = $(this).data('id'); // Récupere l'id de l'attribut data-id (correspond à l'id de la game)
 
-
+				// Retour du JSON contenant les données du chat et affichage 
 				$.getJSON('<?=$this->url('chat_load');?>', {idChat: chatId}, function(resultHtml){	
 					$('#chat').addClass('show');
 					$('div#showMeChat').html(resultHtml.html);
 					$('div#chatTitle').html('<h4>Chat du match' + resultHtml.gameId + '</h4>');
 					$('#idChatRoom').val(resultHtml.gameId);
+				});
 
-
-				}); 
 			}); // Fin du clic sur le bouton d'affichage du chat
 
 
@@ -331,7 +333,7 @@
 			$('#addMessage').on('click', function(envoi){ 
 				envoi.preventDefault();
 
-						var $message = $('textarea#message').val(); // Val récupère la valeur du champ. Si j'écris qqc entre les parenthèses ça m'écrira le truc dans la balise. 
+						var $message = $('textarea#message').val();  
 						var $game_id = $('#idChatRoom').val(); 
 						console.log($game_id);
 
@@ -345,19 +347,22 @@
 							dataType : 'json',
 							success : function(retourJson) { 
 								
+								// Si le message a bien été posté 
 								if(retourJson.result == true){
 									getMessages(retourJson.idChat);
 									// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
 									$('textarea#message').val(''); 
 									// Pour réinitialiser les erreurs si jamais on envoie un message correct 
-									$('#errors').addClass('alert alert-danger');
+									$('#errors').removeClass('alert alert-danger');
 									$('#errors').text('');
-
 								}
+								// En cas d'erreur 
 								else if(retourJson.result == false){
-									$('#errors').html(retourJson.errors);
+									$('#errors').html(retourJson.errors).addClass('alert alert-danger');
 								}
+
 							} // Fermeture du success
+							
 						}); // Fermeture du AJAX
 
 					}); // Fermeture de l'event on clic envoi

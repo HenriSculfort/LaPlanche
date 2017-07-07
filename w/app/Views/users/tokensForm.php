@@ -31,7 +31,7 @@
 </form>
 
 <div class="row text-center">
-	<div class="col-md-12">               
+	<div class="col-sm-4 col-sm-offset-4">               
 		<img src="<?= $this->assetUrl('img/faq.png')?>" class="interrogation" alt="point d'interrogation">
 	</div>
 </div>
