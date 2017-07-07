@@ -180,7 +180,7 @@
 		<div>
 			<?php 
 
-			var_dump($findGamesOnCourt);
+			
 			foreach($findGamesOnCourt as $game) : 
 				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
 			if(strtotime($now)> strtotime($game['date'])) {
@@ -202,17 +202,20 @@
 					<p>Nom de l'équipe : <?= $game['team_name'];?></p>
 					<p>Message : <?= $game['message'];?></p>
 					<!-- Bouton d'acceptation de la rencontre ! -->
-					<?php if($game['user_id'] == $this->getUser()) :?>
-						<button type='submit' data-id='<?=$game['id'];?>' class='btn btn-success'>Accepter la rencontre</button>
-					<?php endif;?>
+					<?php
 
 
-
-					?>
+					 if($game['user_id'] == ($w_user['id'])) :?>
+						<form method='POST'>
+							<button id='<?=$game['id'];?>' type='submit' class='btn btn-success'>Accepter la rencontre</button>
+						</form>
+					<?php endif;?>					
 				</div>
 			</div>
 			<div class='row'>
-				<button type='button' data-id="<?=$game['id'];?>"  class='btn btn-primary btn-showChat'>Afficher le chat</button> 
+				<div class='col-md-6'>
+					<button type='button' data-id="<?=$game['id'];?>"  class='btn btn-primary btn-showChat'>Afficher le chat</button> 
+				</div>
 			</div>
 			<hr>
 			<?php } ;
