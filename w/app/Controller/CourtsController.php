@@ -248,8 +248,8 @@ class CourtsController extends Controller
                     'opening_hours'	=> $post['opening_hours'],
                     'admin_validation'	=> 0,
                     'parking'       => $post['parking'],
-                    'latitude'      => 42.5,
-                    'longitude'     => 0.46,
+                    'latitude'      => $post['lat'],
+                    'longitude'     => $post['lng'],
 
                 ];
 
