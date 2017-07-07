@@ -28,13 +28,16 @@ class GamesController extends Controller
             //verification de la date
 
 
-         	if(!checkdate($post['month'], $post['day'],$post['year'] ))
-         	{
-         		$errors[] = 'La date doit être au bon format';
-         	}
+        // 	if(!checkdate($post['month'], $post['day'],$post['year'] ))
+        // 	{
+        // 		$errors[] = 'La date doit être au bon format';
+        // 	}
+
+
+
 
             //vérification de l'heure de début
-         	if(empty($post['starting_time']))
+         	if(empty($post['starting_time']) && $post['starting_time'] != date('H:i'))
             {
                 $errors[] = 'L\'heure de départ doit être renseignée';
             }
@@ -57,12 +60,6 @@ class GamesController extends Controller
                 $errors[] = 'Le nombre de joueurs doit être un chiffre';
             }
 
-            //vérification du nom de l'équipe
-            if(mb_strlen($post['team_name'])<2)
-            {
-                $errors[] = 'Le nom de l\'équipe doit comporter au moins 2 caractères';
-            }
-
             //vérification du message
             if(mb_strlen($post['message'])<2)
             {
@@ -73,20 +70,41 @@ class GamesController extends Controller
 
             	$data=[
             		'court_id' 		=> $post['id'],
-            		'date'			=> ,
+            		'date'			=> 'toto',
             		'starting_time'	=> $post['starting_time'],
             		'finishing_time'=> $post['finishing_time'],
             		'number_players'=> $post['number_players'],
             		'team_name'		=> $post['team_name'],
-            		'team_level'	=> ,
+            		'team_level'	=> $post['level'],
             		'message'		=> $post['message'],
             		'accepted'		=> 0,
 
             	];
-
-
-
+                $gameModel = new GamesModel;
+                $insert = $gameModel->insert($data);
+                if($insert){
+                    
+                    $json = [
+                    'result' => true,
+                    'message'=> 'Match proposé!' ,
+                    ];
+                }
             }
+            else{
+                // définie les erreurs du formulaire
+                
+
+                $json = [
+                'result' => false,
+                'errors' => implode('<br>',$errors),
+                ];
+            }
+
+            $this->showJson($json);
+
+
+
+        }
 
 
 	}
