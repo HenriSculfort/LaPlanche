@@ -141,27 +141,7 @@
 				</div>
 				<div class='row'>
 					<h5>Etat du terrain</h5>
-					<p><?php switch($findCourt['court_state']) {
-						case 0:
-						echo 'Non renseigné';
-						break;
-						case 1:
-						echo 'Très mauvais état';
-						break;
-						case 2:
-						echo 'Mauvais état';
-						break;
-						case 3:
-						echo 'Etat Normal';
-						break;
-						case 4:
-						echo 'Bon état';
-						break;
-						case 5:
-						echo 'Très bon état';
-						break;
-					}?>
-				</p>	
+					<p><?=\Tools\Utils::getCourtState($findCourt['court_state']);?> </p>	
 			</div>
 			<div class='row'>
 				<h5>Filet</h5>
@@ -236,7 +216,7 @@
 					<button type='submit' class='btn btn-warning'>Annuler la rencontre</button>
 				</form>
 			<?php endif;?>	
-			
+
 			<!-- Bouton d'affichage du chat -->
 			<button type='button' data-id="<?=$game['id'];?>"  class='btn btn-primary btn-showChat'>Afficher le chat</button> 
 		</div>
