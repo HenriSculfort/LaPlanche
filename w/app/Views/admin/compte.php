@@ -1,3 +1,4 @@
+
 <?= $this->layout('layout', ['title' => 'Espace admin']);?>
 <?=$this->start('header_content'); ?>
 
@@ -9,9 +10,8 @@
 <?=$this->stop('header_content'); ?>
 
 <?=$this->start('main_content'); ?>
-<?php
-if(!$_SESSION['role'] = 'admin'){
-	?>
+
+	
 	<article>
 		<div id="errors" style="color:red"></div>
 		<div id="message" style="color:green"></div>
@@ -63,17 +63,8 @@ if(!$_SESSION['role'] = 'admin'){
 				<?php }	?>
 			</tbody>
 		</table>
-
 	</div>
-	<?php
-}else{
-	?>
-	<script>
-		window.location='<?=$this->url('accueil');?>';
-	</script>
-	<?php
-}
-?>
+
 <?= $this->stop('main_content'); ?> 
 <?=$this->start('script'); ?>
 

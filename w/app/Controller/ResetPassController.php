@@ -83,9 +83,17 @@ class ResetPassController extends \W\Controller\Controller
 	{
         // Vérif que les GET soient présents
 		
+		if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) && !empty($_GET['token'])){
+			
         // Si ok, affichage du formulaire, sinon erreur
 
         // Si ok, on accède a la méthode AJAX en POST
-		$this->show('users/changePassword');
+			$this->show('users/changePassword');
+
+			
+		}else{	
+			$this->show('w_errors/403');
+		} 
+
 	}
 }
