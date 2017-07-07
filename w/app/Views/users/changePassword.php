@@ -9,10 +9,6 @@
 
 <?=$this->start('main_content'); ?>
 
-<?php 
-if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) && !empty($_GET['token'])){
-	?>
-
 	<article>
 		<div id="errors" style="color:red"></div>
 		<div id="message" style="color:green"></div>
@@ -28,16 +24,6 @@ if(isset($_GET['user_id']) && !empty($_GET['user_id']) && isset($_GET['token']) 
 		<input type="hidden" name="user_id" value="<?php if(isset($_GET['user_id'])){ echo $_GET['user_id'];}?>">
 		<button type="submit">Réinitialiser</button>
 	</form>
-
-	<?php 
-}else{
-	?>
-	<script>
-		window.location='<?=$this->url('accueil');?>';
-	</script>
-	<?php
-} 
-?>
 
 <?=$this->stop('main_content'); ?>
 
