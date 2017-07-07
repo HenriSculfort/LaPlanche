@@ -204,8 +204,17 @@
 						<p>Nom de l'équipe : <?= $game['team_name'];?></p>
 						<p>Message : <?= $game['message'];?></p>
 						
+						<!-- Bouton de suppression de la rencontre par l'utilisateur qui l'a créée !  -->
+						<?php
+						if($game['user_id'] == ($w_user['id'])) :?>
+							<form method='POST' action='<?=$this->url('delete_game');?>'>
+								<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+								<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+								<button type='submit' class='btn btn-danger'>Supprimer la rencontre</button>
+							</form>
+						<?php endif;?>							
 
-						<!-- Bouton d'acceptation de la rencontre ! -->
+						<!-- Bouton d'acceptation de la rencontre par l'utilisateur qui l'a proposée ! -->
 						<?php
 						if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
 							<form method='POST' action='<?=$this->url('accept_game');?>'>
@@ -214,6 +223,19 @@
 								<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
 							</form>
 						<?php endif;?>					
+					
+						<!-- Bouton d'annulation de la rencontre par l'utilisateur qui l'a acceptée ! (ATTENTION, ceci n'est pas une suppression) -->
+						<?php
+						if($game['user_id'] == ($w_user['id']) && $game['accepted'] == 1 ) :?>
+							<form method='POST' action='<?=$this->url('cancel_game');?>'>
+								<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+								<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+								<button type='submit' class='btn btn-warning'>Annuler la rencontre</button>
+							</form>
+						<?php endif;?>	
+						
+
+
 					</div>
 			</div>
 			<div class='row'>

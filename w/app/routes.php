@@ -28,6 +28,8 @@ $w_routes = array(
     ['GET|POST', '/courts/details/[i:id]', 'Courts#courtDetails', 'court_details'],
     ['GET|POST', '/courts/details/match', 'Games#ProposeGame', 'propose_match'],
     ['GET|POST', '/courts/details/acceptGame', 'Games#acceptGame', 'accept_game'],
+    ['GET|POST', '/courts/details/cancelGame', 'Games#cancelGame', 'cancel_game'],
+    ['GET|POST', '/courts/details/deleteGame', 'Games#deleteGame', 'delete_game'],
 
     ['GET|POST', '/changePassword/', 'resetPass#changePass', 'users_changePassword'],
     ['GET|POST', '/changePassword/Ajax', 'ResetPass#resetPass', 'users_changePasswordAjax'],
