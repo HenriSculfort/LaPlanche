@@ -193,7 +193,7 @@
 						<form method='POST' action='<?=$this->url('delete_game');?>'>
 							<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
 							<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-							<button type='submit' class='btn btn-danger'>Supprimer la rencontre</button>
+							<button type='submit' class='btn btn-danger' onClick="if(confirm('Etes vous sur ?')){return true;}else{return false;}">Supprimer la rencontre</button>
 						</form>
 					<?php endif;?>							
 
@@ -213,7 +213,7 @@
 				<form method='POST' action='<?=$this->url('cancel_game');?>'>
 					<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
 					<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-					<button type='submit' class='btn btn-warning'>Annuler la rencontre</button>
+					<button type='submit' class='btn btn-warning' onClick="if(confirm('Etes vous sur ?')){return true;}else{return false;}">Annuler la rencontre</button>
 				</form>
 			<?php endif;?>	
 
