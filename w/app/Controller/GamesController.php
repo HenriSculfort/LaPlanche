@@ -13,7 +13,7 @@ class GamesController extends Controller
 	{
 		$post = [];
         $errors = []; 
-      print_r($_POST);
+    //  print_r($_POST);
 
         if(!empty($_POST)){
 
@@ -22,17 +22,17 @@ class GamesController extends Controller
             //verification de la date
 
 
-         	if(!validateDate($post['date'],'d-m-Y'))
-         	{
-         		$errors[] = 'La date doit être au bon format';
-         	}
-
-
-
+         	//if(!validateDate($post['date'],'d-m-Y'))
+             //	{
+             //		$errors[] = 'La date doit être au bon format';
+            //	}
+            if(!empty($post['date'])) { 
+                if(!v::date('Y-m-d')->validate($post['date'])){ 
+                    $errors[] = 'Le format de la date est incorrect';
+                }
+            }
 
             //vérification de l'heure de début
-
-            
 
          	if(empty($post['starting_time']) || (!preg_match('#^[0-2][0-9]:[0-5][0-9]$#', $post['starting_time'])))
             {
@@ -110,7 +110,7 @@ class GamesController extends Controller
         
 
         $model = new Model();
-        //$gameAccepted = $model->update();
+        $gameAccepted = $model->update();
     }
 
 
