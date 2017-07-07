@@ -31,7 +31,7 @@
     
 </head>
 
-<body id='pageTop'>
+<body id='pageTop' class='content'>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default">
@@ -63,12 +63,12 @@
                         </li>
                     <?php else: ?>
                         <li>
-                            <a href="<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                            <a href="<?= $this->url('contact') ?>">Contact</a>
+                        </li>
+                        <li>
+                            <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                         </li>
                     <?php endif; ?>
-                    <li>
-                        <a href="<?= $this->url('contact') ?>">Contact</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -110,46 +110,43 @@
         </div>       
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <?= $this->section('main_content') ?>
-        </div>
-    </div>
+    <?= $this->section('main_content') ?>
 
     <!-- Footer -->
-    <footer class="footer-contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="<?= $this->url('accueil') ?>">Accueil</a>
-                        </li>
-                        <li>
-                            <a href="<?= $this->url('courts') ?>">Terrains</a>
-                        </li>
-                        <?php if(!empty($w_user)): ?>
+    <div class="footer-contact">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <ul class="list-inline text-center">
                             <li>
-                                <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                                <a href="<?= $this->url('accueil') ?>">Accueil</a>
                             </li>
                             <li>
-                                <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
+                                <a href="<?= $this->url('courts') ?>">Terrains</a>
                             </li>
-                        <?php else: ?>
-                            <li>
-                                <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
-                            </li>
-                        <?php endif; ?>
-                        <li>
-                            <a href="<?= $this->url('contact') ?>">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
+                            <?php if(!empty($w_user)): ?>
+                                <li>
+                                    <a href="<?= $this->url('users_myspace') ?>">Mon espace</a>
+                                </li>
+                                <li>
+                                    <a href="<?=$this->url('users_logout');?>">Déconnexion</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="<?= $this->url('contact') ?>">Contact</a>
+                                </li>
+                                <li>
+                                    <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                        <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <!-- jQuery -->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

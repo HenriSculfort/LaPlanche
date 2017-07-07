@@ -261,6 +261,7 @@ h4.service-heading {
     }
 }
 
+
 /******************************* PAGE TERRAIN *********************************/
 
 #distance .slider-selection {
@@ -324,30 +325,48 @@ p.desciption-terrain {
     margin-bottom: 40px;
 }
 
-.align-right{
+.align-right {
     text-align: right;
 }
 
+
 /******************************* PAGE CONTACT *********************************/
 
-.footer-contact {
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+}
+
+footer {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
 }
 
+
 /******************************* PAGE ERREUR *********************************/
 
-.image-erreur{
+.image-erreur {
     margin-top: 150px;
 }
 
+
 /******************************* PAGE MOT DE PASSE OUBLIE *********************************/
 
-.interrogation{
+.interrogation {
     margin-top: 50px;
 }
+
 
 /****************************** BOUTON RETOUR TOP *******************************/
 

@@ -63,12 +63,12 @@
                         </li>
                     <?php else: ?>
                         <li>
-                            <a href="<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
+                            <a href="<?= $this->url('contact') ?>">Contact</a>
+                        </li>
+                        <li>
+                            <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                         </li>
                     <?php endif; ?>
-                    <li>
-                        <a href="<?= $this->url('contact') ?>">Contact</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -138,12 +138,12 @@
                             </li>
                         <?php else: ?>
                             <li>
+                                <a href="<?= $this->url('contact') ?>">Contact</a>
+                            </li>
+                            <li>
                                 <a href=""<?= $this->url('users_login') ?>"" data-toggle="modal" data-target="#connexion">Connexion</a>
                             </li>
                         <?php endif; ?>
-                        <li>
-                            <a href="<?= $this->url('contact') ?>">Contact</a>
-                        </li>
                     </ul>
                     <p class="copyright text-muted">Copyright &copy; La Planche | 2017</p>
                 </div>
@@ -194,7 +194,7 @@
         });
     </script>
 
-        <?= $this->section('script');?>
+    <?= $this->section('script');?>
     
     <div>
         <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
