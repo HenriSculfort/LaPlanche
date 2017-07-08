@@ -18,58 +18,57 @@
 <div id='resultAjax'></div>
 <!-- Row pour prendre en compte la colonne d'affichage de la map à droite-->
 <div class="container">
-<div class='row'>
-
-    <!-- Colonne du formulaire -->
-    <div class='col-md-6'>
-
-        <form method="post" id="addTerrain" class="container-fluid" enctype="multipart/form-data">
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='address'>Adresse</label>
+    <div class='row'>
+        <!-- Colonne du formulaire -->
+        <div class='col-md-6'>
+            <form method="post" id="addTerrain" class="container-fluid" enctype="multipart/form-data">
+            <div class="well">
+                    <div class='row form-group'>
+                        <div class='col-md-4 align-right'>
+                            <label for='address'>Adresse</label>
+                        </div>
+                        <div class='col-md-8'>
+                            <textarea type='text' class='form-control' name='address' placeholder="Adresse du terrain"><?php if(isset($_POST['address'])){echo $_POST['address']; } ?></textarea>
+                        </div>
+                    </div>
+                    <div class='row form-group'>
+                        <div class='col-md-4 align-right'>
+                            <label for='postal_code'>Code Postal</label>
+                        </div>
+                        <div class='col-md-8'>
+                            <input type='text' class='form-control' name='postal_code' placeholder="CP" value="<?php if(isset($_POST['postal_code'])){echo $_POST['postal_code']; } ?>" >
+                        </div>
+                    </div>
+                    <div class='row form-group'>
+                        <div class='col-md-4 align-right'>
+                            <label for='city'>Ville</label>
+                        </div>
+                        <div class='col-md-8'>
+                            <input type='text' class='form-control' name='city' placeholder="Ville" value="<?php if(isset($_POST['city'])){echo $_POST['city']; } ?>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-4">
+                            <button type='submit' id='checkMap' class='btn btn-primary'>Verifier l'emplacement du terrain</button>
+                            <!--                <input type="button" value="Verrifier l'emplacement du terrain">-->
+                        </div>
+                    </div>
                 </div>
-                <div class='col-md-8'>
-                    <textarea type='text' class='form-control' name='address' placeholder="Adresse du terrain"><?php if(isset($_POST['address'])){echo $_POST['address']; } ?></textarea>
-                </div>
-            </div>
 
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='postal_code'>Code Postal</label>
-                </div>
-                <div class='col-md-8'>
-                    <input type='text' class='form-control' name='postal_code' placeholder="CP" value="<?php if(isset($_POST['postal_code'])){echo $_POST['postal_code']; } ?>" >
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='city'>Ville</label>
-                </div>
-                <div class='col-md-8'>
-                    <input type='text' class='form-control' name='city' placeholder="Ville" value="<?php if(isset($_POST['city'])){echo $_POST['city']; } ?>">
-                </div>
-            </div>
-
-            <div class="col-md-12 text-center">
-                <button type='submit' id='checkMap' class='btn btn-primary'>Verrifier l'emplacement du terrain</button>
-                <!--                <input type="button" value="Verrifier l'emplacement du terrain">-->
-            </div>
-
-            <?php
+                <?php
 
             // Introduce the class into your scope
-            use KamranAhmed\Geocode\Geocode;
+                use KamranAhmed\Geocode\Geocode;
 
             // Optionally you can pass the API key for Geocoding
-            $geocode = new Geocode();
+                $geocode = new Geocode();
 
-            if(isset($_POST['address']) and isset($_POST['postal_code']) and isset($_POST['city']))
-            {
+                if(isset($_POST['address']) and isset($_POST['postal_code']) and isset($_POST['city']))
+                {
                 // Get the details for the passed address
-                $location = $geocode->get($_POST['address'].' '.$_POST['postal_code'].' '.$_POST['city']);
+                    $location = $geocode->get($_POST['address'].' '.$_POST['postal_code'].' '.$_POST['city']);
                 // Note: All the functions below accept a parameter as a default value that will be return if the reuqired value isn't found
-                $location->getAddress( 'default value' ); 
+                    $location->getAddress( 'default value' ); 
                 $lat = $location->getLatitude(); // returns the latitude of the address
                 $lng = $location->getLongitude(); // returns the longitude of the address
                 $location->getCountry(); // returns the country of the address
@@ -95,7 +94,6 @@
                     <input id="envoieMap" type='text' class='form-control' name='name' placeholder="Un nom pour ce terrain">
                 </div>
             </div>
-
             <div class='row form-group'>
                 <div class='col-md-4 align-right'>
                     <label for='description'>Description</label>
@@ -104,7 +102,6 @@
                     <textarea type='text' class='form-control' name='description' placeholder='Une description du terrain et  des infrastructures disponibles' rows='10'></textarea>
                 </div>
             </div>
-
             <div class='row form-group'>
                 <div class='col-md-4 align-right'>
                     <label for='court_state'>Etat du terrain</label>
@@ -120,8 +117,6 @@
                     </select>
                 </div>
             </div>
-
-
             <div class='row form-group'  >
                 <div class='col-md-4 align-right'>
                     <label for='picture'>Photo</label>
@@ -130,7 +125,6 @@
                     <input type="file" class='form-control' name="picture" accept="image/*">
                 </div>
             </div>
-
             <div class='row form-group'>
                 <div class='col-md-4 align-right'>
                     <label for='net'>Filet sur le(s) panier(s) ?</label>
@@ -140,7 +134,6 @@
                     <input type='radio' name='net' value='no'> Non
                 </div>
             </div>
-
             <div class='row form-group'>
                 <div class='col-md-4 align-right'>
                     <label for='opening_hours'>Horaires d'ouverture (facultatif)</label>
@@ -149,7 +142,6 @@
                     <input type='text' class='form-control' name='opening_hours' placeholder="Horaires d'ouverture">
                 </div>
             </div>
-
             <div class='row form-group'>
                 <div class='col-md-4 align-right'>
                     <label for='parking'>Parking (facultatif)</label>
@@ -159,11 +151,11 @@
                     <input type='radio' name='parking' value='no'> Non
                 </div>
             </div>
-
             <br>
-
-            <div class="col-md-12 text-center">
-                <button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-4">
+                    <button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
+                </div>
             </div>
         </form>
     </div> <!-- Fin du div de colonne formulaire -->
@@ -191,8 +183,7 @@
 <div id='ModifUserAjax'></div>
 
 <form method='POST' id='UserModif' action='#'>
-    <div class='container-fluid'>
-
+    <div class='container'>
         <div class='row form-group hidden'>
             <div class='col-md-offset-2 col-md-4'>
                 <label for='id'>id</label>
@@ -219,7 +210,6 @@
                 <input type='email' class='form-control' name='email' value="<?= $_SESSION['user']['email']?>">
             </div> 
         </div>
-
         <div class='row form-group'>
             <div class='col-md-offset-1 col-md-4 align-right'>
                 <label for='level'>Niveau</label>
@@ -244,7 +234,6 @@
                 <textarea type='text' class='form-control' name='address'><?= $_SESSION['user']['address']?></textarea>
             </div>
         </div>
-
         <div class='row form-group'>
             <div class='col-md-offset-1 col-md-4 align-right'>
                 <label for='postal_code'>Code Postal</label>
@@ -254,7 +243,6 @@
 
             </div>
         </div>
-
         <div class='row form-group'>
             <div class='col-md-offset-1 col-md-4 align-right'>
                 <label for='city'>Ville</label>
@@ -263,7 +251,6 @@
                 <input type='text' class='form-control' name='city' value="<?= $_SESSION['user']['city']?>">
             </div>
         </div>
-
         <div class='row form-group'>
             <div class='col-md-offset-1 col-md-4 align-right'>
                 <label for='phone'>Téléphone (facultatif)</label>
@@ -287,12 +274,12 @@
             </div>
         </div>
         <br>
-        <div class="col-md-12 text-center">
-            <button type='submit' id='modifUser' class='btn btn-primary'>Envoyer les modifications</button>
+        <div class="row">
+            <div class="col-md-7 col-md-offset-5">
+                <button type='submit' id='modifUser' class='btn btn-primary'>Envoyer les modifications</button>
+            </div>
         </div>
-
     </div>
-
 </form>
 <hr>
 

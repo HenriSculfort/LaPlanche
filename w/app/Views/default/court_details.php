@@ -92,7 +92,7 @@
 				<div class='col-sm-6'>
 					<div class='row form-group'>
 						<div class='col-sm-6 align-right'>
-							<label for="datepicker"> Date :</label>
+							<label for="datepicker"> Date</label>
 						</div>
 						<div class='col-sm-6'>
 							<input class="form-control" type="text" id="datepicker">
@@ -101,7 +101,7 @@
 					</div>
 					<div class='row form-group'>
 						<div class='col-sm-6 align-right'>
-							<label for='starting_time'>Heure de début :</label>
+							<label for='starting_time'>Heure de début</label>
 						</div>
 						<div class='col-sm-6 align-right'>
 							<input type='text' class='form-control' name='starting_time' placeholder='HH:mm'>
@@ -109,7 +109,7 @@
 					</div>
 					<div class='row form-group'>
 						<div class='col-sm-6 align-right'>
-							<label for='finishing_time'>Heure de fin :</label>
+							<label for='finishing_time'>Heure de fin</label>
 						</div>
 						<div class='col-sm-6 align-right'>
 							<input type='text' class='form-control' name="finishing_time" placeholder='HH:mm'>
@@ -117,7 +117,7 @@
 					</div>
 					<div class='row form-group'>
 						<div class='col-sm-6 align-right'>
-							<label for='level'>Niveau :</label>
+							<label for='level'>Niveau</label>
 						</div>
 						<div class='col-sm-6 align-right'>
 							<select name='level' class='form-control'>
@@ -131,7 +131,7 @@
 					</div>
 					<div class='row form-group'>
 						<div class='col-sm-6 align-right'>
-							<label for='number_players'>Nombre de joueurs :</label>
+							<label for='number_players'>Nombre de joueurs</label>
 						</div>
 						<div class='col-sm-6 align-right'>
 							<input type='text' class='form-control' name='number_players' placeholder="ex: 3">
@@ -139,7 +139,7 @@
 					</div>
 					<div class='row form-group'>
 						<div class='col-sm-6 align-right'>
-							<label for='team_name'>Nom de votre équipe :</label>
+							<label for='team_name'>Nom de votre équipe</label>
 						</div>
 						<div class='col-sm-6'>
 							<input type='text' class='form-control' name='team_name' placeholder="nom de l'équipe (facultatif)">
@@ -150,7 +150,7 @@
 				<div class='col-sm-6'>
 					<div class='row form-group'>
 						<div class='col-sm-2 align-right'>
-							<label for='message'>Message :</label>
+							<label for='message'>Message</label>
 						</div>
 						<div class='col-sm-6'>
 							<textarea rows="9" class='form-control' name='message' placeholder="Ecrivez votre message ici (et restez courtois :D )"></textarea>
