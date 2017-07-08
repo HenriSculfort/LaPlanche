@@ -352,12 +352,15 @@ p.desciption-terrain {
     margin-bottom: 40px;
 }
 
+#checkMap{
+    margin: 20px 0 40px 0;
+}
+
 @media only screen and (min-width:990px) {
     .align-right {
         text-align: right;
     }
 }
-
 
 #map {
     overflow: visible;
