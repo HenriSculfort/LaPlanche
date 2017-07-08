@@ -11,7 +11,7 @@
 			<hr class="small hr-bottom">
 
 			<!--********************** SOMMAIRE ************************-->
-			<?php if(!empty($w_user) && $w_user['role'] == 'admin'): ?>
+			<?php if(!empty($w_user)): ?>
 				<div class="container">
 					<div class='row text-center'>
 						<div class='col-sm-12'>
@@ -78,7 +78,7 @@
 	</div>
 </div>
 
-<?php if(!empty($w_user) && $w_user['role'] == 'admin'): ?>
+<?php if(!empty($w_user)): ?>
 	<!--************************* PROPOSER MATCH ************************-->
 	<div class="container-fluid background-blanc-section">
 		<hr class="small">
