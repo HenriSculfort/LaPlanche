@@ -55,7 +55,7 @@
 
 // S'il y a des erreurs il me les affiche 
 if (isset($showErrors) && !empty($showErrors)) { ?>
-<div class='alert alert-danger'><?= $showErrors;?></div><?php
+<div class='col-lg-4 col-lg-offset-4 alert alert-danger text-center'><?= $showErrors;?></div><?php
 }
 // Si une recherche a été effectuée 
 elseif(isset($searchResults) && $searchResults == true) {
