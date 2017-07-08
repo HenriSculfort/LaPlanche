@@ -166,7 +166,6 @@
     <div class='col-md-6'>
         <div class='row'>
             <div id='confirmCourtAddress'>
-
             </div>
             <div class='col-md-12'>
                 <!-- Insérer la carte ici -->
@@ -181,8 +180,9 @@
 <!-- Données du profil utilisateur -->
 <h3>Mon profil</h3>
 <br>
-
-<div id='ModifUserAjax'></div>
+<div class="col-lg-4 col-lg-offset-4 text-center">
+    <div id='ModifUserAjax'></div>
+</div>
 
 <form method='POST' id='UserModif' action='#'>
     <div class='container'>
