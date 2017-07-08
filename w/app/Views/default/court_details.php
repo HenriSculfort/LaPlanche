@@ -407,10 +407,10 @@ $(document).ready(function() {
 			dataType: 'json', // Les données de retour seront envoyées en JSON
 			success: function(retourJson) {
 				if (retourJson.result == true) {
-					$('#proposedMatch').html('<div class="alert alert-success">' + retourJson.message + '</div>');
+					$('#proposedMatch').html('<div class="col-lg-4 col-lg-offset-4 alert alert-success text-center">' + retourJson.message + '</div>');
 					location.reload();
 				} else if (retourJson.result == false) {
-					$('#proposedMatch').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
+					$('#proposedMatch').html('<div class="col-lg-4 col-lg-offset-4 alert alert-danger text-center">' + retourJson.errors + '</div>');
 				}
 
 			},
