@@ -42,7 +42,6 @@ a {
     color: #000;
 }
 
-
 /********************** STYLES DE POLICE ET TAILLES DE TEXTE *******************/
 
 a:hover {
@@ -75,7 +74,6 @@ h3 {
     font-size: 1.3rem;
     font-weight: 400;
 }
-
 
 /************************************* NAVBAR *********************************/
 
@@ -118,7 +116,6 @@ h3 {
     background-color: #fff;
 }
 
-
 /************************************* HEADER GENERAL *****************************/
 
 .standard-header {
@@ -149,7 +146,6 @@ header.intro-header {
     }
 }
 
-
 /************************************* FOOTER GENERAL *****************************/
 
 .hr-footer{
@@ -169,7 +165,6 @@ footer {
     left: 0;
     right: 0
 }
-
 
 /******************************* PAGE ACCUEIL *********************************/
 
@@ -248,7 +243,6 @@ button {
     }
 }
 
-
 /********** NOS SERVICES *************/
 
 h2.section-services {
@@ -283,7 +277,6 @@ h4.service-heading {
     }
 }
 
-
 /******************************* PAGE TERRAIN *********************************/
 
 #distance .slider-selection {
@@ -303,8 +296,8 @@ a.lien-info-terrain:hover {
     color: #5a64db;
 }
 
-p.desciption-terrain {
-    margin-bottom: 20px;
+.description-terrain {
+    margin-top : 40px;
 }
 
 .moteur-recherche {
@@ -317,10 +310,26 @@ p.desciption-terrain {
 .flex-description {
     display: flex;
     align-items: center;
+    flex-flow: row wrap;
 }
 
-
 /******************************* PAGE DETAIL TERRAIN *********************************/
+
+.titre-match{
+        margin: 20px 0;
+}
+
+hr.small{
+    border-color: rgba(232, 167, 76, 0.87);
+}
+
+hr.hr-bottom{
+    margin-bottom: 40px;
+}
+
+.background-gris-section{
+    background: #f5f5f5;
+}
 
 #chat {
     border: 1px solid darkgray;
@@ -345,7 +354,21 @@ p.desciption-terrain {
     display: block;
 }
 
+@media only screen and (min-width:990px) {
+    .titre-match{
+        margin: 10px 0;
+    }
+    .background-gris-section,
+    .background-blanc-section{
+    padding: 50px 0;
+    }
+}
 
+@media only screen and (max-width:520px) {
+    .btn-action{
+        margin-top: 10px;
+    }
+}
 /******************************* PAGE MON ESPACE *********************************/
 
 #addCourts {
@@ -356,16 +379,16 @@ p.desciption-terrain {
     margin: 20px 0 40px 0;
 }
 
-@media only screen and (min-width:990px) {
-    .align-right {
-        text-align: right;
-    }
-}
-
 #map {
     overflow: visible;
     height:50vh;
     width:70vh;   
+}
+
+@media only screen and (min-width:990px) {
+    .align-right {
+        text-align: right;
+    }
 }
 
 /******************************* PAGE CONTACT *********************************/
@@ -391,13 +414,11 @@ body {
     right: 0;
 }
 
-
 /******************************* PAGE ERREUR *********************************/
 
 .image-erreur {
     margin-top: 150px;
 }
-
 
 /******************************* PAGE MOT DE PASSE OUBLIE *********************************/
 
@@ -430,7 +451,6 @@ body {
 #btnPageTop a {
     padding: 1.2em;
 }
-
 
 /******************************* LOGIN MODAL *********************************/
 

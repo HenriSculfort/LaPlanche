@@ -13,37 +13,41 @@
 
 
 <!-- FORMULAIRE DE RECHERCHE -->
-<form class="form-inline text-center moteur-recherche" action="<?= $this->url('search_courts')?>">
+<div class="container">
+	<div class="row">
+			<form class="form-inline text-center moteur-recherche" action="<?= $this->url('search_courts')?>">
 
-	<div class="form-group">
-		<label for='searchWhere'>Lieu *</label>
-		<input class="form-control" type='text' name='searchWhere' placeholder="Ville / CP">
-	</div>
-	
-	<div class="form-group">
-		<label for="datepicker"> Date </label>
-		<input class="form-control" type="text" id="datepicker" placeholder="Sélectionnez la date">
-		<input type="hidden" id="alternate" name="date">
-	</div>
+				<div class="form-group">
+					<label for='searchWhere'>Lieu *</label>
+					<input class="form-control" type='text' name='searchWhere' placeholder="Ville / CP">
+				</div>
 
-	<div class="form-group">
-		<label for='has_match'> Match </label>
-		<select name='has_match' class="form-control">
-			<option value='both' selected>-- Indifférent --</option>
-			<option value='has_match'>Avec Match</option>
-			<option value='has_no_match'>Sans Match</option>
-		</select>
-	</div>
+				<div class="form-group">
+					<label for="datepicker"> Date </label>
+					<input class="form-control" type="text" id="datepicker" placeholder="Sélectionnez la date">
+					<input type="hidden" id="alternate" name="date">
+				</div>
 
-	<div class="form-group">
-		<label for='distanceSlider'> Distance </label>
-		<input id="distance" data-slider-id='distanceSlider' type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="50"/>
+				<div class="form-group">
+					<label for='has_match'> Match </label>
+					<select name='has_match' class="form-control">
+						<option value='both' selected>-- Indifférent --</option>
+						<option value='has_match'>Avec Match</option>
+						<option value='has_no_match'>Sans Match</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for='distanceSlider'> Distance </label>
+					<input id="distance" data-slider-id='distanceSlider' type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="50"/>
+				</div>
+				<button type='submit' id='searchBtn' class='btn btn-warning'>Rechercher </button>
+				<div>
+					<small>* champ requis</small>
+				</div>
+			</form>
 	</div>
-	<button type='submit' id='searchBtn' class='btn btn-warning'>Rechercher </button>
-	<div>
-		<small>* champ requis</small>
-	</div>
-</form>
+</div>
 
 <!-- LISTE DES TERRAINS OU RETOUR DE RECHERCHE -->
 

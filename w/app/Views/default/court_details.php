@@ -1,183 +1,189 @@
 <?=$this->layout('layout', ['title' => 'Détail du terrain']); ?>
 
-<?php $this->start('header_content');?>
-<div class="standard-header">
-	<h1>Détails du terrain</h1>
-</div>
-<div class='container'>
-	
-
-
-	<!--********************** SOMMAIRE ************************-->
-	<div class='row text-center'>
-		<div class='col-sm-12'>
-			<a href='#newMatch' class='btn btn-primary'>Proposer un match</a>
-			<a href='#gamesList' class='btn btn-primary'>Matchs Prévus</a>
-			<a href='javascript:history.back();' class='btn btn-primary'>Retour à la recherche</a>
-		</div>
-	</div>
-
-	<?php $this->stop('header_content');?>
-
-
-
-	<?php $this->start('main_content');?>
-	
-
+<?php $this->start('main_content');?>
 
 <!--************************* DETAILS TERRAIN ************************-->
 
-<div class='container'>
+<div class="container-fluid background-gris-section">
+	<div class="row">
+		<div class='col-lg-12'>
+			<hr class="small">
+			<h3 class="titre-match">Détails du terrain</h3>
+			<hr class="small hr-bottom">
 
-	<div class='row'>
-		<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/thumbnails/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
-	</div>
-	<div class='row'>
-		<div class='col-md-6'>
-			<div class='row'>
-				<h5>Les infrastructures</h5>
-				<p>
-					<?=nl2br($findCourt['description']);?>
-				</p>
+			<!--********************** SOMMAIRE ************************-->
+			<div class="container">
+				<div class='row text-center'>
+					<div class='col-sm-12'>
+						<a href='#newMatch' class='btn btn-primary btn-action'>Proposer un match</a>
+						<a href='#gamesList' class='btn btn-primary btn-action'>Matchs Prévus</a>
+						<a href='javascript:history.back();' class='btn btn-primary btn-action'>Retour à la recherche</a>
+					</div>
+				</div>
 			</div>
-			<div class='row'>
-				<h5>Horaires</h5>
-				<p>
-					<?=nl2br($findCourt['opening_hours']);?>
-				</p>
+			<div class='container description-terrain'>
+				<div class='row well'>
+					<div class='col-md-12'>
+						<div class='row'>
+							<div class='col-md-6'>
+								<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/thumbnails/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
+							</div>
+							<div class='col-md-2'>
+								<h5>Horaires</h5>
+								<p>
+									<?=nl2br($findCourt['opening_hours']);?>
+								</p>
+							</div>
+							<div class='col-md-2'>
+								<h5>Adresse</h5>
+								<p>
+									<?= $findCourt['address'];?><br><?= $findCourt['postal_code'];?><?= $findCourt['city'];?>
+								</p>
+							</div>
+							<div class='col-md-2'>
+								<h5>Parking <i class="fa fa-car" aria-hidden="true"></i></h5>
+								<p>
+									<?php if($findCourt['parking'] == '1') { echo'Oui';  } else {  echo'Non';}?>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class='col-md-12'>
+						<div class='row'>
+							<div class='col-md-6'>
+
+								<h5>Les infrastructures</h5>
+								<p>
+									<?=nl2br($findCourt['description']);?>
+								</p>
+							</div>
+							<div class='col-md-2'>
+								<h5>Etat du terrain</h5>
+								<p>
+									<?=\Tools\Utils::getCourtState($findCourt['court_state']);?>
+								</p>
+							</div>
+							<div class='col-md-2'>
+								<h5>Filet</h5>
+								<p>
+									<?php if($findCourt['net'] == '0') { echo 'Non'; } else { echo 'oui';  } ?>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class='col-md-6'>
-			<div class='row'>
-				<h5>Adresse</h5>
-				<p>
-					<?= $findCourt['address'];?><br><?= $findCourt['postal_code'];?><?= $findCourt['city'];?>
-				</p>
-			</div>
-			<div class='row'>
-				<h5>Parking <i class="fa fa-car" aria-hidden="true"></i></h5>
-				<p>
-					<?php if($findCourt['parking'] == '1') { echo'Oui';  } else {  echo'Non';}?>
-				</div>
-				<div class='row'>
-					<h5>Etat du terrain</h5>
-					<p>
-						<?=\Tools\Utils::getCourtState($findCourt['court_state']);?>
-					</p>
-				</div>
-				<div class='row'>
-					<h5>Filet</h5>
-					<p>
-						<?php if($findCourt['net'] == '0') { echo 'Non'; } else { echo 'oui';  } ?>
-					</p>
-				</div>
-			</div>
-		</div>
 	</div>
+</div>
 
-	<!--************************* PROPOSER MATCH ************************-->
+<!--************************* PROPOSER MATCH ************************-->
+<div class="container-fluid background-blanc-section">
+	<hr class="small">
 	<div class='row'>
-		<h3 id='newMatch'>Proposer un match sur ce terrain</h3>
+		<h3 id='newMatch' class="titre-match">Proposer un match sur ce terrain</h3>
 	</div>
+	<hr class="small hr-bottom">
 	<div id='proposedMatch'></div>
 	<form method='POST' id='proposeMatch'>
-		<div class='row form-group'>
-			<input type="hidden" name="id" value="<?=$court_id?>">
-			<div class='col-sm-6'>
-				<div class='row form-group'>
-					<div class='col-sm-6'>
-						<label for="datepicker"> Date </label>
+	<div class="container-fluid">
+			<div class='row form-group'>
+				<input type="hidden" name="id" value="<?=$court_id?>">
+				<div class='col-sm-6'>
+					<div class='row form-group'>
+						<div class='col-sm-6 align-right'>
+							<label for="datepicker"> Date :</label>
+						</div>
+						<div class='col-sm-6'>
+							<input class="form-control" type="text" id="datepicker">
+							<input type="hidden" id="alternate" name="date">
+						</div>
 					</div>
-					<div class='col-sm-6'>
-						<input class="form-control" type="text" id="datepicker">
-						<input type="hidden" id="alternate" name="date">
+					<div class='row form-group'>
+						<div class='col-sm-6 align-right'>
+							<label for='starting_time'>Heure de début :</label>
+						</div>
+						<div class='col-sm-6 align-right'>
+							<input type='text' class='form-control' name='starting_time' placeholder='HH:mm'>
+						</div>
+					</div>
+					<div class='row form-group'>
+						<div class='col-sm-6 align-right'>
+							<label for='finishing_time'>Heure de fin :</label>
+						</div>
+						<div class='col-sm-6 align-right'>
+							<input type='text' class='form-control' name="finishing_time" placeholder='HH:mm'>
+						</div>
+					</div>
+					<div class='row form-group'>
+						<div class='col-sm-6 align-right'>
+							<label for='level'>Niveau :</label>
+						</div>
+						<div class='col-sm-6 align-right'>
+							<select name='level' class='form-control'>
+								<option value='1'>Débutant</option>
+								<option value='2'>Novice</option>
+								<option value='3'>Intermédiaire</option>
+								<option value='4'>Avancé</option>
+								<option value='5'>Expert</option>
+							</select>
+						</div>
+					</div>
+					<div class='row form-group'>
+						<div class='col-sm-6 align-right'>
+							<label for='number_players'>Nombre de joueurs :</label>
+						</div>
+						<div class='col-sm-6 align-right'>
+							<input type='text' class='form-control' name='number_players' placeholder="ex: 3">
+						</div>
+					</div>
+					<div class='row form-group'>
+						<div class='col-sm-6 align-right'>
+							<label for='team_name'>Nom de votre équipe :</label>
+						</div>
+						<div class='col-sm-6'>
+							<input type='text' class='form-control' name='team_name' placeholder="nom de l'équipe (facultatif)">
+						</div>
+					</div>
+				</div> 
+				<!-- Colonne droite -->
+				<div class='col-sm-6'>
+					<div class='row form-group'>
+						<div class='col-sm-2 align-right'>
+							<label for='message'>Message :</label>
+						</div>
+						<div class='col-sm-6'>
+							<textarea rows="9" class='form-control' name='message' placeholder="Ecrivez votre message ici (et restez courtois :D )"></textarea>
+						</div>
 					</div>
 				</div>
-				<div class='row form-group'>
-					<div class='col-sm-6'>
-						<label for='starting_time'>Heure de début</label>
-					</div>
-					<div class='col-sm-6'>
-						<input type='text' class='form-control' name='starting_time' placeholder='HH:mm'>
-					</div>
+			</div><!-- Fin du row contenant tous les champs -->
+			<div class='row'>
+				<div class='col-sm-6 col-sm-offset-3'>
+					<button type='submit' id='submitProposeMatch' class='btn btn-primary'>Proposer ce match</button>
 				</div>
-				<div class='row form-group'>
-					<div class='col-sm-6'>
-						<label for='finishing_time'>Heure de fin</label>
-					</div>
-					<div class='col-sm-6'>
-						<input type='text' class='form-control' name="finishing_time" placeholder='HH:mm'>
-					</div>
-				</div>
-				<div class='row form-group'>
-					<div class='col-sm-6'>
-						<label for='level'>Niveau</label>
-					</div>
-					<div class='col-sm-6'>
-						<select name='level' class='form-control'>
-							<option value='1'>Débutant</option>
-							<option value='2'>Novice</option>
-							<option value='3'>Intermédiaire</option>
-							<option value='4'>Avancé</option>
-							<option value='5'>Expert</option>
-						</select>
-					</div>
-				</div>
-
-				<div class='row form-group'>
-					<div class='col-sm-6'>
-						<label for='number_players'>Nombre de joueurs</label>
-					</div>
-					<div class='col-sm-6'>
-						<input type='text' class='form-control' name='number_players' placeholder="ex: 3">
-					</div>
-				</div>
-				<div class='row form-group'>
-					<div class='col-sm-6'>
-						<label for='team_name'>Nom de votre équipe</label>
-					</div>
-					<div class='col-sm-6'>
-						<input type='text' class='form-control' name='team_name' placeholder="nom de l'équipe (facultatif)">
-					</div>
-				</div>
-			</div> 
-			<!-- Colonne droite -->
-			<div class='col-sm-6'>
-				<div class='row form-group'>
-					<div class='col-sm-2'>
-						<label for='message'>Message</label>
-					</div>
-					<div class='col-sm-10'>
-						<textarea rows="9" class='form-control' name='message' placeholder="Ecrivez votre message ici (et restez courtois :D )"></textarea>
-					</div>
-				</div>
-			</div>
-		</div><!-- Fin du row contenant tous les champs -->
-		<div class='row'>
-			<div class='col-sm-12'>
-				<button type='submit' id='submitProposeMatch' class='btn btn-primary'>Proposer ce match</button>
 			</div>
 		</div>
 	</form>
-</div><!-- Fermeture du div class container global -->
+</div>
 
-	<!--************************* MATCHS PREVUS ************************-->
-
-	<div class='container'>
-
-		<div class='row'>
-			<h3 id='gamesList'>Matchs prévus</h3>
-		</div>
-		<div class='row'>
-			<div>
-				<?php foreach($findGamesOnCourt as $game) : 
-				
+<!--************************* MATCHS PREVUS ************************-->
+<div class='container-fluid background-gris-section'>
+	<hr class="small">
+	<div class='row'>
+		<h3 id='gamesList' class="titre-match">Matchs prévus</h3>
+	</div>
+	<hr class="small hr-bottom">
+	<div class='row'>
+		<div>
+			<?php foreach($findGamesOnCourt as $game) : 
 				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
-				if(strtotime($now)> strtotime($game['date'])) {
+			if(strtotime($now)> strtotime($game['date'])) {
 					// N'affiche donc pas la game
-				} 
+			} 
 				// Si la date de la game est postérieure, on affiche.
-				else { ?>
+			else { ?>
+			<div class=" container well">
 				<div class='row'>
 					<div class='col-md-6'>
 						<h5>Match Ref°<i class='game_id' value='<?=$game['id'];?>'></i><?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
@@ -224,66 +230,65 @@
 						<button type='button' data-id="<?=$game['id'];?>" class='btn btn-primary btn-showChat'>Afficher le chat</button>
 					</div>
 				</div>
-				<hr>
+			</div>
+			<div>
 				<?php } ;
 				endforeach; ?>
 			</div>
-		</div>	<!-- Fin du div row des matchs -->
+			<!-- Fin du div row des matchs -->
 
+			<!-- ********************** CHAT ***********************-->
+			<div id='chat'>
+				<div id='chatTitle'></div>
+				<h5>Messages</h5>
+				<div id='showMessages'></div> <!-- Fin de la div contenant les messages du chat ajax -->
+				<div id='errors'></div>
 
-		<!-- ********************** CHAT ***********************-->
-		<div id='chat'>
-			<div id='chatTitle'></div>
-			<h5>Messages</h5>
-			<div id='showMessages'></div> <!-- Fin de la div contenant les messages du chat ajax -->
-			<div id='errors'></div>
-			
-			<form method='POST' id='sendMessages'>
-				<br>
-				<div class='row'>
-					<div class='col-md-12'>
-						<h5>Nouveau message</h5>
-						<input type="hidden" id="idChatRoom" name="idChat" value="">
-						<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
-						<br>
-						<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
+				<form method='POST' id='sendMessages'>
+					<br>
+					<div class='row'>
+						<div class='col-md-12'>
+							<h5>Nouveau message</h5>
+							<input type="hidden" id="idChatRoom" name="idChat" value="">
+							<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
+							<br>
+							<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
+						</div>
 					</div>
-				</div>
-			</form>
-		</div>
-	</div>	<!-- Fin du div container matchs prévus -->
+				</form>
+			</div>
+		</div>	<!-- Fin du div container matchs prévus -->
 
+		<?=$this->stop('main_content');?>
 
-	<?=$this->stop('main_content');?>
+		<?=$this->start('script');?>
 
-	<?=$this->start('script');?>
+		<!-- script du datepicker -->
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
 
-	<!-- script du datepicker -->
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script>
-
-		$(function() {
-			$( "#datepicker" ).datepicker({
-				firstDay: 1 ,
-				closeText: 'Fermer',
-				prevText: 'Précédent',
-				nextText: 'Suivant',
-				currentText: 'Aujourd\'hui',
-				monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-				monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-				dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-				dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-				dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-				weekHeader: 'Sem.',
-				dateFormat: 'dd-mm-yy',
-				altField: "#alternate",
-				altFormat: "yy-mm-dd"
+			$(function() {
+				$( "#datepicker" ).datepicker({
+					firstDay: 1 ,
+					closeText: 'Fermer',
+					prevText: 'Précédent',
+					nextText: 'Suivant',
+					currentText: 'Aujourd\'hui',
+					monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+					monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+					dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+					dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+					dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+					weekHeader: 'Sem.',
+					dateFormat: 'dd-mm-yy',
+					altField: "#alternate",
+					altFormat: "yy-mm-dd"
+				});
 			});
-		});
 
-	</script>
+		</script>
 
-	<script>
+		<script>
 
 // FONCTION POUR AJOUTER OU SUPPRIMER LA CLASSE GERANT L'AFFICHAGE DU CHAT OU NON
 function showChat() {
@@ -302,7 +307,6 @@ function getMessages(chatId) {
 		$('#chatTitle').html('<strong>Chat du match </strong>' + resultHtml.gameId);
 	});
 }
-
 
 // On lance le jQuery
 $(document).ready(function() {
@@ -340,7 +344,6 @@ $(document).ready(function() {
 			});
 
 		}); // Fin du clic sur le bouton d'affichage du chat
-
 
 		// ENVOI MESSAGE 
 

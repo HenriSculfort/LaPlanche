@@ -123,11 +123,9 @@
     </header>
 
     <!-- Main Content -->
-    <div class="container">
-        <div class="row">
+
             <?= $this->section('main_content') ?>
-        </div>
-    </div>
+  
 
     <hr class="hr-footer">
 

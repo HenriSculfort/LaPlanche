@@ -17,6 +17,7 @@
 <br>
 <div id='resultAjax'></div>
 <!-- Row pour prendre en compte la colonne d'affichage de la map à droite-->
+<div class="container">
 <div class='row'>
 
     <!-- Colonne du formulaire -->
@@ -179,6 +180,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <hr>
 
