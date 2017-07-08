@@ -126,6 +126,7 @@ class CourtsController extends Controller
 
         $post = [];
         $errors = []; 
+        print_r($_FILES);
 
         if(!empty($_POST)){
 
@@ -174,7 +175,7 @@ class CourtsController extends Controller
 
             if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
 
-                $maxfilesize = 1048576; //1 Mo
+                $maxfilesize = 5048576; //1 Mo
 
                 if($_FILES['picture']['size'] < $maxfilesize){
                     //pas d'erreur et le fichier n'est pas trop volumineux
@@ -205,11 +206,32 @@ class CourtsController extends Controller
                         };
 
 
-                        $image = Image::make($newImage)->resize(50, 50);
-
-
+                        //largeur
+                        $imageWidth = imagesx($newImage);
+                         //hauteur
+                        $imageHeight = imagesy($newImage);
+                      // je décide de la largeur des miniatures
+                        $newWidth = 200;
+                        //on calcule la nouvelle hauteur
+                        $newHeight = ($imageHeight * $newWidth) / $imageWidth ;
+                        // on crée la nouvelle image 
+                        $miniature = imagecreatetruecolor($newWidth, $newHeight);
+                         imagecopyresampled($miniature, $newImage, 0, 0, 0, 0, $newWidth, $newHeight, $imageWidth, $imageHeight);
+                        
+    
                         $picture = md5(uniqid(rand(), true));
-                        $picture .='.'.$extension;
+
+                        if($extension == 'jpeg' OR $extension == 'jpg'){  
+                            $picture.='.'.$extension;
+                          imagejpeg($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                        } elseif($extension == 'png'){
+                            $picture.='.'.$extension;
+                         imagepng($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                        } elseif($extension == 'gif'){
+                            $picture.='.'.$extension;
+                         imagegif($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                         }
+    
 
                         move_uploaded_file($_FILES['picture']['tmp_name'], '../public/assets/img/uploads/'.$picture);
 
