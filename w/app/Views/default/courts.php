@@ -71,7 +71,7 @@ elseif(isset($searchResults) && $searchResults == true) {
 	}
 }
 elseif (isset($searchResults) && $searchResults == false) { ?>
-<div class='alert alert-warning'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas à le faire via votre espace personnel ! </div> <?php
+<div class='col-lg-4 col-lg-offset-4 alert alert-warning text-center'>Votre recherche n'a retourné aucun résultat. Si vous avez des terrains à suggérer, n'hésitez pas à le faire via votre espace personnel ! </div> <?php
 }
 elseif (isset($findAll)) { 
 	$courtResult = $findAll;
