@@ -84,8 +84,6 @@ if(isset($courtResult)) {
 					<div class='col-md-3'>
 						<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/thumbnails/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
 					</div>
-
-					<?php echo $court['picture'];?>
 					<div class='col-md-9'>
 						<h4><?= $court['name'];?></h4>
 						<p class="description-terrain"><?= nl2br($court['description']);?></p>
