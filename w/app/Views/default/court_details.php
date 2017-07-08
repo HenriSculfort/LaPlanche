@@ -5,16 +5,13 @@
 	<h1>Détails du terrain</h1>
 </div>
 <div class='container'>
-	<div class='row'>
-		<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/thumbnails/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
-	</div>
+	
 
 
 	<!--********************** SOMMAIRE ************************-->
-	<div class='row'>
+	<div class='row text-center'>
 		<div class='col-sm-12'>
 			<a href='#newMatch' class='btn btn-primary'>Proposer un match</a>
-			<a href='#courtDetails' class='btn btn-primary'>Détails du terrain</a>
 			<a href='#gamesList' class='btn btn-primary'>Matchs Prévus</a>
 			<a href='javascript:history.back();' class='btn btn-primary'>Retour à la recherche</a>
 		</div>
@@ -25,6 +22,59 @@
 
 
 	<?php $this->start('main_content');?>
+	
+
+
+<!--************************* DETAILS TERRAIN ************************-->
+
+<div class='container'>
+
+	<div class='row'>
+		<img class="img-responsive" src="<?=$this->assetUrl('img/uploads/thumbnails/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
+	</div>
+	<div class='row'>
+		<div class='col-md-6'>
+			<div class='row'>
+				<h5>Les infrastructures</h5>
+				<p>
+					<?=nl2br($findCourt['description']);?>
+				</p>
+			</div>
+			<div class='row'>
+				<h5>Horaires</h5>
+				<p>
+					<?=nl2br($findCourt['opening_hours']);?>
+				</p>
+			</div>
+		</div>
+		<div class='col-md-6'>
+			<div class='row'>
+				<h5>Adresse</h5>
+				<p>
+					<?= $findCourt['address'];?><br><?= $findCourt['postal_code'];?><?= $findCourt['city'];?>
+				</p>
+			</div>
+			<div class='row'>
+				<h5>Parking <i class="fa fa-car" aria-hidden="true"></i></h5>
+				<p>
+					<?php if($findCourt['parking'] == '1') { echo'Oui';  } else {  echo'Non';}?>
+				</div>
+				<div class='row'>
+					<h5>Etat du terrain</h5>
+					<p>
+						<?=\Tools\Utils::getCourtState($findCourt['court_state']);?>
+					</p>
+				</div>
+				<div class='row'>
+					<h5>Filet</h5>
+					<p>
+						<?php if($findCourt['net'] == '0') { echo 'Non'; } else { echo 'oui';  } ?>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!--************************* PROPOSER MATCH ************************-->
 	<div class='row'>
 		<h3 id='newMatch'>Proposer un match sur ce terrain</h3>
@@ -110,57 +160,6 @@
 		</div>
 	</form>
 </div><!-- Fermeture du div class container global -->
-
-
-<!--************************* DETAILS TERRAIN ************************-->
-
-<div class='container'>
-
-	<div class='row'>
-		<h3 id='courtDetails'>Détails du terrain</h3>
-	</div>
-	<div class='row'>
-		<div class='col-md-6'>
-			<div class='row'>
-				<h5>Les infrastructures</h5>
-				<p>
-					<?=nl2br($findCourt['description']);?>
-				</p>
-			</div>
-			<div class='row'>
-				<h5>Horaires</h5>
-				<p>
-					<?=nl2br($findCourt['opening_hours']);?>
-				</p>
-			</div>
-		</div>
-		<div class='col-md-6'>
-			<div class='row'>
-				<h5>Adresse</h5>
-				<p>
-					<?= $findCourt['address'];?><br><?= $findCourt['postal_code'];?><?= $findCourt['city'];?>
-				</p>
-			</div>
-			<div class='row'>
-				<h5>Parking <i class="fa fa-car" aria-hidden="true"></i></h5>
-				<p>
-					<?php if($findCourt['parking'] == '1') { echo'Oui';  } else {  echo'Non';}?>
-				</div>
-				<div class='row'>
-					<h5>Etat du terrain</h5>
-					<p>
-						<?=\Tools\Utils::getCourtState($findCourt['court_state']);?>
-					</p>
-				</div>
-				<div class='row'>
-					<h5>Filet</h5>
-					<p>
-						<?php if($findCourt['net'] == '0') { echo 'Non'; } else { echo 'oui';  } ?>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!--************************* MATCHS PREVUS ************************-->
 
