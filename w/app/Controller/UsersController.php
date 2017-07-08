@@ -101,12 +101,32 @@ class UsersController extends Controller
 				];
 
 				$insert = $usersModel->insert($data);
+
+				// permet d'enregistrer l'id de l'utilisateur en session
+				$usersModel = new UsersModel();
+				$donnees = $usersModel->getUserByUsernameOrEmail($data['email']);
+				$data = [
+				'id' => $donnees['id'],
+				'firstname' => $donnees['firstname'],
+				'lastname' 	=> $donnees['lastname'],
+				'address' 	=> $donnees['address'],
+				'postal_code' 	=> $donnees['postal_code'],
+				'city' 	=> $donnees['city'],
+				'email' 	=> $donnees['email'],
+				'phone' 	=> $donnees['phone'],
+				'username' 	=> $donnees['username'],
+				'level' 	=> $donnees['level'],
+				'password' 	=> $donnees['password'],
+				'role' => 'user',
+				];
+
 				if($insert){
 
 					$authModel = new AuthentificationModel();
 					$authModel->logUserIn($data);
-
+					
 					if(!empty($authModel->getLoggedUser())){
+
 						$json = [
 						'result' => true,
 						];
@@ -138,7 +158,6 @@ class UsersController extends Controller
 			$this->showJson($json);
 		}
 	}
-
 
 	public function login()
 	{
@@ -196,7 +215,6 @@ class UsersController extends Controller
 		}
 	}
 
-
 	public function mySpace() 
 	{ 
 		// Si utilisateur non connecté, pas d'accès à la page mon espace
@@ -206,7 +224,6 @@ class UsersController extends Controller
 			$this->show('users/user_myspace');
 		}
 	}
-
 
 	public function updateUser()
 	{
@@ -297,7 +314,6 @@ class UsersController extends Controller
 				
 				// insertion des données en base
 				$update = $usersModel->update($data, $post['id']);
-
 
 				$json = [
 				'result' => true,
