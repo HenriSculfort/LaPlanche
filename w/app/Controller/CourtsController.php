@@ -126,7 +126,7 @@ class CourtsController extends Controller
 
         $post = [];
         $errors = []; 
-        print_r($_FILES);
+       
 
         if(!empty($_POST)){
 
