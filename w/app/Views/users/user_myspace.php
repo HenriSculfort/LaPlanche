@@ -11,7 +11,176 @@
 
 <?php $this->start('main_content') ?>
 
+<!-- Ajout de terrain -->
+<hr>
+<h3>Ajouter un terrain</h3>
+<br>
+<div id='resultAjax'></div>
+<!-- Row pour prendre en compte la colonne d'affichage de la map à droite-->
+<div class='row'>
 
+    <!-- Colonne du formulaire -->
+    <div class='col-md-6'>
+
+        <form method="post" id="addTerrain" class="container-fluid" enctype="multipart/form-data">
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='address'>Adresse</label>
+                </div>
+                <div class='col-md-8'>
+                    <textarea type='text' class='form-control' name='address' placeholder="Adresse du terrain"><?php if(isset($_POST['address'])){echo $_POST['address']; } ?></textarea>
+                </div>
+            </div>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='postal_code'>Code Postal</label>
+                </div>
+                <div class='col-md-8'>
+                    <input type='text' class='form-control' name='postal_code' placeholder="CP" value="<?php if(isset($_POST['postal_code'])){echo $_POST['postal_code']; } ?>" >
+                </div>
+            </div>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='city'>Ville</label>
+                </div>
+                <div class='col-md-8'>
+                    <input type='text' class='form-control' name='city' placeholder="Ville" value="<?php if(isset($_POST['city'])){echo $_POST['city']; } ?>">
+                </div>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <button type='submit' id='checkMap' class='btn btn-primary'>Verrifier l'emplacement du terrain</button>
+                <!--                <input type="button" value="Verrifier l'emplacement du terrain">-->
+            </div>
+
+            <?php
+
+            // Introduce the class into your scope
+            use KamranAhmed\Geocode\Geocode;
+
+            // Optionally you can pass the API key for Geocoding
+            $geocode = new Geocode();
+
+            if(isset($_POST['address']) and isset($_POST['postal_code']) and isset($_POST['city']))
+            {
+                // Get the details for the passed address
+                $location = $geocode->get($_POST['address'].' '.$_POST['postal_code'].' '.$_POST['city']);
+                // Note: All the functions below accept a parameter as a default value that will be return if the reuqired value isn't found
+                $location->getAddress( 'default value' ); 
+                $lat = $location->getLatitude(); // returns the latitude of the address
+                $lng = $location->getLongitude(); // returns the longitude of the address
+                $location->getCountry(); // returns the country of the address
+                $location->getLocality(); // returns the locality/city of the address
+                $location->getDistrict(); // returns the district of the address
+                $location->getPostcode(); // returns the postal code of the address
+                $location->getTown(); // returns the town of the address
+                $location->getStreetNumber(); // returns the street number of the address
+            }
+            if(isset($lat) and isset($lng)){
+                ?>
+                <input type="hidden" name="lat" value="<?php echo $lat ?>">
+                <input type="hidden" name="lng" value="<?php echo $lng ?>">
+                <?php
+            }
+            ?>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='name'>Nom</label>
+                </div>
+                <div class='col-md-8'>
+                    <input id="envoieMap" type='text' class='form-control' name='name' placeholder="Un nom pour ce terrain">
+                </div>
+            </div>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='description'>Description</label>
+                </div>
+                <div class='col-md-8'>
+                    <textarea type='text' class='form-control' name='description' placeholder='Une description du terrain et  des infrastructures disponibles' rows='10'></textarea>
+                </div>
+            </div>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='court_state'>Etat du terrain</label>
+                </div>
+                <div class='col-md-8'>
+                    <select class='form-control' name='level'>
+                        <option value='' selected >Choisissez l'état</option>
+                        <option value='very_bad'>Très mauvais état !</option>
+                        <option value='bad'>Mauvais état </option>
+                        <option value='medium' >Etat moyen, acceptable </option>
+                        <option value='good'>Bon état </option>
+                        <option value='very_good'>Très bon état !</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class='row form-group'  >
+                <div class='col-md-4 align-right'>
+                    <label for='picture'>Photo</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="file" class='form-control' name="picture" accept="image/*">
+                </div>
+            </div>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='net'>Filet sur le(s) panier(s) ?</label>
+                </div>
+                <div class='col-md-8'>
+                    <input type='radio' name='net' value='yes'> Oui-  
+                    <input type='radio' name='net' value='no'> Non
+                </div>
+            </div>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='opening_hours'>Horaires d'ouverture (facultatif)</label>
+                </div>
+                <div class='col-md-8'>
+                    <input type='text' class='form-control' name='opening_hours' placeholder="Horaires d'ouverture">
+                </div>
+            </div>
+
+            <div class='row form-group'>
+                <div class='col-md-4 align-right'>
+                    <label for='parking'>Parking (facultatif)</label>
+                </div>
+                <div class='col-md-6'>
+                    <input type='radio' name='parking' value='yes'> Oui   
+                    <input type='radio' name='parking' value='no'> Non
+                </div>
+            </div>
+
+            <br>
+
+            <div class="col-md-12 text-center">
+                <button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
+            </div>
+        </form>
+    </div> <!-- Fin du div de colonne formulaire -->
+
+    <!-- Colonne dédiée à l'affichage de la carte quand l'utilisateur à validé -->
+    <div class='col-md-6'>
+        <div class='row'>
+            <div id='confirmCourtAddress'>
+
+            </div>
+            <div class='col-md-12'>
+                <!-- Insérer la carte ici -->
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
 
 <!-- Données du profil utilisateur -->
 <h3>Mon profil</h3>
@@ -124,176 +293,7 @@
 
 </form>
 <hr>
-<!-- Ajout de terrain -->
-<h3>Ajouter un terrain</h3>
-<br>
-<div id='resultAjax'></div>
-<!-- Row pour prendre en compte la colonne d'affichage de la map à droite-->
-<div class='row'>
 
-    <!-- Colonne du formulaire -->
-    <div class='col-md-6'>
-
-        <form method="post" id="addTerrain" class="container-fluid" enctype="multipart/form-data">
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='address'>Adresse</label>
-                </div>
-                <div class='col-md-8'>
-                    <textarea type='text' class='form-control' name='address' placeholder="Adresse du terrain"><?php if(isset($_POST['address'])){echo $_POST['address']; } ?></textarea>
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='postal_code'>Code Postal</label>
-                </div>
-                <div class='col-md-8'>
-                    <input type='text' class='form-control' name='postal_code' placeholder="CP" value="<?php if(isset($_POST['postal_code'])){echo $_POST['postal_code']; } ?>" >
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='city'>Ville</label>
-                </div>
-                <div class='col-md-8'>
-                    <input type='text' class='form-control' name='city' placeholder="Ville" value="<?php if(isset($_POST['city'])){echo $_POST['city']; } ?>">
-                </div>
-            </div>
-
-            <div class="col-md-12 text-center">
-                <button type='submit' id='checkMap' class='btn btn-primary'>Verrifier l'emplacement du terrain</button>
-                <!--                <input type="button" value="Verrifier l'emplacement du terrain">-->
-            </div>
-
-            <?php
-
-            // Introduce the class into your scope
-            use KamranAhmed\Geocode\Geocode;
-
-            // Optionally you can pass the API key for Geocoding
-            $geocode = new Geocode();
-
-            if(isset($_POST['address']) and isset($_POST['postal_code']) and isset($_POST['city']))
-            {
-                // Get the details for the passed address
-                $location = $geocode->get($_POST['address'].' '.$_POST['postal_code'].' '.$_POST['city']);
-                // Note: All the functions below accept a parameter as a default value that will be return if the reuqired value isn't found
-                $location->getAddress( 'default value' ); 
-                $lat = $location->getLatitude(); // returns the latitude of the address
-                $lng = $location->getLongitude(); // returns the longitude of the address
-                $location->getCountry(); // returns the country of the address
-                $location->getLocality(); // returns the locality/city of the address
-                $location->getDistrict(); // returns the district of the address
-                $location->getPostcode(); // returns the postal code of the address
-                $location->getTown(); // returns the town of the address
-                $location->getStreetNumber(); // returns the street number of the address
-            }
-            if(isset($lat) and isset($lng)){
-            ?>
-            <input type="hidden" name="lat" value="<?php echo $lat ?>">
-            <input type="hidden" name="lng" value="<?php echo $lng ?>">
-            <?php
-            }
-            ?>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='name'>Nom</label>
-                </div>
-                <div class='col-md-8'>
-                    <input id="envoieMap" type='text' class='form-control' name='name' placeholder="Un nom pour ce terrain">
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='description'>Description</label>
-                </div>
-                <div class='col-md-8'>
-                    <textarea type='text' class='form-control' name='description' placeholder='Une description du terrain et  des infrastructures disponibles' rows='10'></textarea>
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='court_state'>Etat du terrain</label>
-                </div>
-                <div class='col-md-8'>
-                    <select class='form-control' name='level'>
-                        <option value='' selected >Choisissez l'état</option>
-                        <option value='very_bad'>Très mauvais état !</option>
-                        <option value='bad'>Mauvais état </option>
-                        <option value='medium' >Etat moyen, acceptable </option>
-                        <option value='good'>Bon état </option>
-                        <option value='very_good'>Très bon état !</option>
-                    </select>
-                </div>
-            </div>
-
-
-            <div class='row form-group'  >
-                <div class='col-md-4 align-right'>
-                    <label for='picture'>Photo</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="file" class='form-control' name="picture" accept="image/*">
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='net'>Filet sur le(s) panier(s) ?</label>
-                </div>
-                <div class='col-md-8'>
-                    <input type='radio' name='net' value='yes'> Oui-  
-                    <input type='radio' name='net' value='no'> Non
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='opening_hours'>Horaires d'ouverture (facultatif)</label>
-                </div>
-                <div class='col-md-8'>
-                    <input type='text' class='form-control' name='opening_hours' placeholder="Horaires d'ouverture">
-                </div>
-            </div>
-
-            <div class='row form-group'>
-                <div class='col-md-4 align-right'>
-                    <label for='parking'>Parking (facultatif)</label>
-                </div>
-                <div class='col-md-6'>
-                    <input type='radio' name='parking' value='yes'> Oui   
-                    <input type='radio' name='parking' value='no'> Non
-                </div>
-            </div>
-
-            <br>
-
-            <div class="col-md-12 text-center">
-                <button type='submit' id='addCourts' class='btn btn-primary'>Suggérer le terrain</button>
-            </div>
-
-
-        </form>
-    </div> <!-- Fin du div de colonne formulaire -->
-
-    <!-- Colonne dédiée à l'affichage de la carte quand l'utilisateur à validé -->
-    <div class='col-md-6'>
-        <div class='row'>
-            <div id='confirmCourtAddress'>
-
-            </div>
-            <div class='col-md-12'>
-                <!-- Insérer la carte ici -->
-                <div id="map"></div>
-            </div>
-        </div>
-    </div>
-</div>
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('script') ?>
