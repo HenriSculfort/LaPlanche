@@ -11,15 +11,17 @@
 			<hr class="small hr-bottom">
 
 			<!--********************** SOMMAIRE ************************-->
-			<div class="container">
-				<div class='row text-center'>
-					<div class='col-sm-12'>
-						<a href='#newMatch' class='btn btn-primary btn-action'>Proposer un match</a>
-						<a href='#gamesList' class='btn btn-primary btn-action'>Matchs Prévus</a>
-						<a href='javascript:history.back();' class='btn btn-primary btn-action'>Retour à la recherche</a>
+			<?php if(!empty($w_user) && $w_user['role'] == 'admin'): ?>
+				<div class="container">
+					<div class='row text-center'>
+						<div class='col-sm-12'>
+							<a href='#newMatch' class='btn btn-primary btn-action'>Proposer un match</a>
+							<a href='#gamesList' class='btn btn-primary btn-action'>Matchs Prévus</a>
+							<a href='javascript:history.back();' class='btn btn-primary btn-action'>Retour à la recherche</a>
+						</div>
 					</div>
 				</div>
-			</div>
+			<?php endif; ?> 
 			<div class='container description-terrain'>
 				<div class='row well'>
 					<div class='col-md-12'>
