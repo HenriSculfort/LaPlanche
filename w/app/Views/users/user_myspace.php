@@ -15,14 +15,16 @@
 <hr>
 <h3>Ajouter un terrain</h3>
 <br>
-<div id='resultAjax'></div>
+<div class="col-lg-4 col-lg-offset-4">
+    <div id='resultAjax'></div>
+</div>
 <!-- Row pour prendre en compte la colonne d'affichage de la map à droite-->
 <div class="container">
     <div class='row'>
         <!-- Colonne du formulaire -->
         <div class='col-md-6'>
             <form method="post" id="addTerrain" class="container-fluid" enctype="multipart/form-data">
-            <div class="well">
+                <div class="well">
                     <div class='row form-group'>
                         <div class='col-md-4 align-right'>
                             <label for='address'>Adresse</label>
