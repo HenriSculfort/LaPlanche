@@ -196,7 +196,7 @@ class CourtsController extends Controller
                     //pas d'erreur et le fichier n'est pas trop volumineux
                     //on teste l'extension
 
-                	$extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif', 'PNG');
+                	$extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif', 'PNG', 'JPEG', 'JPG', 'GIF');
                 	$fileInfo = pathinfo($_FILES['picture']['name']);
 
                 	$extension = $fileInfo['extension'];
@@ -207,15 +207,19 @@ class CourtsController extends Controller
                         //on renomme le fichier
                 		switch ($extension) {
                 			case 'jpg':
+                            case 'JPG':
                 			$newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
                 			break;
                 			case 'jpeg':
+                            case 'JPEG':
                 			$newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
                 			break;
                 			case 'png':
+                            case 'PNG':
                 			$newImage = imagecreatefrompng($_FILES['picture']['tmp_name']);
                 			break;
                 			case 'gif':
+                            case 'GIF':
                 			$newImage = imagecreatefromgif($_FILES['picture']['tmp_name']);
                 			break;
                 		};
