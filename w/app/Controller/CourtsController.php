@@ -16,23 +16,50 @@ class CourtsController extends Controller
 	 * Page d'accueil par défaut, listant tous les terrains
 	 * @return array findAll avec liste des terrains
 	 */
-    public function listAllCourts()
+    public function listAllCourts($pageToShow)
     {
         $model = new CourtsModel();
         $findAll = $model->findAll();
+        if($pageToShow = 'admin') {
+            $this->show('admin/courts_list', ['findAll' => $findAll]);
+        }
+        else {
         $this->show('default/courts', ['findAll' => $findAll]);
+        }
     }
 
-
-    /**
-     * Liste de tous les terrains validés (pour l'admin)
-     * @return array findAll avec liste des terrains
-     */
-    public function listCourts()
-    {
+    public function searchCourtsAdmin() { 
         $model = new CourtsModel();
-        $findAll = $model->findAll();
-        $this->show('admin/courts_list', ['findAll' => $findAll]);
+       
+        if(!empty($_GET)) {
+            // Je me protège au niveau du GET
+            $get = array_map('trim', array_map('strip_tags', $_GET));
+
+            $data = [
+                'city' => $get['location'],
+                'postal_code' => $get['location'],
+                'name' => $get['name'],
+            ];
+
+            $search = $model->search($data);
+            if(!empty($search)) {
+                $searchResult = true;
+            } else { 
+                 $searchResult = false;
+            }
+
+        } 
+        else { 
+            $params = [ 
+                    'searchResults' => isset($searchResult) ? $searchResult : null,
+                    'search' => isset($search) ? $search : null,
+            ];
+
+            $this->show('admin/courts_list', ['findAll' => $findAll]);
+        
+        }
+
+
     }
 
     /**
@@ -48,7 +75,7 @@ class CourtsController extends Controller
 
         // Si le formulaire est envoyé
         if(!empty($_GET)) {
-            // Je me protège au niveau du POST
+            // Je me protège au niveau du GET
             $get = array_map('trim', array_map('strip_tags', $_GET));
 
 
