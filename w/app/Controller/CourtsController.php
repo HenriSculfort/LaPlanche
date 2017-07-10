@@ -320,12 +320,24 @@ class CourtsController extends Controller
     { 	
 
     	$model = new CourtsModel();
-    	$findCourt = $model->find($id);     
+        $findCourt = $model->find($id);     
+       
+        $now = date('Y-m-d'); 
+      
+       
+        $gamesModel = new GamesModel();
+        $findGamesOnCourt = $gamesModel->showGamesOnThisCourt($id);
 
-    	$now = date('c'); 
-    	$gamesModel = new GamesModel();
-    	$findGamesOnCourt = $gamesModel->showGamesOnThisCourt($id);
-    	$this->show('default/court_details', ['findCourt' => $findCourt, 'findGamesOnCourt' => $findGamesOnCourt, 'now' => $now, 'court_id' => $id] );
+        foreach ($findGamesOnCourt as $date) {
+            if(strtotime($now)> strtotime($date['date'])){
+            
+                $passedTime = new GamesModel();
+                $DeleteGame = $passedTime -> deleteMatch($date['date']);
+
+            }
+        }
+        
+        $this->show('default/court_details', ['findCourt' => $findCourt, 'findGamesOnCourt' => $findGamesOnCourt, 'now' => $now, 'court_id' => $id] );
 
 
     }
