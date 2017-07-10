@@ -1,6 +1,16 @@
 <?= $this->layout('layout', ['title' => 'Espace admin']);?>
 <?=$this->start('header_content'); ?>
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<div>
+			<a href="<?=$this->url('admin_courtsValidate');?>"><button type='button' class='btn btn-primary'>Valider terrain</button></a>
+				<a href="<?=$this->url('admin_getCourtsList');?>"><button type='button' class='btn btn-primary'>Modifier terrain</button></a>
+			</div>
+		</div>
+	</div>
+</div>
 <div class='standard-header'>
 	<h1>Espace administrateur</h1>
 	<h2>Gestion des comptes</h2>
