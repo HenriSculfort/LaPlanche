@@ -1,6 +1,16 @@
 <?=$this->layout('layout', ['title' => 'Gestion des terrains validés']); ?>
 
 <?php $this->start('header_content');?>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<div>
+			<a href="<?=$this->url('admin_courtsValidate');?>"><button type='button' class='btn btn-primary'>Valider terrain</button></a>
+				<a href="<?=$this->url('admin_compte');?>"><button type='button' class='btn btn-primary'>Gestion des comptes utilisateurs</button></a>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class="standard-header">
 	<h1>Les terrains validés</h1>
