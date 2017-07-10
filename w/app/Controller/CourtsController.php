@@ -313,38 +313,38 @@ class CourtsController extends Controller
 
     public function validateCourts()
     {
-        //if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
-               // $this->show('w_errors/403');
-       // }
-      //  else {	
+    	if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
+    		$this->show('w_errors/403');
+    	}
+    	else {	
 
-    	if(isset($_POST['validez'])){
+    		if(isset($_POST['validez'])){
 
-    		$validation=[
-    		'admin_validation'=> 1                
-    		];
+    			$validation=[
+    			'admin_validation'=> 1                
+    			];
+    			$model = new CourtsModel();
+    			$update = $model->update($validation, $_POST['valeurId']);
+
+    			$this->flash('Le terrain a été validé', 'success');
+    		}
+
+    		if(isset($_POST['supprimez'])){
+    			$model =new CourtsModel();
+    			$delete = $model ->delete($_POST['valeurId']);
+
+    			$this->flash('Le terrain à été supprimé', 'success');
+    		}
+
     		$model = new CourtsModel();
-    		$update = $model->update($validation, $_POST['valeurId']);
+    		$findAll = $model->findAll();
 
-    		$this->flash('Le terrain a été validé', 'success');
+    		$boucle = [
+    		'findAll' => $findAll
+    		];
+
+    		$this->show('admin/courtsValidate', $boucle);
     	}
-
-    	if(isset($_POST['supprimez'])){
-    		$model =new CourtsModel();
-    		$delete = $model ->delete($_POST['valeurId']);
-
-    		$this->flash('Le terrain à été supprimé', 'success');
-    	}
-
-    	$model = new CourtsModel();
-    	$findAll = $model->findAll();
-
-    	$boucle = [
-    	'findAll' => $findAll
-    	];
-
-    	$this->show('admin/courtsValidate', $boucle);
-        //}
     }
 
     /**

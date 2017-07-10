@@ -46,8 +46,6 @@ foreach($findAll as $court) {
 		</div>
 		<?php } 
 	}// Fin foreach
-//header("refresh: 0;");
-//header('location:admin_courtsValidate');
 ?>
 
 
