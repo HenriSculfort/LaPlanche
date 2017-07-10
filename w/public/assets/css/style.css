@@ -319,6 +319,9 @@ a.lien-info-terrain:hover {
     border-color: rgba(232, 167, 76, 0.87);
     background-color: rgba(232, 167, 76, 0.87);
 }
+.pagination>li>a{
+    color: rgba(232, 167, 76, 0.87);
+}
 /******************************* PAGE DETAIL TERRAIN *********************************/
 
 .titre-match{

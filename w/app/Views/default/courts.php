@@ -104,7 +104,7 @@ if(isset($courtResult)) {
 <!-- PAGINATION -->
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4 col-lg-offset-4">
+		<div class="col-lg-12 text-center">
 			<?php
 			?> <ul class="pagination"> <?php
 			//affichage des numéros de page
