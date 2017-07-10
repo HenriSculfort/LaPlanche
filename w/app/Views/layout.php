@@ -127,7 +127,7 @@
             <?= $this->section('main_content') ?>
   
 
-    <hr class="hr-footer background-blanc-section">
+    <!-- <hr class="hr-footer background-blanc-section"> -->
 
     <!-- Footer -->
     <footer>

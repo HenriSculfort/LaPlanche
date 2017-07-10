@@ -148,20 +148,11 @@ header.intro-header {
 
 /************************************* FOOTER GENERAL *****************************/
 
-.hr-footer{
-    margin-top: 200px;
-    color: #000;
-    margin-bottom: 0;
-}
-
-
 footer {
     border-color: transparent;
     background: rgba(232, 167, 76, 0.87);
     padding: 20px;
-    margin-top: 40px;
     position: absolute;
-    bottom: 0;
     left: 0;
     right: 0
 }
@@ -215,6 +206,17 @@ input.searchWhere {
 button {
     font-weight: bold;
     text-transform: uppercase;
+}
+
+#map-index {
+    overflow: scroll;
+    overflow-x: hidden;
+    height:50vh;
+    width: 100%;
+}
+
+.div-map{
+    margin: 20px auto;
 }
 
 @media only screen and (min-width:768px) {

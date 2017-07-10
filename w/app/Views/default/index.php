@@ -20,28 +20,28 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
-            <div id="map"></div>
-            <div id="result"></div>
-
-
-            <form method="POST">
-                <input type="hidden" value="" id="lat" name="lat">
-                <input type="hidden" value="" id="lng" name="lng">
-                <button type="submit">Afficher les terrains pret de soi</button>
-            </form>
-        </div>
-
-
     </div>
 </div>
-
 
 <?php $this->stop('header_content') ?>
 
 <?php $this->start('main_content') ?>
 
-<section id="services">
+<div class="container-fluid div-map">
+    <div class="row">
+        <div class="col-lg-12">
+        <div id="map-index"></div>
+            <div id="result"></div>
+            <form method="POST">
+                <input type="hidden" value="" id="lat" name="lat">
+                <input type="hidden" value="" id="lng" name="lng">
+                <button type="submit">Afficher les terrains pres de soi</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<section id="services" class="background-gris-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -68,23 +68,25 @@
                     <img class="rotate" src="<?= $this->assetUrl('img/basketball-court.png')?>" alt="terrain de basket">
                 </span>
                 <h4 class="service-heading">Ajouter un terrain</h4>
-                <p class="text-muted">Vous connaissez un city qui n'est pas répertorié sur La Planche ? Rendez-vous sur votre espace personnel pour ajouter le terrain et ainsi programmer des rencontres avec les personnes de la communauté</p>
+                <p class="text-muted">Vous connaissez un city qui n'est pas répertorié sur La Planche ? Rendez-vous sur votre espace personnel pour ajouter le terrain et ainsi programmer des rencontres avec les personnes de la communauté.</p>
             </div>
         </div>
     </div>
 </section>
 
+
+
 <?php $this->stop('main_content') ?>
 <?php $this->start('script') ?>
+
 <script>
     // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
     // locate you.
-
     function initMap() {
 
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('map-index'), {
             center: {lat: -34.397, lng: 150.644},
             zoom: 13,
         });
@@ -94,7 +96,6 @@
         // Try HTML5 geolocation.
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-
 
                 var pos = {
                     lat: position.coords.latitude,
@@ -107,31 +108,29 @@
                 var lng =  position.coords.longitude;
                 $('#lng').attr('value', lng);
 
-
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Vous êtes ici');
                 map.setCenter(pos);
 
                 var locations = 
-                    [
-                        <?php
-    if(isset($donnee) and !empty($donnee))
-    {
-        foreach($donnee as $donnees)
-        {
-            if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
-            {
-                        ?>
-                        ['<?php echo $donnees['name'] ?>', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, 'http://localhost/PHP/LaPlanche/w/public/courts/details/<?php echo $donnees['id'] ?>'],
-                        <?php
-            }
-        }
-    }
-                        ?>
-                    ];
+                [
+                <?php
+                if(isset($donnee) and !empty($donnee))
+                {
+                    foreach($donnee as $donnees)
+                    {
+                        if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
+                        {
+                            ?>
+                            ['<?php echo $donnees['name'] ?>', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, '<?=$this->url('court_details', ['id' => $donnees['id']])?>'],
+                            <?php
+                        }
+                    }
+                }
+                ?>
+                ];
 
                 var infowindow = new google.maps.InfoWindow();
-
                 var marker, i;
 
                 for (i = 0; i < locations.length; i++) 
@@ -156,10 +155,7 @@
                             window.location.href = this.url;
                         }
                     })(marker, i));
-
                 }
-
-
             }, function() {
                 handleLocationError(true, infoWindow, map.getCenter());
             });
@@ -190,17 +186,17 @@
         });   
     }
 
-
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+          'Error: The Geolocation service failed.' :
+          'Error: Your browser doesn\'t support geolocation.');
     }
 
-
 </script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0xJoi5c9MwYIYQlwIEfLqLh95hLtcaYA&callback=initMap"></script>
+
 <?php $this->stop('script') ?>
 
 
