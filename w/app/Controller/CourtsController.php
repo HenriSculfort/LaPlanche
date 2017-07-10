@@ -309,7 +309,7 @@ class CourtsController extends Controller
         $this->show('default/court_details', ['findCourt' => $findCourt, 'findGamesOnCourt' => $findGamesOnCourt, 'now' => $now, 'court_id' => $id] );
 
     }
-
+ // FONCTIONS ADMIN
 
     public function validateCourts()
     {
@@ -413,7 +413,7 @@ class CourtsController extends Controller
     }
 
     /**
-     * Recherche des terrains 
+     * Recherche des terrains pour l'admin
      * @return array findAll avec liste des terrains
      */  
 
@@ -422,6 +422,7 @@ class CourtsController extends Controller
         $model = new CourtsModel();
         // Si le formulaire est envoyé
         if(!empty($_GET)) {
+
             // Je me protège au niveau du POST
             $get = array_map('trim', array_map('strip_tags', $_GET));
 
@@ -434,48 +435,69 @@ class CourtsController extends Controller
             if(!empty($get['name'])) { 
                 $data['name'] = $get['name'];
             }
-
-            $search = $model->search($data);
-            if(!empty($search)) { 
-                 $searchResult = true;
-            } 
-            else { 
+            if(empty($data)) { 
                 $searchResult = false;
             }
-
+            else {
+                $search = $model->search($data);
+                if(!empty($search)) { 
+                     $searchResult = true;
+                } 
+                else { 
+                    
+                }
+            }
 
             $params = [   
                 'searchResults' => isset($searchResult) ? $searchResult : null,
                 'search' => isset($search) ? $search : null,
             ];
-
+            $this->show('admin/courts_list', $params);
         } // Fin !empty get
 
-        $this->show('admin/courts_list', $params);
+        
     }
+
 
         public function modifyCourtAdmin() { 
             
-            $game_id = (int) $_POST['game_id'];
-            $id = (int) $_POST['court_id'];
-            $data = [
-                'accepted' => 0,
-            ];
-            $model = new GamesModel();
-            $gameAccepted = $model->update($data, $game_id);
+            if(!empty($_POST)) {
+               
+                $post = array_map('trim', array_map('strip_tags', $_POST));
 
-            $this->redirectToRoute('court_details', ['id' =>$id]);
+                if(isset($post['id'])) {
+                    $courtId = (int) $post['id'];
+                    $data = [ 
+                        'name' => $post['name'],
+                        'address' => $post['address'],
+                        'postal_code' => $post['postal_code'],
+                        'city' => $post['city'],
+                        'opening_hours' => $post['opening_hours'],
+                        'description' => $post['description'],
+                        'net' => isset($post['net']) ? $post['net'] : 0,
+                        'court_state' => isset($post['court_state']) ? $post['court_state'] : 0,
+                        'parking' => isset($post['parking']) ? $post['parking'] : 0,
+                    ];
+                }
+
+            $model = new CourtsModel();
+            $gameAccepted = $model->update($data, $courtId);
+            }
+            
+            
+            $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été modifié', 'success'))]);
         }
 
         public function deleteCourtAdmin() { 
                 
-                $game_id = (int) $_POST['game_id'];
-                $id = (int) $_POST['court_id'];
-                
-                $model = new GamesModel();
-                $gameAccepted = $model->delete($game_id);
-
-                $this->redirectToRoute('court_details', ['id' =>$id]);
+                if(!empty($_POST)) {
+               
+                    $post = array_map('trim', array_map('strip_tags', $_POST));
+                    $courtId = (int) $post['id'];     
+                    $model = new CourtsModel();
+                    $gameAccepted = $model->delete($courtId);
+                }
+                $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été supprimé', 'danger'))]);
         }
 
 }
