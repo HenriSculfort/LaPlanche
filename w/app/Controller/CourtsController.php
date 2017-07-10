@@ -18,9 +18,27 @@ class CourtsController extends Controller
 	 */
     public function listAllCourts()
     {
-    	$model = new CourtsModel();
-    	$findAll = $model->findAll();
-    	$this->show('default/courts', ['findAll' => $findAll]);
+        $model = new CourtsModel();
+        $nbTotalArticles = $model->NumberOfCourts();
+        //nbre d'articles par page
+        $nbParPage = 5;
+        //nbre de pages
+        $nbPages = ceil($nbTotalArticles['nbArticles'] / $nbParPage);
+        //on s'assure que le numéro de page envoyé est cohérent
+        if(isset($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $nbPages AND ctype_digit($_GET['page'])){
+            $page = htmlspecialchars($_GET['page']);
+        }
+        else{
+            $page = 1;
+        }
+        
+        //offset : là ou MySQL va commençer à récupérer les articles 
+        $offset = ($page-1) * $nbParPage;
+
+        $model = new CourtsModel();
+        $findAll = $model->ListAllCourts($offset);
+
+        $this->show('default/courts', ['findAll' => $findAll, 'page' => $page, 'nbPages' => $nbPages]);
     }
 
     /**

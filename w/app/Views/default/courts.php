@@ -101,6 +101,26 @@ if(isset($courtResult)) {
 	}// Fin foreach
 } // Fin du isset courtResult ?>
 
+<!-- PAGINATION -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">
+			<?php
+			?> <ul class="pagination"> <?php
+			//affichage des numéros de page
+			for($i=1; $i<=$nbPages; $i++){
+				if($page == $i){
+					echo '<li class="active"><a href="#">'.$page . '</a></li> ';
+				}
+				else{
+					echo '<li><a href="courts?page=' . $i .'">' . $i .'</a></li> ';
+				}
+			}
+			?>
+			</ul>
+		</div>
+	</div>
+</div>
 <?=$this->stop('main_content');?>
 
 <!-- AJAX D'AFFICHAGE DE LA RECHERCHE -->
