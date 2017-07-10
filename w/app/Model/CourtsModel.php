@@ -47,5 +47,22 @@ class CourtsModel extends \W\Model\Model
         }
     }
 
+    public function NumberOfCourts()
+    {
+        $sql = 'SELECT COUNT(id) AS nbArticles FROM '.$this->table.'';
+        $reponseNbArticles= $this->dbh->prepare($sql);
+        if($reponseNbArticles->execute()){
+            return $reponseNbArticles->fetch();
+        }  
+    }
 
+    public function ListAllCourts($offset)
+    {   
+        $sql = 'SELECT * FROM '.$this->table.' LIMIT '.$offset.', 5';
+        $reponse = $this->dbh->prepare($sql);
+        //$reponse->bindValue(':offset', $offset);
+        if($reponse->execute()){
+            return $reponse->fetchAll();  
+        }
+    }
 }

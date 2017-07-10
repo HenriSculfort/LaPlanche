@@ -36,9 +36,9 @@ foreach($findAll as $court) {
 						</div>
 
 						<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
-						<input type="hidden" name="valeurId" id="<?=$court['id'];?>" value="<?=$court['id'];?>">
-						<button type="submit" name="validez" id="<?=$court['id'];?>">Validez</button>
-						<button type="submit" name="supprimez" id="<?=$court['id'];?>">Supprimez</button>
+						<input type="hidden" name="valeurId" value="<?=$court['id'];?>">
+						<button type="submit" name="validez">Validez</button>
+						<button type="submit" name="supprimez">Supprimez</button>
 					
 					</div>
 				</form>
@@ -46,8 +46,6 @@ foreach($findAll as $court) {
 		</div>
 		<?php } 
 	}// Fin foreach
-//header("refresh: 0;");
-//header('location:admin_courtsValidate');
 ?>
 
 

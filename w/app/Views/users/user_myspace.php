@@ -30,7 +30,7 @@
                             <label for='address'>Adresse</label>
                         </div>
                         <div class='col-md-8'>
-                            <textarea type='text' class='form-control' name='address' placeholder="Adresse du terrain"><?php if(isset($_POST['address'])){echo $_POST['address']; } ?></textarea>
+                            <textarea type='text' class='form-control' name='address' class='form-group' placeholder="Adresse du terrain"><?php if(isset($_POST['address'])){echo $_POST['address']; } ?></textarea>
                         </div>
                     </div>
                     <div class='row form-group'>
