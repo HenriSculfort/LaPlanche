@@ -331,13 +331,12 @@ hr.hr-bottom{
     background: #f5f5f5;
 }
 
-.background-blanc-section{
+.background-blanc-section,
+.section-chat,
+.well-blanc{
     background: #fff;
 }
 
-.section-chat{
-    background: #fff;
-}
 
 #chat {
     border: 1px solid darkgray;

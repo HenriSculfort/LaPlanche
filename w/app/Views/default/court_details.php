@@ -23,7 +23,7 @@
 				</div>
 			<?php endif; ?> 
 			<div class='container description-terrain'>
-				<div class='row well'>
+				<div class='row well well-blanc'>
 					<div class='col-md-12'>
 						<div class='row'>
 							<div class='col-md-6'>
