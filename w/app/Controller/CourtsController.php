@@ -23,24 +23,11 @@ class CourtsController extends Controller
         $this->show('default/courts', ['findAll' => $findAll]);
     }
 
-
-    /**
-     * Liste de tous les terrains validés (pour l'admin)
-     * @return array findAll avec liste des terrains
-     */
-    public function listCourts()
-    {
-        $model = new CourtsModel();
-        $findAll = $model->findAll();
-        $this->show('admin/courts_list', ['findAll' => $findAll]);
-    }
-
     /**
 	* Moteur de recherche des terrains
 	* @return 
 	*
 	*/
-
     public function searchCourts() {
 
         $data = [];
@@ -412,5 +399,83 @@ class CourtsController extends Controller
 
         //}
     }
+
+    /**
+     * Liste de tous les terrains validés (pour l'admin)
+     * Après une tentative de fonction unique avec paramètre dynamique pour différencier la page à afficher qui ne fonctionnait pas, cette fonction duplique celle ci-dessus.
+     * @return array findAll avec liste des terrains
+     */
+    public function listCourtsAdmin()
+    {
+        $model = new CourtsModel();
+        $findAll = $model->findAll();
+        $this->show('admin/courts_list', ['findAll' => $findAll]);
+    }
+
+    /**
+     * Recherche des terrains 
+     * @return array findAll avec liste des terrains
+     */  
+
+    public function searchCourtsAdmin() { 
+
+        $model = new CourtsModel();
+        // Si le formulaire est envoyé
+        if(!empty($_GET)) {
+            // Je me protège au niveau du POST
+            $get = array_map('trim', array_map('strip_tags', $_GET));
+
+             // On vérifie que le lieu a bien été renseigné. 
+            if(!empty($get['location'])) {
+                $data['city'] = $get['location'];
+                $data['postal_code'] = $get['location'];
+            }
+
+            if(!empty($get['name'])) { 
+                $data['name'] = $get['name'];
+            }
+
+            $search = $model->search($data);
+            if(!empty($search)) { 
+                 $searchResult = true;
+            } 
+            else { 
+                $searchResult = false;
+            }
+
+
+            $params = [   
+                'searchResults' => isset($searchResult) ? $searchResult : null,
+                'search' => isset($search) ? $search : null,
+            ];
+
+        } // Fin !empty get
+
+        $this->show('admin/courts_list', $params);
+    }
+
+        public function modifyCourtAdmin() { 
+            
+            $game_id = (int) $_POST['game_id'];
+            $id = (int) $_POST['court_id'];
+            $data = [
+                'accepted' => 0,
+            ];
+            $model = new GamesModel();
+            $gameAccepted = $model->update($data, $game_id);
+
+            $this->redirectToRoute('court_details', ['id' =>$id]);
+        }
+
+        public function deleteCourtAdmin() { 
+                
+                $game_id = (int) $_POST['game_id'];
+                $id = (int) $_POST['court_id'];
+                
+                $model = new GamesModel();
+                $gameAccepted = $model->delete($game_id);
+
+                $this->redirectToRoute('court_details', ['id' =>$id]);
+        }
 
 }

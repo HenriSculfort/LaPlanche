@@ -47,9 +47,11 @@ $w_routes = array(
     ['GET|POST', '/admin/courtsValidate/', 'Courts#viewValidate', 'admin_courtsValidate'],
     ['GET|POST', '/admin/courtsValidate/ajax', 'Courts#validateCourts', 'admin_courtsValidateAjax'],
     ['GET|POST', '/admin/courtsValidate/listAjax', 'Courts#getList', 'admin_getListAjax'],
-    ['GET|POST', '/admin/courtsList', 'Courts#listCourts', 'admin_getCourtsList'],
-    ['GET|POST', '/admin/courtsModify', 'Courts#modifyCourt', 'admin_modifyCourt'],
-    ['GET|POST', '/admin/courtsDelete', 'Courts#deleteCourt', 'admin_deleteCourt'],
+    ['GET|POST', '/admin/courtsList', 'Courts#listCourtsAdmin', 'admin_getCourtsList'],
+    ['GET|POST', '/admin/courtsSearch', 'Courts#searchCourtsAdmin', 'admin_searchCourts'],
+
+    ['GET|POST', '/admin/courtsModify', 'Courts#modifyCourtAdmin', 'admin_modifyCourt'],
+    ['GET|POST', '/admin/courtsDelete', 'Courts#deleteCourtAdmin', 'admin_deleteCourt'],
 
 
 );
