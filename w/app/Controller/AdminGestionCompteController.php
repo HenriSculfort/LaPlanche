@@ -28,34 +28,39 @@ class AdminGestionCompteController extends Controller
 
 	public function gestionCompteAjax()
 	{
-		if(isset($_GET['suppr']) && $_GET['suppr'] == 'off'){
-			$roleModif = [
-			'role' => $_GET['role'],
-			];
-
-			$UsersModel = new UsersModel();
-			$update = $UsersModel->update($roleModif, $_GET['id']);
-
-			if($update == true){
-
-				$json = [
-				'result' => true,
-				'message' => 'Le rôle de l\'utilisateur a été modifié'
-				];
-			}
+		if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){			
+			$this->show('w_errors/403');			
 		}
-		elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'on'){
-			$UsersModel = new UsersModel();
-			$suppr = $UsersModel->delete((int) $_GET['id']);
-
-			if($suppr == true){
-
-				$json = [
-				'result' => true,
-				'message' => 'L\'utilisateur a été supprimer'
+		else{
+			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off'){
+				$roleModif = [
+				'role' => $_GET['role'],
 				];
+
+				$UsersModel = new UsersModel();
+				$update = $UsersModel->update($roleModif, $_GET['id']);
+
+				if($update == true){
+
+					$json = [
+					'result' => true,
+					'message' => 'Le rôle de l\'utilisateur a été modifié'
+					];
+				}
 			}
+			elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'on'){
+				$UsersModel = new UsersModel();
+				$suppr = $UsersModel->delete((int) $_GET['id']);
+
+				if($suppr == true){
+
+					$json = [
+					'result' => true,
+					'message' => 'L\'utilisateur a été supprimé'
+					];
+				}
+			}
+			$this->showJson($json);
 		}
-		$this->showJson($json);
 	}
 }

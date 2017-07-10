@@ -321,16 +321,16 @@ class CourtsController extends Controller
 
     	$model = new CourtsModel();
         $findCourt = $model->find($id);     
-       
+
         $now = date('Y-m-d'); 
-      
-       
+
+
         $gamesModel = new GamesModel();
         $findGamesOnCourt = $gamesModel->showGamesOnThisCourt($id);
 
         foreach ($findGamesOnCourt as $date) {
             if(strtotime($now)> strtotime($date['date'])){
-            
+
                 $passedTime = new GamesModel();
                 $DeleteGame = $passedTime -> deleteMatch($date['date']);
 
@@ -348,36 +348,36 @@ class CourtsController extends Controller
     	if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){         
             $this->show('w_errors/403');            
         }
-    	else {	
+        else {	
 
-    		if(isset($_POST['validez'])){
+          if(isset($_POST['validez'])){
 
-    			$validation=[
-    			'admin_validation'=> 1                
-    			];
-    			$model = new CourtsModel();
-    			$update = $model->update($validation, $_POST['valeurId']);
+             $validation=[
+             'admin_validation'=> 1                
+             ];
+             $model = new CourtsModel();
+             $update = $model->update($validation, $_POST['valeurId']);
 
-    			$this->flash('Le terrain a été validé', 'success');
-    		}
+             $this->flash('Le terrain a été validé', 'success');
+         }
 
-    		if(isset($_POST['supprimez'])){
-    			$model =new CourtsModel();
-    			$delete = $model ->delete($_POST['valeurId']);
+         if(isset($_POST['supprimez'])){
+             $model =new CourtsModel();
+             $delete = $model ->delete($_POST['valeurId']);
 
-    			$this->flash('Le terrain à été supprimé', 'success');
-    		}
+             $this->flash('Le terrain à été supprimé', 'success');
+         }
 
-    		$model = new CourtsModel();
-    		$findAll = $model->findAll();
+         $model = new CourtsModel();
+         $findAll = $model->findAll();
 
-    		$boucle = [
-    		'findAll' => $findAll
-    		];
+         $boucle = [
+         'findAll' => $findAll
+         ];
 
-    		$this->show('admin/courtsValidate', $boucle);
-    	}
-    }
+         $this->show('admin/courtsValidate', $boucle);
+     }
+ }
 
     /**
      * Liste de tous les terrains validés (pour l'admin)
@@ -386,10 +386,15 @@ class CourtsController extends Controller
      */
     public function listCourtsAdmin()
     {
-    	$model = new CourtsModel();
-    	$findAll = $model->findAll();
-    	$this->show('admin/courts_list', ['findAll' => $findAll]);
-    }
+        if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){          
+            $this->show('w_errors/403');            
+        }
+        else{
+           $model = new CourtsModel();
+           $findAll = $model->findAll();
+           $this->show('admin/courts_list', ['findAll' => $findAll]);
+       }
+   }
 
     /**
      * Recherche des terrains pour l'admin
@@ -398,101 +403,110 @@ class CourtsController extends Controller
 
     public function searchCourtsAdmin() { 
 
-    	$model = new CourtsModel();
+        if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){          
+            $this->show('w_errors/403');            
+        }
+        else{
+         $model = new CourtsModel();
         // Si le formulaire est envoyé
         if(!empty($_GET)) {
 
-            // Je me protège au niveau du POST
-    		$get = array_map('trim', array_map('strip_tags', $_GET));
+        // Je me protège au niveau du POST
+        $get = array_map('trim', array_map('strip_tags', $_GET));
 
-             // On vérifie que le lieu a bien été renseigné. 
-    		if(!empty($get['location'])) {
-    			$data['city'] = $get['location'];
-    			$data['postal_code'] = $get['location'];
-    		}
+        // On vérifie que le lieu a bien été renseigné. 
+        if(!empty($get['location'])) {
+            $data['city'] = $get['location'];
+            $data['postal_code'] = $get['location'];
+        }
 
-            if(!empty($get['name'])) { 
-                $data['name'] = $get['name'];
+        if(!empty($get['name'])) { 
+            $data['name'] = $get['name'];
+        }
+        if(empty($data)) { 
+            $searchResult = false;
+        }
+        else {
+            $search = $model->search($data);
+            if(!empty($search)) { 
+               $searchResult = true;
+            } 
+            else { 
+
             }
-            if(empty($data)) { 
-                $searchResult = false;
-            }
-            else {
-                $search = $model->search($data);
-                if(!empty($search)) { 
-                     $searchResult = true;
-                } 
-                else { 
-                    
-                }
-            }
+        }
 
-            $params = [   
-                'searchResults' => isset($searchResult) ? $searchResult : null,
-                'search' => isset($search) ? $search : null,
-            ];
-            $this->show('admin/courts_list', $params);
+        $params = [   
+        'searchResults' => isset($searchResult) ? $searchResult : null,
+        'search' => isset($search) ? $search : null,
+        ];
+        $this->show('admin/courts_list', $params);
 
-    		if(!empty($get['name'])) { 
-    			$data['name'] = $get['name'];
-    		}
+        if(!empty($get['name'])) { 
+            $data['name'] = $get['name'];
+        }
 
-    		$search = $model->search($data);
-    		if(!empty($search)) { 
-    			$searchResult = true;
-    		} 
-    		else { 
-    			$searchResult = false;
-    		}
+        $search = $model->search($data);
+        if(!empty($search)) { 
+            $searchResult = true;
+        } 
+        else{ 
+        $searchResult = false;
+        }
 
-
-    		$params = [   
-    		'searchResults' => isset($searchResult) ? $searchResult : null,
-    		'search' => isset($search) ? $search : null,
-    		];
-
+        $params = [   
+        'searchResults' => isset($searchResult) ? $searchResult : null,
+        'search' => isset($search) ? $search : null,
+        ];
 
         } // Fin !empty get
+    } 
+}
 
-        
+public function modifyCourtAdmin() { 
+
+    if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){          
+        $this->show('w_errors/403');            
     }
+    else{
+        if(!empty($_POST)) {
 
-     public function modifyCourtAdmin() { 
-            
-            if(!empty($_POST)) {
-               
-                $post = array_map('trim', array_map('strip_tags', $_POST));
-                if(isset($post['id'])) {
-                    $courtId = (int) $post['id'];
-                    $data = [ 
-                        'name' => $post['name'],
-                        'address' => $post['address'],
-                        'postal_code' => $post['postal_code'],
-                        'city' => $post['city'],
-                        'opening_hours' => $post['opening_hours'],
-                        'description' => $post['description'],
-                        'net' => isset($post['net']) ? $post['net'] : 0,
-                        'court_state' => isset($post['court_state']) ? $post['court_state'] : 0,
-                        'parking' => isset($post['parking']) ? $post['parking'] : 0,
-                    ];
-                }
+            $post = array_map('trim', array_map('strip_tags', $_POST));
+            if(isset($post['id'])) {
+                $courtId = (int) $post['id'];
+                $data = [ 
+                'name' => $post['name'],
+                'address' => $post['address'],
+                'postal_code' => $post['postal_code'],
+                'city' => $post['city'],
+                'opening_hours' => $post['opening_hours'],
+                'description' => $post['description'],
+                'net' => isset($post['net']) ? $post['net'] : 0,
+                'court_state' => isset($post['court_state']) ? $post['court_state'] : 0,
+                'parking' => isset($post['parking']) ? $post['parking'] : 0,
+                ];
+            }
             $model = new CourtsModel();
             $gameAccepted = $model->update($data, $courtId);
-            }
-            
-            
-            $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été modifié', 'success'))]);
         }
-        public function deleteCourtAdmin() { 
-                
-                if(!empty($_POST)) {
-               
-                    $post = array_map('trim', array_map('strip_tags', $_POST));
-                    $courtId = (int) $post['id'];     
-                    $model = new CourtsModel();
-                    $gameAccepted = $model->delete($courtId);
-                }
-                $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été supprimé', 'danger'))]);
+        $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été modifié', 'success'))]);
+    }
+}
+public function deleteCourtAdmin() { 
+
+    if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){          
+        $this->show('w_errors/403');            
+    }
+    else{
+        if(!empty($_POST)) {
+
+            $post = array_map('trim', array_map('strip_tags', $_POST));
+            $courtId = (int) $post['id'];     
+            $model = new CourtsModel();
+            $gameAccepted = $model->delete($courtId);
         }
+        $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été supprimé', 'danger'))]);
+    }
+}
 
 }

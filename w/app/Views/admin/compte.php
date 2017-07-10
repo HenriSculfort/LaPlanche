@@ -1,6 +1,16 @@
 
 <?= $this->layout('layout', ['title' => 'Espace admin']);?>
 <?=$this->start('header_content'); ?>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<div>
+			<a href="<?=$this->url('admin_courtsValidate');?>"><button type='button' class='btn btn-primary'>Valider terrain</button></a>
+				<a href="<?=$this->url('admin_getCourtsList');?>"><button type='button' class='btn btn-primary'>Modifier terrain</button></a>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class='standard-header'>
 	<h1>Espace administrateur</h1>
@@ -11,59 +21,59 @@
 
 <?=$this->start('main_content'); ?>
 
-	
-	<article>
-		<div id="errors" style="color:red"></div>
-		<div id="message" style="color:green"></div>
-	</article>
 
-	<div>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Pseudo utilisateur</th>
-					<th>Niveau</th>
-					<th>Prénom</th>
-					<th>Nom</th>
-					<th>email</th>
-					<th>adresse</th>
-					<th>Téléphone</th>
-					<th>Statut</th>
-					<th>Supprimer</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				foreach ($listuser as $key => $value) { ?>
-				<tr>
+<article>
+	<div id="errors" style="color:red"></div>
+	<div id="message" style="color:green"></div>
+</article>
 
-					<form type="GET" id="user-id-<?= $value['id']; ?>">
-						<td><?php echo $value['username'];?></td>
-						<td><?php echo $value['level'];?></td>
-						<td><?php echo $value['firstname'];?></td>
-						<td><?php echo $value['lastname'];?></td>
-						<td><?php echo $value['email'];?></td>
-						<td><?php echo $value['address'] . ' '. $value['postal_code'] . ' ' . $value['city'];?></td>
-						<td><?php echo $value['phone'];?></td>
-						<td>
-							<select name="role" class="select-role" id="role-<?= $value['id']; ?>" >
-								<option value="user" <?php if(isset($value['role']) && $value['role'] == 'user'){ echo 'selected'; }?>>User</option>
-								<option value="admin" <?php if(isset($value['role']) && $value['role'] == 'admin'){ echo 'selected'; }?>>Admin</option>
-							</select>
-						</td>
-						<td>
-							<input type="checkbox" name="suppr" id="suppr-<?= $value['id']; ?>">
-						</td>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Pseudo utilisateur</th>
+				<th>Niveau</th>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>email</th>
+				<th>adresse</th>
+				<th>Téléphone</th>
+				<th>Statut</th>
+				<th>Supprimer</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			foreach ($listuser as $key => $value) { ?>
+			<tr>
 
-						<td>
-							<button type="submit" data-id="<?=$value['id'];?>">Appliquez</button>
-						</td>
-					</form>
-				</tr>
-				<?php }	?>
-			</tbody>
-		</table>
-	</div>
+				<form type="GET" id="user-id-<?= $value['id']; ?>">
+					<td><?php echo $value['username'];?></td>
+					<td><?php echo $value['level'];?></td>
+					<td><?php echo $value['firstname'];?></td>
+					<td><?php echo $value['lastname'];?></td>
+					<td><?php echo $value['email'];?></td>
+					<td><?php echo $value['address'] . ' '. $value['postal_code'] . ' ' . $value['city'];?></td>
+					<td><?php echo $value['phone'];?></td>
+					<td>
+						<select name="role" class="select-role" id="role-<?= $value['id']; ?>" >
+							<option value="user" <?php if(isset($value['role']) && $value['role'] == 'user'){ echo 'selected'; }?>>User</option>
+							<option value="admin" <?php if(isset($value['role']) && $value['role'] == 'admin'){ echo 'selected'; }?>>Admin</option>
+						</select>
+					</td>
+					<td>
+						<input type="checkbox" name="suppr" id="suppr-<?= $value['id']; ?>">
+					</td>
+
+					<td>
+						<button type="submit" data-id="<?=$value['id'];?>">Appliquez</button>
+					</td>
+				</form>
+			</tr>
+			<?php }	?>
+		</tbody>
+	</table>
+</div>
 
 <?= $this->stop('main_content'); ?> 
 <?=$this->start('script'); ?>
