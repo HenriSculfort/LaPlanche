@@ -37,4 +37,8 @@ $w_routes = array(
     ['GET|POST', '/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
     ['GET|POST', '/gestioncompte/Ajax', 'AdminGestionCompte#gestionCompteAjax', 'admin_compteAjax'],
 
+    ['GET|POST', '/courtsValidate/', 'Courts#viewValidate', 'admin_courtsValidate'],
+    ['GET|POST', '/courtsValidate/ajax', 'Courts#validateCourts', 'admin_courtsValidateAjax'],
+    ['GET|POST', '/courtsValidate/listAjax', 'Courts#getList', 'admin_getListAjax'],
+
 );
