@@ -33,7 +33,7 @@ class ChatController extends Controller
 				$get[$key] = trim(strip_tags($value));
 			}
 
-			if(preg_match('#connard|con|enculé|connasse|pute|pd|pédé|fdp|salope|bite|trouduc|défoncer|enculés|enculer|batardpoufiasse|pouffiasse|cul|ntm|merde|merdes|fuck|vttf|tg|pétasse#', $get['message'])) {
+			if(preg_match('#connard|con|enculé|connasse|pute|pd|pédé|fdp|salope|bite|trouduc|défoncer|enculés|enculer|batardpoufiasse|pouffiasse|cul|ntm|merde|merdes|fuck|vttf|tg|pétasse|enfoiré#', $get['message'])) {
 				$errors[] = 'Attention à ton langage';
 			}
 

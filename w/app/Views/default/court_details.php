@@ -184,12 +184,13 @@
 					// N'affiche donc pas la game
 				} 
 				// Si la date de la game est postérieure, on affiche.
-				else { ?>
+				else { 
+				$date = new DateTime($game['date']);?>
 				<div class=" container well">
 					<div class='row'>
 						<div class='col-md-6'>
 							<h5>Match Ref°<i class='game_id' value='<?=$game['id'];?>'></i><?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
-							<p>Date :</p>
+							<p>Date : <?= $date->format('d-m-Y');?></p>
 							<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
 							<p>Nombre de joueurs :<?= $game['number_players'];?>.</p>
 							<p>Niveau :	<?=\Tools\Utils::getTeamLevel($game['team_level'])?></p>
