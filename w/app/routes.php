@@ -22,7 +22,7 @@ $w_routes = array(
 
     // Terrains
     ['GET|POST', '/', 'Default#home', 'accueil'],
-    ['GET|POST', '/[:courts]', 'Courts#listAllCourts', 'courts'],
+    ['GET|POST', '/courts', 'Courts#listAllCourts', 'courts'],
     ['GET|POST', '/courts/search', 'Courts#searchCourts', 'search_courts'],
     ['GET|POST', '/courts/details/[i:id]', 'Courts#courtDetails', 'court_details'],
 
@@ -47,10 +47,9 @@ $w_routes = array(
     ['GET|POST', '/admin/courtsValidate/', 'Courts#viewValidate', 'admin_courtsValidate'],
     ['GET|POST', '/admin/courtsValidate/ajax', 'Courts#validateCourts', 'admin_courtsValidateAjax'],
     ['GET|POST', '/admin/courtsValidate/listAjax', 'Courts#getList', 'admin_getListAjax'],
-    ['GET|POST', '/[:admin]/courtsList', 'Courts#listAllCourts', 'admin_getCourtsList'],
-    ['GET|POST', '/admin/courtsSearch', 'Courts#searchCourtsAdmin', 'admin_searchCourt'],
-    ['GET|POST', '/admin/courtsModify', 'Courts#modifyCourtAdmin', 'admin_modifyCourt'],
-    ['GET|POST', '/admin/courtsDelete', 'Courts#deleteCourtAdmin', 'admin_deleteCourt'],
+    ['GET|POST', '/admin/courtsList', 'Courts#listCourts', 'admin_getCourtsList'],
+    ['GET|POST', '/admin/courtsModify', 'Courts#modifyCourt', 'admin_modifyCourt'],
+    ['GET|POST', '/admin/courtsDelete', 'Courts#deleteCourt', 'admin_deleteCourt'],
 
 
 );
