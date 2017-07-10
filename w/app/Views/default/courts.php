@@ -37,10 +37,10 @@
 					</select>
 				</div>
 
-				<div class="form-group">
+<!-- 				<div class="form-group">
 					<label for='distanceSlider'> Distance </label>
 					<input id="distance" data-slider-id='distanceSlider' type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="50"/>
-				</div>
+				</div> -->
 				<button type='submit' id='searchBtn' class='btn btn-warning'>Rechercher </button>
 				<div>
 					<small>* champ requis</small>
