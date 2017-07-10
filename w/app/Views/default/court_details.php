@@ -3,7 +3,7 @@
 <?php $this->start('main_content');?>
 
 <!--************************* DETAILS TERRAIN ************************-->
-<div class="container-fluid background-gris-section">
+<div class="container-fluid background-blanc-section">
 	<div class="row">
 		<div class='col-lg-12'>
 			<hr class="small">
@@ -79,6 +79,80 @@
 </div>
 
 <?php if(!empty($w_user)): ?>
+	<!--************************* MATCHS PREVUS ************************-->
+	<div class='container-fluid background-gris-section'>
+		<hr class="small">
+		<div class='row'>
+			<h3 id='gamesList' class="titre-match">Matchs prévus</h3>
+		</div>
+		<hr class="small hr-bottom">
+		<div class='row'>
+			<div>
+				<?php foreach($findGamesOnCourt as $game) : 
+				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
+				if(strtotime($now)> strtotime($game['date'])){
+					// N'affiche donc pas la game
+				} 
+				// Si la date de la game est postérieure, on affiche.
+				else 
+				{ 
+					$date = new DateTime($game['date']);?>
+					<div class=" container well">
+						<div class='row'>
+							<div class='col-md-6'>
+								<h5>Match Ref°<i class='game_id' value='<?=$game['id'];?>'></i><?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
+								<p>Date : <?= $date->format('d-m-Y');?></p>
+								<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
+								<p>Nombre de joueurs :<?= $game['number_players'];?>.</p>
+								<p>Niveau :	<?=\Tools\Utils::getTeamLevel($game['team_level'])?></p>
+							</div>
+							<div class='col-md-6'>
+								<p>Nom de l'équipe : <?= $game['team_name'];?></p>
+								<p>Message : <?= $game['message'];?></p>
+							</div>
+						</div>
+						<div class='row'>
+							<div class='col-md-6'>
+								<!-- Bouton de suppression de la rencontre par l'utilisateur qui l'a créée !  -->
+								<?php if($game['user_id'] == ($w_user['id'])) :?>
+									<form method='POST' action='<?=$this->url('delete_game');?>'>
+										<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+										<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+										<button type='submit' class='btn btn-danger' onClick="if(confirm('Le match va être supprimé.')){return true;}else{return false;}">Supprimer la rencontre</button>
+									</form>
+								<?php endif;?>
+
+								<!-- Bouton d'acceptation de la rencontre par l'utilisateur qui l'a proposée ! -->
+								<?php if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
+									<form method='POST' action='<?=$this->url('accept_game');?>'>
+										<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+										<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+										<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
+									</form>
+								<?php endif;?>
+
+								<!-- Bouton d'annulation de la rencontre par l'utilisateur qui l'a acceptée ! (ATTENTION, ceci n'est pas une suppression) -->
+								<?php if($game['user_id'] == ($w_user['id']) && $game['accepted'] == 1 ) :?>
+									<form method='POST' action='<?=$this->url('cancel_game');?>'>
+										<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
+										<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
+										<button type='submit' class='btn btn-warning' onClick="if(confirm('Le statut complet va être annulé et d\'autres joueurs pourront se proposer')){return true;}else{return false;}">Annuler la rencontre</button>
+									</form>
+								<?php endif;?>
+
+								<!-- Bouton d'affichage du chat -->
+								<button type='button' data-id="<?=$game['id'];?>" class='btn btn-primary btn-showChat'>Afficher le chat</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php 
+			};
+			endforeach; ?>
+		</div>
+	</div>
+
+	<!-- Fin du div row des matchs -->
 	<!--************************* PROPOSER MATCH ************************-->
 	<div class="container-fluid background-blanc-section">
 		<hr class="small">
@@ -169,129 +243,59 @@
 		</form>
 	</div>
 
-	<!--************************* MATCHS PREVUS ************************-->
-	<div class='container-fluid background-gris-section'>
-		<hr class="small">
-		<div class='row'>
-			<h3 id='gamesList' class="titre-match">Matchs prévus</h3>
-		</div>
-		<hr class="small hr-bottom">
-		<div class='row'>
-			<div>
-				<?php foreach($findGamesOnCourt as $game) : 
-				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
-				if(strtotime($now)> strtotime($game['date'])) {
-					// N'affiche donc pas la game
-				} 
-				// Si la date de la game est postérieure, on affiche.
-				else { 
-				$date = new DateTime($game['date']);?>
-				<div class=" container well">
-					<div class='row'>
-						<div class='col-md-6'>
-							<h5>Match Ref°<i class='game_id' value='<?=$game['id'];?>'></i><?=$game['id']; if($game['accepted'] == 1 ) { echo '<strong> - COMPLET</strong>';}?></h5>
-							<p>Date : <?= $date->format('d-m-Y');?></p>
-							<p>De <?= $game['starting_time'];?> à <?= $game['finishing_time'];?></p>
-							<p>Nombre de joueurs :<?= $game['number_players'];?>.</p>
-							<p>Niveau :	<?=\Tools\Utils::getTeamLevel($game['team_level'])?></p>
-						</div>
-						<div class='col-md-6'>
-							<p>Nom de l'équipe : <?= $game['team_name'];?></p>
-							<p>Message : <?= $game['message'];?></p>
-						</div>
-					</div>
-					<div class='row'>
-						<div class='col-md-6'>
-							<!-- Bouton de suppression de la rencontre par l'utilisateur qui l'a créée !  -->
-							<?php if($game['user_id'] == ($w_user['id'])) :?>
-								<form method='POST' action='<?=$this->url('delete_game');?>'>
-									<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
-									<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-									<button type='submit' class='btn btn-danger' onClick="if(confirm('Le match va être supprimé.')){return true;}else{return false;}">Supprimer la rencontre</button>
-								</form>
-							<?php endif;?>
+	<!-- ********************** CHAT ***********************-->
+	<div>
+		<div id='chat'>
+			<div id='chatTitle'></div>
+			<h5>Messages</h5>
+			<div id='showMessages'></div> <!-- Fin de la div contenant les messages du chat ajax -->
+			<div id='errors'></div>
 
-							<!-- Bouton d'acceptation de la rencontre par l'utilisateur qui l'a proposée ! -->
-							<?php if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
-								<form method='POST' action='<?=$this->url('accept_game');?>'>
-									<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
-									<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-									<button type='submit' class='btn btn-success'>Accepter la rencontre</button>
-								</form>
-							<?php endif;?>
-
-							<!-- Bouton d'annulation de la rencontre par l'utilisateur qui l'a acceptée ! (ATTENTION, ceci n'est pas une suppression) -->
-							<?php if($game['user_id'] == ($w_user['id']) && $game['accepted'] == 1 ) :?>
-								<form method='POST' action='<?=$this->url('cancel_game');?>'>
-									<input type='hidden' value='<?=$game['id'];?>' name='game_id'>
-									<input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
-									<button type='submit' class='btn btn-warning' onClick="if(confirm('Le statut complet va être annulé et d\'autres joueurs pourront se proposer')){return true;}else{return false;}">Annuler la rencontre</button>
-								</form>
-							<?php endif;?>
-
-							<!-- Bouton d'affichage du chat -->
-							<button type='button' data-id="<?=$game['id'];?>" class='btn btn-primary btn-showChat'>Afficher le chat</button>
-						</div>
-					</div>
-				</div>
-				<div>
-					<?php } ;
-					endforeach; ?>
-				</div>
-				<!-- Fin du div row des matchs -->
-
-				<!-- ********************** CHAT ***********************-->
-				<div id='chat'>
-					<div id='chatTitle'></div>
-					<h5>Messages</h5>
-					<div id='showMessages'></div> <!-- Fin de la div contenant les messages du chat ajax -->
-					<div id='errors'></div>
-
-					<form method='POST' id='sendMessages'>
+			<form method='POST' id='sendMessages'>
+				<br>
+				<div class='row'>
+					<div class='col-md-12'>
+						<h5>Nouveau message</h5>
+						<input type="hidden" id="idChatRoom" name="idChat" value="">
+						<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
 						<br>
-						<div class='row'>
-							<div class='col-md-12'>
-								<h5>Nouveau message</h5>
-								<input type="hidden" id="idChatRoom" name="idChat" value="">
-								<textarea id='message' class='form-control' name='message' placeholder='Taper votre message ici'></textarea>
-								<br>
-								<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
-							</div>
-						</div>
-					</form>
+						<button type='button' id='addMessage' class='btn btn-primary'>Envoyer</button>
+					</div>
 				</div>
-			</div>	<!-- Fin du div container matchs prévus -->
-		<?php endif; ?> 
-		<?=$this->stop('main_content');?>
+			</form>
+		</div>
+	</div>	<!-- Fin du div container matchs prévus -->
+<?php endif; ?> 
+<?=$this->stop('main_content');?>
 
-		<?=$this->start('script');?>
+<?=$this->start('script');?>
 
-		<!-- script du datepicker -->
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script>
+<!-- script du datepicker -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
 
-			$(function() {
-				$( "#datepicker" ).datepicker({
-					firstDay: 1 ,
-					closeText: 'Fermer',
-					prevText: 'Précédent',
-					nextText: 'Suivant',
-					currentText: 'Aujourd\'hui',
-					monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-					monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-					dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-					dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-					dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-					weekHeader: 'Sem.',
-					dateFormat: 'dd-mm-yy',
-					altField: "#alternate",
-					altFormat: "yy-mm-dd"
-				});
-			});
+	$(function() {
+		$( "#datepicker" ).datepicker({
+			firstDay: 1 ,
+			closeText: 'Fermer',
+			prevText: 'Précédent',
+			nextText: 'Suivant',
+			currentText: 'Aujourd\'hui',
+			monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+			monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+			dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+			dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+			dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+			weekHeader: 'Sem.',
+			dateFormat: 'dd-mm-yy',
+			altField: "#alternate",
+			altFormat: "yy-mm-dd"
+		});
+	});
 
-		</script>
+</script>
 
-		<script>
+<script>
 
 // FONCTION POUR AJOUTER OU SUPPRIMER LA CLASSE GERANT L'AFFICHAGE DU CHAT OU NON
 function showChat() {
@@ -395,7 +399,7 @@ $(document).ready(function() {
 
 <script>
 	
-$(document).ready(function() {
+$(document).ready(function(){
 
 	$('#submitProposeMatch').on('click', function(e) {
 	// Empeche l'action par défaut, dans notre cas la soumission du formulaire

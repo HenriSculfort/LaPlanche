@@ -48,6 +48,6 @@ class MapController extends Controller
                 $donnee = $CourtsModel->findLatLng($postal_code);
             }
         }
-        $this->show('users/map', ['postal_code' => $postal_code , 'location' => $location , 'donnee' => $donnee]);
+        $this->show('default/index', ['postal_code' => $postal_code , 'location' => $location , 'donnee' => $donnee]);
     }
 }

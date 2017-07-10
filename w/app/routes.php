@@ -18,7 +18,7 @@ $w_routes = array(
     ['GET|POST', '/myspace/UserAjax', 'Users#updateUser', 'modif_user'],
 
     // Map
-    ['GET|POST', '/map', 'Map#map', 'map'], 
+    ['GET|POST', '/', 'Map#map', 'map'], 
 
     // Terrains
     ['GET|POST', '/', 'Default#listWhereCourts', 'accueil'],
