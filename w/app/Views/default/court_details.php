@@ -181,7 +181,7 @@
 								<label for="datepicker"> Date</label>
 							</div>
 							<div class='col-sm-6'>
-								<input class="form-control" type="text" id="datepicker">
+								<input class="form-control" type="text" id="datepicker" placeholder='Sélectionnez la date'>
 								<input type="hidden" id="alternate" name="date">
 							</div>
 						</div>
@@ -220,7 +220,7 @@
 								<label for='number_players'>Nombre de joueurs</label>
 							</div>
 							<div class='col-sm-6 align-right'>
-								<input type='text' class='form-control' name='number_players' placeholder="ex: 3">
+								<input type='text' class='form-control' name='number_players' placeholder="Ex : 3">
 							</div>
 						</div>
 						<div class='row form-group'>
@@ -228,7 +228,7 @@
 								<label for='team_name'>Nom de votre équipe</label>
 							</div>
 							<div class='col-sm-6'>
-								<input type='text' class='form-control' name='team_name' placeholder="nom de l'équipe (facultatif)">
+								<input type='text' class='form-control' name='team_name' placeholder="Nom de l'équipe (facultatif)">
 							</div>
 						</div>
 					</div> 

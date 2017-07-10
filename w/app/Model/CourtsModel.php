@@ -58,7 +58,7 @@ class CourtsModel extends \W\Model\Model
 
     public function ListAllCourts($offset)
     {   
-        $sql = 'SELECT * FROM '.$this->table.' LIMIT '.$offset.', 5';
+        $sql = 'SELECT * FROM '.$this->table.' LIMIT '.$offset.', 5'; // ne fonctionne pas avec le marqueur
         $reponse = $this->dbh->prepare($sql);
         //$reponse->bindValue(':offset', $offset);
         if($reponse->execute()){
