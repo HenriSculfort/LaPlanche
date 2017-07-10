@@ -443,28 +443,42 @@ class CourtsController extends Controller
         
     }
 
-    public function modifyCourtAdmin() { 
-
-    	$game_id = (int) $_POST['game_id'];
-    	$id = (int) $_POST['court_id'];
-    	$data = [
-    	'accepted' => 0,
-    	];
-    	$model = new GamesModel();
-    	$gameAccepted = $model->update($data, $game_id);
-
-    	$this->redirectToRoute('court_details', ['id' =>$id]);
-    }
-
-    public function deleteCourtAdmin() { 
-
-    	$game_id = (int) $_POST['game_id'];
-    	$id = (int) $_POST['court_id'];
-
-    	$model = new GamesModel();
-    	$gameAccepted = $model->delete($game_id);
-
-    	$this->redirectToRoute('court_details', ['id' =>$id]);
-    }
+     public function modifyCourtAdmin() { 
+            
+            if(!empty($_POST)) {
+               
+                $post = array_map('trim', array_map('strip_tags', $_POST));
+                if(isset($post['id'])) {
+                    $courtId = (int) $post['id'];
+                    $data = [ 
+                        'name' => $post['name'],
+                        'address' => $post['address'],
+                        'postal_code' => $post['postal_code'],
+                        'city' => $post['city'],
+                        'opening_hours' => $post['opening_hours'],
+                        'description' => $post['description'],
+                        'net' => isset($post['net']) ? $post['net'] : 0,
+                        'court_state' => isset($post['court_state']) ? $post['court_state'] : 0,
+                        'parking' => isset($post['parking']) ? $post['parking'] : 0,
+                    ];
+                }
+            $model = new CourtsModel();
+            $gameAccepted = $model->update($data, $courtId);
+            }
+            
+            
+            $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été modifié', 'success'))]);
+        }
+        public function deleteCourtAdmin() { 
+                
+                if(!empty($_POST)) {
+               
+                    $post = array_map('trim', array_map('strip_tags', $_POST));
+                    $courtId = (int) $post['id'];     
+                    $model = new CourtsModel();
+                    $gameAccepted = $model->delete($courtId);
+                }
+                $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été supprimé', 'danger'))]);
+        }
 
 }
