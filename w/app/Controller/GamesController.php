@@ -149,4 +149,7 @@ class GamesController extends Controller
             $this->redirectToRoute('court_details', ['id' =>$id]);
     }
 
+
+
+
 }

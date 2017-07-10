@@ -11,10 +11,10 @@ class AdminGestionCompteController extends Controller
 	public function gestionCompte()
 	{
 
-		if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
-			$this->show('w_errors/403');
-			}
-		else {
+//		if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
+//			$this->show('w_errors/403');
+//			}
+	//	else {
 	
 			$UsersModel= new UsersModel();
 			$listuser = $UsersModel->findAll('username');
@@ -23,7 +23,7 @@ class AdminGestionCompteController extends Controller
 			];
 
 			$this->show('admin/compte', $param);
-		}
+//		}
 	}
 
 

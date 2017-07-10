@@ -88,10 +88,20 @@
 		<hr class="small hr-bottom">
 		<div class='row'>
 			<div>
-				<?php foreach($findGamesOnCourt as $game) : 
+				<?php
+
+				
+				 foreach($findGamesOnCourt as $game) :
+
+				 $date = new DateTime($game['date']); 
 				// Permet de comparer la date du jour à la date de la game et ne l'affiche pas si la date de la game est antérieure
 				if(strtotime($now)> strtotime($game['date'])){
 					// N'affiche donc pas la game
+
+				
+					//faire la route permettant la suppression du match dans la base
+					
+
 				} 
 				// Si la date de la game est postérieure, on affiche.
 				else 
@@ -147,8 +157,8 @@
 					</div>
 				</div>
 				<?php 
-			};
-			endforeach; ?>
+				};
+				endforeach; ?>
 		</div>
 	</div>
 

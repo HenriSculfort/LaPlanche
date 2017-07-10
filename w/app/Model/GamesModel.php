@@ -38,5 +38,15 @@ class GamesModel extends \W\Model\Model
 			return $select->fetchAll();
 		}
 	}
+
+	public function deleteMatch($date)
+	{
+		$sql = 'DELETE FROM ' . $this->table . ' WHERE date = :date';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':date', $date);
+		$sth->execute();
+	}
+
+
 }
 
