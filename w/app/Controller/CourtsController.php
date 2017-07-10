@@ -188,7 +188,25 @@ class CourtsController extends Controller
     			$errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
     		}
 
-    		if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
+            $data = [
+                'name'          => $post['name'],
+                'address'       => $post['address'],
+                'postal_code'   => $post['postal_code'],
+                'city'          => $post['city'],
+                'description'   => $post['description'],
+                'net'           => $post['net'],
+                'court_state'   => $post['level'],
+                'opening_hours' => $post['opening_hours'],
+                'admin_validation'  => 0,
+                'parking'       => $post['parking'],
+                'latitude'      => $post['lat'],
+                'longitude'     => $post['lng'],
+
+                ];
+
+
+    		if(isset($_FILES['picture']) && $_FILES['picture']['error']==0)
+            {
 
                 $maxfilesize = 5048576; //1 Mo
 
@@ -254,6 +272,23 @@ class CourtsController extends Controller
 
                 		move_uploaded_file($_FILES['picture']['tmp_name'], '../public/assets/img/uploads/'.$picture);
 
+                        $data = [
+                            'name'          => $post['name'],
+                            'address'       => $post['address'],
+                            'postal_code'   => $post['postal_code'],
+                            'city'          => $post['city'],
+                            'picture'       => $picture,
+                            'description'   => $post['description'],
+                            'net'           => $post['net'],
+                            'court_state'   => $post['level'],
+                            'opening_hours' => $post['opening_hours'],
+                            'admin_validation'  => 0,
+                            'parking'       => $post['parking'],
+                            'latitude'      => $post['lat'],
+                            'longitude'     => $post['lng'],
+
+                ];
+
                 	}
                     else{//problème:
 
@@ -269,30 +304,9 @@ class CourtsController extends Controller
                 }
             }
 
-            else{
-            	$errors[] = 'l\'image est absente';
-            }
-
+            
             if(count($errors) === 0){
 
-
-
-            	$data = [
-            	'name'          => $post['name'],
-            	'address'       => $post['address'],
-            	'postal_code'   => $post['postal_code'],
-            	'city'          => $post['city'],
-            	'picture'       => $picture,
-            	'description'	=> $post['description'],
-            	'net'           => $post['net'],
-            	'court_state'	=> $post['level'],
-            	'opening_hours'	=> $post['opening_hours'],
-            	'admin_validation'	=> 0,
-            	'parking'       => $post['parking'],
-            	'latitude'      => $post['lat'],
-            	'longitude'     => $post['lng'],
-
-            	];
 
             	$addCourt = new CourtsModel();
             	$insert = $addCourt->insert($data);
