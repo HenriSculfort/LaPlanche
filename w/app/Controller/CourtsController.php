@@ -345,9 +345,9 @@ class CourtsController extends Controller
 
     public function validateCourts()
     {
-    	if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
-    		$this->show('w_errors/403');
-    	}
+    	if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){         
+            $this->show('w_errors/403');            
+        }
     	else {	
 
     		if(isset($_POST['validez'])){
