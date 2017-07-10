@@ -21,7 +21,7 @@ $w_routes = array(
     ['GET|POST', '/', 'Map#map', 'map'], 
 
     // Terrains
-    ['GET|POST', '/', 'Default#listWhereCourts', 'accueil'],
+    ['GET|POST', '/', 'Default#home', 'accueil'],
     ['GET|POST', '/courts', 'Courts#listAllCourts', 'courts'],
     ['GET|POST', '/courts/search', 'Courts#searchCourts', 'search_courts'],
     ['GET|POST', '/courts/details/[i:id]', 'Courts#courtDetails', 'court_details'],

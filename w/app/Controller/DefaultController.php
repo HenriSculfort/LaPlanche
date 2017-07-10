@@ -10,7 +10,7 @@ class DefaultController extends Controller
     /**
 	 * Page d'accueil 
 	 */
-	public function listWhereCourts()
+	public function home()
 	{
 		$this->show('default/index');
 	}
