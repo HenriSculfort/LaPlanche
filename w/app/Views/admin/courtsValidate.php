@@ -9,56 +9,52 @@
 <?=$this->stop('header_content'); ?>
 
 <?=$this->start('main_content'); ?>
-<div id='refresh'>
-</div>
+
+<?php
+//boucle pour afficher les terrains
+foreach($findAll as $court) {
+
+		//permet de n'afficher que les terrains non validé
+		if( $court['admin_validation'] == 0) { ?>
+		<div class='container'>
+
+			<!--début du formulaire avec les 2 bouton submit-->
+			<form method="post" id="<?=$court['id'];?>">
+				<div class='row'>
+					<div class='flex-description col-md-12 well'>
+					
+						<div class='col-md-3'>
+							<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
+						</div>
+						<div class='col-md-9'>
+							<h4><?= $court['name'];?></h4>
+							<p class="description-terrain"><?= nl2br($court['description']);?></p>
+							<br>
+							<p class="description-terrain"><?= nl2br($court['address'] . ' ' . $court['postal_code'] . ' ' . $court['city']);?></p>
+							<br>
+							<p class="description-terrain"><?= nl2br($court['opening_hours']);?></p>
+						</div>
+
+						<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
+						<input type="hidden" name="valeurId" id="<?=$court['id'];?>" value="<?=$court['id'];?>">
+						<button type="submit" name="validez" id="<?=$court['id'];?>">Validez</button>
+						<button type="submit" name="supprimez" id="<?=$court['id'];?>">Supprimez</button>
+					
+					</div>
+				</form>
+			</div>
+		</div>
+		<?php } 
+	}// Fin foreach
+//header("refresh: 0;");
+//header('location:admin_courtsValidate');
+?>
+
 
 <?=$this->stop('main_content'); ?>
 
 <?=$this->start('script'); ?>
 
-<script>
 
-function getList() {
 
-	$.getJSON('<?=$this->url('admin_courtsValidateAjax');?>', function(boucle){	
-		$('#refresh').html(boucle.html);		
-	});
-}
-
-	$(document).ready(function(){
-
-		$('button[type="submit"]').on('click', function(e){
-
-			// Empeche l'action par défaut, dans notre cas la soumission du formulaire
-			e.preventDefault(); 
-
-			getList();
-
-			$.ajax({
-
-				url: '<?= $this->url('admin_courtsValidateAjax');?>', 
-				type: 'POST',
-				data:  $('form').serialize(),	
-				dataType: 'json',
-				success: function(resPHP){
-
-					if(resPHP.result == true) {
-						getList();
-						//affiche le message de validation dans la div avec l'id message
-						$('#message').html(resPHP.message);
-						//vide les erreurs
-						$('#errors').html('');//on vide les messages d'erreures
-						//vide les champs du nouveau pass
-					}
-					else if(resPHP.result == false) { 
-						$('#errors').html(resPHP.errors);
-					}		
-				}
-			});
-		});
-	});
-</script>
-<?=$this->stop('script'); ?>
-
-			
 

@@ -311,9 +311,12 @@ class CourtsController extends Controller
     }
 
 
-    public function validateCourts()
+  public function validateCourts()
     {
-        
+        //if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
+               // $this->show('w_errors/403');
+       // }
+      //  else {
 
             $model = new CourtsModel();
             $findAll = $model->findAll();
@@ -322,47 +325,6 @@ class CourtsController extends Controller
             'findAll' => $findAll
             ];
 
-            $html='';
-
-            foreach($findAll as $court) {
-                if( $court['admin_validation'] == 0) {
-
-                    $html .= '<div class=\'container\'>';
-                    $html .= '<form method="post" id="' . $court['id'] . '">';
-                    $html .= '<div class=\'row\'>';
-                    $html .= '<div class=\'flex-description col-md-12 well\'>';
-                    
-                    $html .='<div class=\'col-md-3\'>';
-                    $html .='<img class="img-rounded img-responsive" src="';
-                    if(isset($court['picture']) && !empty($court['picture'])){ 
-                        $this->assetUrl('img/uploads/'.$court['picture']);
-                    } else{
-                        $this->assetUrl('img/court-default.png');
-                    }
-                    $html .= '" alt=\'Le terrain\'>';
-                    $html .='</div>';
-                    $html .='<div class=\'col-md-9\'>';
-                    $html .='<h4>' . $court['name'] . '</h4>';
-                    $html .='<p class="description-terrain">' . nl2br($court['description']) . '</p>';
-                    $html .= '<br>';
-                    $html .='<p class="description-terrain">'. nl2br($court['address'] . ' ' . $court['postal_code'] . ' ' . $court['city']) . '</p>';
-                    $html .= '<br>';
-                    $html .='<p class="description-terrain">' . nl2br($court['opening_hours']) . '</p>';
-                    $html .='</div>';
-
-                        //On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST
-                    $html .='<input type="hidden" name="valeurId" id="' . $court['id'] . '" value="' . $court['id'] . '">';
-                    $html .='<button type="submit" name="validez" id="' . $court['id'] . '">Validez</button>';
-                    $html .='<button type="submit" name="supprimez" id="' . $court['id'] . '">Supprimez</button>';
-                    
-                    $html .='</div>';
-                    $html .='</div>';
-                    $html .='</form>';
-                    $html .='</div>';
-                } 
-            }// Fin foreach'
-
-            $html .= '';
             if(isset($_POST['validez'])){
 
                 $validation=[
@@ -381,22 +343,7 @@ class CourtsController extends Controller
                 $this->flash('Le terrain à été supprimé', 'success');
             }
 
-            $json = [
-            'html' => $html
-            ];
-
-            $this->showJSON('admin/courtsValidate', $boucle);
-        
-    }
-
-    public function viewValidate()
-    {
-        //if(!isset($w_user) || empty($w_user) || $w_user['role'] != 'admin'){
-               // $this->show('w_errors/403');
-       // }
-      //  else {
-        $this->show('admin/courtsValidate');
-
+            $this->show('admin/courtsValidate', $boucle);
         //}
     }
 
