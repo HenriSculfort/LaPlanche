@@ -42,8 +42,7 @@ $w_routes = array(
     ['GET|POST', '/contact/send', 'Contact#sendForm', 'contact_send'],
     
     //  Admin
-    ['GET|POST', '/admin/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
-    ['GET|POST', '/admin/gestioncompte/Ajax', 'AdminGestionCompte#gestionCompteAjax', 'admin_compteAjax'],
+  
 
     ['GET|POST', '/admin/courtsValidate/', 'Courts#validateCourts', 'admin_courtsValidate'],
 
@@ -53,5 +52,8 @@ $w_routes = array(
     ['GET|POST', '/admin/courtsModify', 'Courts#modifyCourtAdmin', 'admin_modifyCourt'],
     ['GET|POST', '/admin/courtsDelete', 'Courts#deleteCourtAdmin', 'admin_deleteCourt'],
 
+    ['GET|POST', '/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
+    ['GET|POST', '/gestioncompte/Ajax', 'AdminGestionCompte#gestionCompteAjax', 'admin_compteAjax'],
+    ['GET|POST', '/gestioncompte/listAjax', 'AdminGestionCompte#getList', 'admin_getListAjax'],
 
 );
