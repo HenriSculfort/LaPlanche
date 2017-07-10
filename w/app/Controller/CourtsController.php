@@ -24,6 +24,16 @@ class CourtsController extends Controller
     }
 
 
+    /**
+     * Liste de tous les terrains validés (pour l'admin)
+     * @return array findAll avec liste des terrains
+     */
+    public function listCourts()
+    {
+        $model = new CourtsModel();
+        $findAll = $model->findAll();
+        $this->show('admin/courts_list', ['findAll' => $findAll]);
+    }
 
     /**
 	* Moteur de recherche des terrains
