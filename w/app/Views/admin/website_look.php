@@ -3,13 +3,14 @@
 <?=$this->start('header_content'); ?>
 <br>
 <ul class="nav nav-tabs">
-	<li role="presentation" class="active"><a href="<?=$this->url('admin_courtsValidate');?>">Valider terrain</a></li>
+	<li role="presentation"><a href="<?=$this->url('admin_courtsValidate');?>">Valider terrain</a></li>
 	<li role="presentation"><a href="<?=$this->url('admin_getCourtsList');?>">Modifier terrain</a></li>
 	<li role="presentation"><a href="<?=$this->url('admin_compte');?>">Gestion des comptes utilisateurs</a></li>
 	<li role="presentation" class="active"><a href="<?=$this->url('admin_showMessage');?>">Apparence du site</a></li>
 </ul>
 
 <div class='standard-header'>
+	<h1>Espace administrateur</h1>
 	<h2>Modifier l'annonce spéciale du site</h2>
 	<p>Le message choisi apparaîtra en-dessous de la barre de recherche sur la page d'accueil.</p>
 </div>
@@ -18,21 +19,43 @@
 
 <?=$this->start('main_content'); ?>
 
-<div id='error'></div>
-<div id='success'></div>
-<form method='POST'>
-	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'></textarea>
-	<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
-</form>
+<div id='error' class='col-sm-offset-3 col-sm-6'></div>
+<div id='success' class='col-sm-offset-3 col-sm-6'></div>
+<div class='col-sm-offset-3 col-sm-6'>
+	<form method='POST'>
+		<div class='row'>
+			<textarea class='form-control ' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'></textarea>
+		</div>
+		<br>
+		<div class='row'>
+			<div class='text-center'>
+				<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
+			</div>
+		</div>
+	</form>
+	<hr>
+</div>
+<div class='col-sm-offset-3 col-sm-6'>
+	<div class='row'>
+		<div class='standard-header'>
+			<h2>Modifier la photo de couverture</h2>
+			<p>Pour modifier la photo présente sur la page d'accueil du site.</p>
+		</div>
+	</div>
+		<div class='text-center'>
+			<form method="POST" id="changeBackground" action='<?=$this->url('admin_changeBackground')?>' enctype="multipart/form-data">
+				<div class='row text-center'>
+				<input type="file" name="name" class='col-sm-offset-3 col-sm-5'>
+				</div>
+				<div class='row'>
+				<br>
+				<button class='btn btn-warning' type="submit" class='col-m-12'>Envoyer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
-<h2>Modifier la photo de couverture</h2>
-
-<form method="POST" id="changeBackground" action='<?=$this->url('admin_changeBackground')?>' enctype="multipart/form-data">
-	<input type="file" name="name">
-	<br>
-
-	<button type="submit">Envoyer</button>
-</form>
 
 <?=$this->stop('main_content'); ?>
 
