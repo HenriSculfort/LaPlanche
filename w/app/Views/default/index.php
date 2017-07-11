@@ -3,14 +3,11 @@
 <?php $this->start('header_content') ?>
 
 <style> 
-    .intro-header
-    { 
+    .intro-header{
+
         background-image: url(
-            <?php 
-                if(isset($picture)){echo $this->assetUrl('img/uploads/'.$picture);}
-                else {echo $this->assetUrl('img/sport-ground.jpg');}
-            ?>) 
-    }  
+            <?=$this->assetUrl('img/sport-ground.jpg')?>);
+}
 </style>
 
 <div class="container-fluid">

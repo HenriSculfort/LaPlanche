@@ -123,7 +123,6 @@ class AdminGestionCompteController extends Controller
 		$messageModel = new MessageModel();
 		$message = $messageModel->selectHomeMessage();
 		$this->showJSON($message);
-
 	}
 
 	public function changeMessage() { 
@@ -159,6 +158,7 @@ class AdminGestionCompteController extends Controller
 
 	function changeBackground ()
 	{
+		$picture=[];
 		if(isset($_FILES['name'])){
 
             $maxfilesize = 5048576; 
@@ -235,12 +235,15 @@ class AdminGestionCompteController extends Controller
 				}else{
 					//fichier trop volumineux
 					echo 'Le fichier est trop gros';
-				}
-				
+				}			
 			}
 		}
 
-		$this->redirectToRoute('accueil', ['picture' =>$picture]);
+		$params =[
+			'picture' =>$picture,
+		];
+		
+		$this->redirectToRoute('accueil', $params);
 	}
 
 }
