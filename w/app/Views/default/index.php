@@ -3,14 +3,13 @@
 <?php $this->start('header_content') ?>
 
 <style> 
-    .intro-header
-    { 
+    .intro-header{
+
         background-image: url(
-            <?php 
-                if(isset($picture)){echo $this->assetUrl('img/uploads/'.$picture);}
-                else {echo $this->assetUrl('img/sport-ground.jpg');}
-            ?>) 
-    }  
+
+            <?=$this->assetUrl('img/sport-ground.jpg')?>);
+}
+
 </style>
 
 <div class="container-fluid">
@@ -41,7 +40,7 @@
             <form method="POST" id="search-terrain">
                 <input type="hidden" value="" id="lat" name="lat">
                 <input type="hidden" value="" id="lng" name="lng">
-                <button type="submit" class="btn btn-warning button-search-terrain">Afficher les terrains pres de soi</button>
+                <button id="submitGeoloc" type="submit" class="btn btn-warning button-search-terrain">Afficher les terrains pres de soi</button>
             </form>
             <div id="result"></div>
         </div>
@@ -116,111 +115,121 @@
 
 <script>
 
-<?php 
-// cas moteur de recherche
-if(isset($location) && !empty($location) && ($location->getLatitude() !== null)  && ($location->getLongitude() !== null)){
-    $latitude = $location->getLatitude(); 
-    $longitude = $location->getLongitude(); 
-    echo 'var enableGeolocation = false;'; // Je crée une variable JS dans le PHP (raison du echo)
-}
-else {
-    $latitude = '47.066322';
-    $longitude = '2.761099';
-    echo 'var enableGeolocation = true;';  // Je crée une variable JS dans le PHP (raison du echo)
-}
-?>
+    <?php 
+    // cas moteur de recherche
+    if(isset($location) && !empty($location) && ($location->getLatitude() !== null)  && ($location->getLongitude() !== null)){
+        $latitude = $location->getLatitude(); 
+        $longitude = $location->getLongitude(); 
+        echo 'var enableGeolocation = false;'; // Je crée une variable JS dans le PHP (raison du echo)
+    }
+    else {
+        $latitude = '47.066322';
+        $longitude = '2.761099';
+        echo 'var enableGeolocation = true;';  // Je crée une variable JS dans le PHP (raison du echo)
+    }
+    ?>
 
 
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-function initMap(latitudeParam, longitudeParam) 
-{
-    $('#lat').val(latitudeParam);
-    $('#lng').val(longitudeParam);
+    // Note: This example requires that you consent to location sharing when
+    // prompted by your browser. If you see the error "The Geolocation service
+    // failed.", it means you probably did not give permission for the browser to
+    // locate you.
+    function initMap(latitudeParam, longitudeParam) 
+    {
+        $('#lat').val(latitudeParam);
+        $('#lng').val(longitudeParam);
 
-    var map = new google.maps.Map(document.getElementById('map-index'), {
-        zoom: 13,
-        center: {lat: latitudeParam, lng: longitudeParam}
-    });
-    var infoWindow = new google.maps.InfoWindow({map: map});
+        var map = new google.maps.Map(document.getElementById('map-index'), {
+            zoom: 13,
+            center: {lat: latitudeParam, lng: longitudeParam}
+        });
+        var input = /** @type {!HTMLInputElement} */(
+        document.getElementById('address'));
 
-    var pos = {
-        lat: latitudeParam,
-        lng: longitudeParam,
-    };
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+        
+        var infoWindow = new google.maps.InfoWindow({map: map});
 
-    infoWindow.setPosition(pos);
-    infoWindow.setContent('Vous êtes ici');
-    map.setCenter(pos);
+        var pos = {
+            lat: latitudeParam,
+            lng: longitudeParam,
+        };
 
-    var locations = 
-    [
-       <?php
-        if(isset($donnee) and !empty($donnee))
-        {
-            foreach($donnee as $donnees)
-            {
-                if($donnees['admin_validation'] == 1)
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Vous êtes ici');
+        map.setCenter(pos);
+
+        var locations = 
+            [
+                <?php
+                if(isset($donnee) and !empty($donnee))
                 {
-                    if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
+                    foreach($donnee as $donnees)
                     {
-                        ?>
-                        ['<?php echo $donnees['name'] ?><br> <a href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
-                        <?php
+                        if($donnees['admin_validation'] == 1)
+                        {
+                            if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
+                            {
+                ?>
+                ['<?php echo $donnees['name'] ?><br> <a href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
+                <?php
+                            }
+                        }
                     }
                 }
-            }
+                ?>
+            ];
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) 
+        {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+                url: locations[i][4]
+            });
+
+            google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
         }
-        ?>
-    ];
-    
-    var infowindow = new google.maps.InfoWindow();
 
-    var marker, i;
+    } // initMap();
 
-    for (i = 0; i < locations.length; i++) 
-    {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map,
-            url: locations[i][4]
+    // Try HTML5 geolocation.
+    if(navigator.geolocation && enableGeolocation) {
+        console.log('pos');
+        // On récupère la position via géoloc
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                $('#map-index').removeClass('hidden').addClass('show');
+                $('#submitGeoloc').removeClass('hidden').addClass('show');
+                initMap(position.coords.latitude, position.coords.longitude); // On init la map avec les coordonnées GPS trouvées
+            }, 
+            function(err) {
+                $('#map-index').removeClass('show').addClass('hidden');
+                $('#submitGeoloc').removeClass('show').addClass('hidden');
+                console.warn('ERROR(' + err.code + '): ' + err.message); // Message d'erreur
+                initMap(<?=$latitude;?>, <?=$longitude;?>); // On init la map.. quelquepart dans le monde :-)
+
+            },
+        );
+    }
+    else {
+        $(document).ready(function(){
+            initMap(<?=$latitude;?>, <?=$longitude;?>);
         });
-
-        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-            return function() {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
-            }
-        })(marker, i));
     }
 
-} // initMap();
-
-// Try HTML5 geolocation.
-if(navigator.geolocation && enableGeolocation) {
-    console.log('pos');
-    // On récupère la position via géoloc
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
-
-            initMap(position.coords.latitude, position.coords.longitude); // On init la map avec les coordonnées GPS trouvées
-        }, 
-        function(err) {
-            console.warn('ERROR(' + err.code + '): ' + err.message); // Message d'erreur
-            initMap(<?=$latitude;?>, <?=$longitude;?>); // On init la map.. quelquepart dans le monde :-)
-        },
-    );
-}
-else {
-    $(document).ready(function(){
-        initMap(<?=$latitude;?>, <?=$longitude;?>);
-    });
-}
-
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0xJoi5c9MwYIYQlwIEfLqLh95hLtcaYA"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs5LuxGWie6VEjlZOPyOr9_Eir5dP1w50&libraries=places"></script>
 <?php $this->stop('script') ?>
 
 
