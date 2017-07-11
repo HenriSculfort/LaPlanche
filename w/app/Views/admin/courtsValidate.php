@@ -29,10 +29,10 @@ foreach($findAll as $court) {
 			<div class='row'>
 				<div class='flex-description col-md-12 well'>
 					
-					<div class='col-md-3'>
+					<div class='col-md-2'>
 						<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
 					</div>
-					<div class='col-md-9'>
+					<div class='col-md-8'>
 						<h4><?= $court['name'];?></h4>
 						<p class="description-terrain"><?= nl2br($court['description']);?></p>
 						<br>
@@ -40,11 +40,12 @@ foreach($findAll as $court) {
 						<br>
 						<p class="description-terrain"><?= nl2br($court['opening_hours']);?></p>
 					</div>
-
-					<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
-					<input type="hidden" name="valeurId" value="<?=$court['id'];?>">
-					<button type="submit" class='btn btn-success' name="validez">Validez</button>
-					<button type="submit" class='btn btn-danger' name="supprimez">Supprimez</button>
+					<div class='col-md-2'>
+						<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
+						<input type="hidden" name="valeurId" value="<?=$court['id'];?>">
+						<button type="submit" class='btn btn-success' name="validez">Validez</button>
+						<button type="submit" class='btn btn-danger' name="supprimez">Supprimez</button>
+					</div>
 				</div>
 			</form>
 		</div>
