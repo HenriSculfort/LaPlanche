@@ -7,7 +7,9 @@
 
         background-image: url(
 
-            <?=$this->assetUrl('img/sport-ground.jpg')?>);
+            <?=$this->assetUrl('img/uploads/'.$message['message'])?>);
+       
+       
 }
 
 </style>

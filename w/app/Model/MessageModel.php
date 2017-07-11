@@ -20,4 +20,12 @@ class MessageModel extends \W\Model\Model
         	
     }
 
+    public function updateBackground($message, $status) { 
+        $update = $this->dbh->prepare('UPDATE '.$this->table.' SET message = :message, status = :status WHERE id = 2');
+        $update->bindValue(':message', $message);
+        $update->bindValue(':status', $status);
+        return $update->execute();
+        	
+    }
+
 }
