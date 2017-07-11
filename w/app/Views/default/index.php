@@ -21,6 +21,7 @@
                         <!--                        <button id="submit" type="submit" class="btn btn-warning btn-lg button-search-index">Rechercher</button>-->
                     </form>
                 </div>
+                <p id='announcement' class='hidden'></p>
             </div>
         </div>
     </div>

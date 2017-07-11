@@ -112,4 +112,17 @@ class AdminGestionCompteController extends Controller
 			$this->showJson($boucle);
 		}
 	}
+
+	function changeLook() { 
+
+		if(!empty($_POST)) { 
+
+
+
+		}
+
+		$this->show('admin/website_look');
+
+	}
+
 }
