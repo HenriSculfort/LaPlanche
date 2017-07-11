@@ -6,7 +6,7 @@
 	<li role="presentation" class="active"><a href="<?=$this->url('admin_courtsValidate');?>">Valider terrain</a></li>
 	<li role="presentation"><a href="<?=$this->url('admin_getCourtsList');?>">Modifier terrain</a></li>
 	<li role="presentation"><a href="<?=$this->url('admin_compte');?>">Gestion des comptes utilisateurs</a></li>
-	<li role="presentation" class="active"><a href="<?=$this->url('admin_changeLook');?>">Apparence du site</a></li>
+	<li role="presentation" class="active"><a href="<?=$this->url('admin_showMessage');?>">Apparence du site</a></li>
 </ul>
 
 <div class='standard-header'>
@@ -18,8 +18,9 @@
 
 <?=$this->start('main_content'); ?>
 
-
-<form method='POST' action='<?=$this->url('admin_changeLook')?>'>
+<div id='error'></div>
+<div id='success'></div>
+<form method='POST'>
 	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'><?php if(isset($message['message'])){echo $message['message'];}?></textarea>
 	<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
 </form>
@@ -32,9 +33,8 @@
 // Affichage du message
 function getMessage() {
 
-	$.getJSON('<?=$this->url('admin_websiteLook');?>',function(resultl) {
-		$('#message').html(result.message);
-		
+	$.getJSON('<?=$this->url('admin_loadMessage');?>',function(result) {
+		$('#message').html(result.message);		
 	});
 }
 
@@ -60,16 +60,16 @@ $(document).ready(function() {
 
 					// Si le message a bien été posté 
 					if (retourJson.result == true) {
-						getMessages(retourJson.idChat);
 						// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
-						$('textarea#message').val('');
+						$('textarea#message').val(retourJson.message);
+						$('#success').val(retourJson.success).addClass('alert alert-success');
 						// Pour réinitialiser les erreurs si jamais on envoie un message correct 
-						$('#errors').removeClass('alert alert-danger');
-						$('#errors').text('');
+						$('#error').removeClass('alert alert-danger');
+						$('#error').text('');
 					}
 					// En cas d'erreur 
 					else if (retourJson.result == false) {
-						$('#errors').fadeIn().delay(1000).html(retourJson.errors).addClass('alert alert-danger').fadeOut().delay(3000);
+						$('#error').fadeIn().delay(1000).html(retourJson.errors).addClass('alert alert-danger').fadeOut().delay(3000);
 						$('textarea#message').val('');
 					}
 

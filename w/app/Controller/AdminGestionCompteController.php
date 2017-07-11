@@ -113,10 +113,19 @@ class AdminGestionCompteController extends Controller
 			$this->showJson($boucle);
 		}
 	}
+	public function showMessage() { 
 
-	function changeLook() { 
+		$this->show('admin/website_look');
+	}
+
+	public function loadMessage() { 
+
 		$messageModel = new MessageModel();
 		$message = $messageModel->selectHomeMessage();
+		$this->showJSON($message);
+	}
+
+	public function changeMessage() { 
 
 		if(!empty($_POST)) { 
 
@@ -129,10 +138,21 @@ class AdminGestionCompteController extends Controller
 				$status = 'show';
 			}
 			$message = $messageModel->updateHomeMessage($post['message'], $status);
-		}
-		var_dump($message);
-		$this->show('admin/website_look', ['message' => $message]);
+		
+			$json = [ 
+        		'result' => true,
+        		'message' => $message,
+        		'success' => 'Message modifié',
+        	];
+        }
+        else { 
+        	$json = [ 
+        		'result' => false,
+        		'error' => 'Le message ,n\'a pas été modifié',
+        	];
+        }
+        $this->showJSON($json);
 
-	}
+		}
 
 }
