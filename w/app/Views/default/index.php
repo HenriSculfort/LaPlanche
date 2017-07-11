@@ -21,15 +21,6 @@
                         <!--                        <button id="submit" type="submit" class="btn btn-warning btn-lg button-search-index">Rechercher</button>-->
                     </form>
                 </div>
-                <div class="col-lg-12" id="buttonTerrain">
-                    <div class="index-header">
-                        <form method="POST" id="search-terrain">
-                            <input type="hidden" value="" id="lat" name="lat">
-                            <input type="hidden" value="" id="lng" name="lng">
-                            <button type="submit" class="btn btn-success btn-lg button-search-terrain">Afficher les terrains pres de soi</button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -43,6 +34,11 @@
     <div class="row">
         <div class="col-lg-12">
             <div id="map-index"></div>
+            <form method="POST" id="search-terrain">
+                <input type="hidden" value="" id="lat" name="lat">
+                <input type="hidden" value="" id="lng" name="lng">
+                <button type="submit" class="btn btn-warning button-search-terrain">Afficher les terrains pres de soi</button>
+            </form>
             <div id="result"></div>
         </div>
     </div>
@@ -124,22 +120,25 @@
                 map.setCenter(pos);
 
                 var locations = 
-                    [
-                        <?php
-    if(isset($donnee) and !empty($donnee))
-    {
-        foreach($donnee as $donnees)
-        {
-            if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
-            {
-                        ?>
-                        ['<?php echo $donnees['name'] ?>', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, '<?=$this->url('court_details', ['id' => $donnees['id']])?>'],
-                        <?php
-            }
-        }
-    }
-                        ?>
-                    ];
+                [
+                <?php
+                if(isset($donnee) and !empty($donnee))
+                {
+                    foreach($donnee as $donnees)
+                    {
+                        if($donnees['admin_validation'] == 1)
+                        {
+                            if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
+                            {
+                                ?>
+                                ['<?php echo $donnees['name'] ?>', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, '<?=$this->url('court_details', ['id' => $donnees['id']])?>'],
+                                <?php
+                            }
+                        }
+                    }
+                }
+                ?>
+                ];
 
                 var infowindow = new google.maps.InfoWindow();
 
@@ -220,8 +219,8 @@
     {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+          'Error: The Geolocation service failed.' :
+          'Error: Your browser doesn\'t support geolocation.');
     }
 
 
