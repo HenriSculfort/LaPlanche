@@ -86,6 +86,7 @@
 			<h3 id='gamesList' class="titre-match">Matchs prévus</h3>
 		</div>
 		<hr class="small hr-bottom">
+		<p class='reminder'>Rappel : notre site permet de s'organiser autour de city stades existants. Cependant, nous n'en sommes pas propriétaires et ne pouvons garantir leur disponibilité.</p>
 		<div class='row'>
 			<div>
 				<?php
@@ -170,6 +171,7 @@
 			<h3 id='newMatch' class="titre-match">Proposer un match sur ce terrain</h3>
 		</div>
 		<hr class="small hr-bottom">
+		<p class='reminder'>Rappel : notre site permet de s'organiser autour de city stades existants. Cependant, nous n'en sommes pas propriétaires et ne pouvons garantir leur disponibilité.</p>
 		<div id='proposedMatch'></div>
 		<form method='POST' id='proposeMatch'>
 			<div class="container-fluid">

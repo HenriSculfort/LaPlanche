@@ -266,6 +266,15 @@ button {
     }
 }
 
+#announcement { 
+    text-align: center;
+    color: orangered;
+    font-weight: bold;
+    font-size: 1.5em;
+    background: rgba(0,0,0,0.5);
+    border-radius: 5px;
+
+ }
 /********** NOS SERVICES *************/
 
 h2.section-services {
@@ -428,6 +437,11 @@ hr.hr-bottom{
         margin-top: 10px;
     }
 }
+
+.reminder { 
+    text-align: center;
+
+ }
 /******************************* PAGE MON ESPACE *********************************/
 
 #addCourts {
