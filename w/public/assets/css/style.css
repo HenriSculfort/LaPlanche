@@ -233,6 +233,13 @@ button {
     position: relative;
 }
 
+.windowMap{
+    color: #f48c00;
+}
+.windowMap:hover{
+    color: #e8a74c;
+}
+
 .div-map{
     margin: 0px auto;
 }
