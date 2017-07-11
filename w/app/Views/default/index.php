@@ -32,7 +32,7 @@
 
 <div class="container-fluid div-map">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 padding-map">
             <div id="map-index"></div>
             <form method="POST" id="search-terrain">
                 <input type="hidden" value="" id="lat" name="lat">
