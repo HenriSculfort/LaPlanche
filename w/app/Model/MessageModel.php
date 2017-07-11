@@ -9,7 +9,6 @@ class MessageModel extends \W\Model\Model
 		$select = $this->dbh->prepare('SELECT message FROM '.$this->table.' WHERE id = 1' );
 		$select->execute();
 		return $message = $select->fetch();
-
 	}
 
 	public function updateHomeMessage($message, $status) { 
@@ -17,9 +16,19 @@ class MessageModel extends \W\Model\Model
         $update->bindValue(':message', $message);
         $update->bindValue(':status', $status);
         if($update->execute()) { 
-        	return $message;
+        	$json = [ 
+        		'result' => true,
+        		'message' => $message,
+        	];
         }
-        
+        else { 
+        	$json = [ 
+        		'result' => false,
+        		'error' => 'Le message ,n\'a pas été modifié',
+        	];
+        }
+        $this->showJSON($json);
+    
     }
 
 }

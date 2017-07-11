@@ -20,9 +20,68 @@
 
 
 <form method='POST' action='<?=$this->url('admin_changeLook')?>'>
-	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2' name='message'><?php if(isset($message['message'])){echo $message['message'];}?></textarea>
-	<button class='btn btn-warning'>Modifier</button>
+	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'><?php if(isset($message['message'])){echo $message['message'];}?></textarea>
+	<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
 </form>
 
 <?=$this->stop('main_content'); ?>
 
+<?=$this->start('script');?>
+
+<script>
+// Affichage du message
+function getMessage() {
+
+	$.getJSON('<?=$this->url('admin_websiteLook');?>',function(resultl) {
+		$('#message').html(result.message);
+		
+	});
+}
+
+// On lance le jQuery
+$(document).ready(function() {
+
+	$(function() {
+		
+		// On surveille le clic d'envoi de nouveau message
+		$('#modifyMessage').on('click', function(modif) {
+			modif.preventDefault();
+
+			var $message = $('textarea#message').val();
+
+			$.ajax({
+				url: '<?= $this->url('admin_updateMessage');?>',
+				type: 'POST',
+				data: {
+					message: $message,
+				},
+				dataType: 'json',
+				success: function(retourJson) {
+
+					// Si le message a bien été posté 
+					if (retourJson.result == true) {
+						getMessages(retourJson.idChat);
+						// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
+						$('textarea#message').val('');
+						// Pour réinitialiser les erreurs si jamais on envoie un message correct 
+						$('#errors').removeClass('alert alert-danger');
+						$('#errors').text('');
+					}
+					// En cas d'erreur 
+					else if (retourJson.result == false) {
+						$('#errors').fadeIn().delay(1000).html(retourJson.errors).addClass('alert alert-danger').fadeOut().delay(3000);
+						$('textarea#message').val('');
+					}
+
+				} // Fermeture du success
+
+			}); // Fermeture du AJAX
+
+		}); // Fermeture de l'event on clic envoi
+	});
+}); // Fin de l'appel jQuery
+</script>
+
+
+
+<?=$this->stop('script');?>
