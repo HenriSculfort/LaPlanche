@@ -115,16 +115,22 @@ class AdminGestionCompteController extends Controller
 	}
 
 	function changeLook() { 
+		$messageModel = new MessageModel();
+		$message = $messageModel->selectHomeMessage();
 
-		$message = null;
 		if(!empty($_POST)) { 
 
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
 			$messageModel = new MessageModel();
-			$message = $messageModel->updateHomeMessage($_post['message']);
+			if(strlen($post['message']) == 0) { 
+				$status = 'hide';
+			} else { 
+				$status = 'show';
+			}
+			$message = $messageModel->updateHomeMessage($post['message'], $status);
 		}
-
+		var_dump($message);
 		$this->show('admin/website_look', ['message' => $message]);
 
 	}
