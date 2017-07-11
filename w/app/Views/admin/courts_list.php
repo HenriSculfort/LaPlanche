@@ -1,4 +1,4 @@
-<?=$this->layout('layout', ['title' => 'Gestion des terrains validés']); ?>
+<?=$this->layout('layout', ['title' => 'Gestion des terrains']); ?>
 
 <?php $this->start('header_content');?>
 <br>
@@ -9,7 +9,7 @@
 </ul>
 
 <div class="standard-header">
-	<h1>Les terrains validés</h1>
+	<h1>Les terrains</h1>
 </div>
 <?php $this->stop('header_content');?>
 
