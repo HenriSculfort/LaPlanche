@@ -64,8 +64,8 @@ class TokensController extends \W\Controller\Controller
 						$mail->addAddress($get['email'], $user['username']);
 						$mail->isHTML(true);
 						$mail->Subject = 'La Planche mot de passe oublié';
-						$mail->Body = '<p>Ce message vous est envoyé suite à une demande de récupération de mot de passe de connexion à La Planche.</p><br><strong>Cliquez sur le lien pour changer votre mot de passe: <a href="' . $this->generateUrl('users_changePassword') . '?user_id=' . $user['id'] . '&token=' . $token . '">Modifier le mot de passe</a></strong><br><p>A bientôt sur La Planche</p><br><p>Cordialement,</p><p>L\'équipe La Planche Bordeaux</p>';
-
+						$mail->Body = '<p>Ce message vous est envoyé suite à une demande de récupération de mot de passe de connexion à La Planche.</p><br><strong>Cliquez sur le lien pour changer votre mot de passe: <a href="http://localhost' . $this->generateUrl('users_changePassword') . '?user_id=' . $user['id'] . '&token=' . $token . '">Modifier le mot de passe</a></strong><br><p>A bientôt sur La Planche</p><br><p>Cordialement,</p><p>L\'équipe La Planche Bordeaux</p>';
+						//retirer le 'http://localhost' situé dans le a = href avant la mise en ligne
 						//Si l'email est envoyé, renvoye vrai à l'Ajax pour afficher un message de réussite
 						if($mail->Send()){
 							$json = [
