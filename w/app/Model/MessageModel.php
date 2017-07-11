@@ -18,7 +18,6 @@ class MessageModel extends \W\Model\Model
         $update->bindValue(':status', $status);
         return $update->execute();
         	
-    
     }
 
 }
