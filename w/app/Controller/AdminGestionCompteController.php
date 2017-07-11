@@ -4,6 +4,7 @@ namespace Controller;
 
 use \Model\UsersModel;
 use \W\Controller\Controller;
+use \Model\MessageModel;
 
 class AdminGestionCompteController extends Controller
 {
@@ -112,4 +113,20 @@ class AdminGestionCompteController extends Controller
 			$this->showJson($boucle);
 		}
 	}
+
+	function changeLook() { 
+
+		$message = null;
+		if(!empty($_POST)) { 
+
+			$post = array_map('trim', array_map('strip_tags', $_POST));
+
+			$messageModel = new MessageModel();
+			$message = $messageModel->updateHomeMessage($_post['message']);
+		}
+
+		$this->show('admin/website_look', ['message' => $message]);
+
+	}
+
 }
