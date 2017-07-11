@@ -109,7 +109,7 @@
                             <h3>Connectez-vous !</h3><br>
                             <div id="errorsAjaxConnexion"></div>
                             <form method="post">
-                                <input type="text" name="emailConnexion" placeholder="Email">
+                                <input type="text" name="emailConnexion" placeholder="Pseudo ou Email">
                                 <input type="password" name="passwordConnexion" placeholder="Mot de passe">
                                 <input type="submit" id="connexion_popup" name="login" class="login loginmodal-submit" value="Connexion">
                             </form>
