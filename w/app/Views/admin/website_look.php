@@ -10,8 +10,8 @@
 </ul>
 
 <div class='standard-header'>
-	<h1>Espace administrateur</h1>
 	<h2>Modifier l'annonce spéciale du site</h2>
+	<p>Le message choisi apparaîtra en-dessous de la barre de recherche sur la page d'accueil.</p>
 </div>
 
 <?=$this->stop('header_content'); ?>
