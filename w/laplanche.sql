@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 06 Juillet 2017 à 17:58
+-- Généré le :  Mar 11 Juillet 2017 à 16:01
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.1.1
 
@@ -70,13 +70,13 @@ CREATE TABLE `courts` (
 --
 
 INSERT INTO `courts` (`id`, `name`, `address`, `postal_code`, `city`, `picture`, `description`, `net`, `court_state`, `opening_hours`, `admin_validation`, `parking`, `latitude`, `longitude`) VALUES
-(1, 'City Stade Brun', '63 Rue Brun ', 33000, 'Bordeaux', '', '1 terrain multisports handball et basket-ball (Equipement de plein air)', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8174403', '-0.5750807'),
-(2, 'City stade Carle Vernet', 'Rue Oscar et Jean Auriac', 33800, 'Bordeaux', '', '1 terrain multisports stabilisé\r\n1 terrain de Basket Ball\r\n1 panier d\'échauffement sur sol enrobé\r\n', 0, '', '7 jours/7 de 8h00 à 22h00\r\n', 0, 0, '44.8151865', '-0.555181\n'),
-(3, 'City stade Chantecrit', 'Rue Cité Chantecrit', 33300, 'Bordeaux', '', '1 terrain Multisports en gazon synthétique', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8625966', '-0.5636386'),
-(4, 'City Stade Grand Parc', 'Rue Pierre Trébod', 33000, 'Bordeaux', '', '1 terrain multisports', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8587295', '-0.584764'),
-(5, 'City stade Labarde', '156 Avenue de Labarde', 33000, 'Bordeaux', '', '2 terrains de handball transformable en terrains de tennis', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8820058', '-0.5511352'),
-(6, 'City stade le Lauzun', 'Rue des Genêts', 33000, 'Bordeaux', '', '1 aire multi-sports en gazon synthétique', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8752777\n', '-0.5728787'),
-(7, 'City stade le Tauzin', '50 Rue du Tauzin', 33000, 'Bordeaux', '', '1 terrain multisports\r\n2 courts de tennis ', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8752777', '-0.5728787'),
+(1, 'City Stade Brun', '63 Rue Brun ', 33000, 'Bordeaux', 'brun_1.jpg', '1 terrain multisports handball et basket-ball (Equipement de plein air)', 0, '', '7 jours/7 de 8h00 à 22h00', 1, 0, '44.8174403', '-0.5750807'),
+(2, 'City stade Carle Vernet', 'Rue Oscar et Jean Auriac', 33800, 'Bordeaux', 'vernet_1.png', '1 terrain multisports stabilisé\r\n1 terrain de Basket Ball\r\n1 panier d\'échauffement sur sol enrobé\r\n', 0, '', '7 jours/7 de 8h00 à 22h00\r\n', 1, 0, '44.8151865', '-0.555181\n'),
+(3, 'City stade Chantecrit', 'Rue Cité Chantecrit', 33300, 'Bordeaux', 'chantecrit_1.png', '1 terrain Multisports en gazon synthétique', 0, '', '7 jours/7 de 8h00 à 22h00', 1, 0, '44.8625966', '-0.5636386'),
+(4, 'City Stade Grand Parc', 'Rue Pierre Trébod', 33000, 'Bordeaux', 'citystadegrandparc_1.png', '1 terrain multisports', 0, '', '7 jours/7 de 8h00 à 22h00', 1, 0, '44.8587295', '-0.584764'),
+(5, 'City stade Labarde', '156 Avenue de Labarde', 33000, 'Bordeaux', 'citystadelabarde_1.png', '2 terrains de handball transformable en terrains de tennis', 0, '', '7 jours/7 de 8h00 à 22h00', 1, 0, '44.8820058', '-0.5511352'),
+(6, 'City stade le Lauzun', 'Rue des Genêts', 33000, 'Bordeaux', 'citystadelauzun_1.png', '1 aire multi-sports en gazon synthétique', 0, '', '7 jours/7 de 8h00 à 22h00', 1, 0, '44.8752777\n', '-0.5728787'),
+(7, 'City stade le Tauzin', '50 Rue du Tauzin', 33000, 'Bordeaux', 'tauzin_1.jpg', '1 terrain multisports\r\n2 courts de tennis ', 0, '', '7 jours/7 de 8h00 à 22h00', 1, 0, '44.8752777', '-0.5728787'),
 (8, 'City Stade Parc aux Angéliques', 'Quai des Queyries', 33100, 'Bordeaux', '', 'Aire multisports en synthétique 30m X 16m', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8456951', '-0.5646427'),
 (9, 'City stade Petit Cardinal', 'Rue du Petit Cardinal', 33100, 'Bordeaux', '', '1 terrain multisports en gazon synthétique', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.8467274', '-0.5438741'),
 (10, 'City stade Port de la Lune', 'Rue du Cardinal Feltin', 33300, 'Bordeaux', '', '1 terrain Multisports en gazon synthétique\r\n1 mini terrain de Football en sol stabilisé', 0, '', '7 jours/7 de 8h00 à 22h00', 0, 0, '44.877927', '-0.5422788'),
@@ -125,16 +125,21 @@ INSERT INTO `games` (`id`, `court_id`, `date`, `starting_time`, `finishing_time`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messages`
+-- Structure de la table `message`
 --
 
-CREATE TABLE `messages` (
+CREATE TABLE `message` (
   `id` int(11) NOT NULL,
-  `sending_user_id` int(11) NOT NULL,
-  `receiving_user_id` int(11) NOT NULL,
-  `game_id` int(11) NOT NULL,
-  `message` text NOT NULL
+  `message` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `message`
+--
+
+INSERT INTO `message` (`id`, `message`, `status`) VALUES
+(1, '', '');
 
 -- --------------------------------------------------------
 
@@ -174,7 +179,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `level`, `firstname`, `lastname`, `email`, `address`, `postal_code`, `city`, `phone`, `password`, `role`) VALUES
-(28, 'riton86240', '5', 'Henri', 'Sculfort', 'henri.sculfort@gmail.com', '2 Rue De Neptune', 86240, 'Fontaine le comte', 0, '$2y$10$JInB9ZYPDscQ6LwtycrrK.fm/Te.SwGjrmsD0aCl3hFoP7klwO4v6', 'user');
+(29, 'fabrice3332', '1', 'Fabrice', 'Aymonino', 'faymonino@hotmail.com', 'Lilas', 33320, 'Eysines', 0, '$2y$10$uyj16qyVnBaW2gGDAQWZv.Gv.oTMGqZaIb9Eu9D7cp1ilHwbtOLbS', 'admin'),
+(30, 'lise', '5', 'Lise', 'Nusbaum', 'lise.n@hotmail.fr', 'Rue Michel Ange', 57155, 'Marly', 0, '$2y$10$L8CR6dDndRauS90Om4cle./QiGBDC02B8PzvXxx5koNC8ZjBicyzu', 'admin'),
+(31, 'etienne', '5', 'Etienne', 'Braud', 'anjevile@yandex.com', 'Rue Sainte Luce', 33000, 'Bordeaux', 0, '$2y$10$uHaxSn23F9NaXVWXIINJde4.vFbFiAqFamQXaP4o8lsoFYQbs4oYi', 'admin'),
+(32, 'Nico', '0', 'Nicolas', 'Logeais', 'logeaisnicolas@yahoo.fr', '105 Avenue Du Docteur Nancel Pénard', 33600, 'PESSAC', 0, '$2y$10$dc5xUEiQcKxT4pDcFRyZOela6U5bNLJL5EdNMgEAqyuBx8IECMXji', 'admin'),
+(33, 'riton86', '5', 'Henri', 'Sculfort', 'henri.sculfort@gmail.com', '2 Rue De Neptune', 86240, 'Fontaine-le-comte', 0, '$2y$10$iiVdfmJHkd.aOOOncuTus.23NJHUtwnHk01Rb5ab7x0dL3ktwGG.W', 'admin');
 
 --
 -- Index pour les tables exportées
@@ -199,9 +208,9 @@ ALTER TABLE `games`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `messages`
+-- Index pour la table `message`
 --
-ALTER TABLE `messages`
+ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -234,12 +243,12 @@ ALTER TABLE `courts`
 -- AUTO_INCREMENT pour la table `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT pour la table `messages`
+-- AUTO_INCREMENT pour la table `message`
 --
-ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `tokens`
 --
@@ -249,7 +258,7 @@ ALTER TABLE `tokens`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
