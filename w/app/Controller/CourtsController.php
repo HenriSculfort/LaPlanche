@@ -137,17 +137,11 @@ class CourtsController extends Controller
 
     public function addCourts ()
     {
-
-
     	$post = [];
     	$errors = []; 
 
-
     	if(!empty($_POST)){
-
     		$post = array_map('trim', array_map('strip_tags', $_POST));
-
-
     		if(mb_strlen($post['name'])<2)
     		{
     			$errors[] = 'Le nom du terrain doit comporter au moins 2 caractères';
@@ -286,28 +280,19 @@ class CourtsController extends Controller
                             'parking'       => $post['parking'],
                             'latitude'      => $post['lat'],
                             'longitude'     => $post['lng'],
-
-                ];
+                         ];
 
                 	}
                     else{//problème:
-
                     	$errors[] = 'Une erreur de transfert est survenue !';
-                        //erreur lors du transfert
-
+        
                     }
-
                 }
                 else{
-                	$errors[] = 'Le fichier est trop gros !';
-                    //fichier trop volumineux	
+                	$errors[] = 'Le fichier est trop gros !';	
                 }
             }
-
-            
             if(count($errors) === 0){
-
-
             	$addCourt = new CourtsModel();
             	$insert = $addCourt->insert($data);
 
@@ -318,9 +303,6 @@ class CourtsController extends Controller
             		];
 
             	}
-
-
-                //extension non autorisée
             }
             else{
             	$json =[
@@ -332,7 +314,7 @@ class CourtsController extends Controller
             $this->showJson($json);
         }
 
-    }
+    } // fin addcourts
 
     public function courtDetails($id) 
     { 	
@@ -351,12 +333,10 @@ class CourtsController extends Controller
 
                 $passedTime = new GamesModel();
                 $DeleteGame = $passedTime -> deleteMatch($date['date']);
-
             }
         }
         
         $this->show('default/court_details', ['findCourt' => $findCourt, 'findGamesOnCourt' => $findGamesOnCourt, 'now' => $now, 'court_id' => $id] );
-
 
     }
  // FONCTIONS ADMIN
@@ -394,8 +374,8 @@ class CourtsController extends Controller
          ];
 
          $this->show('admin/courtsValidate', $boucle);
-     }
- }
+        }
+    }
 
     /**
      * Liste de tous les terrains validés (pour l'admin)
@@ -412,7 +392,7 @@ class CourtsController extends Controller
            $findAll = $model->findAll();
            $this->show('admin/courts_list', ['findAll' => $findAll]);
        }
-   }
+    }
 
     /**
      * Recherche des terrains pour l'admin
@@ -429,57 +409,57 @@ class CourtsController extends Controller
         // Si le formulaire est envoyé
         if(!empty($_GET)) {
 
-        // Je me protège au niveau du POST
-        $get = array_map('trim', array_map('strip_tags', $_GET));
+            // Je me protège au niveau du POST
+            $get = array_map('trim', array_map('strip_tags', $_GET));
 
-        // On vérifie que le lieu a bien été renseigné. 
-        if(!empty($get['location'])) {
-            $data['city'] = $get['location'];
-            $data['postal_code'] = $get['location'];
-        }
+            // On vérifie que le lieu a bien été renseigné. 
+            if(!empty($get['location'])) {
+                $data['city'] = $get['location'];
+                $data['postal_code'] = $get['location'];
+            }
 
-        if(!empty($get['name'])) { 
-            $data['name'] = $get['name'];
-        }
-        if(empty($data)) { 
-            $searchResult = false;
-        }
-        else {
+            if(!empty($get['name'])) { 
+                $data['name'] = $get['name'];
+            }
+            if(empty($data)) { 
+                $searchResult = false;
+            }
+            else {
+                $search = $model->search($data);
+                if(!empty($search)) { 
+                $searchResult = true;
+                } 
+                else { 
+
+                }
+            }
+
+            $params = [   
+            'searchResults' => isset($searchResult) ? $searchResult : null,
+            'search' => isset($search) ? $search : null,
+            ];
+            $this->show('admin/courts_list', $params);
+
+            if(!empty($get['name'])) { 
+                $data['name'] = $get['name'];
+            }
+
             $search = $model->search($data);
             if(!empty($search)) { 
-               $searchResult = true;
+                $searchResult = true;
             } 
-            else { 
-
+            else{ 
+                $searchResult = false;
             }
-        }
 
-        $params = [   
-        'searchResults' => isset($searchResult) ? $searchResult : null,
-        'search' => isset($search) ? $search : null,
-        ];
-        $this->show('admin/courts_list', $params);
+            $params = [   
+                'searchResults' => isset($searchResult) ? $searchResult : null,
+                'search' => isset($search) ? $search : null,
+            ];
 
-        if(!empty($get['name'])) { 
-            $data['name'] = $get['name'];
-        }
-
-        $search = $model->search($data);
-        if(!empty($search)) { 
-            $searchResult = true;
+            } // Fin !empty get
         } 
-        else{ 
-        $searchResult = false;
-        }
-
-        $params = [   
-        'searchResults' => isset($searchResult) ? $searchResult : null,
-        'search' => isset($search) ? $search : null,
-        ];
-
-        } // Fin !empty get
-    } 
-}
+    }
 
 public function modifyCourtAdmin() { 
 
@@ -493,38 +473,129 @@ public function modifyCourtAdmin() {
             if(isset($post['id'])) {
                 $courtId = (int) $post['id'];
                 $data = [ 
-                'name' => $post['name'],
-                'address' => $post['address'],
-                'postal_code' => $post['postal_code'],
-                'city' => $post['city'],
-                'opening_hours' => $post['opening_hours'],
-                'description' => $post['description'],
-                'net' => isset($post['net']) ? $post['net'] : 0,
-                'court_state' => isset($post['court_state']) ? $post['court_state'] : 0,
-                'parking' => isset($post['parking']) ? $post['parking'] : 0,
+                    'name' => $post['name'],
+                    'address' => $post['address'],
+                    'postal_code' => $post['postal_code'],
+                    'city' => $post['city'],
+                    'opening_hours' => $post['opening_hours'],
+                    'description' => $post['description'],
+                    'net' => isset($post['net']) ? $post['net'] : 0,
+                    'court_state' => isset($post['court_state']) ? $post['court_state'] : 0,
+                    'parking' => isset($post['parking']) ? $post['parking'] : 0,
                 ];
+
+                if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
+
+                    $maxfilesize = 5048576; //1 Mo
+
+                    if($_FILES['picture']['size'] < $maxfilesize){
+                        //pas d'erreur et le fichier n'est pas trop volumineux
+                        //on teste l'extension
+
+                        $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif', 'PNG', 'JPEG', 'JPG', 'GIF');
+                        $fileInfo = pathinfo($_FILES['picture']['name']);
+
+                        $extension = $fileInfo['extension'];
+
+
+                        if(in_array($extension, $extensions_autorisees)){
+                            //extension valide
+                            //on renomme le fichier
+                            switch ($extension) {
+                                case 'jpg':
+                                case 'JPG':
+                                $newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
+                                break;
+                                case 'jpeg':
+                                case 'JPEG':
+                                $newImage = imagecreatefromjpeg($_FILES['picture']['tmp_name']);
+                                break;
+                                case 'png':
+                                case 'PNG':
+                                $newImage = imagecreatefrompng($_FILES['picture']['tmp_name']);
+                                break;
+                                case 'gif':
+                                case 'GIF':
+                                $newImage = imagecreatefromgif($_FILES['picture']['tmp_name']);
+                                break;
+                            };
+                            //largeur
+                            $imageWidth = imagesx($newImage);
+                            //hauteur
+                            $imageHeight = imagesy($newImage);
+                            // je décide de la largeur des miniatures
+                            $newWidth = 200;
+                            //on calcule la nouvelle hauteur
+                            $newHeight = ($imageHeight * $newWidth) / $imageWidth ;
+                            // on crée la nouvelle image 
+                            $miniature = imagecreatetruecolor($newWidth, $newHeight);
+                            imagecopyresampled($miniature, $newImage, 0, 0, 0, 0, $newWidth, $newHeight, $imageWidth, $imageHeight);
+
+                            $picture = md5(uniqid(rand(), true));
+
+                            if($extension == 'jpeg' OR $extension == 'jpg'){  
+                                $picture.='.'.$extension;
+                                imagejpeg($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                            } elseif($extension == 'png'){
+                                $picture.='.'.$extension;
+                                imagepng($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                            } elseif($extension == 'gif'){
+                                $picture.='.'.$extension;
+                                imagegif($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                            }
+
+                            move_uploaded_file($_FILES['picture']['tmp_name'], '../public/assets/img/uploads/'.$picture);
+
+                            $data = [
+                                'name'          => $post['name'],
+                                'address'       => $post['address'],
+                                'postal_code'   => $post['postal_code'],
+                                'city'          => $post['city'],
+                                'picture'       => $picture,
+                                'description'   => $post['description'],
+                                'net'           => $post['net'],
+                                'court_state'   => $post['level'],
+                                'opening_hours' => $post['opening_hours'],
+                                'parking'       => $post['parking'],
+                               
+                            ];
+
+                        }
+                        else{//problème:
+                            $errors[] = 'Une erreur de transfert est survenue !';
+
+                        }
+
+                    }
+                    else{
+                        $errors[] = 'Le fichier est trop gros !';
+ 
+                    }
+                }   
             }
             $model = new CourtsModel();
             $gameAccepted = $model->update($data, $courtId);
         }
         $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été modifié', 'success'))]);
     }
-}
-public function deleteCourtAdmin() { 
-
-    if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){          
-        $this->show('w_errors/403');            
     }
-    else{
-        if(!empty($_POST)) {
 
-            $post = array_map('trim', array_map('strip_tags', $_POST));
-            $courtId = (int) $post['id'];     
-            $model = new CourtsModel();
-            $gameAccepted = $model->delete($courtId);
+
+    public function deleteCourtAdmin() { 
+
+        if(!isset($_SESSION) || empty($_SESSION) || $_SESSION['user']['role'] != 'admin'){          
+            $this->show('w_errors/403');            
         }
-        $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été supprimé', 'danger'))]);
+        else{
+            if(!empty($_POST)) {
+
+                $post = array_map('trim', array_map('strip_tags', $_POST));
+                $courtId = (int) $post['id'];     
+                $model = new CourtsModel();
+                $gameAccepted = $model->delete($courtId);
+            }
+            $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été supprimé', 'danger'))]);
+        }
     }
-}
 
 }

@@ -75,9 +75,12 @@ if(isset($courtResult)) {
 						</div>
 					</div>
 				</div>
-				<form method='POST' action='<?=$this->url('admin_modifyCourt');?>'>
+				<form method='POST' id="modifyCourt" action='<?=$this->url('admin_modifyCourt');?>' enctype="multipart/form-data">
 					<div class='row hidden' id='court<?=$court['id'];?>'>
 						<input type='hidden' value='<?=$court['id'];?>' name='id'>
+
+						<label for='name'>Photo</label>
+						<input type='file' class='form-control' name='picture' value='<?=$court['picture'];?>' accept="image/*">
 
 						<label for='name'>Nom</label>
 						<input type='text' class='form-control' name='name' value='<?=$court['name'];?>'>
