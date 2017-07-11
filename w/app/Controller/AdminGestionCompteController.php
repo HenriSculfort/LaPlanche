@@ -141,7 +141,7 @@ class AdminGestionCompteController extends Controller
 		
 			$json = [ 
         		'result' => true,
-        		'message' => $message,
+        		'message' => $post['message'],
         		'success' => 'Message modifié',
         	];
         }

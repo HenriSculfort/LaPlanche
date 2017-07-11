@@ -21,7 +21,7 @@
 <div id='error'></div>
 <div id='success'></div>
 <form method='POST'>
-	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'><?php if(isset($message['message'])){echo $message['message'];}?></textarea>
+	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'></textarea>
 	<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
 </form>
 
@@ -42,7 +42,7 @@ function getMessage() {
 $(document).ready(function() {
 
 	$(function() {
-		
+		getMessage();
 		// On surveille le clic d'envoi de nouveau message
 		$('#modifyMessage').on('click', function(modif) {
 			modif.preventDefault();
@@ -57,12 +57,12 @@ $(document).ready(function() {
 				},
 				dataType: 'json',
 				success: function(retourJson) {
-
+					getMessage();
 					// Si le message a bien été posté 
 					if (retourJson.result == true) {
 						// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
 						$('textarea#message').val(retourJson.message);
-						$('#success').val(retourJson.success).addClass('alert alert-success');
+						$('#success').addClass('alert alert-success').val(retourJson.success);
 						// Pour réinitialiser les erreurs si jamais on envoie un message correct 
 						$('#error').removeClass('alert alert-danger');
 						$('#error').text('');
