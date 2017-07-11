@@ -15,12 +15,11 @@
             <div class="index-header">
                 <p class="legend-header-index">Une partie de basket ? Cherche un City Stade !</p>
                 <div class="search">
-                    <form method="POST">
+                    <form method="POST" class="col-lg-8 search">
                         <input id='address' class="searchWhere" type="textbox" name="address" placeholder="Où souhaitez-vous jouer...?" value="<?php if(isset($_POST['address'])){echo $_POST['address']; } ?>" >
                         <input id="submit" type="button"  value="Rechercher" class="btn btn-warning btn-lg button-search-index">
                         <!--                        <button id="submit" type="submit" class="btn btn-warning btn-lg button-search-index">Rechercher</button>-->
                     </form>
-
                 </div>
                 <div class="col-lg-12" id="buttonTerrain">
                     <div class="index-header">
