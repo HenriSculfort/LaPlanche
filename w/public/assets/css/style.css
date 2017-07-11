@@ -286,6 +286,8 @@ h4.service-heading {
         font-size: 2.3rem;
     }
 }
+/************************** PAGE VALIDATION TERRAIN ***************************/
+
 
 /******************************* PAGE TERRAIN *********************************/
 
@@ -329,6 +331,17 @@ a.lien-info-terrain:hover {
 }
 .pagination>li>a{
     color: rgba(232, 167, 76, 0.87);
+}
+
+#divbutton-id {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+}
+
+#danger-id{
+    margin-left: 3px;
 }
 /******************************* PAGE DETAIL TERRAIN *********************************/
 
