@@ -135,4 +135,91 @@ class AdminGestionCompteController extends Controller
 
 	}
 
+
+	function changeBackground ()
+	{
+		if(isset($_FILES['name'])){
+
+            $maxfilesize = 5048576; 
+
+            if($_FILES['name']['error'] === 0 AND $_FILES['name']['size'] < $maxfilesize){
+                //pas d'erreur et le fichier n'est pas trop volumineux
+                //on teste l'extension
+                $extensions_autorisees = array('jpg', 'jpeg', 'png', 'gif', 'PNG', 'JPEG', 'JPG', 'GIF');
+                	$fileInfo = pathinfo($_FILES['name']['name']);
+
+                	$extension = $fileInfo['extension'];
+
+
+                	if(in_array($extension, $extensions_autorisees)){
+                        //extension valide
+                        //on renomme le fichier
+                		switch ($extension) {
+                			case 'jpg':
+                            case 'JPG':
+                			$newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                			break;
+                			case 'jpeg':
+                            case 'JPEG':
+                			$newImage = imagecreatefromjpeg($_FILES['name']['tmp_name']);
+                			break;
+                			case 'png':
+                            case 'PNG':
+                			$newImage = imagecreatefrompng($_FILES['name']['tmp_name']);
+                			break;
+                			case 'gif':
+                            case 'GIF':
+                			$newImage = imagecreatefromgif($_FILES['name']['tmp_name']);
+                			break;
+                		};
+
+
+                        //largeur
+                		$imageWidth = imagesx($newImage);
+                         //hauteur
+                		$imageHeight = imagesy($newImage);
+                      // je décide de la largeur des miniatures
+                		$newWidth = 200;
+                        //on calcule la nouvelle hauteur
+                		$newHeight = ($imageHeight * $newWidth) / $imageWidth ;
+                        // on crée la nouvelle image 
+                		$miniature = imagecreatetruecolor($newWidth, $newHeight);
+                		imagecopyresampled($miniature, $newImage, 0, 0, 0, 0, $newWidth, $newHeight, $imageWidth, $imageHeight);
+
+
+                		$picture = md5(uniqid(rand(), true));
+
+                		if($extension == 'jpeg' OR $extension == 'jpg' OR $extension == 'JPEG' OR $extension == 'JPG'){  
+                			$picture.='.'.$extension;
+                			imagejpeg($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                		} elseif($extension == 'png' OR $extension == 'PNG'){
+                			$picture.='.'.$extension;
+                			imagepng($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                		} elseif($extension == 'gif' OR $extension == 'GIF'){
+                			$picture.='.'.$extension;
+                			imagegif($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
+                		}
+
+
+                		move_uploaded_file($_FILES['name']['tmp_name'], '../public/assets/img/uploads/'.$picture);
+
+					}else{
+						//extension non autorisée
+						echo 'ce n\'est pas une bonne extension';
+					}
+			}else{//problème:
+				if($_FILES['name']['error'] > 0){
+					//erreur lors du transfert
+					echo 'erreur de transfert';
+				}else{
+					//fichier trop volumineux
+					echo 'Le fichier est trop gros';
+				}
+				
+			}
+		}
+
+		$this->show('accueil',['picture' => $picture] );
+	}
+
 }

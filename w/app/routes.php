@@ -52,6 +52,8 @@ $w_routes = array(
     ['GET|POST', '/admin/courtsModify', 'Courts#modifyCourtAdmin', 'admin_modifyCourt'],
     ['GET|POST', '/admin/courtsDelete', 'Courts#deleteCourtAdmin', 'admin_deleteCourt'],
     ['GET|POST', '/admin/website', 'AdminGestionCompte#changeLook', 'admin_changeLook'],
+    ['GET|POST', '/admin/background', 'AdminGestionCompte#changeBackground', 'admin_changeBackground'],
+
     ['GET|POST', '/admin/modifyMessage', 'AdminGestionCompte#updateHomeMessage', 'admin_updateMessage'],
 
     ['GET|POST', '/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
