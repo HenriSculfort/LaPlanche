@@ -252,13 +252,13 @@ class CourtsController extends Controller
 
                 		$picture = md5(uniqid(rand(), true));
 
-                		if($extension == 'jpeg' OR $extension == 'jpg'){  
+                		if($extension == 'jpeg' OR $extension == 'jpg' OR $extension == 'JPEG' OR $extension == 'JPG'){  
                 			$picture.='.'.$extension;
                 			imagejpeg($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
-                		} elseif($extension == 'png'){
+                		} elseif($extension == 'png' OR $extension == 'PNG'){
                 			$picture.='.'.$extension;
                 			imagepng($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
-                		} elseif($extension == 'gif'){
+                		} elseif($extension == 'gif' OR $extension == 'GIF'){
                 			$picture.='.'.$extension;
                 			imagegif($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
                 		}
