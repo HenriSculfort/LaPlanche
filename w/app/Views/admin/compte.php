@@ -66,7 +66,7 @@
 				
 				id_user = $(this).data('id'); // Permet de récupérer la valeur de l'id en champ caché
 				currentForm = $('#user-id-'+id_user);
-
+				blacklist_user = $('#blacklist-'+ id_user +' option:selected').val();
 				role_user = $('#role-'+ id_user +' option:selected').val();
 				suppr_user = 'off'; // Valeur par défaut
 
@@ -78,7 +78,7 @@
 
 					url: '<?= $this->url('admin_compteAjax');?>', 
 					type: 'GET',
-					data: {id: id_user, role: role_user, suppr: suppr_user },	
+					data: {id: id_user, role: role_user, suppr: suppr_user, blacklist: blacklist_user},	
 					dataType: 'json',
 					success: function(resPHP){
 

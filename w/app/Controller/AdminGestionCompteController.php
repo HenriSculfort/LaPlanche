@@ -27,7 +27,7 @@ class AdminGestionCompteController extends Controller
 			$this->show('w_errors/403');            
 		}
 		else {	
-			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off'){
+			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == null){
 				$roleModif = [
 				'role' => $_GET['role'],
 				];
@@ -42,7 +42,22 @@ class AdminGestionCompteController extends Controller
 					'message' => 'Le rôle de l\'utilisateur a été modifié'
 					];
 				}
+			}
+			elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'off'){
+				$blacklist = [
+				'blacklist' => $_GET['blacklist'],
+				];
 
+				$UsersModel = new UsersModel();
+				$update = $UsersModel->update($blacklist, $_GET['id']);
+
+				if($update == true){
+
+					$json = [
+					'result' => true,
+					'message' => 'L\'utilisateur a été bloqué'
+					];
+				}
 			}
 			elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'on'){
 				$UsersModel = new UsersModel();
@@ -98,7 +113,20 @@ class AdminGestionCompteController extends Controller
 				$html .= '>Admin</option>';
 				$html .= '</select></td><td>';
 				$html .= '<input type="checkbox" name="suppr" id="suppr-' . $value['id'] . '">';
-				$html .= '</td><td>';
+				$html .= '</td>';
+
+				$html .= '<td><select name="blacklist" class="select-blacklist" id="blacklist-' . $value['id'] . '" >';
+				$html .= '<option value="Ok"';
+				if(isset($value['blacklist']) && $value['blacklist'] == 'Ok'){
+					$html .= 'selected';
+				}
+				$html .= '>Ok</option>';
+				$html .= '<option value="Bloqué"';
+				if(isset($value['blacklist']) && $value['blacklist'] != 'Ok'){ 
+					$html .= 'selected';
+				}
+				$html .= '>Bloqué</option>';
+				$html .= '</select></td><td>';
 				$html .= '<button type="submit" data-id="' . $value['id'] . '" class="btn btn-warning zob">Appliquer</button>';
 				$html .= '</td></form></tr>';
 			}
