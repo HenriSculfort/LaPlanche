@@ -1,18 +1,20 @@
 /********************************* STYLES GLOBAUX *******************************/
 
+
 html {
     font-size: 62.5%;
     line-height: 1.5;
     height: 100%;
+    
 }
 
 body {
     font-size: 1.6em;
     color: #a49e9e;
+    position: relative;
     min-height: 100%;
     margin: 0;
-    padding-bottom: 200px;;
-    position: relative;
+    padding-bottom: 93px;
 }
 
 ul {
@@ -146,14 +148,13 @@ header.intro-header {
 }
 
 /************************************* FOOTER GENERAL *****************************/
-
-footer {
-    border-color: transparent;
+.footer {
     background: rgba(234, 147, 30, 0.88);
-    padding: 20px;
-    position: absolute;
-    left: 0;
-    right: 0
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    padding: 20px 0;
 }
 
 footer a:hover{
@@ -446,29 +447,6 @@ hr.hr-bottom{
     .align-right {
         text-align: right;
     }
-}
-
-/******************************* PAGE CONTACT *********************************/
-
-html {
-    height: 100%;
-}
-
-body {
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    position: relative;
-}
-
-.footer-contact {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 /******************************* PAGE ERREUR *********************************/
