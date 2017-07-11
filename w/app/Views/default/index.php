@@ -24,7 +24,7 @@
                         <input id="submit" type="submit"  value="Rechercher" class="btn btn-warning btn-lg button-search-index">
                     </form>
                 </div>
-                <p id='announcement' class='hidden'></p>
+                <p id='announcement'></p>
             </div>
         </div>
     </div>
@@ -85,6 +85,35 @@
 
 <?php $this->stop('main_content') ?>
 <?php $this->start('script') ?>
+
+<script>
+    // Pour modifier la visibilité ou non de la div dédiée à l'admin pour les annonces
+    function showMessage() {
+        if (result.status == 'show') {
+            $('#announcement').removeClass('hidden').addClass('show');
+        } else {
+            $('#chat').removeClass('show').addClass('hidden');
+        }
+    }
+    // Va chercher le message et le statut de celui-ci (si pas de message, statut = caché, sinon visible)
+    function getMessage() {
+
+        $.getJSON('<?=$this->url('admin_loadMessage');?>',function(result) {
+            $('#announcement').html(result.message);    
+            showMessage();   
+        });
+    };
+
+    // On appelle la fonction
+    $(document).ready(function() {
+
+        $(function() {
+            getMessage();
+        });
+    });
+
+</script>
+
 <script>
 
 <?php 

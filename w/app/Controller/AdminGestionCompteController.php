@@ -123,6 +123,7 @@ class AdminGestionCompteController extends Controller
 		$messageModel = new MessageModel();
 		$message = $messageModel->selectHomeMessage();
 		$this->showJSON($message);
+
 	}
 
 	public function changeMessage() { 
