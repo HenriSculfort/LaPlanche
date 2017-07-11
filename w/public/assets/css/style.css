@@ -83,7 +83,7 @@ h3 {
 
 .navbar-default {
     border-color: transparent;
-    background: rgba(232, 167, 76, 0.87);
+    background: rgba(234, 147, 30, 0.88);
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -150,7 +150,7 @@ header.intro-header {
 
 footer {
     border-color: transparent;
-    background: rgba(232, 167, 76, 0.87);
+    background: rgba(234, 147, 30, 0.88);
     padding: 20px;
     position: absolute;
     left: 0;
@@ -184,6 +184,12 @@ p.legend-header-index {
 .button-search-index {
     background: #e8a74c;
     border-color: #e8a74c;
+}
+
+
+.button-search-index:hover {
+    background: rgb(234, 147, 30);
+    border-color: rgb(234, 147, 30);
 }
 
 #search-terrain{
@@ -329,7 +335,16 @@ a.lien-info-terrain:hover {
     border-color: rgba(232, 167, 76, 0.87);
     background-color: rgba(232, 167, 76, 0.87);
 }
-.pagination>li>a{
+.pagination>.active>a:hover
+{
+    border-color: rgba(234, 147, 30, 0.88);
+    background-color: rgba(234, 147, 30, 0.88);
+    color:#fff;
+}
+
+.pagination>li>a,
+.pagination>li>a:hover
+{
     color: rgba(232, 167, 76, 0.87);
 }
 

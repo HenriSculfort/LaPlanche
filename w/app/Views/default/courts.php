@@ -75,6 +75,7 @@ elseif (isset($searchResults) && $searchResults == false) { ?>
 }
 elseif (isset($findAll)) { 
 	$courtResult = $findAll;
+	$pagination = true;
 }
 
 // Le isset est nécessaire pour le cas où searchResults est false.
@@ -102,6 +103,8 @@ if(isset($courtResult)) {
 } // Fin du isset courtResult ?>
 
 <!-- PAGINATION -->
+<?php if(isset($pagination) && $pagination == true){
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 text-center">
@@ -121,6 +124,10 @@ if(isset($courtResult)) {
 		</div>
 	</div>
 </div>
+<?php
+}
+?>
+
 <?=$this->stop('main_content');?>
 
 <!-- AJAX D'AFFICHAGE DE LA RECHERCHE -->
