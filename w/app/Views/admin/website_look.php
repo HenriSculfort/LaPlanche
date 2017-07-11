@@ -71,7 +71,7 @@ $(document).ready(function() {
 					if (retourJson.result == true) {
 						// Sert à vider le champ pour ne pas avoir à effacer le message précédent avant d'en taper un nouveau
 						$('textarea#message').val(retourJson.message);
-						$('#success').addClass('alert alert-success').val(retourJson.success);
+						$('#success').addClass('alert alert-success').html(retourJson.success);
 						// Pour réinitialiser les erreurs si jamais on envoie un message correct 
 						$('#error').removeClass('alert alert-danger');
 						$('#error').text('');

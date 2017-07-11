@@ -6,7 +6,7 @@ namespace Model;
 class MessageModel extends \W\Model\Model
 {
 	public function selectHomeMessage() { 
-		$select = $this->dbh->prepare('SELECT message FROM '.$this->table.' WHERE id = 1' );
+		$select = $this->dbh->prepare('SELECT message, status FROM '.$this->table.' WHERE id = 1' );
 		$select->execute();
 		return $message = $select->fetch();
 
