@@ -1,6 +1,6 @@
 <?= $this->layout('layout', ['title' => 'Espace admin']);?>
 <?=$this->start('header_content'); ?>
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
 			<div>
@@ -9,7 +9,17 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
+
+<br>
+
+<ul class="nav nav-tabs">
+	<li role="presentation" class="active"><a href="<?=$this->url('admin_courtsValidate');?>">Valider terrain</a></li>
+	<li role="presentation"><a href="<?=$this->url('admin_getCourtsList');?>">Modifier terrain</a></li>
+	<li role="presentation"><a href="<?=$this->url('admin_compte');?>">Gestion des comptes utilisateurs</a></li>
+</ul>
+
+
 <div class='standard-header'>
 	<h1>Espace administrateur</h1>
 	<h2>Validation des terrains</h2>
@@ -24,43 +34,43 @@
 foreach($findAll as $court) {
 
 		//permet de n'afficher que les terrains non validé
-		if( $court['admin_validation'] == 0) { ?>
-		<div class='container'>
+	if( $court['admin_validation'] == 0) { ?>
+	<div class='container'>
 
-			<!--début du formulaire avec les 2 bouton submit-->
-			<form method="post" id="<?=$court['id'];?>">
-				<div class='row'>
-					<div class='flex-description col-md-12 well'>
+		<!--début du formulaire avec les 2 bouton submit-->
+		<form method="post" id="<?=$court['id'];?>">
+			<div class='row'>
+				<div class='flex-description col-md-12 well'>
 					
-						<div class='col-md-3'>
-							<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
-						</div>
-						<div class='col-md-9'>
-							<h4><?= $court['name'];?></h4>
-							<p class="description-terrain"><?= nl2br($court['description']);?></p>
-							<br>
-							<p class="description-terrain"><?= nl2br($court['address'] . ' ' . $court['postal_code'] . ' ' . $court['city']);?></p>
-							<br>
-							<p class="description-terrain"><?= nl2br($court['opening_hours']);?></p>
-						</div>
-
-						<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
-						<input type="hidden" name="valeurId" value="<?=$court['id'];?>">
-						<button type="submit" name="validez">Validez</button>
-						<button type="submit" name="supprimez">Supprimez</button>
-					
+					<div class='col-md-3'>
+						<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
 					</div>
-				</form>
-			</div>
+					<div class='col-md-9'>
+						<h4><?= $court['name'];?></h4>
+						<p class="description-terrain"><?= nl2br($court['description']);?></p>
+						<br>
+						<p class="description-terrain"><?= nl2br($court['address'] . ' ' . $court['postal_code'] . ' ' . $court['city']);?></p>
+						<br>
+						<p class="description-terrain"><?= nl2br($court['opening_hours']);?></p>
+					</div>
+
+					<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
+					<input type="hidden" name="valeurId" value="<?=$court['id'];?>">
+					<button type="submit" name="validez">Validez</button>
+					<button type="submit" name="supprimez">Supprimez</button>
+					
+				</div>
+			</form>
 		</div>
-		<?php } 
+	</div>
+	<?php } 
 	}// Fin foreach
-?>
+	?>
 
 
-<?=$this->stop('main_content'); ?>
+	<?=$this->stop('main_content'); ?>
 
-<?=$this->start('script'); ?>
+	<?=$this->start('script'); ?>
 
 
 

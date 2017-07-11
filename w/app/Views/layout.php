@@ -54,7 +54,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php if(!empty($w_user) && $w_user['role'] == 'admin'): ?>
                         <li>
-                            <a href="<?= $this->url('admin_compte') ?>">Admin</a>
+                            <a href="<?= $this->url('admin_courtsValidate') ?>">Admin</a>
                         </li>
                     <?php endif; ?> 
                     <li>
