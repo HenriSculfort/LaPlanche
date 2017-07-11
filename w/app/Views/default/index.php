@@ -190,7 +190,8 @@
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                 map: map,
-                url: locations[i][4]
+                url: locations[i][4],
+                icon: '<?= $this->assetUrl('img/favicon/favicon-32x32.png')?>',
             });
 
             google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
