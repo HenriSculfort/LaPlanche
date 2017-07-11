@@ -1,25 +1,12 @@
 <?=$this->layout('layout', ['title' => 'Gestion des terrains validés']); ?>
 
 <?php $this->start('header_content');?>
-<!-- <div class="container-fluid">
-	<div class="row">
-		<div class="col-lg-12">
-			<div>
-			<a href="<?=$this->url('admin_courtsValidate');?>"><button type='button' class='btn btn-primary'>Valider terrain</button></a>
-				<a href="<?=$this->url('admin_compte');?>"><button type='button' class='btn btn-primary'>Gestion des comptes utilisateurs</button></a>
-			</div>
-		</div>
-	</div>
-</div> -->
-
 <br>
 <ul class="nav nav-tabs">
 	<li role="presentation"><a href="<?=$this->url('admin_courtsValidate');?>">Valider terrain</a></li>
 	<li role="presentation" class="active"><a href="<?=$this->url('admin_getCourtsList');?>">Modifier terrain</a></li>
 	<li role="presentation"><a href="<?=$this->url('admin_compte');?>">Gestion des comptes utilisateurs</a></li> 
 </ul>
-
-
 
 <div class="standard-header">
 	<h1>Les terrains validés</h1>
@@ -64,7 +51,7 @@ elseif (isset($findAll)) {
 
 if(isset($courtResult)) {
 	foreach ($courtResult as $court) { 
-		if( $court['admin_validation'] == 1) { ?>
+		 ?>
 		<div class='container'>
 			<div class='row'>
 				<div class='flex-description col-md-12 well'>
@@ -133,7 +120,7 @@ if(isset($courtResult)) {
 			  	</form>
 			</div>	
 		</div>
-		<?php } 
+		<?php  
 	}// Fin foreach
 } // Fin du if isset courtResult dans le cas où la recherche ne donne rien?>
 <?=$this->stop('main_content');?>
