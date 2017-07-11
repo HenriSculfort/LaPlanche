@@ -131,7 +131,7 @@
                             if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
                             {
                                 ?>
-                                ['<?php echo $donnees['name'] ?>', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, '<?=$this->url('court_details', ['id' => $donnees['id']])?>'],
+                                ['<?php echo $donnees['name'] ?><br> <a href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, '<?=$this->url('court_details', ['id' => $donnees['id']])?>'],
                                 <?php
                             }
                         }
@@ -139,7 +139,7 @@
                 }
                 ?>
                 ];
-
+                
                 var infowindow = new google.maps.InfoWindow();
 
                 var marker, i;
@@ -159,13 +159,13 @@
                         }
                     })(marker, i));
 
-                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                        return function() {
-                            infowindow.setContent(locations[i][0]);
-                            infowindow.open(map, marker);
-                            window.location.href = this.url;
-                        }
-                    })(marker, i));
+//                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+//                        return function() {
+//                            infowindow.setContent(locations[i][0]);
+//                            infowindow.open(map, marker);
+//                            window.location.href = this.url;
+//                        }
+//                    })(marker, i));
 
                 }
 
