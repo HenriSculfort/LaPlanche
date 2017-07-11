@@ -25,6 +25,15 @@
 	<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
 </form>
 
+<h2>Modifier la photo de couverture</h2>
+
+<form method="POST" id="changeBackground" action='<?=$this->url('admin_changeBackground')?>' enctype="multipart/form-data">
+	<input type="file" name="name">
+	<br>
+
+	<button type="submit">Envoyer</button>
+</form>
+
 <?=$this->stop('main_content'); ?>
 
 <?=$this->start('script');?>

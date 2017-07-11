@@ -5,7 +5,11 @@
 <style> 
     .intro-header
     { 
-        background-image: url(<?= $this->assetUrl('img/sport-ground.jpg')?>) 
+        background-image: url(
+            <?php 
+                if(isset ($picture)){$this->assetUrl('img/uploads/'.$picture);}
+                else {$this->assetUrl('img/sport-ground.jpg');}
+            ?>) 
     }  
 </style>
 
