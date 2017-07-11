@@ -20,6 +20,16 @@
                         <input id="submit" type="button"  value="Rechercher" class="btn btn-warning btn-lg button-search-index">
                         <!--                        <button id="submit" type="submit" class="btn btn-warning btn-lg button-search-index">Rechercher</button>-->
                     </form>
+
+                </div>
+                <div class="col-lg-12" id="buttonTerrain">
+                    <div class="index-header">
+                        <form method="POST" id="search-terrain">
+                            <input type="hidden" value="" id="lat" name="lat">
+                            <input type="hidden" value="" id="lng" name="lng">
+                            <button type="submit" class="btn btn-success btn-lg button-search-terrain">Afficher les terrains pres de soi</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,11 +45,6 @@
         <div class="col-lg-12">
             <div id="map-index"></div>
             <div id="result"></div>
-            <form method="POST">
-                <input type="hidden" value="" id="lat" name="lat">
-                <input type="hidden" value="" id="lng" name="lng">
-                <button type="submit">Afficher les terrains pres de soi</button>
-            </form>
         </div>
     </div>
 </div>
@@ -188,16 +193,16 @@
             geocoder.geocode({'address': address}, function(results, status) {
                 if (status === 'OK') {
                     resultsMap.setCenter(results[0].geometry.location);
-//                    var marker = new google.maps.Marker({
-//                        center: resultsMap,
-//                        map: resultsMap,
-//                        position: results[0].geometry.location
-//                    });
+                    //                    var marker = new google.maps.Marker({
+                    //                        center: resultsMap,
+                    //                        map: resultsMap,
+                    //                        position: results[0].geometry.location
+                    //                    });
 
 
-                                        infoWindow.setPosition(results[0].geometry.location);
-                                        infoWindow.setContent('Vous êtes là');
-                                        resultsMap.setCenter(results[0].geometry.location);
+                    infoWindow.setPosition(results[0].geometry.location);
+                    infoWindow.setContent('Vous êtes là');
+                    resultsMap.setCenter(results[0].geometry.location);
 
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);

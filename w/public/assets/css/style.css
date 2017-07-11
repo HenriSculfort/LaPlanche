@@ -178,12 +178,16 @@ p.legend-header-index {
     border-radius: 7px;
     color: #fff;
     background: rgba(0, 0, 0, 0.4);
-  font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Gloria Hallelujah', cursive;
 }
 
 .button-search-index {
     background: #e8a74c;
     border-color: #e8a74c;
+}
+
+#search-terrain{
+    text-align: center;
 }
 
 input.searchWhere {
@@ -325,7 +329,7 @@ a.lien-info-terrain:hover {
 /******************************* PAGE DETAIL TERRAIN *********************************/
 
 .titre-match{
-        margin: 20px 0;
+    margin: 20px 0;
 }
 
 hr.small{
@@ -376,7 +380,7 @@ hr.hr-bottom{
     }
     .background-gris-section,
     .background-blanc-section{
-    padding: 50px 0;
+        padding: 50px 0;
     }
 }
 
