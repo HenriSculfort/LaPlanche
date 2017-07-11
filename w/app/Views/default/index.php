@@ -144,6 +144,12 @@ else {echo $this->assetUrl('img/sport-ground.jpg');}
             zoom: 13,
             center: {lat: latitudeParam, lng: longitudeParam}
         });
+        var input = /** @type {!HTMLInputElement} */(
+        document.getElementById('address'));
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+        
         var infoWindow = new google.maps.InfoWindow({map: map});
 
         var pos = {
@@ -224,7 +230,7 @@ else {echo $this->assetUrl('img/sport-ground.jpg');}
     }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0xJoi5c9MwYIYQlwIEfLqLh95hLtcaYA"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs5LuxGWie6VEjlZOPyOr9_Eir5dP1w50&libraries=places"></script>
 <?php $this->stop('script') ?>
 
 
