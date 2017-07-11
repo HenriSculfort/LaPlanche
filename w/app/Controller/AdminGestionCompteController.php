@@ -51,7 +51,7 @@ class AdminGestionCompteController extends Controller
 
 					$json = [
 					'result' => true,
-					'message' => 'L\'utilisateur a été supprimer'
+					'message' => 'L\'utilisateur a été supprimé'
 					];
 				}
 			}
