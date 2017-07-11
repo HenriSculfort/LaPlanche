@@ -7,8 +7,8 @@
     { 
         background-image: url(
             <?php 
-                if(isset ($picture)){$this->assetUrl('img/uploads/'.$picture);}
-                else {$this->assetUrl('img/sport-ground.jpg');}
+                if(isset($picture)){echo $this->assetUrl('img/uploads/'.$picture);}
+                else {echo $this->assetUrl('img/sport-ground.jpg');}
             ?>) 
     }  
 </style>
