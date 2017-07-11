@@ -239,7 +239,7 @@ class AdminGestionCompteController extends Controller
 			}
 		}
 
-		$this->redirectToRoute('accueil',['picture' => $picture] );
+		$this->redirectToRoute('accueil', ['picture' =>$picture]);
 	}
 
 }
