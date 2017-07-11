@@ -45,7 +45,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
-                </button>
+                </button>           
                 <a class='navbar-brand' href='<?= $this->url('accueil')?>'>La Planche</a>
             </div>
 
@@ -123,14 +123,14 @@
     </header>
 
     <!-- Main Content -->
-
+    <main>
             <?= $this->section('main_content') ?>
-  
+    </main>
 
     <!-- <hr class="hr-footer background-blanc-section"> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="col-lg-12 footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">

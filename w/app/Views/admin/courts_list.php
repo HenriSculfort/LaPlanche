@@ -6,6 +6,7 @@
 	<li role="presentation"><a href="<?=$this->url('admin_courtsValidate');?>">Valider terrain</a></li>
 	<li role="presentation" class="active"><a href="<?=$this->url('admin_getCourtsList');?>">Modifier terrain</a></li>
 	<li role="presentation"><a href="<?=$this->url('admin_compte');?>">Gestion des comptes utilisateurs</a></li> 
+	<li role="presentation"><a href="<?=$this->url('admin_showMessage');?>">Apparence du site</a></li>
 </ul>
 
 <div class="standard-header">
@@ -55,18 +56,18 @@ if(isset($courtResult)) {
 		<div class='container'>
 			<div class='row'>
 				<div class='flex-description col-md-12 well'>
-					<div class='col-md-3'>
+					<div class='col-md-2'>
 						<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/thumbnails/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
 					</div>
 					<div class='col-md-7'>
 						<h4><?= $court['name'];?></h4>
 						<p class="description-terrain"><?= nl2br($court['description']);?></p>
 					</div>
-					<div class='col-md-2'>
+					<div class='col-md-3' id='divbutton-id'>
 						<button class='btn btn-warning showModifications' data-id='<?=$court['id']?>' value="<?=$court['id']?>">Modifier</button>
 						<form method='POST' action='<?=$this->url('admin_deleteCourt')?>'>
 							<input type='hidden' value='<?=$court['id']?>' name='id'>
-							<button class='btn btn-danger' onClick="if(confirm('Le terrain va être supprimé.')){return true;}else{return false;}"  value="<?=$court['id']?>">Supprimer</button>
+							<button class='btn btn-danger' id='danger-id' onClick="if(confirm('Le terrain va être supprimé.')){return true;}else{return false;}"  value="<?=$court['id']?>">Supprimer</button>
 						</form>
 					</div>
 				</div>

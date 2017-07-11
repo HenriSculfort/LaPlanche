@@ -5,6 +5,7 @@
 	<li role="presentation"><a href="<?=$this->url('admin_courtsValidate');?>">Valider terrain</a></li>
 	<li role="presentation"><a href="<?=$this->url('admin_getCourtsList');?>">Modifier terrain</a></li>
 	<li role="presentation" class="active"><a href="<?=$this->url('admin_compte');?>">Gestion des comptes utilisateurs</a></li>
+	<li role="presentation"><a href="<?=$this->url('admin_showMessage');?>">Apparence du site</a></li>
 </ul>
 
 <div class='standard-header'>
@@ -21,8 +22,8 @@
 	<div id="message" style="color:green"></div>
 </article>
 
-<div>
-	<table class="table table-striped">
+<div class='table-responsive'>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>Pseudo utilisateur</th>

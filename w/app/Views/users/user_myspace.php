@@ -3,7 +3,7 @@
 <?php $this->start('header_content');?>
 <div class="standard-header">
     <h1>Espace Utilisateur</h1>
-    <p class="legend-header">Cet espace vous permet de modifier vos données personnelles et de suggérer un nouveau terrain</p>
+    <p class="legend-header">Cet espace vous permet de suggérer un nouveau terrain et de modifier vos données personnelles</p>
 </div>
 
 <?php $this->stop('header_content');?>
@@ -13,7 +13,7 @@
 
 <!-- Ajout de terrain -->
 <hr>
-<h3>Ajouter un terrain</h3>
+<h3>Suggérer un nouveau terrain</h3>
 <br>
 <div class="col-lg-4 col-lg-offset-4">
     <div id='resultAjax'></div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-4">
-                            <button type='submit' id='checkMap' class='btn btn-primary'>Verifier l'emplacement du terrain</button>
+                            <button type='submit' id='checkMap' class='btn btn-primary'>Verifier</button>
                             <!--                <input type="button" value="Verrifier l'emplacement du terrain">-->
                         </div>
                     </div>

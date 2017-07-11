@@ -5,7 +5,11 @@
 <style> 
     .intro-header
     { 
-        background-image: url(<?= $this->assetUrl('img/sport-ground.jpg')?>) 
+        background-image: url(
+            <?php 
+                if(isset ($picture)){$this->assetUrl('img/uploads/'.$picture);}
+                else {$this->assetUrl('img/sport-ground.jpg');}
+            ?>) 
     }  
 </style>
 
@@ -20,6 +24,7 @@
                         <input id="submit" type="submit"  value="Rechercher" class="btn btn-warning btn-lg button-search-index">
                     </form>
                 </div>
+                <p id='announcement' class='hidden'></p>
             </div>
         </div>
     </div>
@@ -31,7 +36,7 @@
 
 <div class="container-fluid div-map">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 padding-map">
             <div id="map-index"></div>
             <form method="POST" id="search-terrain">
                 <input type="hidden" value="" id="lat" name="lat">

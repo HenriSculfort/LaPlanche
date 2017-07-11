@@ -46,7 +46,5 @@ class GamesModel extends \W\Model\Model
 		$sth->bindValue(':date', $date);
 		$sth->execute();
 	}
-
-
 }
 

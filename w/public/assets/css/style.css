@@ -1,18 +1,20 @@
 /********************************* STYLES GLOBAUX *******************************/
 
+
 html {
     font-size: 62.5%;
     line-height: 1.5;
     height: 100%;
+    
 }
 
 body {
     font-size: 1.6em;
     color: #a49e9e;
+    position: relative;
     min-height: 100%;
     margin: 0;
-    padding-bottom: 200px;;
-    position: relative;
+    padding-bottom: 93px;
 }
 
 ul {
@@ -23,7 +25,6 @@ ul {
 
 a {
     text-decoration: none;
-    color: #000;
 }
 
 *{
@@ -45,8 +46,8 @@ a {
 /********************** STYLES DE POLICE ET TAILLES DE TEXTE *******************/
 
 a:hover {
-    color: #2677f9;
     text-decoration: none;
+    color: #fff;
 }
 
 p {
@@ -83,7 +84,7 @@ h3 {
 
 .navbar-default {
     border-color: transparent;
-    background: rgba(232, 167, 76, 0.87);
+    background: rgba(234, 147, 30, 0.88);
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -91,7 +92,7 @@ h3 {
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-    color: #d9d9d9;
+    color: #fff;
 }
 
 .navbar-default .navbar-brand {
@@ -147,14 +148,17 @@ header.intro-header {
 }
 
 /************************************* FOOTER GENERAL *****************************/
+.footer {
+    background: rgba(234, 147, 30, 0.88);
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    padding: 20px 0;
+}
 
-footer {
-    border-color: transparent;
-    background: rgba(232, 167, 76, 0.87);
-    padding: 20px;
-    position: absolute;
-    left: 0;
-    right: 0
+footer a:hover{
+    color: #fff;
 }
 
 /******************************* PAGE ACCUEIL *********************************/
@@ -184,6 +188,12 @@ p.legend-header-index {
 .button-search-index {
     background: #e8a74c;
     border-color: #e8a74c;
+}
+
+
+.button-search-index:hover {
+    background: rgb(234, 147, 30);
+    border-color: rgb(234, 147, 30);
 }
 
 #search-terrain{
@@ -224,9 +234,12 @@ button {
 }
 
 .div-map{
-    margin: 20px auto;
+    margin: 0px auto;
 }
 
+.padding-map{
+    padding: 0;
+}
 @media only screen and (min-width:768px) {
     input.searchWhere {
         margin: 0 10px 0 0;
@@ -286,6 +299,8 @@ h4.service-heading {
         font-size: 2.3rem;
     }
 }
+/************************** PAGE VALIDATION TERRAIN ***************************/
+
 
 /******************************* PAGE TERRAIN *********************************/
 
@@ -327,8 +342,28 @@ a.lien-info-terrain:hover {
     border-color: rgba(232, 167, 76, 0.87);
     background-color: rgba(232, 167, 76, 0.87);
 }
-.pagination>li>a{
+.pagination>.active>a:hover
+{
+    border-color: rgba(234, 147, 30, 0.88);
+    background-color: rgba(234, 147, 30, 0.88);
+    color:#fff;
+}
+
+.pagination>li>a,
+.pagination>li>a:hover
+{
     color: rgba(232, 167, 76, 0.87);
+}
+
+#divbutton-id {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+}
+
+#danger-id{
+    margin-left: 3px;
 }
 /******************************* PAGE DETAIL TERRAIN *********************************/
 
@@ -406,7 +441,6 @@ hr.hr-bottom{
 #map {
     overflow: visible;
     height:50vh;
-    width:70vh;   
 }
 
 @media only screen and (min-width:990px) {
@@ -414,31 +448,13 @@ hr.hr-bottom{
         text-align: right;
     }
 }
-
 /******************************* PAGE CONTACT *********************************/
 
-html {
-    height: 100%;
+#sendForm{
+    margin-bottom: 50px;
 }
 
-body {
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    position: relative;
-}
-
-.footer-contact {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-/******************************* PAGE ERREUR *********************************/
+/******************************* PAGE ERREUR 403 et 404 *********************************/
 
 .image-erreur {
     margin-top: 150px;
