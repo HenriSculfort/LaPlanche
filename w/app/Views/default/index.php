@@ -7,7 +7,9 @@
 
         background-image: url(
 
-            <?=$this->assetUrl('img/sport-ground.jpg')?>);
+            <?=$this->assetUrl('img/uploads/'.$message['message'])?>);
+       
+       
 }
 
 </style>
@@ -172,7 +174,7 @@
                             if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
                             {
                 ?>
-                ['<?php echo $donnees['name'] ?><br> <a href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
+                ['<?php echo $donnees['name'] ?><br> <a class="windowMap" href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
                 <?php
                             }
                         }

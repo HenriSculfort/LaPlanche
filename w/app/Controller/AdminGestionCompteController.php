@@ -237,13 +237,14 @@ class AdminGestionCompteController extends Controller
 					echo 'Le fichier est trop gros';
 				}			
 			}
+
+			$status = 'show';
+			$messageModel = new MessageModel();
+			$message = $messageModel->updateBackground($picture, $status);
+
 		}
 
-		$params =[
-			'picture' =>$picture,
-		];
-		
-		$this->redirectToRoute('accueil', $params);
+		$this->redirectToRoute('accueil');
 	}
 
 }
