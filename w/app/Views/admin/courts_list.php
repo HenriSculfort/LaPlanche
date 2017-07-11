@@ -83,51 +83,55 @@ if(isset($courtResult)) {
 						</form>
 					</div>
 				</div>
-			</div>
-			<form method='POST' action='<?=$this->url('admin_modifyCourt');?>'>
-				<div class='row hidden' id='court<?=$court['id'];?>'>
-					<input type='hidden' value='<?=$court['id'];?>' name='id'>
 
-					<label for='name'>Nom</label>
-					<input type='text' class='form-control' name='name' value='<?=$court['name'];?>'>
+				<form method='POST' id="modifyCourt" action='<?=$this->url('admin_modifyCourt');?>' enctype="multipart/form-data">
+					<div class='row hidden' id='court<?=$court['id'];?>'>
+						<input type='hidden' value='<?=$court['id'];?>' name='id'>
 
-					<label for='address'>Adresse</label>
-					<input type='text' class='form-control' name='address' value='<?=$court['address'];?>'>
+						<label for='name'>Photo</label>
+						<input type='file' class='form-control' name='picture' value='<?=$court['picture'];?>' accept="image/*">
 
-					<label for='postal_code'>Code Postal</label>
-					<input type='text' class='form-control' name='postal_code' value='<?=$court['postal_code'];?>'>
+						<label for='name'>Nom</label>
+						<input type='text' class='form-control' name='name' value='<?=$court['name'];?>'>
 
-					<label for='city'>Ville</label>
-					<input type='text' class='form-control' name='city' value='<?=$court['city'];?>'>
+						<label for='address'>Adresse</label>
+						<input type='text' class='form-control' name='address' value='<?=$court['address'];?>'>
 
-					<label for='opening_hours'>Horaires d'ouverture</label>
-					<input type='text' class='form-control' name='opening_hours' value='<?=$court['opening_hours'];?>'>
+						<label for='postal_code'>Code Postal</label>
+						<input type='text' class='form-control' name='postal_code' value='<?=$court['postal_code'];?>'>
 
-					<label for='description'>Description</label>
-					<textarea name='description' class='form-control' rows='10' value='<?=$court['description'];?>'><?=$court['description'];?></textarea>
+						<label for='city'>Ville</label>
+						<input type='text' class='form-control' name='city' value='<?=$court['city'];?>'>
 
-					<label for='net'>Filet</label>
-					<input type='radio' name='net' value='yes' <?php if ($court['net'] == 'yes') { echo 'selected';}?>> Oui-  
-					<input type='radio' name='net' value='no' <?php if ($court['net'] == 'no') { echo 'selected';}?>> Non<br>
+						<label for='opening_hours'>Horaires d'ouverture</label>
+						<input type='text' class='form-control' name='opening_hours' value='<?=$court['opening_hours'];?>'>
+
+						<label for='description'>Description</label>
+						<textarea name='description' class='form-control' rows='10' value='<?=$court['description'];?>'><?=$court['description'];?></textarea>
+
+						<label for='net'>Filet</label>
+						<input type='radio' name='net' value='yes' <?php if ($court['net'] == 'yes') { echo 'selected';}?>> Oui-  
+		                 <input type='radio' name='net' value='no' <?php if ($court['net'] == 'no') { echo 'selected';}?>> Non<br>
 
 
-					<label for='court_state'>Etat du terrain</label>
-					<select class='form-control' name='court_state'>
-						<option value='' <?php if($court['court_state'] == 0 ){ echo 'selected'; }?> >Choisissez l'état</option>
-						<option value='very_bad' <?php if($court['court_state'] == 'very_bad'){ echo 'selected'; }?>>Très mauvais état !</option>
-						<option value='bad' <?php if($court['court_state'] == 'bad'){ echo 'selected'; }?>>Mauvais état </option>
-						<option value='medium' <?php if($court['court_state'] == 'medium'){ echo 'selected'; }?>>Etat moyen, acceptable </option>
-						<option value='good'<?php if($court['court_state'] == 'good'){ echo 'selected'; }?>>Bon état </option>
-						<option value='very_good' <?php if($court['court_state'] == 'very_good'){ echo 'selected'; }?>>Très bon état !</option>
-					</select>
+					  	<label for='court_state'>Etat du terrain</label>
+					  	<select class='form-control' name='court_state'>
+					   		<option value='' <?php if($court['court_state'] == 0 ){ echo 'selected'; }?> >Choisissez l'état</option>
+	                        <option value='very_bad' <?php if($court['court_state'] == 'very_bad'){ echo 'selected'; }?>>Très mauvais état !</option>
+	                        <option value='bad' <?php if($court['court_state'] == 'bad'){ echo 'selected'; }?>>Mauvais état </option>
+	                        <option value='medium' <?php if($court['court_state'] == 'medium'){ echo 'selected'; }?>>Etat moyen, acceptable </option>
+	                        <option value='good'<?php if($court['court_state'] == 'good'){ echo 'selected'; }?>>Bon état </option>
+	                        <option value='very_good' <?php if($court['court_state'] == 'very_good'){ echo 'selected'; }?>>Très bon état !</option>
+	                    </select>
 
-					<label for='parking'>Parking (facultatif)</label>
-					<input type='radio' name='parking' value='yes' <?php if($court['parking'] == '1'){ echo 'selected'; }?>> Oui   
-					<input type='radio' <?php if($court['parking'] == '0'){ echo 'selected'; }?> name='parking' value='no'> Non
-					<br>
-					<button class='btn btn-success' type='submit'>Valider les modifications</button>
-				</div>
-			</form>
+						<label for='parking'>Parking (facultatif)</label>
+						<input type='radio' name='parking' value='yes' <?php if($court['parking'] == '1'){ echo 'selected'; }?>> Oui   
+			            <input type='radio' <?php if($court['parking'] == '0'){ echo 'selected'; }?> name='parking' value='no'> Non
+						<br>
+						<button class='btn btn-success' type='submit'>Valider les modifications</button>
+			  		</div>
+			  	</form>
+			</div>	
 		</div>
 		<?php } 
 	}// Fin foreach
