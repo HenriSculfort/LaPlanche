@@ -47,7 +47,30 @@ class MapController extends Controller
                 $CourtsModel = new CourtsModel;
                 $donnee = $CourtsModel->findLatLng($postal_code);
             }
+            else if(isset($post['address']) and !empty($_POST['address']))
+            {
+                $geocode = new Geocode();
+
+                // Get the details for the passed address
+                $location = $geocode->get($post['address']);
+                // Note: All the functions below accept a parameter as a default value that will be return if the reuqired value isn't found
+                $location->getAddress( 'default value' ); 
+                $location->getLatitude(); // returns the latitude of the address
+                $location->getLongitude(); // returns the longitude of the address
+                $location->getCountry(); // returns the country of the address
+                $location->getLocality(); // returns the locality/city of the address
+                $location->getDistrict(); // returns the district of the address
+                $postal_code = $location->getPostcode(); // returns the postal code of the address in $postal_code
+                $location->getTown(); // returns the town of the address
+                $location->getStreetNumber(); // returns the street number of the address
+
+                $CourtsModel = new CourtsModel;
+                $donnee = $CourtsModel->findLatLng($postal_code);
+
+            }
         }
         $this->show('default/index', ['postal_code' => $postal_code , 'location' => $location , 'donnee' => $donnee]);
     }
+
+
 }
