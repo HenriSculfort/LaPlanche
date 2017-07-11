@@ -196,7 +196,7 @@
 
 
                                         infoWindow.setPosition(results[0].geometry.location);
-                                        infoWindow.setContent('Vous êtes làfjrjstrtjrjyyj');
+                                        infoWindow.setContent('Vous êtes là');
                                         resultsMap.setCenter(results[0].geometry.location);
 
                 } else {
