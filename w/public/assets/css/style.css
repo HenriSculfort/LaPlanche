@@ -419,7 +419,6 @@ hr.hr-bottom{
 #map {
     overflow: visible;
     height:50vh;
-    width:70vh;   
 }
 
 @media only screen and (min-width:990px) {

@@ -51,7 +51,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-4">
-                            <button type='submit' id='checkMap' class='btn btn-primary'>Verifier l'emplacement du terrain</button>
+                            <button type='submit' id='checkMap' class='btn btn-primary'>Verifier</button>
                             <!--                <input type="button" value="Verrifier l'emplacement du terrain">-->
                         </div>
                     </div>
