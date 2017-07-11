@@ -15,8 +15,21 @@
             <div class="index-header">
                 <p class="legend-header-index">Une partie de basket ? Cherche un City Stade !</p>
                 <div class="search">
-                    <input class="searchWhere" type="text" name="where" placeholder="Où souhaitez-vous jouer...?">
-                    <button type="button" class="btn btn-warning btn-lg button-search-index">Rechercher</button>
+                    <form method="POST">
+                        <input id='address' class="searchWhere" type="textbox" name="address" placeholder="Où souhaitez-vous jouer...?" value="<?php if(isset($_POST['address'])){echo $_POST['address']; } ?>" >
+                        <input id="submit" type="button"  value="Rechercher" class="btn btn-warning btn-lg button-search-index">
+                        <!--                        <button id="submit" type="submit" class="btn btn-warning btn-lg button-search-index">Rechercher</button>-->
+                    </form>
+
+                </div>
+                <div class="col-lg-12" id="buttonTerrain">
+                    <div class="index-header">
+                        <form method="POST" id="search-terrain">
+                            <input type="hidden" value="" id="lat" name="lat">
+                            <input type="hidden" value="" id="lng" name="lng">
+                            <button type="submit" class="btn btn-success btn-lg button-search-terrain">Afficher les terrains pres de soi</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,13 +43,8 @@
 <div class="container-fluid div-map">
     <div class="row">
         <div class="col-lg-12">
-        <div id="map-index"></div>
+            <div id="map-index"></div>
             <div id="result"></div>
-            <form method="POST">
-                <input type="hidden" value="" id="lat" name="lat">
-                <input type="hidden" value="" id="lng" name="lng">
-                <button type="submit">Afficher les terrains pres de soi</button>
-            </form>
         </div>
     </div>
 </div>
@@ -84,11 +92,13 @@
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
     // locate you.
-    function initMap() {
+
+    function initMap() 
+    {
 
         var map = new google.maps.Map(document.getElementById('map-index'), {
-            center: {lat: -34.397, lng: 150.644},
             zoom: 13,
+            center: {lat: 47.066322, lng: 2.761099}
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -96,6 +106,7 @@
         // Try HTML5 geolocation.
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
+
 
                 var pos = {
                     lat: position.coords.latitude,
@@ -108,29 +119,31 @@
                 var lng =  position.coords.longitude;
                 $('#lng').attr('value', lng);
 
+
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Vous êtes ici');
                 map.setCenter(pos);
 
                 var locations = 
-                [
-                <?php
-                if(isset($donnee) and !empty($donnee))
-                {
-                    foreach($donnee as $donnees)
-                    {
-                        if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
-                        {
-                            ?>
-                            ['<?php echo $donnees['name'] ?>', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, '<?=$this->url('court_details', ['id' => $donnees['id']])?>'],
-                            <?php
-                        }
-                    }
-                }
-                ?>
-                ];
+                    [
+                        <?php
+    if(isset($donnee) and !empty($donnee))
+    {
+        foreach($donnee as $donnees)
+        {
+            if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
+            {
+                        ?>
+                        ['<?php echo $donnees['name'] ?>', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>, 0, '<?=$this->url('court_details', ['id' => $donnees['id']])?>'],
+                        <?php
+            }
+        }
+    }
+                        ?>
+                    ];
 
                 var infowindow = new google.maps.InfoWindow();
+
                 var marker, i;
 
                 for (i = 0; i < locations.length; i++) 
@@ -155,7 +168,10 @@
                             window.location.href = this.url;
                         }
                     })(marker, i));
+
                 }
+
+
             }, function() {
                 handleLocationError(true, infoWindow, map.getCenter());
             });
@@ -164,37 +180,53 @@
             handleLocationError(false, infoWindow, map.getCenter());
         }
 
+
         var geocoder = new google.maps.Geocoder();
 
         document.getElementById('submit').addEventListener('click', function() {
-            geocodeAddress(geocoder, map);
+            geocodeAddress(geocoder, map); 
         });
+
+        function geocodeAddress(geocoder, resultsMap) 
+        {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({'address': address}, function(results, status) {
+                if (status === 'OK') {
+                    resultsMap.setCenter(results[0].geometry.location);
+                    //                    var marker = new google.maps.Marker({
+                    //                        center: resultsMap,
+                    //                        map: resultsMap,
+                    //                        position: results[0].geometry.location
+                    //                    });
+
+
+                    infoWindow.setPosition(results[0].geometry.location);
+                    infoWindow.setContent('Vous êtes là');
+                    resultsMap.setCenter(results[0].geometry.location);
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });   
+        }
+
     }
 
-    function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-            if (status === 'OK') {
-                resultsMap.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location
-                });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-        });   
-    }
 
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+
+
+
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) 
+    {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-          'Error: The Geolocation service failed.' :
-          'Error: Your browser doesn\'t support geolocation.');
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
     }
 
-</script>
 
+</script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0xJoi5c9MwYIYQlwIEfLqLh95hLtcaYA&callback=initMap"></script>
 
 <?php $this->stop('script') ?>
