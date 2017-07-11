@@ -35,6 +35,7 @@
 				<th>Téléphone</th>
 				<th>Statut</th>
 				<th>Supprimer</th>
+				<th>Blacklist</th>
 			</tr>
 		</thead>
 		<tbody  id="viewBoucle">
