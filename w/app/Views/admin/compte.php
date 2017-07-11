@@ -22,8 +22,8 @@
 	<div id="message" style="color:green"></div>
 </article>
 
-<div>
-	<table class="table table-striped">
+<div class='table-responsive'>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>Pseudo utilisateur</th>

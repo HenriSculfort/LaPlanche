@@ -55,6 +55,9 @@ $w_routes = array(
     ['GET|POST', '/admin/background', 'AdminGestionCompte#changeBackground', 'admin_changeBackground'],
 
     ['GET|POST', '/admin/modifyMessage', 'AdminGestionCompte#updateHomeMessage', 'admin_updateMessage'],
+    ['GET|POST', '/admin/website', 'AdminGestionCompte#showMessage', 'admin_showMessage'],
+    ['GET|POST', '/admin/changeMessage', 'AdminGestionCompte#loadMessage', 'admin_loadMessage'],
+    
 
     ['GET|POST', '/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
     ['GET|POST', '/gestioncompte/Ajax', 'AdminGestionCompte#gestionCompteAjax', 'admin_compteAjax'],
