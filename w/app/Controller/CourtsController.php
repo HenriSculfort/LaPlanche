@@ -53,7 +53,7 @@ class CourtsController extends Controller
 
         // Si le formulaire est envoyé
 		if(!empty($_GET)) {
-            // Je me protège au niveau du POST
+            // Je me protège au niveau du GET
 			$get = array_map('trim', array_map('strip_tags', $_GET));
 
 

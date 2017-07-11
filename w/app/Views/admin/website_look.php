@@ -20,7 +20,7 @@
 
 
 <form method='POST' action='<?=$this->url('admin_changeLook')?>'>
-	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2'></textarea>
+	<textarea class='form-control' placeholder="Informations à mettre en page d'accueil" rows='2'><?php if(isset($message)){echo $message;}?></textarea>
 	<button class='btn btn-warning'>Ajouter</button>
 </form>
 
