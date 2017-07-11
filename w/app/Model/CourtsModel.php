@@ -49,7 +49,7 @@ class CourtsModel extends \W\Model\Model
 
     public function NumberOfCourts()
     {
-        $sql = 'SELECT COUNT(id) AS nbArticles FROM '.$this->table.'';
+        $sql = 'SELECT COUNT(id) AS nbArticles FROM ' .$this->table. ' WHERE admin_validation = 1';
         $reponseNbArticles= $this->dbh->prepare($sql);
         if($reponseNbArticles->execute()){
             return $reponseNbArticles->fetch();

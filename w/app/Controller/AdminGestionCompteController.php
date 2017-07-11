@@ -98,7 +98,7 @@ class AdminGestionCompteController extends Controller
 				$html .= '</select></td><td>';
 				$html .= '<input type="checkbox" name="suppr" id="suppr-' . $value['id'] . '">';
 				$html .= '</td><td>';
-				$html .= '<button type="submit" data-id="' . $value['id'] . '" class="zob">Appliquez</button>';
+				$html .= '<button type="submit" data-id="' . $value['id'] . '" class="zob">Appliquer</button>';
 				$html .= '</td></form></tr>';
 			}
 
