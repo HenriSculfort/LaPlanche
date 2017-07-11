@@ -427,10 +427,10 @@ class CourtsController extends Controller
             else {
                 $search = $model->search($data);
                 if(!empty($search)) { 
-                $searchResult = true;
+                    $searchResult = true;
                 } 
                 else { 
-
+                    $searchResult = false;
                 }
             }
 
@@ -438,24 +438,12 @@ class CourtsController extends Controller
             'searchResults' => isset($searchResult) ? $searchResult : null,
             'search' => isset($search) ? $search : null,
             ];
+            
             $this->show('admin/courts_list', $params);
 
-            if(!empty($get['name'])) { 
-                $data['name'] = $get['name'];
-            }
+            
+    
 
-            $search = $model->search($data);
-            if(!empty($search)) { 
-                $searchResult = true;
-            } 
-            else{ 
-                $searchResult = false;
-            }
-
-            $params = [   
-                'searchResults' => isset($searchResult) ? $searchResult : null,
-                'search' => isset($search) ? $search : null,
-            ];
 
             } // Fin !empty get
         } 
