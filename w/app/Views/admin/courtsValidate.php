@@ -35,9 +35,9 @@ foreach($findAll as $court) {
 					<div class='col-md-7'>
 						<h4><?= $court['name'];?></h4>
 						<p class="description-terrain"><?= nl2br($court['description']);?></p>
-						<br>
+						<hr>
 						<p class="description-terrain"><?= nl2br($court['address'] . ' ' . $court['postal_code'] . ' ' . $court['city']);?></p>
-						<br>
+						<hr>
 						<p class="description-terrain"><?= nl2br($court['opening_hours']);?></p>
 					</div>
 					<div class='col-md-3'>
@@ -50,14 +50,14 @@ foreach($findAll as $court) {
 			</form>
 		</div>
 	</div>
-	<?php } 
-	}// Fin foreach
-	?>
+<?php 
+	} 
+}// Fin foreach
+?>
 
+<?=$this->stop('main_content'); ?>
 
-	<?=$this->stop('main_content'); ?>
-
-	<?=$this->start('script'); ?>
+	
 
 
 
