@@ -10,7 +10,8 @@
 </ul>
 
 <div class="standard-header">
-	<h1>Les terrains</h1>
+	<h1>Espace administrateur</h1>
+	<h2>Les terrains</h2>
 </div>
 <?php $this->stop('header_content');?>
 
