@@ -43,7 +43,7 @@ foreach($findAll as $court) {
 						<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
 						<input type="hidden" name="valeurId" value="<?=$court['id'];?>">
 						<button type="submit" class='btn btn-success' name="validez">Valider</button>
-						<button type="submit" class='btn btn-danger' name="supprimez">Supprimer</button>
+						<button type="submit" class='btn btn-danger' onClick="if(confirm('Le terrain va être supprimé.')){return true;}else{return false;}" name="supprimez">Supprimer</button>
 					</div>
 				</div>
 			</form>
