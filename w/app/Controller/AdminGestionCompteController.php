@@ -280,7 +280,7 @@ class AdminGestionCompteController extends Controller
 	{
 		$messageModel = new MessageModel();
 		$picture = $messageModel->showBackground();
-
+		var_dump($picture);
 		$this->show('default/index',['picture' =>$picture]);
 	}
 

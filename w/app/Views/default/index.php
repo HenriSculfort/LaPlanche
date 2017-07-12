@@ -9,13 +9,12 @@
 
         background-image: url(
 
-            <?=$this->assetUrl('img/uploads/'.$picture)?>);
+            <?=$this->assetUrl('img/uploads/sport-ground.jpg')?>);
        
 
 }
 
 </style>
-<?php var_dump($picture);?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
