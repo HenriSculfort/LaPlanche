@@ -42,9 +42,6 @@ class Utils
 	{
 
 		switch($court_state) {
-						case 0:
-						echo 'Non renseigné';
-						break;
 						case 'very_bad':
 						echo 'Très mauvais état';
 						break;
