@@ -70,6 +70,7 @@ if(isset($courtResult)) {
 						<button class='btn btn-warning showModifications' data-id='<?=$court['id']?>' value="<?=$court['id']?>">Modifier</button>
 						<form method='POST' action='<?=$this->url('admin_deleteCourt')?>'>
 							<input type='hidden' value='<?=$court['id']?>' name='id'>
+							<input type='hidden' value='<?=$court['picture']?>' name='picture'>
 							<button class='btn btn-danger' id='danger-id' onClick="if(confirm('Le terrain va être supprimé.')){return true;}else{return false;}"  value="<?=$court['id']?>">Supprimer</button>
 						</form>
 					</div>
@@ -81,7 +82,8 @@ if(isset($courtResult)) {
 							<input type='hidden' value='<?=$court['id'];?>' name='id'>
 
 							<label for='name'>Photo</label>
-							<input type='file' class='form-control' name='picture' value='<?=$court['picture'];?>' accept="image/*">
+							<input type='hidden' class='form-control' name='name_picture' value='<?=$court['picture'];?>'>
+							<input type='file' class='form-control' name='picture' accept="image/*">
 
 							<label for='name'>Nom</label>
 							<input type='text' class='form-control' name='name' value='<?=$court['name'];?>'>

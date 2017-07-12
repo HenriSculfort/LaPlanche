@@ -259,7 +259,6 @@ class AdminGestionCompteController extends Controller
                 			imagegif($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
                 		}
 
-
                 		move_uploaded_file($_FILES['name']['tmp_name'], '../public/assets/img/uploads/'.$picture);
 
 					}else{
