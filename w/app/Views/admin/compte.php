@@ -91,7 +91,7 @@
 							//vide les champs du nouveau pass
 						}
 						else if(resPHP.result == false) { 
-							$('#errors').html(resPHP.errors);
+							$('#errors').addClass('alert alert-danger').html(resPHP.errors);
 						}		
 					}
 				});
