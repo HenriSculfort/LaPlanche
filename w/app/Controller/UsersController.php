@@ -184,6 +184,11 @@ class UsersController extends Controller
 						'result' => true,
 						];
 						$this->flash('Vous êtes connecté', 'success');
+
+						if($_SESSION['user']['blacklist'] != 'Ok'){
+							$this->flash('Vous êtes bloqué et déconnecté', 'danger');
+							$authModel->logUserOut($me); 
+						}
 					}
 					else {
 						$json = [

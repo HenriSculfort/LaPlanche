@@ -26,7 +26,7 @@
     <!-- Custom Fonts -->
     <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Atma" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
 
     <link rel="icon" type="image/png" sizes="16x16" href="<?= $this->assetUrl('img/favicon/favicon-16x316.png')?>">
