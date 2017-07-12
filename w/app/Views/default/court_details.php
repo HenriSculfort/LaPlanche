@@ -41,7 +41,7 @@
                                     <?= $findCourt['address'];?><br><?= $findCourt['postal_code'];?><?= $findCourt['city'];?>
                                 </p>
                             </div>
-                            <div class='col-md-2'>
+                            <div class='col-md-2' id="trajet">
                                 <h5>Trajet <i class="fa fa-car" aria-hidden="true"></i></h5>
                                 <div id="output"></div>
                             </div>
@@ -521,7 +521,14 @@
                         }
                     }
                 });
-            }
+            }, 
+                                                     function(err) {
+                $('#map').removeClass('show').addClass('hidden');
+                $('#trajet').removeClass('show').addClass('hidden');
+                console.warn('ERROR(' + err.code + '): ' + err.message);
+
+
+            },
                                                     )};
     }
 
