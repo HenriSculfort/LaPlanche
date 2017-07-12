@@ -216,11 +216,11 @@
 
     <?= $this->section('script');?>
 
-    <div>
-        <button id='btnPageTop' class="btn page-scroll" onclick="goToTop()">
-            <i class="fa fa-arrow-up"></i>
-        </button>
-    </div>
+   
+    <a href="#" class="scrollToTop" title="Haut de page" style="display: block;">
+        <i class="fa fa-arrow-circle-up"></i>
+    </a>
+    
 </body>
 
 </html>
