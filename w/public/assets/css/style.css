@@ -322,7 +322,9 @@ h4.service-heading {
 }
 /************************** PAGE VALIDATION TERRAIN ***************************/
 
-
+.padding-bottom{
+    padding-bottom: 0.5em;
+}
 /******************************* PAGE TERRAIN *********************************/
 
 #distance .slider-selection {
