@@ -142,6 +142,8 @@ class CourtsController extends Controller
 
     	if(!empty($_POST)){
     		$post = array_map('trim', array_map('strip_tags', $_POST));
+
+            // controle des paramètres
     		if(mb_strlen($post['name'])<2)
     		{
     			$errors[] = 'Le nom du terrain doit comporter au moins 2 caractères';
@@ -181,7 +183,7 @@ class CourtsController extends Controller
     		{
     			$errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
     		}
-
+            // valeurs à entrer sans photo
             $data = [
                 'name'          => $post['name'],
                 'address'       => $post['address'],
@@ -198,7 +200,7 @@ class CourtsController extends Controller
 
                 ];
 
-
+               // Controle de la présence de photo
     		if(isset($_FILES['picture']) && $_FILES['picture']['error']==0)
             {
 
@@ -263,9 +265,9 @@ class CourtsController extends Controller
                 			imagegif($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
                 		}
 
-
+                        // téléchargement des photos et des miniatures
                 		move_uploaded_file($_FILES['picture']['tmp_name'], '../public/assets/img/uploads/'.$picture);
-
+                        // valeurs à rentrer avec photos
                         $data = [
                             'name'          => $post['name'],
                             'address'       => $post['address'],
@@ -460,6 +462,8 @@ public function modifyCourtAdmin() {
             $post = array_map('trim', array_map('strip_tags', $_POST));
             if(isset($post['id'])) {
                 $courtId = (int) $post['id'];
+
+                // valeurs à updater sans photos
                 $data = [ 
                     'name' => $post['name'],
                     'address' => $post['address'],
@@ -532,8 +536,11 @@ public function modifyCourtAdmin() {
                                 imagegif($miniature, '../public/assets/img/uploads/thumbnails/'.$picture);
                             }
 
-                            move_uploaded_file($_FILES['picture']['tmp_name'], '../public/assets/img/uploads/'.$picture);
+                            unlink('../public/assets/img/uploads/'.$post['name_picture']);
+                            unlink('../public/assets/img/uploads/thumbnails/'.$post['name_picture']);
 
+                            move_uploaded_file($_FILES['picture']['tmp_name'], '../public/assets/img/uploads/'.$picture);
+                            // valeurs à updater avec photos
                             $data = [
                                 'name'          => $post['name'],
                                 'address'       => $post['address'],
@@ -581,6 +588,12 @@ public function modifyCourtAdmin() {
                 $courtId = (int) $post['id'];     
                 $model = new CourtsModel();
                 $gameAccepted = $model->delete($courtId);
+                if($gameAccepted){
+                    unlink('../public/assets/img/uploads/'.$post['picture']);
+                    unlink('../public/assets/img/uploads/thumbnails/'.$post['picture']);
+                }
+
+
             }
             $this->redirectToRoute('admin_getCourtsList', ['success' => ($this->flash('Le terrain a été supprimé', 'danger'))]);
         }
