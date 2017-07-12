@@ -28,7 +28,7 @@ foreach($findAll as $court) {
 		<!--début du formulaire avec les 2 bouton submit-->
 		<form method="post" id="<?=$court['id'];?>">
 			<div class='row'>
-				<div class='flex-description col-md-12 well'>
+				<div class='flex-description col-lg-12 col-lg-offset-0 col-xs-10 col-xs-offset-1 well'>
 					
 					<div class='col-md-2'>
 						<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
