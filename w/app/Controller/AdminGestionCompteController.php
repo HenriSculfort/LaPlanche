@@ -27,7 +27,7 @@ class AdminGestionCompteController extends Controller
 			$this->show('w_errors/403');            
 		}
 		else {	
-			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off'){
+			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'Ok'){
 				$roleModif = [
 				'role' => $_GET['role'],
 				];

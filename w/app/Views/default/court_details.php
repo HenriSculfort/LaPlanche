@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container padding-bottom">
                 <div class='col-md-10 col-md-offset-1'>
                     <div class='row'>
                         <div id="map"></div>
@@ -137,7 +137,7 @@
                     <div class='col-md-6'>
                         <!-- Bouton de suppression de la rencontre par l'utilisateur qui l'a créée !  -->
                         <?php if($game['user_id'] == ($w_user['id'])) :?>
-                        <form method='POST' action='<?=$this->url('delete_game');?>'>
+                        <form method='POST' action='<?=$this->url('delete_game');?>' class=" padding-bottom">
                             <input type='hidden' value='<?=$game['id'];?>' name='game_id'>
                             <input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
                             <button type='submit' class='btn btn-danger' onClick="if(confirm('Le match va être supprimé.')){return true;}else{return false;}">Supprimer la rencontre</button>
@@ -146,7 +146,7 @@
 
                         <!-- Bouton d'acceptation de la rencontre par l'utilisateur qui l'a proposée ! -->
                         <?php if($game['user_id'] == ($w_user['id']) && $game['accepted'] != 1 ) :?>
-                        <form method='POST' action='<?=$this->url('accept_game');?>'>
+                        <form method='POST' action='<?=$this->url('accept_game');?>' class=" padding-bottom">
                             <input type='hidden' value='<?=$game['id'];?>' name='game_id'>
                             <input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
                             <button type='submit' class='btn btn-success'>Accepter la rencontre</button>
@@ -155,7 +155,7 @@
 
                         <!-- Bouton d'annulation de la rencontre par l'utilisateur qui l'a acceptée ! (ATTENTION, ceci n'est pas une suppression) -->
                         <?php if($game['user_id'] == ($w_user['id']) && $game['accepted'] == 1 ) :?>
-                        <form method='POST' action='<?=$this->url('cancel_game');?>'>
+                        <form method='POST' action='<?=$this->url('cancel_game');?>' class=" padding-bottom">
                             <input type='hidden' value='<?=$game['id'];?>' name='game_id'>
                             <input type='hidden' value='<?=$findCourt['id'];?>' name='court_id'>
                             <button type='submit' class='btn btn-warning' onClick="if(confirm('Le statut complet va être annulé et d\'autres joueurs pourront se proposer')){return true;}else{return false;}">Annuler la rencontre</button>
