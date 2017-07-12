@@ -28,7 +28,7 @@
 				</div>
 				<div class="form-group">
 					<label for='name'>Nom du terrain </label>
-					<input class="form-control" type='text' name='name' placeholder="ex : city stade brun">
+					<input class="form-control" type='text' name='name' placeholder="Ex : city stade brun">
 				</div>
 
 				<button type='submit' id='searchBtn' class='btn btn-warning'>Rechercher </button>
