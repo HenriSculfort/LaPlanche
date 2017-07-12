@@ -60,7 +60,7 @@
 	$(document).ready(function(){
 		getList();
 		$(document).ajaxComplete (function (){//permet de signaler des evenements sur du contenu généré en ajax
-			$('.zob').on('click', function(e){
+			$('.dataAjax').on('click', function(e){
 
 				// Empeche l'action par défaut, dans notre cas la soumission du formulaire
 				e.preventDefault(); 
