@@ -185,7 +185,7 @@ class UsersController extends Controller
 						];
 						$this->flash('Vous êtes connecté', 'success');
 
-						if($_SESSION['user']['blacklist'] != 'Ok'){
+						if($_SESSION['user']['blacklist'] != 'autorisé'){
 							$this->flash('Vous êtes bloqué et déconnecté', 'danger');
 							$authModel->logUserOut($me); 
 						}

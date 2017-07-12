@@ -39,8 +39,6 @@
 			</tr>
 		</thead>
 		<tbody  id="viewBoucle">
-			<?php
-			?>
 		</tbody>
 	</table>
 

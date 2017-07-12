@@ -54,7 +54,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-services">La planche vous permet de :</h2>
+                <h2 class="section-services">En rejoignant La Planche, vous pourrez :</h2>
             </div>
         </div>
         <div class="services row text-center">
@@ -63,7 +63,7 @@
                     <img src="<?= $this->assetUrl('img/trophy.png')?>" alt="coupe">
                 </span>
                 <h4 class="service-heading">Participer à un match</h4>
-                <p class="text-muted">Envie d'un match de basket ? Consultez la liste des matches à proximité de chez vous. Vous pourrez échanger depuis le tchat avec la communauté pour organiser la rencontre !</p>
+                <p class="text-muted">Envie d'un match de basket ? Consultez la liste des matchs à proximité de chez vous. Vous pourrez échanger depuis le tchat avec la communauté pour organiser la rencontre !</p>
             </div>
             <div class="detail-services col-md-4">
                 <span class="fa-stack fa-4x">
