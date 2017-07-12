@@ -195,7 +195,7 @@
         </div>
         <div class="row form-group">
             <div class='col-md-offset-1 col-md-4 align-right'>
-                <label for="username" class="align-right control-label">Pseudo *</label>
+                <label for="username" class="align-right control-label">Pseudo </label>
             </div>
             <div class='col-md-4'>
                 <input type="text" class='form-control' name="username" id="username" value="<?= $_SESSION['user']['username']?>">
@@ -261,14 +261,14 @@
             </div>
         </div>
         <div class="row form-group" >
-            <label for="password" class="col-md-offset-1 col-md-4 align-right">Modifier votre mot de passe *</label>
+            <label for="password" class="col-md-offset-1 col-md-4 align-right">Modifier votre mot de passe </label>
             <div class="col-md-4">
                 <input type="password" class='form-control' name="password" id="password">
                 <div id="errors-mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur du mot de passe-->
             </div>
         </div>
         <div class="row form-group" >
-            <label for="checkPassword" class="col-md-offset-1 col-md-4 align-right">Répéter le mot de passe *</label>
+            <label for="checkPassword" class="col-md-offset-1 col-md-4 align-right">Répéter le mot de passe </label>
             <div class="col-md-4">
                 <input type="password" class='form-control' name="checkPassword" id="checkPassword">
                 <div id="errors-verif_mot_de_passe" class="errorsForms"></div><!-- Affiche l'erreur de verif du mot de passe-->
