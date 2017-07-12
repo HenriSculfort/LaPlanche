@@ -376,6 +376,8 @@
                     if(retourJson.result == true){ 
                         $('#resultAjax').html('<div class="alert alert-success">' + retourJson.message + '</div>');
                         $('input').val('');
+                        $('textarea').val('');
+                        $('select').val('');
                     }
                     else if(retourJson.result == false){
                         $('#resultAjax').html('<div class="alert alert-danger">' + retourJson.errors + '</div>');
