@@ -4,6 +4,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use Model\CourtsModel;
+use Model\MessageModel;
 // Introduce the class into your scope
 use KamranAhmed\Geocode\Geocode;
 
@@ -69,7 +70,9 @@ class MapController extends Controller
 
             }
         }
-        $this->show('default/index', ['postal_code' => $postal_code , 'location' => $location , 'donnee' => $donnee]);
+        $messageModel = new MessageModel();
+        $picture = $messageModel->showBackground();
+        $this->show('default/index', ['postal_code' => $postal_code , 'location' => $location , 'donnee' => $donnee, 'picture' => $picture]);
     }
 
 

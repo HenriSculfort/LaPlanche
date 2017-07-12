@@ -2,14 +2,14 @@
 
 <?php $this->start('header_content') ?>
 
-
 <style> 
+
     .intro-header{
 
 
         background-image: url(
 
-            <?=$this->assetUrl('img/uploads/sport-ground.jpg')?>);
+            <?=$this->assetUrl('img/uploads/'.$picture['message'])?>);
        
 
 }
