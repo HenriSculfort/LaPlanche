@@ -144,7 +144,7 @@
                     </div>
                     <div class='col-md-8'>
                         <input type='radio' name='net' value='yes'> Oui   
-                        <input type='radio' name='net' value='no'> Non
+                        <input type='radio' name='net' value='no' checked> Non
                     </div>
                 </div>
                 <div class='row form-group'>
@@ -161,7 +161,7 @@
                     </div>
                     <div class='col-md-6'>
                         <input type='radio' name='parking' value='yes'> Oui   
-                        <input type='radio' name='parking' value='no'> Non
+                        <input type='radio' name='parking' value='no' checked> Non
                     </div>
                 </div>
                 <br>
