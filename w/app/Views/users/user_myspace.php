@@ -143,7 +143,7 @@
                         <label for='net'>Filet sur le(s) panier(s) ?</label>
                     </div>
                     <div class='col-md-8'>
-                        <input type='radio' name='net' value='yes'> Oui-  
+                        <input type='radio' name='net' value='yes'> Oui   
                         <input type='radio' name='net' value='no'> Non
                     </div>
                 </div>
