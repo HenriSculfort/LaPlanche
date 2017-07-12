@@ -120,8 +120,8 @@ if(isset($courtResult)) {
 							<input type='radio' name='parking' value='yes' <?php if($court['parking'] == '1'){ echo 'selected'; }?>> Oui   
 				            <input type='radio' <?php if($court['parking'] == '0'){ echo 'selected'; }?> name='parking' value='no'> Non
 							<br>
-							<button class='btn btn-success' type='submit'>Valider les modifications</button>
-						<div>
+							<button class='btn btn-success margin-bottom' type='submit'>Valider les modifications</button>
+                        </div>
 			  		</div>
 			  	</form>
 			</div>	
