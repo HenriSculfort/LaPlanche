@@ -2,7 +2,7 @@
 
 <?php $this->start('header_content');?>
 <div class="standard-header">
-    <h1>Espace Utilisateur</h1>
+    <h1>Espace utilisateur</h1>
     <p class="legend-header">Cet espace vous permet de suggérer un nouveau terrain et de modifier vos données personnelles</p>
 </div>
 
