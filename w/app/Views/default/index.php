@@ -2,18 +2,20 @@
 
 <?php $this->start('header_content') ?>
 
+
 <style> 
     .intro-header{
 
+
         background-image: url(
 
-            <?=$this->assetUrl('img/uploads/'.$message['message'])?>);
+            <?=$this->assetUrl('img/uploads/'.$picture)?>);
        
-       
+
 }
 
 </style>
-
+<?php var_dump($picture);?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -174,7 +176,7 @@
                             if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
                             {
                 ?>
-                ['<?php echo $donnees['name'] ?><br> <a class="windowMap" href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
+                ['<?php echo $donnees['name'] ?><br> <a href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
                 <?php
                             }
                         }
@@ -192,8 +194,7 @@
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                 map: map,
-                url: locations[i][4],
-                icon: '<?= $this->assetUrl('img/favicon/favicon-32x32.png')?>',
+                url: locations[i][4]
             });
 
             google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
