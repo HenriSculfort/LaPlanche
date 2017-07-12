@@ -260,7 +260,7 @@
             </div><!-- Fin du row contenant tous les champs -->
             <div class='row'>
                 <div class='col-sm-6 col-sm-offset-3'>
-                    <button type='submit' id='submitProposeMatch' class='btn btn-primary'>Proposer ce match</button>
+                    <button type='submit' id='submitProposeMatch' class='btn btn-primary margin-bottom-btn'>Proposer ce match</button>
                 </div>
             </div>
         </div>

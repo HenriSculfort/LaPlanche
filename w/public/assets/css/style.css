@@ -76,6 +76,10 @@ h3 {
     font-weight: 400;
 }
 
+.margin-bottom-btn{
+    margin-bottom: 4em;
+}
+
 /************************************* NAVBAR *********************************/
 
 .navbar {
