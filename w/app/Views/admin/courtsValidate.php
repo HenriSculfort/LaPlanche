@@ -35,11 +35,9 @@ foreach($findAll as $court) {
 					</div>
 					<div class='col-md-7'>
 						<h4><?= $court['name'];?></h4>
-						<p class="description-terrain"><?= nl2br($court['description']);?></p>
-						<hr>
-						<p class="description-terrain"><?= nl2br($court['address'] . ' ' . $court['postal_code'] . ' ' . $court['city']);?></p>
-						<hr>
-						<p class="description-terrain"><?= nl2br($court['opening_hours']);?></p>
+						<p><strong>Description : </strong><?= nl2br($court['description']);?></p>
+						<p><strong>Adresse : </strong><?= nl2br($court['address'] . ' ' . $court['postal_code'] . ' ' . $court['city']);?></p>
+						<p><strong>Horaires : </strong><?= nl2br($court['opening_hours']);?></p>
 					</div>
 					<div class='col-md-3'>
 						<!--On envoie l'id du terrain que l'on veut valider ou supprimer avec un nom à chaque boutton qui devient un paramétre dans $_POST-->
