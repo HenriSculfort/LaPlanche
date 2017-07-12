@@ -45,19 +45,19 @@ class Utils
 						case 0:
 						echo 'Non renseigné';
 						break;
-						case 1:
+						case 'very_bad':
 						echo 'Très mauvais état';
 						break;
-						case 2:
+						case 'bad':
 						echo 'Mauvais état';
 						break;
-						case 3:
+						case 'medium':
 						echo 'Etat Normal';
 						break;
-						case 4:
+						case 'good':
 						echo 'Bon état';
 						break;
-						case 5:
+						case 'very_good':
 						echo 'Très bon état';
 						break;
 					};
