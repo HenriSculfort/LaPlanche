@@ -22,6 +22,7 @@ $w_routes = array(
 
     // Terrains
     ['GET|POST', '/', 'Default#home', 'accueil'],
+    ['GET|POST', '/', 'AdminGestionCompte#newBackground', 'accueil_newBg'],
     ['GET|POST', '/courts', 'Courts#listAllCourts', 'courts'],
     ['GET|POST', '/courts/search', 'Courts#searchCourts', 'search_courts'],
     ['GET|POST', '/courts/details/[i:id]', 'Courts#courtDetails', 'court_details'],
@@ -61,6 +62,7 @@ $w_routes = array(
     ['GET|POST', '/gestioncompte/', 'AdminGestionCompte#gestionCompte', 'admin_compte'],
     ['GET|POST', '/gestioncompte/Ajax', 'AdminGestionCompte#gestionCompteAjax', 'admin_compteAjax'],
     ['GET|POST', '/gestioncompte/listAjax', 'AdminGestionCompte#getList', 'admin_getListAjax'],
+
 
 
 );

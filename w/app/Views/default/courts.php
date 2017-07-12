@@ -15,19 +15,17 @@
 <!-- FORMULAIRE DE RECHERCHE -->
 <div class="container">
 	<div class="row">
+		<div class="col-lg-12 col-lg-offset-0 col-xs-10 col-xs-offset-1">
 			<form class="form-inline text-center moteur-recherche" action="<?= $this->url('search_courts')?>">
-
 				<div class="form-group">
 					<label for='searchWhere'>Lieu *</label>
 					<input class="form-control" type='text' name='searchWhere' placeholder="Ville / CP">
 				</div>
-
 				<div class="form-group">
 					<label for="datepicker"> Date </label>
 					<input class="form-control" type="text" id="datepicker" placeholder="Sélectionnez la date">
 					<input type="hidden" id="alternate" name="date">
 				</div>
-
 				<div class="form-group">
 					<label for='has_match'> Match </label>
 					<select name='has_match' class="form-control">
@@ -46,6 +44,7 @@
 					<small>* champ requis</small>
 				</div>
 			</form>
+		</div>	
 	</div>
 </div>
 
@@ -85,7 +84,7 @@ if(isset($courtResult)) {
 		if( $court['admin_validation'] == 1) { ?>
 		<div class='container'>
 			<div class='row'>
-				<div class='flex-description col-md-12 well'>
+				<div class='flex-description col-lg-12 col-lg-offset-0 col-xs-10 col-xs-offset-1 well'>
 					<div class='col-md-3'>
 						<img class="img-rounded img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/thumbnails/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt='Le terrain'>
 					</div>

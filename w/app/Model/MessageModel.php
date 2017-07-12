@@ -28,4 +28,12 @@ class MessageModel extends \W\Model\Model
         	
     }
 
+
+     public function showBackground() { 
+        $showBg = $this->dbh->prepare('SELECT message FROM '.$this->table.' WHERE id = 2');
+         $showBg->execute();
+        return $picture = $showBg->fetch();
+        };
+          
+    }
 }

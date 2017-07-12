@@ -27,7 +27,7 @@ class AdminGestionCompteController extends Controller
 			$this->show('w_errors/403');            
 		}
 		else {	
-			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == null){
+			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'Ok'){
 				$roleModif = [
 				'role' => $_GET['role'],
 				];
@@ -273,6 +273,15 @@ class AdminGestionCompteController extends Controller
 		}
 
 		$this->redirectToRoute('accueil');
+	}
+
+
+	function newBackground()
+	{
+		$messageModel = new MessageModel();
+		$picture = $messageModel->showBackground();
+
+		$this->show('default/index',['picture' =>$picture]);
 	}
 
 }
