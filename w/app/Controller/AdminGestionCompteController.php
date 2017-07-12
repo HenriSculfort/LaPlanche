@@ -247,4 +247,13 @@ class AdminGestionCompteController extends Controller
 		$this->redirectToRoute('accueil');
 	}
 
+
+	function newBackground()
+	{
+		$messageModel = new MessageModel();
+		$picture = $messageModel->showBackground();
+
+		$this->show('default/index',['picture' =>$picture]);
+	}
+
 }
