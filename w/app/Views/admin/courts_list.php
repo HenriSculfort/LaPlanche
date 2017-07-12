@@ -104,8 +104,8 @@ if(isset($courtResult)) {
 							<textarea name='description' class='form-control' rows='10' value='<?=$court['description'];?>'><?=$court['description'];?></textarea>
 
 							<label for='net'>Filet</label>
-							<input type='radio' name='net' value='yes' <?php if ($court['net'] == 'yes') { echo 'selected';}?>> Oui   
-			                 <input type='radio' name='net' value='no' <?php if ($court['net'] == 'no') { echo 'selected';}?>> Non<br>
+							<input type='radio' name='net' value='yes' <?php if ($court['net'] == 'yes') { echo 'checked';}?>> Oui   
+			                 <input type='radio' name='net' value='no' <?php if ($court['net'] == 'no') { echo 'checked';}?>> Non<br>
 
 
 						  	<label for='court_state'>Etat du terrain</label>
@@ -119,8 +119,8 @@ if(isset($courtResult)) {
 		                    </select>
 
 							<label for='parking'>Parking (facultatif)</label>
-							<input type='radio' name='parking' value='yes' <?php if($court['parking'] == 'yes'){ echo 'selected'; }?>> Oui   
-				            <input type='radio' <?php if($court['parking'] == 'no'){ echo 'selected'; }?> name='parking' value='no'> Non
+							<input type='radio' name='parking' value='yes' <?php if($court['parking'] == 'yes'){ echo 'checked'; }?>> Oui   
+				            <input type='radio' <?php if($court['parking'] == 'no'){ echo 'checked'; }?> name='parking' value='no'> Non
 							<br>
 							<button class='btn btn-success margin-bottom' type='submit'>Valider les modifications</button>
                         </div>
