@@ -70,6 +70,7 @@
 				blacklist_user = $('#blacklist-'+ id_user +' option:selected').val();
 				role_user = $('#role-'+ id_user +' option:selected').val();
 				suppr_user = 'off'; // Valeur par défaut
+				username_user = $('#username'+id_user).val();
 
 				if($('#suppr-'+ id_user).is(':checked')){ // si on coche la case
 					suppr_user = 'on';
@@ -79,7 +80,7 @@
 
 					url: '<?= $this->url('admin_compteAjax');?>', 
 					type: 'GET',
-					data: {id: id_user, role: role_user, suppr: suppr_user, blacklist: blacklist_user},	
+					data: {id: id_user, role: role_user, suppr: suppr_user, blacklist: blacklist_user, username : username_user},	
 					dataType: 'json',
 					success: function(resPHP){
 

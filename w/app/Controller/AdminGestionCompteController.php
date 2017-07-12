@@ -27,6 +27,7 @@ class AdminGestionCompteController extends Controller
 			$this->show('w_errors/403');            
 		}
 		else {	
+			
 			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'autorisé'){
 				$roleModif = [
 				'role' => $_GET['role'],
@@ -43,7 +44,7 @@ class AdminGestionCompteController extends Controller
 
 					$json = [
 					'result' => true,
-					'message' => 'L\'utilisateur est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
+					'message' => 'L\'utilisateur '.$_GET['username'].' est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
 					];
 				}
 			}
@@ -63,7 +64,7 @@ class AdminGestionCompteController extends Controller
 
 					$json = [
 					'result' => true,
-					'message' => 'L\'utilisateur est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
+					'message' => 'L\'utilisateur '.$_GET['username'].' est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
 					];
 				}
 			}
@@ -75,7 +76,7 @@ class AdminGestionCompteController extends Controller
 
 					$json = [
 					'result' => true,
-					'message' => 'L\'utilisateur a été supprimé'
+					'message' => 'L\'utilisateur '.$_GET['username'].' a été supprimé'
 					];
 				}
 			}
@@ -100,7 +101,7 @@ class AdminGestionCompteController extends Controller
 			foreach ($listuser as $key => $value) {
 
 				$html .= '<tr>';
-				$html .= '<form type="GET" id="user-id-' . $value['id'] . '">';
+				$html .= '<form method="GET" id="user-id-' . $value['id'] . '">';
 				$html .= '<td>' . $value['username'] . '</td>';
 				$html .= '<td>' . $value['level'] . '</td>';
 				$html .= '<td>' . $value['firstname'] . '</td>';
@@ -135,6 +136,7 @@ class AdminGestionCompteController extends Controller
 				}
 				$html .= '>Bloqué</option>';
 				$html .= '</select></td><td>';
+				$html .='<input type="hidden" id="username'.$value['id'].'" name="username" value="'. $value['username'] . '">';
 				$html .= '<button type="submit" data-id="' . $value['id'] . '" class="btn btn-warning zob">Appliquer</button>';
 				$html .= '</td></form></tr>';
 			}
@@ -143,9 +145,9 @@ class AdminGestionCompteController extends Controller
 			'html' => $html,
 			'listuser' => $listuser,
 			'id_user' => $value['id'],
-			'id' => $value['id']
+			'id' => $value['id'],
+			'username' => $value['id'],
 			];
-
 			$this->showJson($boucle);
 		}
 	}
