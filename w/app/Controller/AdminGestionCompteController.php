@@ -275,6 +275,13 @@ class AdminGestionCompteController extends Controller
 				}			
 			}
 
+			//suppression de l'image antérieure
+			$messageModelToSupprime = new MessageModel();
+        	$pictureToDelete = $messageModelToSupprime->showBackground();
+        	 unlink('../public/assets/img/uploads/'.$pictureToDelete['message']);
+             unlink('../public/assets/img/uploads/thumbnails/'.$pictureToDelete['message']);
+
+
 			$status = 'show';
 			$messageModel = new MessageModel();
 			$message = $messageModel->updateBackground($picture, $status);
