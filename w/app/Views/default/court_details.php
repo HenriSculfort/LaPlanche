@@ -7,7 +7,7 @@
     <div class="row">
         <div class='col-lg-12'>
             <hr class="small">
-            <h3 class="titre-match">Détails du terrain</h3>
+            <h3 class="titre-match">Détails du <?=$findCourt['name']?></h3>
             <hr class="small hr-bottom">
 
             <!--********************** SOMMAIRE ************************-->
