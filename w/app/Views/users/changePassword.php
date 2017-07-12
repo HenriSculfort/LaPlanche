@@ -10,8 +10,8 @@
 <?=$this->start('main_content'); ?>
 
 	<article>
-		<div id="errors" style="color:red"></div>
-		<div id="message" style="color:green"></div>
+		<div id="errors"></div>
+		<div id="message"></div>
 	</article>
 
 	<form method="POST">
@@ -49,7 +49,7 @@
 
 				if(resPHP.result == true) {
 						//affiche le message de validation dans la div avec l'id message
-						$('#message').html(resPHP.message);
+						$('#message').addClass('alert alert-success').html(resPHP.message);
 						//vide les erreurs
 						$('#errors').html('');//on vide les messages d'erreures
 						//vide les champs du nouveau pass
@@ -58,7 +58,7 @@
 
 					}
 					else if(resPHP.result == false) { 
-						$('#errors').html(resPHP.errors);
+						$('#errors').addClass('alert alert-danger').html(resPHP.errors);
 					}		
 				}
 			});

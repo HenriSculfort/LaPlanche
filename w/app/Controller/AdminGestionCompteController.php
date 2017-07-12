@@ -111,7 +111,9 @@ class AdminGestionCompteController extends Controller
 				$html .= '<td>' . $value['lastname'] . '</td>';
 				$html .= '<td>' . $value['email'] . '</td>';
 				$html .= '<td>' . $value['address'] . ' '. $value['postal_code'] . ' ' . $value['city'] . '</td>';
-				$html .= '<td>' . $value['phone'] . '</td>';
+				$html .= '<td>';
+				if($value['phone'] !=0){ $html .= $value['phone'];};
+				$html .= '</td>';
 				$html .= '<td><select name="role" class="select-role" id="role-' . $value['id'] . '" >';
 				$html .= '<option value="user"';
 				if(isset($value['role']) && $value['role'] == 'user'){
