@@ -522,10 +522,6 @@ hr.hr-bottom{
     cursor: pointer;
 }
 
-.scrollToTop:hover {
-    color: #ea931e;
-}
-
 .scrollToTop a {
     padding: 1.2em;
 }
@@ -542,7 +538,7 @@ hr.hr-bottom{
 } 
 
 .fa-arrow-circle-up:hover { 
-    color: #ea931e;
+    color: rgba(0, 0, 0, 0.82);
  }
 
 
