@@ -3,7 +3,7 @@
 <?php $this->start('main_content');?>
 
 <!--************************* DETAILS TERRAIN ************************-->
-<div class="container-fluid background-blanc-section">
+<div class="container background-blanc-section">
     <div class="row">
         <div class='col-lg-12'>
             <hr class="small">
@@ -91,7 +91,7 @@
 
 <?php if(!empty($w_user)): ?>
 <!--************************* MATCHS PREVUS ************************-->
-<div class='container-fluid background-gris-section'>
+<div class='container background-gris-section'>
     <hr class="small">
     <div class='row'>
         <h3 id='gamesList' class="titre-match">Matchs prévus</h3>
@@ -177,7 +177,7 @@
 
 <!-- Fin du div row des matchs -->
 <!--************************* PROPOSER MATCH ************************-->
-<div class="container-fluid background-blanc-section">
+<div class="container background-blanc-section">
     <hr class="small">
     <div class='row'>
         <h3 id='newMatch' class="titre-match">Proposer un match sur ce terrain</h3>
