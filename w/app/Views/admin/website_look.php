@@ -55,7 +55,7 @@
 				</div>
 				<div class='row'>
 					<br>
-					<button class='btn btn-warning margin-bottom-btn' type="submit">Envoyer</button>
+					<button class='btn btn-warning margin-bottom-btn' type="submit" onClick="if(confirm('Voulez-vous changer la photo de couverture?')){return true;}else{return false;}">Envoyer</button>
 				</div>
 			</form>
 		</div>
