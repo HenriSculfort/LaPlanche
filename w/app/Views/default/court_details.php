@@ -27,7 +27,7 @@
                     <div class='col-md-12'>
                         <div class='row'>
                             <div class='col-md-6'>
-                                <img class="img-responsive" src="<?=$this->assetUrl('img/uploads/thumbnails/'.$findCourt['picture']);?>" alt="photo <?=$findCourt['name'];?>">
+                                <img class="img-responsive" src="<?php if(isset($court['picture']) && !empty($court['picture'])){ echo $this->assetUrl('img/uploads/thumbnails/'.$court['picture']);} else{echo $this->assetUrl('img/court-default.png');}?>" alt="photo <?=$findCourt['name'];?>">
                             </div>
                             <div class='col-md-2'>
                                 <h5>Horaires</h5>
