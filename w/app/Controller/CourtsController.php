@@ -146,7 +146,7 @@ class CourtsController extends Controller
             // controle des paramètres
     		if(mb_strlen($post['name'])<2)
     		{
-    			$errors[] = 'Le nom du terrain doit comporter au moins 2 caractères';
+    			$errors[] = 'Le nom du terrain doit être renseigné';
     		}
 
     		if(mb_strlen($post['description'])<10)
@@ -161,28 +161,24 @@ class CourtsController extends Controller
 
     		if(mb_strlen($post['address'])<2)
     		{
-    			$errors[] = 'L\'adresse doit comporter au moins 2 caractères';
+    			$errors[] = 'L\'adresse doit être renseigné';
     		}
 
-    		if(is_int($post['postal_code']))
+    		if(empty($post['postal_code']) or is_int($post['postal_code']))
     		{
-    			$errors[] = 'Le code postal doit comporter des chiffres';
+    			$errors[] = 'Le code postal doit être renseigné';
     		}
 
     		if(mb_strlen($post['city'])<2)
     		{
-    			$errors[] = 'Le nom de la ville doit comporter au moins 2 caractères';
+    			$errors[] = 'Le nom de la ville doit être renseigné';
     		}
 
     		if(empty($post['net']))
     		{
     			$errors[] = 'Le filet doit être défini';
     		}
-
-    		if(mb_strlen($post['opening_hours'])<2)
-    		{
-    			$errors[] = 'Les horaires d\'ouverture doivent comporter au moins 2 caractères';
-    		}
+            
             // valeurs à entrer sans photo
             $data = [
                 'name'          => $post['name'],
@@ -195,8 +191,8 @@ class CourtsController extends Controller
                 'opening_hours' => $post['opening_hours'],
                 'admin_validation'  => 0,
                 'parking'       => $post['parking'],
-                'latitude'      => $post['lat'],
-                'longitude'     => $post['lng'],
+                'latitude'      => isset($post['lat']) ? $post['lat'] : $errors[]='Vous devez vérifier l\'adresse',
+                'longitude'     => isset($post['lng']) ? $post['lng'] : null,
 
                 ];
 
