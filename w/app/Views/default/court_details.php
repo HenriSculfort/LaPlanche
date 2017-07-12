@@ -465,9 +465,9 @@
                 var origin2 = {lat : <?= $findCourt['latitude'];?> , lng: <?= $findCourt['longitude'];?>};
 
                 var destinationIcon = 'https://chart.googleapis.com/chart?' +
-                    'chst=d_map_pin_letter&chld=B|FF0000|000000';
+                    'chst=d_map_pin_letter&chld=B|ea931e|000000';
                 var originIcon = 'https://chart.googleapis.com/chart?' +
-                    'chst=d_map_pin_letter&chld=A|FFFF00|000000';
+                    'chst=d_map_pin_letter&chld=A|ea931e|000000';
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 55.53, lng: 9.4},
                     zoom: 10
