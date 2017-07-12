@@ -21,40 +21,47 @@
 
 <div id='error' class='col-sm-offset-3 col-sm-6'></div>
 <div id='success' class='col-sm-offset-3 col-sm-6'></div>
-<div class='col-sm-offset-3 col-sm-6'>
-	<form method='POST'>
-		<div class='row'>
-			<textarea class='form-control ' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'></textarea>
-		</div>
-		<br>
-		<div class='row'>
-			<div class='text-center'>
-				<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
-			</div>
-		</div>
-	</form>
-	<hr>
-</div>
-<div class='col-sm-offset-3 col-sm-6'>
-	<div class='row'>
-		<div class='standard-header'>
-			<h2>Modifier la photo de couverture</h2>
-			<p>Pour modifier la photo présente sur la page d'accueil du site.</p>
+
+<div class="container">
+	<div class="row">
+		<div class='col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1'>
+			<form method='POST'>
+				<div class='row'>
+					<textarea class='form-control ' placeholder="Informations à mettre en page d'accueil" rows='2' name='message' id='message'></textarea>
+				</div>
+				<br>
+				<div class='row'>
+					<div class='text-center'>
+						<button id='modifyMessage' class='btn btn-warning'>Modifier</button>
+					</div>
+				</div>
+			</form>
+			<hr>
 		</div>
 	</div>
+	<div class='row'>
+		<div class='col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1'>
+			<div class='standard-header'>
+				<h2>Modifier la photo de couverture</h2>
+				<p>Pour modifier la photo présente sur la page d'accueil du site.</p>
+			</div>
+		</div>
 		<div class='text-center'>
 			<form method="POST" id="changeBackground" action='<?=$this->url('admin_changeBackground')?>' enctype="multipart/form-data">
-				<div class='row text-center'>
-				<input type="file" name="name" class='col-sm-offset-3 col-sm-5'>
+				<div class='row'>
+					<div class='col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1'>
+						<input type="file" name="name">
+					</div>
 				</div>
 				<div class='row'>
-				<br>
-				<button class='btn btn-warning' type="submit" class='col-m-12'>Envoyer</button>
+					<br>
+					<button class='btn btn-warning margin-bottom-btn' type="submit">Envoyer</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
 
 
 <?=$this->stop('main_content'); ?>

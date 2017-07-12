@@ -27,35 +27,43 @@ class AdminGestionCompteController extends Controller
 			$this->show('w_errors/403');            
 		}
 		else {	
-			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'Ok'){
+			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'autorisé'){
 				$roleModif = [
 				'role' => $_GET['role'],
 				];
-
-				$UsersModel = new UsersModel();
-				$update = $UsersModel->update($roleModif, $_GET['id']);
-
-				if($update == true){
-
-					$json = [
-					'result' => true,
-					'message' => 'Le rôle de l\'utilisateur a été modifié'
-					];
-				}
-			}
-			elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'off'){
 				$blacklist = [
 				'blacklist' => $_GET['blacklist'],
 				];
 
 				$UsersModel = new UsersModel();
+				$update = $UsersModel->update($roleModif, $_GET['id']);
 				$update = $UsersModel->update($blacklist, $_GET['id']);
 
 				if($update == true){
 
 					$json = [
 					'result' => true,
-					'message' => 'L\'utilisateur a été bloqué'
+					'message' => 'L\'utilisateur est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
+					];
+				}
+			}
+			elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'bloqué'){
+				$blacklist = [
+				'blacklist' => $_GET['blacklist'],
+				];
+				$roleModif = [
+				'role' => $_GET['role'],
+				];
+
+				$UsersModel = new UsersModel();
+				$update = $UsersModel->update($roleModif, $_GET['id']);
+				$update = $UsersModel->update($blacklist, $_GET['id']);
+
+				if($update == true){
+
+					$json = [
+					'result' => true,
+					'message' => 'L\'utilisateur est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
 					];
 				}
 			}
@@ -116,13 +124,13 @@ class AdminGestionCompteController extends Controller
 				$html .= '</td>';
 
 				$html .= '<td><select name="blacklist" class="select-blacklist" id="blacklist-' . $value['id'] . '" >';
-				$html .= '<option value="Ok"';
-				if(isset($value['blacklist']) && $value['blacklist'] == 'Ok'){
+				$html .= '<option value="autorisé"';
+				if(isset($value['blacklist']) && $value['blacklist'] == 'autorisé'){
 					$html .= 'selected';
 				}
-				$html .= '>Ok</option>';
-				$html .= '<option value="Bloqué"';
-				if(isset($value['blacklist']) && $value['blacklist'] != 'Ok'){ 
+				$html .= '>Autorisé</option>';
+				$html .= '<option value="bloqué"';
+				if(isset($value['blacklist']) && $value['blacklist'] == 'bloqué'){ 
 					$html .= 'selected';
 				}
 				$html .= '>Bloqué</option>';

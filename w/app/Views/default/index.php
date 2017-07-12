@@ -175,7 +175,7 @@
                             if(!empty($donnees['latitude']) || !empty($donnees['longitude']))
                             {
                 ?>
-                ['<?php echo $donnees['name'] ?><br> <a href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
+                ['<?php echo $donnees['name'] ?><br> <a class="windowMap" href="<?=$this->url('court_details', ['id' => $donnees['id']])?>">Voir détails terrain</a> ', <?php echo $donnees['latitude'] ?>, <?php echo $donnees['longitude'] ?>],
                 <?php
                             }
                         }
@@ -187,13 +187,15 @@
         var infowindow = new google.maps.InfoWindow();
 
         var marker, i;
+        
 
         for (i = 0; i < locations.length; i++) 
         {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                 map: map,
-                url: locations[i][4]
+                url: locations[i][4],
+                icon : '<?php echo $this->assetUrl('img/favicon/favicon-32x32.png') ?>'
             });
 
             google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
