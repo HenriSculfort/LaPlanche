@@ -520,7 +520,7 @@ hr.hr-bottom{
     padding: 1.2em;
 }
 
-.fa {
+.fa-arrow-circle-up {
     color: grey ;
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
@@ -531,7 +531,7 @@ hr.hr-bottom{
     transform: translate(0, 0);
 } 
 
-.fa:hover { 
+.fa-arrow-circle-up:hover { 
     color: #ea931e;
  }
 
