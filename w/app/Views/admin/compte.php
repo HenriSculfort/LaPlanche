@@ -17,10 +17,10 @@
 
 <?=$this->start('main_content'); ?>
 
-<article>
-	<div id="errors" style="color:red"></div>
-	<div id="message" style="color:green"></div>
-</article>
+
+<div id="errors"></div>
+<div id="message"></div>
+
 
 <div class='table-responsive'>
 	<table class="table">
@@ -85,7 +85,7 @@
 						if(resPHP.result == true) {
 							getList();
 							//affiche le message de validation dans la div avec l'id message
-							$('#message').html(resPHP.message);
+							$('#message').addClass('alert alert-success').html(resPHP.message);
 							//vide les erreurs
 							$('#errors').html('');//on vide les messages d'erreures
 							//vide les champs du nouveau pass
