@@ -301,7 +301,7 @@ class CourtsController extends Controller
             	if($insert){
             		$json =[
             		'result' =>true,
-            		'message' =>'le terrain est soumis!',
+            		'message' =>'Le terrain est soumis!',
             		];
 
             	}

@@ -199,8 +199,8 @@ class AdminGestionCompteController extends Controller
 
 	function changeBackground ()
 	{
-		$picture=[];
-		if(isset($_FILES['name'])){
+		
+		if(!empty($_FILES['name'])){
 
             $maxfilesize = 5048576; 
 
