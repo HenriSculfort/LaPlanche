@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 11 Juillet 2017 à 17:54
+-- Généré le :  Mer 12 Juillet 2017 à 11:36
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.1.1
 
@@ -33,7 +33,7 @@ CREATE TABLE `chat` (
   `message` text NOT NULL,
   `date_publi` date NOT NULL,
   `game_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Contenu de la table `chat`
@@ -172,7 +172,7 @@ CREATE TABLE `users` (
   `phone` int(11) NOT NULL,
   `password` varchar(250) NOT NULL,
   `role` varchar(250) NOT NULL,
-  `blacklist` varchar(255) DEFAULT 'Ok'
+  `blacklist` varchar(255) DEFAULT 'autorisé'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -180,11 +180,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `level`, `firstname`, `lastname`, `email`, `address`, `postal_code`, `city`, `phone`, `password`, `role`, `blacklist`) VALUES
-(29, 'fabrice3332', '1', 'Fabrice', 'Aymonino', 'faymonino@hotmail.com', 'Lilas', 33320, 'Eysines', 0, '$2y$10$uyj16qyVnBaW2gGDAQWZv.Gv.oTMGqZaIb9Eu9D7cp1ilHwbtOLbS', 'admin', 'Ok'),
-(30, 'lise', '5', 'Lise', 'Nusbaum', 'lise.n@hotmail.fr', 'Rue Michel Ange', 57155, 'Marly', 0, '$2y$10$L8CR6dDndRauS90Om4cle./QiGBDC02B8PzvXxx5koNC8ZjBicyzu', 'admin', 'Ok'),
-(31, 'etienne', '5', 'Etienne', 'Braud', 'anjevile@yandex.com', 'Rue Sainte Luce', 33000, 'Bordeaux', 0, '$2y$10$uHaxSn23F9NaXVWXIINJde4.vFbFiAqFamQXaP4o8lsoFYQbs4oYi', 'admin', 'Ok'),
-(32, 'Nico', '0', 'Nicolas', 'Logeais', 'logeaisnicolas@yahoo.fr', '105 Avenue Du Docteur Nancel Pénard', 33600, 'PESSAC', 0, '$2y$10$dc5xUEiQcKxT4pDcFRyZOela6U5bNLJL5EdNMgEAqyuBx8IECMXji', 'admin', 'Ok'),
-(33, 'riton86', '5', 'Henri', 'Sculfort', 'henri.sculfort@gmail.com', '2 Rue De Neptune', 86240, 'Fontaine-le-comte', 0, '$2y$10$iiVdfmJHkd.aOOOncuTus.23NJHUtwnHk01Rb5ab7x0dL3ktwGG.W', 'admin', 'Ok');
+(29, 'fabrice3332', '1', 'Fabrice', 'Aymonino', 'faymonino@hotmail.com', 'Lilas', 33320, 'Eysines', 0, '$2y$10$uyj16qyVnBaW2gGDAQWZv.Gv.oTMGqZaIb9Eu9D7cp1ilHwbtOLbS', 'admin', 'autorisé'),
+(30, 'lise', '5', 'Lise', 'Nusbaum', 'lise.n@hotmail.fr', 'Rue Michel Ange', 57155, 'Marly', 0, '$2y$10$L8CR6dDndRauS90Om4cle./QiGBDC02B8PzvXxx5koNC8ZjBicyzu', 'admin', 'autorisé'),
+(31, 'etienne', '5', 'Etienne', 'Braud', 'anjevile@yandex.com', 'Rue Sainte Luce', 33000, 'Bordeaux', 0, '$2y$10$uHaxSn23F9NaXVWXIINJde4.vFbFiAqFamQXaP4o8lsoFYQbs4oYi', 'admin', 'autorisé'),
+(32, 'Nico', '0', 'Nicolas', 'Logeais', 'logeaisnicolas@yahoo.fr', '105 Avenue Du Docteur Nancel Pénard', 33600, 'PESSAC', 0, '$2y$10$dc5xUEiQcKxT4pDcFRyZOela6U5bNLJL5EdNMgEAqyuBx8IECMXji', 'admin', 'autorisé'),
+(33, 'riton86', '5', 'Henri', 'Sculfort', 'henri.sculfort@gmail.com', '2 Rue De Neptune', 86240, 'Fontaine-le-comte', 0, '$2y$10$iiVdfmJHkd.aOOOncuTus.23NJHUtwnHk01Rb5ab7x0dL3ktwGG.W', 'admin', 'autorisé');
 
 --
 -- Index pour les tables exportées

@@ -27,27 +27,29 @@ class AdminGestionCompteController extends Controller
 			$this->show('w_errors/403');            
 		}
 		else {	
-			
+			//Si la session est admin on contrôle que la case de suppression et si l'utilisateur dont on veut modifier des autorisations ne soit pas blacklisté
 			if(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'autorisé'){
+				//on récupére les données à traiter situé dans le formulaire généré en ajax de la fonction getList (on peut donc bloquer ou changer le rôle de l'utilisateur)
 				$roleModif = [
 				'role' => $_GET['role'],
 				];
 				$blacklist = [
 				'blacklist' => $_GET['blacklist'],
 				];
-
+				//on modifie les données dans la bdd
 				$UsersModel = new UsersModel();
 				$update = $UsersModel->update($roleModif, $_GET['id']);
 				$update = $UsersModel->update($blacklist, $_GET['id']);
 
 				if($update == true){
-
+					//on envoye les données pour les afficher en Ajax
 					$json = [
 					'result' => true,
 					'message' => 'L\'utilisateur '.$_GET['username'].' est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
 					];
 				}
 			}
+			//si l'utilisateur est bloqué on passe dans cette boucle afin de le débloquer, on peut également changer son rôle sans le débloquer
 			elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'off' && $_GET['blacklist'] == 'bloqué'){
 				$blacklist = [
 				'blacklist' => $_GET['blacklist'],
@@ -61,13 +63,14 @@ class AdminGestionCompteController extends Controller
 				$update = $UsersModel->update($blacklist, $_GET['id']);
 
 				if($update == true){
-
+					//on envoye de nouveau le message de confirmation
 					$json = [
 					'result' => true,
 					'message' => 'L\'utilisateur '.$_GET['username'].' est '.$_GET['blacklist'].', son rôle est '.$_GET['role'],
 					];
 				}
 			}
+			//Si la case de suppression est coché, on supprime l'utilisateur
 			elseif(isset($_GET['suppr']) && $_GET['suppr'] == 'on'){
 				$UsersModel = new UsersModel();
 				$suppr = $UsersModel->delete((int) $_GET['id']);
@@ -97,7 +100,7 @@ class AdminGestionCompteController extends Controller
 
 			$html = '';
 
-		//on génére le formulaire en Ajax
+		//on génére le formulaire et la liste en Ajax
 			foreach ($listuser as $key => $value) {
 
 				$html .= '<tr>';
@@ -137,10 +140,10 @@ class AdminGestionCompteController extends Controller
 				$html .= '>Bloqué</option>';
 				$html .= '</select></td><td>';
 				$html .='<input type="hidden" id="username'.$value['id'].'" name="username" value="'. $value['username'] . '">';
-				$html .= '<button type="submit" data-id="' . $value['id'] . '" class="btn btn-warning zob">Appliquer</button>';
+				$html .= '<button type="submit" data-id="' . $value['id'] . '" class="btn btn-warning dataAjax">Appliquer</button>';
 				$html .= '</td></form></tr>';
 			}
-
+			//On envoye les données qui vont être récupérés en jQuery
 			$boucle = [
 			'html' => $html,
 			'listuser' => $listuser,
