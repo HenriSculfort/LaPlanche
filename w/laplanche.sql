@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 12 Juillet 2017 à 12:38
+-- Généré le :  Jeu 13 Juillet 2017 à 09:05
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.1.1
 
@@ -70,29 +70,27 @@ CREATE TABLE `courts` (
 --
 
 INSERT INTO `courts` (`id`, `name`, `address`, `postal_code`, `city`, `picture`, `description`, `net`, `court_state`, `opening_hours`, `admin_validation`, `parking`, `latitude`, `longitude`) VALUES
-(1, 'City Stade Brun', '63 Rue Brun ', 33000, 'Bordeaux', 'brun_1.jpg', '1 terrain multisports handball et basket-ball (Equipement de plein air)', 'no', '', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8174403', '-0.5750807'),
-(2, 'City stade Carle Vernet', 'Rue Oscar et Jean Auriac', 33800, 'Bordeaux', 'vernet_1.png', '1 terrain multisports stabilisé\r\n1 terrain de Basket Ball\r\n1 panier d\'échauffement sur sol enrobé\r\n', 'no', '', '7 jours/7 de 8h00 à 22h00\r\n', 1, 'no', '44.8151865', '-0.555181\n'),
-(3, 'City stade Chantecrit', 'Rue Cité Chantecrit', 33300, 'Bordeaux', 'chantecrit_1.png', '1 terrain Multisports en gazon synthétique', 'no', '', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8625966', '-0.5636386'),
-(4, 'City Stade Grand Parc', 'Rue Pierre Trébod', 33000, 'Bordeaux', 'citystadegrandparc_1.png', '1 terrain multisports', 'no', '', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8587295', '-0.584764'),
-(5, 'City stade Labarde', '156 Avenue de Labarde', 33000, 'Bordeaux', 'citystadelabarde_1.png', '2 terrains de handball transformable en terrains de tennis', 'no', '', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8820058', '-0.5511352'),
-(6, 'City stade le Lauzun', 'Rue des Genêts', 33000, 'Bordeaux', 'citystadelauzun_1.png', '1 aire multi-sports en gazon synthétique', 'no', '', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8752777\n', '-0.5728787'),
-(7, 'City stade le Tauzin', '50 Rue du Tauzin', 33000, 'Bordeaux', 'tauzin_1.jpg', '1 terrain multisports\r\n2 courts de tennis ', 'no', '', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8752777', '-0.5728787'),
-(8, 'City Stade Parc aux Angéliques', 'Quai des Queyries', 33100, 'Bordeaux', '', 'Aire multisports en synthétique 30m X 16m', 'no', '', '7 jours/7 de 8h00 à 22h00', 0, 'no', '44.8456951', '-0.5646427'),
-(9, 'City stade Petit Cardinal', 'Rue du Petit Cardinal', 33100, 'Bordeaux', '', '1 terrain multisports en gazon synthétique', 'no', '', '7 jours/7 de 8h00 à 22h00', 0, 'no', '44.8467274', '-0.5438741'),
-(10, 'City stade Port de la Lune', 'Rue du Cardinal Feltin', 33300, 'Bordeaux', '', '1 terrain Multisports en gazon synthétique\r\n1 mini terrain de Football en sol stabilisé', 'no', '', '7 jours/7 de 8h00 à 22h00', 0, 'no', '44.877927', '-0.5422788'),
-(11, 'City stade Reignier', 'Rue Reignier', 33100, 'Bordeaux', '', '1 terrain multisports en synthétique', 'no', '', '7 jours/7 de 8h00 à 22h00', 0, 'no', '44.847043', '-0.5603757'),
-(12, 'Parc des sports Saint-Michel', 'Quais des Salinières, de la Monnaie, Ste Croix', 33000, 'Bordeaux', '', 'un fronton avec une surface de jeu de 10m par 16m et un terrain de 47m de long pour la pratique de type Pelote Basque entouré de protection grillagée\r\nune aire de rink hockey de 42m par 18m en béton lisse.\r\nune aire de basket ball de 18m par 11m en revêtement béton bitumeux\r\nun terrain de football urbain en gazon synthétique de 32m par 16m\r\nune aire en sable de beach volley de 40m par 18m transformable en 1 terrain central ou 3 mini terrains\r\nun espace sportif d’orientation', 'no', '', 'Des agents municipaux sont présents sur le site en permanence\r\nDu 16 octobre au 31 mars : de 8h00 à 18h00\r\nDu 1er avril au 15 juin : de 8h00 à 20h00\r\nDu 16 juin au 15 septembre : de 8h30 à 21h00\r\nDu 16 septembre au 15 octobre : de 8h00 à 20h00\r\nLe site est éclairé chaque soir jusqu’à 22h.', 0, 'no', '44.8360418', '-0.5653346'),
-(13, 'Plaine des sports Colette Besson', '6 Cours Jules Ladoumegue', 33000, 'Bordeaux', '', '14 terrains de grand jeu : 11 terrains en herbe, 3 terrains en synthétique, 10 éclairés\r\n2 pistes athlétisme en cendrée : 1 piste elliptique 400m , 1 piste de vitesse 135m, 2 sautoirs en longueur, 3 aires de lancer de poids\r\n1 boulodrome\r\n12 courts de tennis en béton poreux\r\n1 fronton mur gauche\r\n10 terrains de jeux : Basket ball, Volley ball, Handball\r\n1 espace sportif d’orientation', 'no', '', 'Du 1er janvier au 30 juin et du 1er septembre au 31 décembre\r\nDu lundi au vendredi de 8h00 à 22h30\r\nSamedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00\r\nDu 1er juillet au 31 août\r\nDu lundi au samedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00', 0, 'no', '44.8992418', '-0.5657423'),
-(14, 'Espace sportif Chauffour', '15 Rue Chauffour', 33000, 'Bordeaux', '', '1 piste d’ Athlétisme 250m (4 couloirs) en matériau synthétique éclairée avec ligne droite de vitesse de 107m (7 couloirs)\r\n2 aires de saut en longueur\r\n1 aire de saut en hauteur\r\n1 aire de lancer de poids\r\n1 sautoir à la perche\r\n4 terrains de petit jeu en enrobé éclairés dont 2 terrains permettant de jouer au Tennis et Handball et 2 terrains au Tennis / Basket Ball et Volley Ball.\r\n1 espace sportif d’orientation', 'no', '', 'Du 1er janvier au 30 juin et du 1er septembre au 31 décembre\r\nDu lundi au vendredi de 8h00 à 22h30\r\nSamedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00\r\nDu 1er juillet au 31 août\r\nDu lundi au samedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00', 0, 'no', '44.8399683', '-0.5902352'),
-(15, 'Espace sportif du Parc Lescure', 'Place Johnston', 33000, 'Bordeaux', '', '1 piste d\'athlétisme elliptique 400m avec ligne droite de vitesse éclairée\r\n1 sautoir en longueur\r\n1 sautoir en hauteur\r\n1 aire de lancer du poids\r\n3 courts de tennis éclairés\r\n5 terrains de basket ball, handball, volley ball\r\n2 frontons convertibles en 2 terrains de handball\r\n1 espace sportif d\'orientation\r\nAccès libre et gratuit (Hors entrainements des clubs sportifs et des scolaires) :\r\nCourse à pied, basket ball, handball, pelote', 'no', '', 'Du 1er janvier au 30 juin et du 1er septembre au 31 décembre\r\nDu lundi au vendredi de 8h00 à 22h30\r\nSamedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00\r\nDu 1er juillet au 31 août\r\nDu lundi au samedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00', 0, 'no', '44.8290487', '-0.6002495'),
-(16, 'Espace sportif Stéhélin', 'Avenue Maréchal de Lattre de Tassigny', 33200, 'Bordeaux', '', '1 piste athlétisme de 400 m avec ligne droite de vitesse de 147m, 8 couloirs, en matériau synthétique, éclairée\r\n2 aires de saut en longueur\r\n2 aires de saut en hauteur\r\n2 aire de saut à la perche\r\n2 aires de lancer du poids\r\n2 aires de lancer du disque\r\n1 aire de lancer du marteau et du javelot\r\n1 terrain en herbe de football de 100m par 66m éclairé.\r\n1 terrain en herbe de football / Rugby de 100m par 66m éclairé.\r\n1 terrain de football sol synthétique 80m par 40m.\r\n3 courts de tennis, en béton poreux, dont 2 éclairés\r\n4 terrains de jeux de basket-ball, handball, volley-ball\r\n1 skate parc de 600 m2. Mise en service été 2014.\r\n1 Club house tennis\r\n1 espace sportif d\'orientation\r\nUn gradin de 600 places pour l\'athlétisme et jeux de balle.\r\nAccès libre et gratuit (Hors entraînements des clubs sportifs et des scolaires) :\r\nCourse à pied, Basket Ball, Hand Ball, espace sportif d\'orientation.', 'no', '', 'Du 1er janvier au 30 juin et du 1er septembre au 31 décembre\r\nDu lundi au vendredi de 8h00 à 22h30\r\nSamedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00\r\nDu 1er juillet au 31 août\r\nDu lundi au samedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00', 0, 'no', '44.8586219', '-0.6260672'),
-(17, 'City stade Les aubiers / Espace sportif du Petit Miot', 'rue du Petit Miot', 33300, 'Bordeaux', '', '1 terrain de football en gazon synthétique à 7, utilisable à 5 et en futsal\r\nDimensions: 60mx45m\r\n1 plateau de basket-ball - terrain et aire de street ball.\r\nDimensions: 41mx18m\r\nPanier d’échauffement de basket-ball', 'no', '', '7 jours/7 de 8h à 22h', 0, 'no', '44.873482', '-0.569243'),
-(18, 'Gymnase du Grand Parc I', 'Rue Condorcet', 33000, 'Bordeaux', '', 'Equipements de plein air\r\nAccès libre et gratuit (Hors entrainements des clubs sportifs et des scolaires) :\r\n3 terrains de jeux de basket-ball, handball, volley-ball\r\n1 piste d\'athlétisme\r\nEquipement Couvert\r\n1 salle de sports collectifs sol en bois avec aire de jeu de 40m par 20m : Handball, Basket Ball, Badminton', 'no', '', '7j/7 de 8h00 à 22h00', 0, 'no', '44.8576031', '-0.5775191'),
-(19, 'Gymnase Grand Parc II', 'Rue Jean Artus', 33300, 'Bordeaux', '', '1 salle de sports collectifs sol en linoliège avec aire de jeu de 40m par 22m : Handball, Basket Ball, Volley Ball', 'no', '', '7j/7 de 8h00 à 22h00', 0, 'no', '44.8620855', '-0.582796'),
-(20, 'Gymnase Grand Parc III', 'Rue Pierre Trébod', 33300, 'Bordeaux', '', 'Equipement Couvert\r\n1 salle de sports collectifs avec aire de jeu de 40m par 20m : Handball, Basket ball, Volley ball\r\nEquipements de plein air\r\n2 terrains Basket ball en enrobé\r\n2 terrains Handball en enrobé\r\n1 piste d’Athlétisme de 250m, 4 couloirs, avec ligne droite de vitesse de 10m, 6 couloirs\r\n1 sautoir en Longueur\r\n1 sautoir en Hauteur\r\n1 aire de Lancer du poids\r\n1 espace sportif d’orientatio', 'no', '', '7j/7 de 8h00 à 22h00', 0, 'no', '44.8587295', '-0.584764'),
-(21, 'Stade Alfred Daney', '100 Boulevard Alfred Daney', 33300, 'Bordeaux', '', 'Equipements de plein air\r\n1 terrain en herbe football / rugby de 100m par 66m\r\n6 terrains de jeux de basket ball, handball, volley ball\r\n1 piste d\'athlétisme elliptique 400 m avec ligne droite de vitesse de 130 m\r\n2 sautoirs en Longueur\r\n1 aire de lancer du marteau, du disque et du javelot\r\n1 Boulodrome\r\n1 espace sportif d\'orientation', 'no', '', 'Du lundi au vendredi de 8h00 à 18h00', 0, 'no', '44.8683989', '-0.5701413\n'),
-(22, 'Stade Charles Martin', 'Rue Charles Martin', 33300, 'Bordeaux', '', 'Equipements de plein air\r\nTerrain Ferdinand Moreau avec gradin de 200 places : terrain de football et de football américain sur gazon synthétique éclairé\r\n4 terrains de petit jeu en enrobé :\r\n2 terrains de Handball\r\n1 terrain de Volley Ball\r\n1 terrain de Basket Ball\r\n2 courts de Tennis en enrobé,\r\n1 piste d\'athlétisme en cendrée de 250 m avec ligne de vitesse de 115 m, 4 couloirs\r\n1 espace sportif d\'orientation\r\n\r\nAccès libre : Course à pied, Basket Ball, Hand Ball\r\nAutres équipements\r\n1 salle de gymnastique / arts martiaux', 'no', '', 'Du 1er janvier au 30 juin et du 1er septembre au 31 décembre\r\nDu lundi au vendredi de 8h00 à 22h30\r\nSamedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00\r\nDu 1er juillet au 31 août\r\nDu lundi au samedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00', 0, 'no', '44.8738249', '-0.5502957'),
-(23, 'Stade Promis', '35 Rue de Cenac', 33100, 'Bordeaux', '', 'Equipements de plein air\r\n1 terrain de Football en herbe / Rugby 119m par 68m, éclairé\r\n1 terrain de Football synthétique 56m par 37m, éclairé\r\n1 piste de vitesse, en cendrée de 100m , 4 couloirs\r\n2 courts de Tennis en béton poreux, éclairés\r\n1 terrain de Basket Ball en enrobé\r\n1 terrain de Volley ball et mini tennis en enrobé,\r\n1 terrain de Handball en enrobé\r\n1 espace sportif d\'orientation\r\nAccès libre et gratuit (Hors entrainements des clubs sportifs et des scolaires) :\r\nCourse à pied, Basket Ball, Hand Ball, espace sportif d\'orientation\r\nEquipement couvert\r\n1 salle de sports collectifs de 40m par 20m, sol en bois, 200 places assises en gradins', 'no', '', 'Du 1er janvier au 30 juin et du 1er septembre au 31 décembre\r\nDu lundi au vendredi de 8h00 à 22h30\r\nSamedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00\r\nDu 1er juillet au 31 août\r\nDu lundi au samedi de 8h00 à 21h00\r\nDimanche de 8h00 à 18h00', 0, 'no', '44.8395444', '-0.5534048');
+(1, 'City Stade Brun', '63 Rue Brun', 33000, 'Bordeaux', 'brun_1.jpg', '1 terrain multisports handball et basket-ball (Equipement de plein air)', 'yes', 'medium', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8174403', '-0.5750807'),
+(2, 'City stade Carle Vernet', 'Rue Oscar et Jean Auriac', 33800, 'Bordeaux', 'vernet_1.png', '1 terrain de Basket Ball\r\n1 panier d\'échauffement sur sol enrobé', 'no', 'good', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8151865', '-0.555181\n'),
+(3, 'City stade Chantecrit', 'Rue Cité Chantecrit', 33300, 'Bordeaux', 'chantecrit_1.png', '1 terrain Multisports en gazon synthétique', 'no', 'medium', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8625966', '-0.5636386'),
+(4, 'City Stade Grand Parc', 'Rue Pierre Trébod', 33000, 'Bordeaux', 'citystadegrandparc_1.png', '1 terrain multisports', 'no', 'bad', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8587295', '-0.584764'),
+(6, 'City stade le Lauzun', 'Rue des Genêts', 33000, 'Bordeaux', 'citystadelauzun_1.png', '1 aire multi-sports en gazon synthétique', 'no', 'medium', '7 jours/7 de 8h00 à 22h00', 1, 'yes', '44.8752777\n', '-0.5728787'),
+(7, 'City stade le Tauzin', '50 Rue du Tauzin', 33000, 'Bordeaux', 'tauzin_1.jpg', '1 terrain multisports', 'yes', 'very_good', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8752777', '-0.5728787'),
+(8, 'City Stade Parc aux Angéliques', 'Quai des Queyries', 33100, 'Bordeaux', '', 'Aire multisports en synthétique 30m X 16m', 'no', 'good', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8456951', '-0.5646427'),
+(9, 'City stade Petit Cardinal', 'Rue du Petit Cardinal', 33100, 'Bordeaux', '', '1 terrain multisports en gazon synthétique', 'no', 'good', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.8467274', '-0.5438741'),
+(10, 'City stade Port de la Lune', 'Rue du Cardinal Feltin', 33300, 'Bordeaux', '', '1 terrain Multisports en gazon synthétique\r\n1 mini terrain de Football en sol stabilisé', 'no', 'very_good', '7 jours/7 de 8h00 à 22h00', 1, 'no', '44.877927', '-0.5422788'),
+(11, 'City stade Reignier', 'Rue Reignier', 33100, 'Bordeaux', '', '1 terrain multisports en synthétique', 'yes', 'good', '7 jours/7 de 8h00 à 22h00', 1, 'yes', '44.847043', '-0.5603757'),
+(12, 'Parc des sports Saint-Michel', 'Quais des Salinières, de la Monnaie, Ste Croix', 33000, 'Bordeaux', '', 'Une aire de basket ball en revêtement béton bitumeux', 'yes', 'good', 'De 8h00 à 22h00', 1, 'yes', '44.8360418', '-0.5653346'),
+(17, 'City stade Les aubiers', 'rue du Petit Miot', 33300, 'Bordeaux', '', '1 plateau de basket-ball - terrain et aire de street ball.', 'yes', 'medium', '7 jours/7 de 8h à 22h', 1, 'no', '44.873482', '-0.569243'),
+(18, 'Gymnase du Grand Parc I', 'Rue Condorcet', 33000, 'Bordeaux', '', '3 terrains de jeux de basket-ball, handball, volley-ball', 'yes', 'good', '7j/7 de 8h00 à 22h00', 1, 'no', '44.8576031', '-0.5775191'),
+(19, 'Gymnase Grand Parc II', 'Rue Jean Artus', 33300, 'Bordeaux', '', '1 salle de sports collectifs sol en linoliège avec aire de jeu de 40m par 22m : Handball, Basket Ball, Volley Ball', 'no', '', '7j/7 de 8h00 à 22h00', 1, 'no', '44.8620855', '-0.582796'),
+(20, 'Gymnase Grand Parc III', 'Rue Pierre Trébod', 33300, 'Bordeaux', '', '2 terrains Basket ball en enrobé', 'yes', 'bad', '7j/7 de 8h00 à 22h00', 1, 'yes', '44.8587295', '-0.584764'),
+(21, 'Stade Alfred Daney', '100 Boulevard Alfred Daney', 33300, 'Bordeaux', '', '6 terrains de jeux de basket ball, handball, volley ball', 'yes', 'very_good', 'Du lundi au vendredi de 8h00 à 18h00', 1, 'yes', '44.8683989', '-0.5701413\n'),
+(24, 'City du stade', '20 rue du stade', 86240, 'fontaine-le-comte', '74ff4b403ef095075793e446819d1611.jpg', 'Terrain bitum\r\nCity stade (foot et basket)', 'yes', 'good', '7j/7', 1, 'yes', '46.5335542', '0.2663762'),
+(25, 'City Croutelle', '8 rue du Télégraphe', 86240, 'Croutelle', 'afd521c8941f7c1a32ac9da922433135.jpg', 'City stade (foot et basket)', 'yes', '', '7j/7', 1, 'no', '46.5428598', '0.289873'),
+(27, 'Plateau', '1 Rue Saint Vincent de Paul', 57155, 'Marly', '11a33c8f8d5199fa8f5e94a9ee7584d5.jpg', 'Deux city stades foot et basket. Skatepark à proximité.', 'yes', '', '07h00 - 22h00', 1, 'yes', '49.0601235', '6.1679853'),
+(28, 'City Dulaurier', '8 rue Dulaurier', 31000, 'Toulouse', '344fb1ba97633392a98ed07ab8b9fcac.jpg', '1 city stade (foot et basket)', 'yes', 'good', '7j/7', 1, 'no', '43.6123824', '1.4408011'),
+(29, 'City Mespoul', '3 rue Mespoul', 31000, 'Toulouse', 'cfc9880a10d019855f4d86b251cba13e.jpg', '2 terrains revêtement bitume', 'no', 'good', '7j/7', 0, 'yes', '43.5904333', '1.4428763');
 
 -- --------------------------------------------------------
 
@@ -140,7 +138,7 @@ CREATE TABLE `message` (
 
 INSERT INTO `message` (`id`, `message`, `status`) VALUES
 (1, '', ''),
-(2, '', '');
+(2, '04c5411c547ed04ea6679dc549bbe4cd.jpg', 'show');
 
 -- --------------------------------------------------------
 
@@ -185,7 +183,8 @@ INSERT INTO `users` (`id`, `username`, `level`, `firstname`, `lastname`, `email`
 (30, 'lise', '5', 'Lise', 'Nusbaum', 'lise.n@hotmail.fr', 'Rue Michel Ange', 57155, 'Marly', 0, '$2y$10$L8CR6dDndRauS90Om4cle./QiGBDC02B8PzvXxx5koNC8ZjBicyzu', 'admin', 'autorisé'),
 (31, 'etienne', '5', 'Etienne', 'Braud', 'anjevile@yandex.com', 'Rue Sainte Luce', 33000, 'Bordeaux', 0, '$2y$10$uHaxSn23F9NaXVWXIINJde4.vFbFiAqFamQXaP4o8lsoFYQbs4oYi', 'admin', 'autorisé'),
 (32, 'Nico', '0', 'Nicolas', 'Logeais', 'logeaisnicolas@yahoo.fr', '105 Avenue Du Docteur Nancel Pénard', 33600, 'PESSAC', 0, '$2y$10$dc5xUEiQcKxT4pDcFRyZOela6U5bNLJL5EdNMgEAqyuBx8IECMXji', 'admin', 'autorisé'),
-(33, 'riton86', '5', 'Henri', 'Sculfort', 'henri.sculfort@gmail.com', '2 Rue De Neptune', 86240, 'Fontaine-le-comte', 0, '$2y$10$iiVdfmJHkd.aOOOncuTus.23NJHUtwnHk01Rb5ab7x0dL3ktwGG.W', 'admin', 'autorisé');
+(33, 'riton86', '5', 'Henri', 'Sculfort', 'henri.sculfort@gmail.com', '2 Rue De Neptune', 86240, 'Fontaine-le-comte', 0, '$2y$10$iiVdfmJHkd.aOOOncuTus.23NJHUtwnHk01Rb5ab7x0dL3ktwGG.W', 'admin', 'autorisé'),
+(36, 'henri', '5', 'Henri', 'Sculfort', 'henri.86240@hotmail.fr', '2 Rue De Neptune', 86240, 'Fontaine-le-comte', 0, '$2y$10$TsnH8EJY2TPcZbckUJBbku/qKnip9jqohFtFYbzwsuw2Aa3i1ElwO', 'user', 'autorisé');
 
 --
 -- Index pour les tables exportées
@@ -240,12 +239,12 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT pour la table `courts`
 --
 ALTER TABLE `courts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT pour la table `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `message`
 --
@@ -255,12 +254,12 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT pour la table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
