@@ -69,7 +69,7 @@
                 </div>
 
                 <?php
-
+                // Ce code PHP sera transférer bientot dans un controller :) 
                 // Introduce the class into your scope
                 use KamranAhmed\Geocode\Geocode;
 

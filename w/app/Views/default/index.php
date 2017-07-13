@@ -163,6 +163,7 @@
         infoWindow.setContent('Vous êtes ici');
         map.setCenter(pos);
 
+        // Boucle php pour générer les marqueurs en fonction du retour de mapController
         var locations = 
             [
                 <?php

@@ -451,6 +451,9 @@
 </script>
 
 <script>
+    // Permet de calculer la distance entre un point A et un point B en l'occurence (A = Votre emplacement et B= l'emplacement du terrain)
+    //Retourne une carte avec les 2 points
+    // Retourne la distance en km et la durée du trajet(trajet en voiture)
     function initMap() {
         var bounds = new google.maps.LatLngBounds;
         var markersArray = [];
@@ -522,14 +525,14 @@
                     }
                 });
             }, 
-                                                     function(err) {
-                $('#map').removeClass('show').addClass('hidden');
-                $('#trajet').removeClass('show').addClass('hidden');
-                console.warn('ERROR(' + err.code + '): ' + err.message);
-
-
+                                                    
+            function(err) 
+            {
+              $('#map').removeClass('show').addClass('hidden'); // Si la géolcation n'est pas activé la map ainsi que la div trajet n'est pas affiché
+              $('#trajet').removeClass('show').addClass('hidden');
+              console.warn('ERROR(' + err.code + '): ' + err.message);
             },
-                                                    )};
+      )};
     }
 
     function deleteMarkers(markersArray) {

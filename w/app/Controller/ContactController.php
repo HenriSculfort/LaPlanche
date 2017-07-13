@@ -70,7 +70,7 @@ class ContactController extends Controller
 				}
 			}
 			else{
-				// définie les erreurs du formulaire
+				// Définit les erreurs du formulaire
 				$recapErrors = [
 				'nom' => isset($errors['nom']) ? $errors['nom'] : '',
 				'mail' => isset($errors['mail']) ? $errors['mail'] : '',

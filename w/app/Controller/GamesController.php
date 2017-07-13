@@ -9,19 +9,21 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class GamesController extends Controller
 {
-	public function proposeGame()
-	{
-		$post = [];
+    public function proposeGame()
+    {
+        $post = [];
         $errors = []; 
 
 
-        if(!empty($_POST)){
+        if(!empty($_POST))
+        {
 
             $post = array_map('trim', array_map('strip_tags', $_POST));
 
             //verification de la date
 
-            if(!empty($post['date'])) { 
+            if(!empty($post['date'])) 
+            { 
                 if(!v::date('Y-m-d')->validate($post['date'])){ 
                     $errors[] = 'Le format de la date est incorrect';
                 }
@@ -29,7 +31,7 @@ class GamesController extends Controller
 
             //vérification de l'heure de début
 
-         	if(empty($post['starting_time']) || (!preg_match('#^[0-2][0-9]:|h|H[0-5][0-9]$#', $post['starting_time'])))
+            if(empty($post['starting_time']) || (!preg_match('#^[0-2][0-9]:|h|H[0-5][0-9]$#', $post['starting_time'])))
             {
                 $errors[] = 'L\'heure de départ doit être renseignée ou correcte';
             }
@@ -43,7 +45,8 @@ class GamesController extends Controller
             // Gestion des cas où les horaires se chevauchent
             $gamesModel = new GamesModel();
             $courtIsFree = $gamesModel->showGamesOnThisCourt($post['id']);
-            foreach($courtIsFree as $game) {
+            foreach($courtIsFree as $game) 
+            {
                 if($post['date'] == $game['date'] && ( ($post['starting_time'] == $game['starting_time'] ) || ($post['finishing_time'] == $game['finishing_time'] ) || ($post['starting_time'] < $game['finishing_time'] && ($post['finishing_time'] > $game['starting_time']) ) ) )  {
                     $errors[] = 'Un match a déjà été proposé à ces horaires, merci de consulter la liste ci-dessous.';
                 };
@@ -51,7 +54,7 @@ class GamesController extends Controller
 
 
             //vérification du niveau
-             if(empty($post['level']))
+            if(empty($post['level']))
             {
                 $errors[] = 'Le niveau de l\'équipe doit être choisi';
             }
@@ -68,38 +71,39 @@ class GamesController extends Controller
                 $errors[] = 'Le message doit comporter au moins 2 caractères';
             }
 
-            if(count($errors) === 0){
+            if(count($errors) === 0)
+            {
 
-            	$data=[
-            		'court_id' 		=> $post['id'],
-            		'date'			=> $post['date'],
-            		'starting_time'	=> $post['starting_time'],
-            		'finishing_time'=> $post['finishing_time'],
-            		'number_players'=> $post['number_players'],
-            		'team_name'		=> $post['team_name'],
-            		'team_level'	=> $post['level'],
-            		'message'		=> $post['message'],
+                $data=[
+                    'court_id' 		=> $post['id'],
+                    'date'			=> $post['date'],
+                    'starting_time'	=> $post['starting_time'],
+                    'finishing_time'=> $post['finishing_time'],
+                    'number_players'=> $post['number_players'],
+                    'team_name'		=> $post['team_name'],
+                    'team_level'	=> $post['level'],
+                    'message'		=> $post['message'],
                     'user_id'       => $_SESSION['user']['id'],
-            		'accepted'		=> 0,
+                    'accepted'		=> 0,
 
-            	];
+                ];
                 $gameModel = new GamesModel;
                 $insert = $gameModel->insert($data);
                 if($insert){
-                    
+
                     $json = [
-                    'result' => true,
-                    'message'=> 'Match proposé!' ,
+                        'result' => true,
+                        'message'=> 'Match proposé!' ,
                     ];
                 }
             }
             else{
                 // définie les erreurs du formulaire
-                
+
 
                 $json = [
-                'result' => false,
-                'errors' => implode('<br>',$errors),
+                    'result' => false,
+                    'errors' => implode('<br>',$errors),
                 ];
             }
 
@@ -110,10 +114,11 @@ class GamesController extends Controller
         }
 
 
-	}
+    }
 
-    public function acceptGame() { 
-        
+    public function acceptGame() 
+    { 
+
         $game_id = (int) $_POST['game_id'];
         $id = (int) $_POST['court_id'];
         $data = [
@@ -125,8 +130,9 @@ class GamesController extends Controller
         $this->redirectToRoute('court_details', ['id' =>$id]);
     }
 
-    public function cancelGame() { 
-        
+    public function cancelGame() 
+    { 
+
         $game_id = (int) $_POST['game_id'];
         $id = (int) $_POST['court_id'];
         $data = [
@@ -138,15 +144,16 @@ class GamesController extends Controller
         $this->redirectToRoute('court_details', ['id' =>$id]);
     }
 
-    public function deleteGame() { 
-            
-            $game_id = (int) $_POST['game_id'];
-            $id = (int) $_POST['court_id'];
-            
-            $model = new GamesModel();
-            $gameAccepted = $model->delete($game_id);
+    public function deleteGame() 
+    { 
 
-            $this->redirectToRoute('court_details', ['id' =>$id]);
+        $game_id = (int) $_POST['game_id'];
+        $id = (int) $_POST['court_id'];
+
+        $model = new GamesModel();
+        $gameAccepted = $model->delete($game_id);
+
+        $this->redirectToRoute('court_details', ['id' =>$id]);
     }
 
 
