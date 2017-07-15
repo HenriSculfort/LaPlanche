@@ -526,6 +526,7 @@ hr.hr-bottom{
     bottom: 40px;
     right: 40px;
     cursor: pointer;
+    padding-bottom: 3em;
 }
 
 .scrollToTop a {
